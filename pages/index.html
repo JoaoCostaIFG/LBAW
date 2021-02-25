@@ -16,52 +16,40 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
-        <div class="container-fluid row-cols-5 row-cols-md-10">
-            <div class="col-md-auto">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
+            </button>
 
-            <div class="col-md-auto">
-                <a class="navbar-brand" href="#">SF Home Page</a>
-            </div>
-            <div class="col-md-auto">
-                <!-- Nav Bar Collapse -->
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
+            <a class="navbar-brand" href="#">SF Home Page</a>
+
+            <form class="d-flex navbar-brand">
+                <input class="form-control me-auto" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+
+            <!-- Nav Bar Collapse -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#">Features</a>
-                        </li>
-                        <li class="nav-item">
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#">Pricing</a>
-                        </li>
-                        <li class="nav-item">
-                            <form class="d-flex">
-                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                                <button class="btn btn-outline-success" type="submit">Search</button>
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+                    </li>
+                </ul>
 
-            <div class="col-md-auto row-cols-2">
-                <div class="col">
-                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#loginModal" aria-controls="loginModal" aria-expanded="false" aria-label="Toggle Login">
-                        Login
-                    </button>
-                </div>
+                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#loginModal" aria-controls="loginModal" aria-expanded="false" aria-label="Toggle Login">
+                    Login
+                </button>
 
-                <div class="col">
-                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#signupModal" aria-controls="signupModal" aria-expanded="false" aria-label="Toggle Signup">
-                        Signup
-                    </button>
-                </div>
+                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#signupModal" aria-controls="signupModal" aria-expanded="false" aria-label="Toggle Signup">
+                    Signup
+                </button>
             </div>
         </div>
     </nav>
