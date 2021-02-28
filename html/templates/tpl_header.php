@@ -13,19 +13,18 @@
       crossorigin="anonymous"
     />
 
-    <title><?php if(isset($title)) { echo $title . ' | ';
-           } ?>Segmentation Fault</title>
+    <title><?php if(isset($title)) {echo $title . ' | ';} ?>Segmentation Fault</title>
   </head>
   <body>
     <header>
       <nav class="navbar navbar-expand-md navbar-dark bg-dark"> <!-- TODO fixed-top -->
         <div class="container-fluid">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <a class="navbar-brand" href="#">Segmentation <b>fault</b></a>
+          <a class="navbar-brand" href="/pages/home.php">Segmentation <b>fault</b></a>
           <!-- collapse -->
-          <div class="collapse navbar-collapse navbarNav">
+          <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
               <li class="nav-item"><a class="nav-link active" aria-current="page" href="/pages/home.php">Home</a></li>
               <li class="nav-item"><a class="nav-link" href="/pages/question.php">Questions</a></li>
