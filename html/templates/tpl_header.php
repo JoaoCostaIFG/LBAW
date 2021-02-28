@@ -12,6 +12,7 @@
       integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="../css/search_results.css">
 
     <title><?php if(isset($title)) { echo $title . ' | ';
            } ?>Segmentation Fault</title>
