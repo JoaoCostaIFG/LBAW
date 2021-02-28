@@ -27,8 +27,8 @@
           <!-- collapse -->
           <div class="collapse navbar-collapse navbarNav">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
-              <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Questions</a></li>
+              <li class="nav-item"><a class="nav-link active" aria-current="page" href="/pages/home.php">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="/pages/question.php">Questions</a></li>
               <li class="nav-item"><a class="nav-link" href="#">News</a></li>
               <li class="nav-item"><a class="nav-link" href="#">About</a></li>
               <!-- auth -->

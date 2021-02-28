@@ -14,40 +14,34 @@ require_once '../templates/tpl_header.php';
       </div>
       <div class="carousel-inner">
         <!-- START CAROUSEL ITEM -->
-        <div class="carousel-item active text-white bg-dark">
+        <div class="carousel-item active text-white bg-dark text-center">
           <div class="p-4 p-md-5 mb-4">
-            <span class="text-center">
-              <h1 class="display-4 fst-italic">We <i class="bi-heart" style="font-size: 0.8em;"></i> tech</h1>
-                <p class="lead my-3">So we built this for your</p>
-                <p class="lead mb-0">
-                  <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#signupModal" aria-controls="signupModal" aria-expanded="false" aria-label="Signup">Join now</button>
-                  <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#signupModal" aria-controls="signupModal" aria-expanded="false" aria-label="Toggle Signup">Join now</button>
-                </p>
-            </span>
+            <h1 class="display-4 fst-italic">We <i class="bi-heart" style="font-size: 0.8em;"></i> tech</h1>
+            <p class="lead my-3">So we built this for your</p>
+            <p class="lead mb-2">
+              <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#signupModal" aria-controls="signupModal" aria-expanded="false" aria-label="Signup">Join now</button>
+              <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#signupModal" aria-controls="signupModal" aria-expanded="false" aria-label="Toggle Signup">Join now</button>
+            </p>
           </div>
         </div>
-        <div class="carousel-item text-white bg-dark">
+        <div class="carousel-item text-white bg-dark text-center">
           <div class="p-4 p-md-5 mb-4">
-            <span class="text-center">
-              <h1 class="display-4 fst-italic">We <i class="bi-heart" style="font-size: 0.8em;"></i> tech</h1>
-                <p class="lead my-3">So we built this for your</p>
-                <p class="lead mb-0">
-                  <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#signupModal" aria-controls="signupModal" aria-expanded="false" aria-label="Signup">Join now</button>
-                  <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#signupModal" aria-controls="signupModal" aria-expanded="false" aria-label="Toggle Signup">Join now</button>
-                </p>
-            </span>
+            <h1 class="display-4 fst-italic">We <i class="bi-heart" style="font-size: 0.8em;"></i> tech</h1>
+            <p class="lead my-3">So we built this for your</p>
+            <p class="lead mb-0">
+              <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#signupModal" aria-controls="signupModal" aria-expanded="false" aria-label="Signup">Join now</button>
+              <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#signupModal" aria-controls="signupModal" aria-expanded="false" aria-label="Toggle Signup">Join now</button>
+            </p>
           </div>
         </div>
-        <div class="carousel-item text-white bg-dark">
+        <div class="carousel-item text-white bg-dark text-center">
           <div class="p-4 p-md-5 mb-4">
-            <span class="text-center">
-              <h1 class="display-4 fst-italic">We <i class="bi-heart" style="font-size: 0.8em;"></i> tech</h1>
-                <p class="lead my-3">So we built this for your</p>
-                <p class="lead mb-0">
-                  <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#signupModal" aria-controls="signupModal" aria-expanded="false" aria-label="Signup">Join now</button>
-                  <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#signupModal" aria-controls="signupModal" aria-expanded="false" aria-label="Toggle Signup">Join now</button>
-                </p>
-            </span>
+            <h1 class="display-4 fst-italic">We <i class="bi-heart" style="font-size: 0.8em;"></i> tech</h1>
+            <p class="lead my-3">So we built this for your</p>
+            <p class="lead mb-0">
+              <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#signupModal" aria-controls="signupModal" aria-expanded="false" aria-label="Signup">Join now</button>
+              <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#signupModal" aria-controls="signupModal" aria-expanded="false" aria-label="Toggle Signup">Join now</button>
+            </p>
           </div>
         </div>
         <!-- END CAROUSEL ITEM -->
