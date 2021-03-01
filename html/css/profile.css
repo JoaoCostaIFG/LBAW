@@ -1,0 +1,20 @@
+.themed-grid-col {  
+  background-color: rgba(0, 123, 255, 0);
+  border: 1px solid rgba(2, 36, 73, 0.2);
+}
+
+.themed-container { 
+  background-color: rgba(86, 61, 124, .15);
+  border: 1px solid rgba(2, 36, 73, 0.2);
+  border-width: 0.2em;
+}
+
+.answered-question div h4{
+  background-color: rgba(32, 192, 117, 0.418);
+  border: 0.05em solid rgba(0, 228, 102, 0.808);
+  border-radius: 0.1em;
+}
+
+.unanswered-question div h4 {
+  border: 0.05em solid rgba(2, 36, 73, 0.2);
+}
