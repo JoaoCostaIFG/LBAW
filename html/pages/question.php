@@ -7,19 +7,19 @@ require_once '../templates/tpl_header.php';
 
 <div class="container">
   <div class="row">
-    <div class="col col-md-2 col-3 align-self-center">
+    <div class="col col-md-2 col-4 align-self-center">
       <div class="row fs-3">
         <i class="bi bi-caret-up d-block text-center"></i>
         <span class="d-block text-center">4</span>
         <i class="bi bi-caret-down d-block text-center"></i>
       </div>
       <div class="row p-sm-3 p-0">
-        <img src="../static/images/a.jpg" class="center p-1 p-sm-3" alt="">
+        <img src="../static/images/a.jpg" class="center p-2 p-sm-3" alt="">
         <a class="d-block text-center">FerroGamer</a>
         <span class="d-block text-center">3 Points</span>
       </div>
     </div>
-    <div class="col col-md-10 col-9">
+    <div class="col col-md-10 col-8">
       <p class="text-break">Hello! I am having troubles including a C library in my zig project. I followed the wiki
         guides and I can compile the code, but everytime I try using the library in the code I get thousands of
         "undefined symbol" errors. The library I'm trying to use if: stb_image.h. I will leave my build.zig and the
@@ -53,7 +53,7 @@ require_once '../templates/tpl_header.php';
         <i class="bi bi-caret-down d-block text-center"></i>
       </div>
       <div class="row p-sm-3 p-0">
-        <img src="../static/images/a.jpg" class="center p-1 p-sm-3" alt="">
+        <img src="../static/images/a.jpg" class="center p-2 p-sm-3" alt="">
         <a class="d-block text-center">Fogão</a>
         <span class="d-block text-center">10 Points</span>
       </div>
@@ -84,7 +84,7 @@ require_once '../templates/tpl_header.php';
         <i class="bi bi-caret-down d-block text-center"></i>
       </div>
       <div class="row p-sm-3 p-0">
-        <img src="../static/images/a.jpg" class="center p-1 p-sm-3" alt="">
+        <img src="../static/images/a.jpg" class="center p-2 p-sm-3" alt="">
         <a class="d-block text-center">Padoru</a>
         <span class="d-block text-center">10 Points</span>
       </div>
@@ -116,9 +116,9 @@ require_once '../templates/tpl_header.php';
 </div>
 
 <style>
-  * {
+  /* * {
     border: solid orange 1px;
-  }
+  } */
 </style>
 
 <?php
