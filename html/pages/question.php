@@ -3,9 +3,10 @@ $title = "Question";
 require_once '../templates/tpl_header.php';
 ?>
 
-<h1>Error including library in Zig</h1>
 
-<div class="container">
+<div class="container border border-dark py-2">
+  <h1>Error including library in Zig</h1>
+  <hr>
   <div class="row">
     <div class="col col-md-2 col-4 align-self-center">
       <div class="row fs-3">
@@ -42,9 +43,9 @@ require_once '../templates/tpl_header.php';
   </div>
 </div>
 
-<hr>
+<hr class="dark">
 
-<div class="container">
+<div class="container border border-dark py-2">
   <div class="row">
     <div class="col col-md-2 col-3 align-self-center">
       <div class="row fs-3">
@@ -73,9 +74,7 @@ require_once '../templates/tpl_header.php';
   </div>
 </div>
 
-<hr>
-
-<div class="container">
+<div class="container border border-dark py-2">
   <div class="row">
     <div class="col col-md-2 col-3 align-self-center">
       <div class="row fs-3">
