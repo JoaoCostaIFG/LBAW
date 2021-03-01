@@ -29,10 +29,18 @@
           <!-- collapse nav buttons -->
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
-              <li class="nav-item"><a class="nav-link active" aria-current="page" href="/pages/home.php">Home</a></li>
-              <li class="nav-item"><a class="nav-link" href="/pages/question.php">Questions</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">News</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+              <li class="nav-item">
+                <a class="nav-link <?php if ($title == "Home") echo 'active" aria-current="page'; ?>" href="/pages/home.php">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/pages/question.php">Questions</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link <?php if ($title == "News") echo 'active" aria-current="page'; ?>" href="/pages/news.php">News</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link <?php if ($title == "About") echo 'active" aria-current="page'; ?>" href="/pages/about.php">About</a>
+              </li>
               <!-- auth -->
               <button class="btn btn-primary me-2" type="button" data-bs-toggle="modal" data-bs-target="#loginModal" aria-controls="loginModal" aria-expanded="false" aria-label="Toggle Login">Login</button>
             </ul>
