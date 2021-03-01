@@ -59,11 +59,11 @@ require_once '../templates/tpl_header.php';
       <hr class="featurette-divider">
 
       <div class="row featurette">
-        <div class="col-md-7">
+        <div class="col-10">
           <h2 class="featurette-heading">Share your questions. <span class="text-muted">There's always someone ready to answer.</span></h2>
           <p class="lead">You'll get the help you need and leave behind content that'll help others that have the same problem as you.</p>
         </div>
-        <div class="col-md-5">
+        <div class="col-2 text-end">
           <img src="/static/share.svg" class="featurette-image img-fluid mx-auto"/>
         </div>
       </div>
@@ -71,11 +71,11 @@ require_once '../templates/tpl_header.php';
       <hr class="featurette-divider">
 
       <div class="row featurette">
-        <div class="col-md-7 order-md-2">
+        <div class="col-10 order-md-2 text-md-end">
           <h2 class="featurette-heading">Help the community. <span class="text-muted">Answer the questions you see.</span></h2>
           <p class="lead">Every answer can make the difference.</p>
         </div>
-        <div class="col-md-5 order-md-1">
+        <div class="col-2 order-md-1">
           <img src="/static/help.svg" class="featurette-image img-fluid mx-auto"/>
         </div>
       </div>
@@ -83,11 +83,11 @@ require_once '../templates/tpl_header.php';
       <hr class="featurette-divider">
 
       <div class="row featurette">
-        <div class="col-md-7">
+        <div class="col-10">
           <h2 class="featurette-heading">Be recognised by your worth. <span class="text-muted">Become a valuable member of the community.</span></h2>
           <p class="lead">The more good answers you give, the more standing you get. People will see you as a valuable and helpful member of the community.</p>
         </div>
-        <div class="col-md-5">
+        <div class="col-2 text-end">
           <img src="/static/be.svg" class="featurette-image img-fluid mx-auto"/>
         </div>
       </div>

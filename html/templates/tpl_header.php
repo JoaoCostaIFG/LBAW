@@ -21,15 +21,15 @@
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-md navbar-dark bg-dark"> <!-- TODO fixed-top -->
-        <div class="container-fluid">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
+        <div class="container-md">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <a class="navbar-brand" href="/pages/home.php">Segmentation <b>fault</b></a>
-          <!-- collapse -->
+          <!-- collapse nav buttons -->
           <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <ul class="navbar-nav">
               <li class="nav-item"><a class="nav-link active" aria-current="page" href="/pages/home.php">Home</a></li>
               <li class="nav-item"><a class="nav-link" href="/pages/question.php">Questions</a></li>
               <li class="nav-item"><a class="nav-link" href="#">News</a></li>
@@ -40,8 +40,8 @@
           </div>
           <!-- search -->
           <form class="d-flex">
-            <button class="btn btn-outline-success me-2" type="submit"><i class="bi-search"></i></button>
-            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit"><i class="bi-search"></i></button>
+            <input class="form-control ms-2" type="search" placeholder="Search" aria-label="Search">
           </form>
         </div>
       </nav>
