@@ -4,17 +4,17 @@ require_once '../templates/tpl_header.php';
 ?>
 
 <main>
-  <div class="container row p-5">
+  <div class="container-fluid row p-5 justify-content-center">
     <div class="col-auto">
       <table class="table table-dark table-striped table-bordered align-middle">
         <thead>
           <tr>
-            <th scope="col" colspan="3" class="text-center">Top users </th>
+            <th scope="col" colspan="3" class="text-center"><h3><b>Top Users</b></h3></th>
           </tr>
           <tr class="text-center">
-            <th scope="col" style="width:4%" class="text-center">Pos.</th>
-            <th scope="col" class="text-center">Username</th>
-            <th scope="col" class="text-center">Score</th>
+            <th scope="col" style="width:5%" class="text-center"><h5>Pos</h5></th>
+            <th scope="col" class="text-center"><h5>Username</h5></th>
+            <th scope="col" class="text-center"><h5>Score</h5></th>
           </tr>
         </thead>
         <tbody>
@@ -106,12 +106,12 @@ require_once '../templates/tpl_header.php';
       <table class="table table-dark table-striped table-bordered align-middle">
         <thead>
           <tr>
-            <th scope="col" colspan="3" class="text-center">Top users </th>
+            <th scope="col" colspan="3" class="text-center"><h3><b>Top Questions</b></h3></th>
           </tr>
           <tr class="text-center">
-            <th scope="col" style="width:5%" class="text-center">Pos.</th>
-            <th scope="col" class="text-center">Question</th>
-            <th scope="col" class="text-center">Score</th>
+            <th scope="col" style="width:5%" class="text-center"><h5>Pos</h5></th>
+            <th scope="col" class="text-center"><h5>Question</h5></th>
+            <th scope="col" class="text-center"><h5>Score</h5></th>
           </tr>
         </thead>
         <tbody>
