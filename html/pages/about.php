@@ -3,49 +3,60 @@ $title="About";
 require_once '../templates/tpl_header.php';
 ?>
 
-  <main>
-    <!-- START FEATURETTES -->
-    <div class="container">
-      <hr class="featurette-divider">
+  <main class="container">
+    <h1>About</h1>
+    <hr>
 
-      <div class="row featurette">
-        <div class="col-10">
-          <h2 class="featurette-heading">We've reached 1000 members. <span class="text-muted">Out community keeps growing.</span></h2>
-          <p class="lead">The number of questions, answers and users keeps growing thanks to all of you.</p>
-        </div>
-        <div class="col-2 text-end">
-          <img src="/static/share.svg" class="featurette-image img-fluid mx-auto"/>
-        </div>
+    <h2>About Segmentation<b> fault</b></h2>
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <p>This is a community for sharing knowledge online. People
+        are encouraged to ask and answer questions, thus sharing what they know
+        and leaving behind information to help others in the future.</p>
+        <p>Topics group questions together and you can filter your
+        search results by these. You can get achievements by being helpful to
+        the community and earn perks. Other users will see your profile and
+        recognize you for the worth of your achievements and community contributions.</p>
       </div>
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-10 order-md-2 text-md-end">
-          <h2 class="featurette-heading">We've reached 100 members. <span class="text-muted">Our community is growing.</span></h2>
-          <p class="lead">Thank you everyone from trusting us.</p>
-        </div>
-        <div class="col-2 order-md-1">
-          <img src="/static/help.svg" class="featurette-image img-fluid mx-auto"/>
-        </div>
+      <div class="col-12 col-md-6">
+        <img src="/static/about.png" width="100%">
       </div>
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-10">
-          <h2 class="featurette-heading">Hello and welcome. <span class="text-muted">The website is open.</span></h2>
-          <p class="lead">You can now join and use our community.</p>
-        </div>
-        <div class="col-2 text-end">
-          <img src="/static/be.svg" class="featurette-image img-fluid mx-auto"/>
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
     </div>
-    <!-- END FEATURETTES -->
 
+    <h2>Our team</h2>
+    <hr>
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-12 col-sm-6 col-lg-3">
+          <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+
+          <h3>Ana Barros</h3>
+          <p>Main developer/designer</p>
+          <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+        </div><!-- /.col -->
+        <div class="col-12 col-sm-6 col-lg-3">
+          <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+
+          <h3>João Costa</h3>
+          <p>Main developer/designer</p>
+          <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+        </div><!-- /.col -->
+        <div class="col-12 col-sm-6 col-lg-3">
+          <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+
+          <h3>João Lucas</h3>
+          <p>Main developer/designer</p>
+          <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+        </div><!-- /.col -->
+        <div class="col-12 col-sm-6 col-lg-3">
+          <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+
+          <h3>Ricardo Fontão</h3>
+          <p>Main developer/designer</p>
+          <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div>
   </main>
 
 <?php

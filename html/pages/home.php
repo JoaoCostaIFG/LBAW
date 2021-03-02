@@ -18,7 +18,7 @@ require_once '../templates/tpl_header.php';
             <h1 class="display-4 fst-italic">We <i class="bi-heart" style="font-size: 0.8em;"></i> tech</h1>
             <p class="lead my-3">So we built this for your</p>
             <p class="lead mb-0">
-              <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#signupModal" aria-controls="signupModal" aria-expanded="false" aria-label="Signup">Join now</button>
+              <a class="btn btn-secondary" href="#find-out-more" role="button">Find out more</a>
               <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#signupModal" aria-controls="signupModal" aria-expanded="false" aria-label="Signup">Join now</button>
             </p>
           </div>
@@ -54,47 +54,70 @@ require_once '../templates/tpl_header.php';
     </div>
     <!-- END CAROUSEL -->
 
-    <!-- START FEATURETTES -->
     <div class="container">
-      <hr class="featurette-divider">
+      <!-- START FEATURETTES -->
+      <div id="find-out-more">
+        <hr class="featurette-divider">
 
-      <div class="row featurette">
-        <div class="col-10">
-          <h2 class="featurette-heading">Share your questions. <span class="text-muted">There's always someone ready to answer.</span></h2>
-          <p class="lead">You'll get the help you need and leave behind content that'll help others that have the same problem as you.</p>
+        <div class="row featurette">
+          <div class="col-10">
+            <h2 class="featurette-heading">Share your questions. <span class="text-muted">There's always someone ready to answer.</span></h2>
+            <p class="lead">You'll get the help you need and leave behind content that'll help others that have the same problem as you.</p>
+          </div>
+          <div class="col-2 text-end">
+            <img src="/static/share.svg" class="featurette-image img-fluid mx-auto"/>
+          </div>
         </div>
-        <div class="col-2 text-end">
-          <img src="/static/share.svg" class="featurette-image img-fluid mx-auto"/>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-10 order-md-2 text-md-end">
+            <h2 class="featurette-heading">Help the community. <span class="text-muted">Answer the questions you see.</span></h2>
+            <p class="lead">Every answer can make the difference.</p>
+          </div>
+          <div class="col-2 order-md-1">
+            <img src="/static/help.svg" class="featurette-image img-fluid mx-auto"/>
+          </div>
         </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-10">
+            <h2 class="featurette-heading">Be recognised by your worth. <span class="text-muted">Become a valuable member of the community.</span></h2>
+            <p class="lead">The more good answers you give, the more standing you get. People will see you as a valuable and helpful member of the community.</p>
+          </div>
+          <div class="col-2 text-end">
+            <img src="/static/be.svg" class="featurette-image img-fluid mx-auto"/>
+          </div>
+        </div>
+
+        <hr class="featurette-divider">
       </div>
+      <!-- END FEATURETTES -->
 
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-10 order-md-2 text-md-end">
-          <h2 class="featurette-heading">Help the community. <span class="text-muted">Answer the questions you see.</span></h2>
-          <p class="lead">Every answer can make the difference.</p>
-        </div>
-        <div class="col-2 order-md-1">
-          <img src="/static/help.svg" class="featurette-image img-fluid mx-auto"/>
-        </div>
+      <!-- START FEATURE LIST -->
+      <div id="site-features">
+        <h2>Features</h2>
+        <hr>
+        You can browse the contents freely forever and become a member at any
+        time. We're always looking for people ready to contribute and help each
+        other. These are some of the features you'll find in our website:
+        <ul>
+          <li>Search and filters</li>
+          <li>Ask and answer questions</li>
+          <li>Comment on answer and questions</li>
+          <li>Vote on questions, answers and comments</li>
+          <li>Propose edits</li>
+          <li>Get notified of activity in you questions you participate</li>
+          <li>View other users' profile</li>
+          <li>Get achievements</li>
+          <li>Earn perks based on your reputation</li>
+        </ul>
       </div>
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-10">
-          <h2 class="featurette-heading">Be recognised by your worth. <span class="text-muted">Become a valuable member of the community.</span></h2>
-          <p class="lead">The more good answers you give, the more standing you get. People will see you as a valuable and helpful member of the community.</p>
-        </div>
-        <div class="col-2 text-end">
-          <img src="/static/be.svg" class="featurette-image img-fluid mx-auto"/>
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
+      <!-- END FEATURE LIST -->
     </div>
-    <!-- END FEATURETTES -->
 
   </main>
 

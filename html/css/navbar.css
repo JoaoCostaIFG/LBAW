@@ -7,3 +7,14 @@ body {
   background-size: cover;
   min-height: 20em;
 }
+
+.featurette-divider {
+  margin: 5rem 0; /* Space out the Bootstrap <hr> more */
+}
+
+#go-up-button {
+  position: fixed;
+  right: 1em;
+  bottom: 1em;
+  border-radius: 100%;
+}
