@@ -15,6 +15,7 @@
 
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/search_results.css">
+    <link rel="stylesheet" href="/css/profile.css">
 
     <title><?php if(isset($title)) { echo $title . ' | '; } ?>Segmentation Fault</title>
   </head>
