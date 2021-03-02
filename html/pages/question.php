@@ -8,8 +8,8 @@ require_once '../templates/tpl_header.php';
   <div class="row py-2">
 
     <!-- Sidebar -->
-    <nav class="col-md-2 d-xl-block bg-light sidebar collapse border-end border-dark">
-      <div class="position-sticky d-flex flex-column align-items-start gap-3">
+    <nav class="col-md-2 d-md-block bg-light collapse border-end border-dark">
+      <div class="sticky-top d-flex flex-column align-items-start gap-3" style="top: 4rem;">
         <a class=" text-decoration-none mt-3" href="#">
           <i class="bi bi-house-door"></i>
           Home
@@ -32,7 +32,7 @@ require_once '../templates/tpl_header.php';
       <div class="row">
         <h1>Error including library in Zig</h1>
         <hr>
-        <div class="col col-md-2 col-4 align-self-center">
+        <div class="col col-md-2 col-3 align-self-center border-end border-dark">
           <div class="row fs-3">
             <i class="bi bi-caret-up d-block text-center"></i>
             <span class="d-block text-center">4</span>
@@ -44,7 +44,7 @@ require_once '../templates/tpl_header.php';
             <span class="d-block text-center">3 Points</span>
           </div>
         </div>
-        <div class="col col-md-10 col-8">
+        <div class="col col-md-10 col-9">
           <p class="text-break">Hello! I am having troubles including a C library in my zig project. I followed the wiki
             guides and I can compile the code, but everytime I try using the library in the code I get thousands of
             "undefined symbol" errors. The library I'm trying to use if: stb_image.h. I will leave my build.zig and the
@@ -54,6 +54,7 @@ require_once '../templates/tpl_header.php';
           <p class="text-muted text-end">Posted 3 days ago</p>
         </div>
 
+        <!-- Comments -->
         <div class="container">
           <div class="row bg-light border border-secondary">
             <a class="col-4 text-center">Nachos</a>
@@ -68,14 +69,13 @@ require_once '../templates/tpl_header.php';
           </div>
         </div>
       </div>
-      <!-- Comments -->
 
 
       <!-- Answers -->
-      <hr style="color:black;">
+      <hr>
 
       <div class="row py-2">
-        <div class="col col-md-2 col-3 align-self-center">
+        <div class="col col-md-2 col-3 align-self-center border-end border-dark">
           <div class="row fs-3">
             <i class="bi bi-caret-up d-block text-center"></i>
             <span class="d-block text-center">10</span>
@@ -93,18 +93,18 @@ require_once '../templates/tpl_header.php';
             your project in your build.zig. You can find an example on how to do this in this tetris clone written in zig.
           </p>
         </div>
-      </div>
-      <div class="row m-0 p-0 ">
-        <p class="text-muted text-end">Posted 3 days ago</p>
-      </div>
-      <div class="row">
-        <a class="text-center">Add comment</a>
+        <div class="row m-0 p-0 ">
+          <p class="text-muted text-end">Posted 3 days ago</p>
+        </div>
+        <div class="row">
+          <a class="text-center">Add comment</a>
+        </div>
       </div>
 
       <hr>
 
       <div class="row py-2">
-        <div class="col col-md-2 col-3 align-self-center">
+        <div class="col col-md-2 col-3 align-self-center border-end border-dark">
           <div class="row fs-3">
             <i class="bi bi-caret-up d-block text-center"></i>
             <span class="d-block text-center">1</span>
@@ -121,19 +121,19 @@ require_once '../templates/tpl_header.php';
             issues relating to this and report it if you don't find any. In the mean time, you could try using a different
             library like sdl2_image.</p>
         </div>
-      </div>
-      <div class="row m-0 p-0">
-        <p class="text-muted text-end">Posted 1 days ago</p>
-      </div>
-
-
-      <div class="container">
-        <div class="row bg-light border border-secondary">
-          <a class="col-4 text-center">Anon</a>
-          <p class="col-8">Can you share the link?</p>
+        <div class="row m-0 p-0">
+          <p class="text-muted text-end">Posted 1 days ago</p>
         </div>
-        <div class="row">
-          <a class="text-center">Add comment</a>
+
+
+        <div class="container">
+          <div class="row bg-light border border-secondary">
+            <a class="col-4 text-center">Anon</a>
+            <p class="col-8">Can you share the link?</p>
+          </div>
+          <div class="row">
+            <a class="text-center">Add comment</a>
+          </div>
         </div>
       </div>
 
@@ -146,7 +146,7 @@ require_once '../templates/tpl_header.php';
       </div>
     </div>
 
-    <!-- <nav class="col-md-2 d-xl-block bg-light collapse border-start border-dark"></nav> -->
+    <nav class="col-md-2 bg-light border-start border-dark"></nav>
     <!-- <nav class="col-md-1 d-xl-block" ></nav> -->
 
   </div>
