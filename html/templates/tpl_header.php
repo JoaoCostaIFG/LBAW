@@ -16,46 +16,27 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js" integrity="sha512-VvWznBcyBJK71YKEKDMpZ0pCVxjNuKwApp4zLF3ul+CiflQi6aIJR+aZCP/qWsoFBA28avL5T5HA+RE+zrGQYg==" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/search_results.css">
     <link rel="stylesheet" href="/css/profile.css">
     <link rel="stylesheet" href="/css/tagsinput.css">
 
-    <title><?php if(isset($title)) { echo $title . ' | '; } ?>Segmentation Fault</title>
+    <title><?php if(isset($title)) { echo $title . ' | '; 
+           } ?>Segmentation Fault</title>
   </head>
   <body>
     <header>
       <nav class="navbar fixed-top navbar-expand-md bg-dark navbar-dark">
         <div class="container">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <button id="sidebar-toggler" class="navbar-toggler" type="button" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <a class="navbar-brand" href="/pages/home.php">Segmentation <b>fault</b></a>
-          <!-- collapse nav buttons -->
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto">
-              <li class="nav-item">
-                <a class="nav-link <?php if ($title == "Home") echo 'active" aria-current="page'; ?>" href="/pages/home.php">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/pages/question.php">Questions</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link <?php if ($title == "News") echo 'active" aria-current="page'; ?>" href="/pages/news.php">News</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link <?php if ($title == "About") echo 'active" aria-current="page'; ?>" href="/pages/about.php">About</a>
-              </li>
-              <!-- auth -->
-              <button class="btn btn-primary me-2" type="button" data-bs-toggle="modal" data-bs-target="#loginModal" aria-controls="loginModal" aria-expanded="false" aria-label="Toggle Login">Login</button>
-            </ul>
-
-            <!-- search -->
-            <form class="d-flex">
-              <button class="btn btn-outline-success" type="submit"><i class="bi-search"></i></button>
-              <input class="form-control ms-2" type="search" placeholder="Search" aria-label="Search">
-            </form>
-          </div>
+          <!-- search -->
+          <form class="d-flex">
+            <button class="btn btn-outline-success" type="submit"><i class="bi-search"></i></button>
+            <input class="form-control ms-2" type="search" placeholder="Search" aria-label="Search">
+          </form>
         </div>
       </nav>
 
@@ -91,3 +72,7 @@
         </div>
       </div>
     </header>
+
+<?php
+require_once '../templates/tpl_sidebar.php';
+?>

@@ -9,7 +9,7 @@ require_once '../templates/tpl_header.php';
 
     <h2>About Segmentation<b> fault</b></h2>
     <div class="row">
-      <div class="col-12 col-md-6">
+      <div class="col-12 col-md-6 col-lg-9">
         <p>This is a community for sharing knowledge online. People
         are encouraged to ask and answer questions, thus sharing what they know
         and leaving behind information to help others in the future.</p>
@@ -18,7 +18,7 @@ require_once '../templates/tpl_header.php';
         the community and earn perks. Other users will see your profile and
         recognize you for the worth of your achievements and community contributions.</p>
       </div>
-      <div class="col-12 col-md-6">
+      <div class="col-12 col-md-6 col-lg-3">
         <img src="/static/about.png" width="100%">
       </div>
     </div>

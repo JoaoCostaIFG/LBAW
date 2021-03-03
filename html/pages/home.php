@@ -27,18 +27,14 @@ require_once '../templates/tpl_header.php';
           <div class="container p-4 p-md-5 mb-4">
             <h1 class="display-4 fst-italic">The top question of the week</h1>
             <p class="lead my-3">Why does this code run faster on a sorted array?</p>
-            <p class="lead mb-0">
-              <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#signupModal" aria-controls="signupModal" aria-expanded="false" aria-label="Signup">Find out more</button>
-            </p>
+            <a class="btn btn-primary" href="/pages/question.php" role="button">Visit question</a>
           </div>
         </div>
         <div class="carousel-item text-white bg-dark text-center marketingCarousel">
           <div class="container p-4 p-md-5 mb-4">
             <h1 class="display-4 fst-italic">Read the latest news about us</h1>
             <p class="lead my-3">Stay up-to-date on everything that is going on with the site</p>
-            <p class="lead mb-0">
-              <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#signupModal" aria-controls="signupModal" aria-expanded="false" aria-label="Signup">News</button>
-            </p>
+            <a class="btn btn-primary" href="/pages/news.php" role="button">News</a>
           </div>
         </div>
         <!-- END CAROUSEL ITEM -->

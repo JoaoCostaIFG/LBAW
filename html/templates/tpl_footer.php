@@ -1,3 +1,7 @@
+    <a class="btn btn-secondary" id="go-up-button" href="#" role="button">
+      <i class="bi bi-arrow-up"></i>
+    </a>
+
     <footer class="container">
       <br>
       <hr>
@@ -6,10 +10,6 @@
         <a class="col-2 text-end" href="#">go to top</a>
       </div>
     </footer>
-
-    <a class="btn btn-secondary" id="go-up-button" href="#" role="button">
-      <i class="bi bi-arrow-up"></i>
-    </a>
 
     <!-- Bootstrap + Popper -->
     <script

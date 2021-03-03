@@ -1,0 +1,90 @@
+:root {
+  --navbar-size: 3.5rem;
+  --sidebar-size: 16rem;
+}
+
+/* BEGIN HEADER */
+body {
+  padding-top: var(--navbar-size);
+}
+
+.marketingCarousel {
+  background-image: url("/static/banner.png");
+  background-size: 100% 100%;
+  /* background-size: 100%; */
+  min-height: 20em;
+}
+
+/* SIDE BAR COLLAPSED BY DEFAULT ON SMALL SCREEN (SEE CONTAINER FOR SIZES) */
+#sidebar {
+  position: fixed;
+  top: var(--navbar-size);
+  left: calc(var(--sidebar-size) * -1);
+
+  width: var(--sidebar-size);
+  height: 100vh;
+
+  transition: all 0.5s;
+  z-index: 999;
+}
+
+#sidebar.active {
+  left: 0;
+}
+
+#sidebar .sidebar-header {
+  padding: 1em;
+  background-color: #232129;
+  border-bottom: 1px solid #283643;
+}
+
+#sidebar .sidebar-subheader {
+  padding: 0.5em;
+}
+
+#sidebar li {
+  border-bottom: 1px solid #283643;
+}
+
+#sidebar li:hover {
+  background-color: #232129;
+}
+
+#sidebar li a {
+  display: block;
+  padding: 1em 0 1em 0.5em;
+  text-decoration: none;
+  color: inherit;
+}
+
+#sidebar .row {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+#sidebar-toggler {
+  display: initial !important;
+  margin-right: 0.2em;
+}
+/* END HEADER */
+
+/* BEGIN FEATURETTE */
+.featurette-divider {
+  margin: 5rem 0; /* Space out the Bootstrap <hr> more */
+}
+/* END FEATURETTE */
+
+/* BEGIN FOOTER */
+footer {
+  clear: both;
+}
+
+#go-up-button {
+  position: fixed;
+  right: 1em;
+  bottom: 1em;
+  border-radius: 100%;
+  z-index: 999;
+}
+/* END FOOTER */
