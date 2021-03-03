@@ -71,11 +71,16 @@ require_once '../templates/tpl_sidebar_left.php';
         your project in your build.zig. You can find an example on how to do this in this tetris clone written in zig.
       </p>
     </div>
-    <div class="row m-0 p-0 ">
-      <p class="text-muted text-end">Posted 3 days ago</p>
-    </div>
+
     <div class="row">
-      <a class="text-center">Add comment</a>
+      <button type="button" class="btn btn-danger col-2 offset-7 my-2">Report</button>
+      <p class="text-muted col-3 text-center m-0 align-self-center">Posted 3 days ago</p>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <a class="text-center">Add comment</a>
+      </div>
     </div>
   </div>
 
@@ -99,8 +104,10 @@ require_once '../templates/tpl_sidebar_left.php';
         issues relating to this and report it if you don't find any. In the mean time, you could try using a different
         library like sdl2_image.</p>
     </div>
-    <div class="row m-0 p-0">
-      <p class="text-muted text-end">Posted 1 days ago</p>
+
+    <div class="row">
+      <button type="button" class="btn btn-danger col-2 offset-7 my-2">Report</button>
+      <p class="text-muted col-3 text-center m-0 align-self-center">Posted 1 day ago</p>
     </div>
 
 
