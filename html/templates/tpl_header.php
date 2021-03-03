@@ -29,10 +29,16 @@
     <header>
       <nav class="navbar fixed-top navbar-expand-md bg-dark navbar-dark">
         <div class="container">
-          <button id="sidebar-toggler" class="navbar-toggler" type="button" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <a class="navbar-brand" href="/pages/home.php">Segmentation <b>fault</b></a>
+          <div class="row">
+            <button id="sidebar-toggler" class="navbar-toggler col" type="button" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-brand col">
+              <a href="/pages/home.php" style="margin:0;">Segmentation <b>fault</b></a>
+              <i class="bi bi-cpu col"></i>
+              <?php echo $title; ?>
+            </div>
+          </div>
           <!-- search -->
           <form class="d-flex">
             <button class="btn btn-outline-success" type="submit"><i class="bi-search"></i></button>

@@ -8,6 +8,11 @@ body {
   padding-top: var(--navbar-size);
 }
 
+.navbar-brand a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
 .marketingCarousel {
   background-image: url("/static/banner.png");
   background-size: 100% 100%;
