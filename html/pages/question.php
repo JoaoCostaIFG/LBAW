@@ -3,7 +3,6 @@ $title = "Question";
 require_once '../templates/tpl_header.php';
 ?>
 
-
 <main class="container">
   <!-- Question -->
   <div class="row">
@@ -17,7 +16,7 @@ require_once '../templates/tpl_header.php';
       </div>
       <div class="row p-sm-3 p-0">
         <img src="../static/images/a.jpg" class="center p-2 p-sm-3" alt="">
-        <a class="d-block text-center" style="overflow:hidden;">FerroGamer</a>
+        <a class="d-block text-center">FerroGamer</a> <!--  style="overflow:hidden; -->
         <span class="d-block text-center">3 Points</span>
       </div>
     </div>
@@ -97,10 +96,11 @@ require_once '../templates/tpl_header.php';
         issues relating to this and report it if you don't find any. In the mean time, you could try using a different
         library like sdl2_image.</p>
     </div>
-    <div class="row m-0 p-0">
-      <p class="text-muted text-end">Posted 1 days ago</p>
-    </div>
 
+    <div class="row">
+      <button type="button" class="btn btn-danger col-2 offset-7 my-2">Report</button>
+      <p class="text-muted col-3 text-center m-0 align-self-center">Posted 1 day ago</p>
+    </div>
 
     <div class="container">
       <div class="row bg-light border border-secondary">
@@ -120,15 +120,7 @@ require_once '../templates/tpl_header.php';
     <label class="visually-hidden" for="Textarea">Reply</label>
     <button class="btn btn-primary">Submit reply</button>
   </div>
-</main>
-
-
-
-<style>
-  /* * {
-    border: solid orange 1px;
-  } */
-</style>
+</div>
 
 <?php
 require_once '../templates/tpl_footer.php';
