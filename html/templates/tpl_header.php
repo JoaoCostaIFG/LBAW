@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="/css/search_results.css">
     <link rel="stylesheet" href="/css/profile.css">
     <link rel="stylesheet" href="/css/tagsinput.css">
+    <link rel="stylesheet" href="/css/achievments.css">
 
     <title><?php if(isset($title)) { echo $title . ' | '; } ?>Segmentation Fault</title>
   </head>
