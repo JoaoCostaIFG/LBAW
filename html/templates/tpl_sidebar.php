@@ -1,22 +1,37 @@
+<?php function genSidebarLink($href, $icon, $text)
+  {
+    global $title;
+    ?>
+  <li>
+    <a href=<?php echo $href; ?>>
+      <i class=<?php echo '"bi ' . $icon . '"'; ?>></i>
+      <?php
+        if ($text === $title) echo '<b>';
+        echo " " . $text;
+        if ($text === $title) echo '</b>';
+      ?>
+    </a>
+  </li>
+<?php } ?>
+
 <!-- Sidebar -->
-<nav id="sidebar" class="bg-dark text-light">
+<nav id="sidebar" class="bg-dark text-light" tabindex="0">
   <div class="sidebar-header"><h3>Sidebar</h3></div>
 
   <div class="sidebar-subheader"><h4>Pages</h4></div>
   <ul class="list-unstyled">
-    <li><a href="/pages/home.php"><i class="bi bi-house-door"></i> Home</a></li>
-    <li><a href="/pages/search_results.php"><i class="bi bi-question-circle"></i> Question</a></li>
-    <li><a href="/pages/news.php"><i class="bi bi-newspaper"></i> News</a></li>
-    <li><a href="/pages/search_results.php"><i class="bi bi-person"></i> Users</a></li>
-    <li><a href="/pages/search_results.php"><i class="bi bi-trophy"></i> Leaderboard</a></li>
-    <li><a href="/pages/about.php"><i class="bi bi-info-circle"></i> About</a></li>
+    <?php genSidebarLink("/pages/home.php", "bi-house-door", "Home") ?>
+    <?php genSidebarLink("/pages/search_results.php", "bi-question-circle", "Question") ?>
+    <?php genSidebarLink("/pages/news.php", "bi-newspaper", "News") ?>
+    <?php genSidebarLink("/pages/search_results.php", "bi-person", "Users") ?>
+    <?php genSidebarLink("/pages/search_results.php", "bi-trophy", "Leaderboard") ?>
+    <?php genSidebarLink("/pages/about.php", "bi-info-circle", "About") ?>
   </ul>
 
   <!-- auth -->
   <div class="sidebar-subheader"><h4>User</h4></div>
   <ul class="list-unstyled">
-    <li><a href="/pages/home.php"><i class="bi bi-house-door"></i> Home</a></li>
-  </ul>
+    <?php genSidebarLink("/pages/home.php", "bi-house-door", "Home") ?>
   <div class="row justify-content-evenly">
     <button class="btn btn-primary col-4" type="button" data-bs-toggle="modal" data-bs-target="#loginModal" aria-controls="loginModal" aria-expanded="false" aria-label="Open login box">
       Login
@@ -25,6 +40,10 @@
       Sign up
     </button>
   </div>
+  <!-- Needed for full vertical scroll -->
+  <br>
+  <br>
+  <br>
 </nav>
 
 <script defer>

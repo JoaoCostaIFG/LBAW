@@ -16,7 +16,6 @@
   <link rel="stylesheet" href="/css/search_results.css">
   <link rel="stylesheet" href="/css/profile.css">
   <link rel="stylesheet" href="/css/tagsinput.css">
-  <link rel="stylesheet" href="/css/achievments.css">
 
   <title><?php if (isset($title)) {
             echo $title . ' | ';
@@ -25,7 +24,7 @@
 
 <body>
   <header>
-    <nav class="navbar fixed-top navbar-expand-md bg-dark navbar-dark">
+    <nav class="navbar fixed-top navbar-expand bg-dark navbar-dark">
       <div class="container">
         <div class="row justify-content-between" style="width:100%;">
           <div class="d-flex col-12 col-md-4 col-lg-6">
@@ -39,7 +38,7 @@
             </div>
           </div> <!-- .d-flex .col -->
           <!-- search -->
-          <form class="d-flex col">
+          <form class="d-flex col-4 col-md-4 col-lg-6">
             <button class="btn btn-outline-success" type="submit"><i class="bi-search"></i></button>
             <input class="form-control ms-2" type="search" placeholder="Search" aria-label="Search">
           </form>
@@ -84,7 +83,7 @@
               <button type="submit" class="btn btn-primary">LogIn</button>
             </div>
           </form>
-          <script src="form-validation.js"></script>
+          <script src="/js/form-validation.js"></script>
         </div>
       </div>
     </div>
@@ -144,7 +143,7 @@
               <button type="submit" class="btn btn-primary">SignUp</button>
             </div>
           </form>
-          <script src="form-validation.js"></script>
+          <script src="/js/form-validation.js"></script>
         </div>
       </div>
     </div>

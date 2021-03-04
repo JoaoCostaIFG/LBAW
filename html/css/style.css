@@ -27,10 +27,15 @@ body {
   left: calc(var(--sidebar-size) * -1);
 
   width: var(--sidebar-size);
-  height: 100vh;
+  height: 100%;
 
   transition: all 0.5s;
   z-index: 999;
+
+  /* scrollbar */
+  overflow-x: auto;
+  overflow-y: scroll;
+  max-height: 100vh;
 }
 
 #sidebar.active {
