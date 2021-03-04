@@ -16,7 +16,7 @@ require_once '../templates/tpl_header.php';
         <div class="carousel-item active text-white bg-dark text-center marketingCarousel">
           <div class="container p-4 p-md-5 mb-4">
             <h1 class="display-4 fst-italic">We <i class="bi-heart" style="font-size: 0.8em;"></i> tech</h1>
-            <p class="lead my-3">So we built this for your</p>
+            <p class="lead my-3">So we built this for you</p>
             <p class="lead mb-0">
               <a class="btn btn-secondary" href="#find-out-more" role="button">Find out more</a>
               <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#signupModal" aria-controls="signupModal" aria-expanded="false" aria-label="Signup">Join now</button>
