@@ -187,7 +187,7 @@ require_once '../templates/tpl_header.php';
       </div>
       <div class="carousel-item">
         <div class="container-fluid themed-container text-left p-1">
-          <h6><b>Achievments</b></h6>
+          <h6><b>Achivements</b></h6>
         </div>
         <div class="container d-flex flex-wrap justify-content-center mt-3">
           <div class="container-fluid row-1 border rounded border-success m-3 m-sm-1 p-1" style="max-width: 20em;">
