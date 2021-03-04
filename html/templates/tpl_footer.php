@@ -6,8 +6,8 @@
       <br>
       <hr>
       <div class="row">
-        <p class="col-10 text-muted">&#169; 2021 Segmentation Fault, Inc.</p>
-        <a class="col-2 text-end" href="#">go to top</a>
+        <p class="col-8 text-muted">&#169; 2021 Segmentation Fault, Inc.</p>
+        <a class="col-4 text-end" href="#">go to top</a>
       </div>
     </footer>
 

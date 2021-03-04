@@ -12,9 +12,10 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js" integrity="sha512-VvWznBcyBJK71YKEKDMpZ0pCVxjNuKwApp4zLF3ul+CiflQi6aIJR+aZCP/qWsoFBA28avL5T5HA+RE+zrGQYg==" crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/css/search_results.css">
   <link rel="stylesheet" href="/css/profile.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/search_results.css">
+  <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/tagsinput.css">
 
   <title><?php if (isset($title)) {
@@ -27,21 +28,23 @@
     <nav class="navbar fixed-top navbar-expand bg-dark navbar-dark">
       <div class="container">
         <div class="row justify-content-between" style="width:100%;">
-          <div class="d-flex col-12 col-md-4 col-lg-6">
+          <div class="d-flex col-12 col-md-4 col-lg-6 align-items-center">
             <button id="sidebar-toggler" class="navbar-toggler" type="button" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="navbar-brand">
+            <div class="navbar-brand fs-5">
               <a href="/pages/home.php">Segmentation <b>fault</b></a>
               <i class="bi bi-cpu col"></i>
               <?php echo $title; ?>
             </div>
           </div> <!-- .d-flex .col -->
           <!-- search -->
+          <!--
           <form class="d-flex col-4 col-md-4 col-lg-6">
             <button class="btn btn-outline-success" type="submit"><i class="bi-search"></i></button>
             <input class="form-control ms-2" type="search" placeholder="Search" aria-label="Search">
           </form>
+          -->
         </div> <!-- .row -->
       </div> <!-- .container -->
     </nav>

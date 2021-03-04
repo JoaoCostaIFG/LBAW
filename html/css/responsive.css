@@ -1,0 +1,16 @@
+/* medium (>= 768px) */
+@media (max-width: 768px) {
+  /* BEGIN NAVBAR */
+  .navbar .navbar-brand {
+    font-size: min(1.25rem, 4vw) !important;
+  }
+  /* END NAVBAR */
+}
+
+/* BEGIN FEATURETTE */
+.featurette-divider {
+  /* Space out the Bootstrap <hr> more
+    less <hr> spacing in smaller screens */
+  margin: min(5rem, 5vw) 0 !important; 
+}
+/* END FEATURETTE */
