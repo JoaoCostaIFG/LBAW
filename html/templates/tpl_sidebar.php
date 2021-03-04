@@ -1,14 +1,15 @@
 <?php function genSidebarLink($href, $icon, $text)
   {
     global $title;
+    $is_selected = ($text === $title);
     ?>
-  <li>
+  <li <?php if ($is_selected) echo 'class="active"' ?>>
     <a href=<?php echo $href; ?>>
       <i class=<?php echo '"bi ' . $icon . '"'; ?>></i>
       <?php
-        if ($text === $title) echo '<b>';
+        if ($is_selected) echo '<b>';
         echo " " . $text;
-        if ($text === $title) echo '</b>';
+        if ($is_selected) echo '</b>';
       ?>
     </a>
   </li>
@@ -16,7 +17,7 @@
 
 <!-- Sidebar -->
 <nav id="sidebar" class="bg-dark text-light" tabindex="0">
-  <div class="sidebar-header"><h3>Sidebar</h3></div>
+  <div class="sidebar-header"><h3><?php echo $title; ?></h3></div>
 
   <div class="sidebar-subheader"><h4>Pages</h4></div>
   <ul class="list-unstyled">
@@ -40,10 +41,6 @@
       Sign up
     </button>
   </div>
-  <!-- Needed for full vertical scroll -->
-  <br>
-  <br>
-  <br>
 </nav>
 
 <script defer>
