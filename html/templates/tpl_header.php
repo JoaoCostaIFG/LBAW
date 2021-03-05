@@ -20,138 +20,158 @@
 
   <title><?php if (isset($title)) {
             echo $title . ' | ';
-          } ?>Segmentation Fault</title>
+} ?>Segmentation Fault</title>
 </head>
 
 <body>
   <header>
     <nav class="navbar fixed-top navbar-expand bg-dark navbar-dark">
-      <div class="container">
-        <div class="row justify-content-between" style="width:100%;">
-          <div class="d-flex col-12 col-md-4 col-lg-6 align-items-center">
-            <button id="sidebar-toggler" class="navbar-toggler" type="button" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-brand fs-5">
-              <a href="/pages/home.php">Segmentation <b>fault</b></a>
-              <i class="bi bi-cpu col"></i>
-              <?php echo $title; ?>
-            </div>
-          </div> <!-- .d-flex .col -->
-          <!-- search -->
-          <!--
-          <form class="d-flex col-4 col-md-4 col-lg-6">
-            <button class="btn btn-outline-success" type="submit"><i class="bi-search"></i></button>
-            <input class="form-control ms-2" type="search" placeholder="Search" aria-label="Search">
-          </form>
-          -->
-        </div> <!-- .row -->
-      </div> <!-- .container -->
+      <div class="container d-flex justify-content-between">
+        <div class="d-flex align-items-center">
+          <button id="sidebar-toggler" class="navbar-toggler" type="button" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="navbar-brand">
+            <a href="/pages/home.php">Segmentation <b>fault</b></a>
+            <i class="bi bi-cpu"></i>
+            <?php echo $title; ?>
+          </div>
+        </div> <!-- .d-flex -->
+        <!-- search -->
+        <div id="searchModal-toggler">
+          <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#searchModal">
+            <i class="bi-search"></i>
+          </button>
+        </div>
+        <form id="navbarSeachForm" class="d-flex">
+          <button class="btn btn-outline-success" type="submit"><i class="bi-search"></i></button>
+          <input class="form-control ms-2" type="search" placeholder="Search" aria-label="Search">
+        </form>
+      </div> <!-- .container .d-flex -->
     </nav>
-
-    <!-- Login and Signup Modals -->
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3 class="modal-title" id="loginModalLabel">Login</h3>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <!-- Login form -->
-          <form action="">
-            <div class="modal-body">
-              <!-- Email -->
-              <div class="input-group mb-3">
-                <label for="email" class="form-label"><b>Email</b></label>
-                <div class="input-group has-validation">
-                  <input type="text" class="form-control" id="email" placeholder="Enter email... (ex: email@example.com)" required>
-                  <div class="invalid-feedback">
-                    Email is required.
-                  </div>
-                </div>
-              </div>
-              <!-- Password -->
-              <div class="input-group mb-3">
-                <label for="password" class="form-label"><b>Password</b></label>
-                <div class="input-group has-validation">
-                  <input type="text" class="form-control" id="password" placeholder="Enter password..." required>
-                  <div class="invalid-feedback">
-                    Password is required.
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">LogIn</button>
-            </div>
-          </form>
-          <script src="/js/form-validation.js"></script>
-        </div>
-      </div>
-    </div>
-    <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3 class="modal-title" id="signupModalLabel">Signup</h3>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <!-- Sign Up Form -->
-          <form action="">
-            <div class="modal-body">
-              <!-- Email -->
-              <div class="input-group mb-3">
-                <label for="email" class="form-label"><b>Email</b></label>
-                <div class="input-group has-validation">
-                  <input type="text" class="form-control" id="email" placeholder="Enter email... (ex: email@example.com)" required>
-                  <div class="invalid-feedback">
-                    Email is required.
-                  </div>
-                </div>
-              </div>
-              <!-- Username -->
-              <div class="input-group mb-3">
-                <label for="username" class="form-label"><b>Username</b></label>
-                <div class="input-group has-validation">
-                  <input type="text" class="form-control" id="username" placeholder="Enter username... (ex: user123)" required>
-                  <div class="invalid-feedback">
-                    Username is required.
-                  </div>
-                </div>
-              </div>
-              <!-- Password -->
-              <div class="input-group mb-3">
-                <label for="password" class="form-label"><b>Password</b></label>
-                <div class="input-group has-validation">
-                  <input type="text" class="form-control" id="password" placeholder="Enter password..." required>
-                  <div class="invalid-feedback">
-                    Password is required.
-                  </div>
-                </div>
-              </div>
-              <!-- Repeated Password -->
-              <div class="input-group">
-                <label for="repeated_password" class="form-label"><b>Repeat Password</b></label>
-                <div class="input-group has-validation">
-                  <input type="text" class="form-control" id="repeated_password" placeholder="Enter password again..." required>
-                  <div class="invalid-feedback">
-                    Repeated password is required.
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">SignUp</button>
-            </div>
-          </form>
-          <script src="/js/form-validation.js"></script>
-        </div>
-      </div>
-    </div>
   </header>
 
-  <?php
+  <!-- BEGIN SEARCH MODAL -->
+  <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content"> <!-- bg-dark -->
+        <div class="modal-body">
+          <form>
+            <!-- button is not needed -->
+            <!--
+            <button class="btn btn-outline-success" type="submit"><i class="bi-search"></i></button>
+            -->
+            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END SEARCH MODAL -->
+
+  <!-- BEGIN AUTH MODALS -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="loginModalLabel">Login</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <!-- Login form -->
+        <form action="">
+          <div class="modal-body">
+            <!-- Email -->
+            <div class="input-group mb-3">
+              <label for="email" class="form-label"><b>Email</b></label>
+              <div class="input-group has-validation">
+                <input type="text" class="form-control" id="email" placeholder="Enter email... (ex: email@example.com)" required>
+                <div class="invalid-feedback">
+                  Email is required.
+                </div>
+              </div>
+            </div>
+            <!-- Password -->
+            <div class="input-group mb-3">
+              <label for="password" class="form-label"><b>Password</b></label>
+              <div class="input-group has-validation">
+                <input type="text" class="form-control" id="password" placeholder="Enter password..." required>
+                <div class="invalid-feedback">
+                  Password is required.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">LogIn</button>
+          </div>
+        </form>
+        <script src="/js/form-validation.js"></script>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="signupModalLabel">Signup</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <!-- Sign Up Form -->
+        <form action="">
+          <div class="modal-body">
+            <!-- Email -->
+            <div class="input-group mb-3">
+              <label for="email" class="form-label"><b>Email</b></label>
+              <div class="input-group has-validation">
+                <input type="text" class="form-control" id="email" placeholder="Enter email... (ex: email@example.com)" required>
+                <div class="invalid-feedback">
+                  Email is required.
+                </div>
+              </div>
+            </div>
+            <!-- Username -->
+            <div class="input-group mb-3">
+              <label for="username" class="form-label"><b>Username</b></label>
+              <div class="input-group has-validation">
+                <input type="text" class="form-control" id="username" placeholder="Enter username... (ex: user123)" required>
+                <div class="invalid-feedback">
+                  Username is required.
+                </div>
+              </div>
+            </div>
+            <!-- Password -->
+            <div class="input-group mb-3">
+              <label for="password" class="form-label"><b>Password</b></label>
+              <div class="input-group has-validation">
+                <input type="text" class="form-control" id="password" placeholder="Enter password..." required>
+                <div class="invalid-feedback">
+                  Password is required.
+                </div>
+              </div>
+            </div>
+            <!-- Repeated Password -->
+            <div class="input-group">
+              <label for="repeated_password" class="form-label"><b>Repeat Password</b></label>
+              <div class="input-group has-validation">
+                <input type="text" class="form-control" id="repeated_password" placeholder="Enter password again..." required>
+                <div class="invalid-feedback">
+                  Repeated password is required.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">SignUp</button>
+          </div>
+        </form>
+        <script src="/js/form-validation.js"></script>
+      </div>
+    </div>
+  </div>
+  <!-- END AUTH MODALS -->
+
+<?php
   require_once '../templates/tpl_sidebar.php';
-  ?>
+?>

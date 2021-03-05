@@ -13,23 +13,26 @@ body {
   text-decoration: inherit;
 }
 
-.marketingCarousel {
-  background-image: url("/static/banner.png");
-  background-size: 100% 100%;
-  /* background-size: 100%; */
-  min-height: 20em;
+#searchModal .modal-dialog {
+  margin: 0;
+  /* position */
+  top: var(--navbar-size);
+  /* center horizontally */
+  left: 50%;
+  transform: translateX(-50%);
 }
+/* END HEADER */
 
-/* SIDE BAR COLLAPSED BY DEFAULT ON SMALL SCREEN (SEE CONTAINER FOR SIZES) */
+/* BEGIN SIDEBAR */
+/* sidebar is collapsed by default on small screen */
 #sidebar {
   position: fixed;
   top: var(--navbar-size);
   left: calc(var(--sidebar-size) * -1);
 
   width: var(--sidebar-size);
-  height: calc(
-    100vh - var(--navbar-size)
-  ); /* full screen size excluding navbar */
+  /* full screen size excluding navbar */
+  height: calc(100vh - var(--navbar-size));
 
   transition: all 0.5s;
   z-index: 999;
@@ -38,8 +41,8 @@ body {
   overflow-x: auto;
   overflow-y: scroll;
   /* hide scrollbar */
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 /* hide scrollbar for Chrome, Safari and Opera */
@@ -88,7 +91,14 @@ body {
   display: initial !important;
   margin-right: 1rem;
 }
-/* END HEADER */
+/* END SIDEBAR */
+
+.marketingCarousel {
+  background-image: url("/static/banner.png");
+  background-size: 100% 100%;
+  /* background-size: 100%; */
+  min-height: 20em;
+}
 
 /* BEGIN FEATURETTE */
 .featurette {
