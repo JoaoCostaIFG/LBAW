@@ -101,7 +101,7 @@ body {
 /* BEGIN MARKETING CAROUSEL */
 .marketingCarousel {
   background-image: url("/static/banner.png");
-  background-size: 100% 100%;
+  background-size: 100% auto;
   /* background-size: 100%; */
   min-height: 20em;
 }
