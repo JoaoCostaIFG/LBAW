@@ -5,8 +5,8 @@ require_once '../templates/tpl_header.php';
 
 <!-- Page Top -->
 <div class="container">
+  <h2 class="page-title"> Search Results </h2>
   <div class="py-3 border-bottom pb-0">
-    <h2> Search Results </h2>
     <div class="d-flex flex-row align-items-center justify-content-between">
       <!-- Number of Results -->
       <h6 class="m-0 d-none d-md-block">50 results</h6>
@@ -38,7 +38,7 @@ require_once '../templates/tpl_header.php';
   <div class="tab-content">
     <!-- Questions Tab -->
     <div class="tab-pane fade show active" id="questions">
-    <!-- Question Card -->
+      <!-- Question Card -->
       <div class="d-flex flex-sm-row flex-column-reverse justify-content-start align-items-center gap-3 w-100 border p-3">
         <div class="d-flex flex-sm-column flex-row justify-content-start align-items-center gap-1 ">
           <!-- Number Votes -->

@@ -4,13 +4,13 @@ require_once '../templates/tpl_header.php';
 ?>
 
 <main class="container">
-  <h1>Administration</h1>
+  <h2 class="page-title">Administration</h2>
 
 
   <div class="accordion mt-4" id="accordionAdmin">
     <div class="accordion-item">
       <h2 class="accordion-header" id="headingTopic">
-        <button class="accordion-button fs-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTopic" aria-expanded="true" aria-controls="collapseTopic">
+        <button class="accordion-button fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTopic" aria-expanded="true" aria-controls="collapseTopic">
           Topic Proposals
         </button>
       </h2>
@@ -42,7 +42,7 @@ require_once '../templates/tpl_header.php';
     </div>
     <div class="accordion-item">
       <h2 class="accordion-header" id="headingUser">
-        <button class="accordion-button collapsed fs-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseUser" aria-expanded="false" aria-controls="collapseUser">
+        <button class="accordion-button collapsed fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseUser" aria-expanded="false" aria-controls="collapseUser">
           User Reports
         </button>
       </h2>
@@ -99,7 +99,7 @@ require_once '../templates/tpl_header.php';
     </div>
     <div class="accordion-item">
       <h2 class="accordion-header" id="headingModerator">
-        <button class="accordion-button collapsed fs-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseModerator" aria-expanded="false" aria-controls="collapseModerator">
+        <button class="accordion-button collapsed fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseModerator" aria-expanded="false" aria-controls="collapseModerator">
           Moderator Reports
         </button>
       </h2>

@@ -3,7 +3,7 @@ $title="About";
 require_once '../templates/tpl_header.php';
 ?>
   <main class="container p-3">
-    <h3><b>Add Question</b></h3>
+    <h2><b>Add Question</b></h2>
     <hr class="mt-3">
     <form action="">
       <div class="container py-1">

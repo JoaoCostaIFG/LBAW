@@ -4,7 +4,7 @@ require_once '../templates/tpl_header.php';
 ?>
 
   <main class="container">
-    <h1>About</h1>
+    <h1 class="page-title">About</h1>
     <hr>
 
     <h2>About Segmentation<b> fault</b></h2>

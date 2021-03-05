@@ -12,7 +12,7 @@ require_once '../templates/tpl_header.php';
         <span class="badge bg-light text-dark rounded-pill align-text-bottom">27</span>
       </a>
       <a class="btn-secondary nav-link col text-center p-2 m-0" href="#" data-bs-target="#myCarousel" data-bs-slide-to="2">
-        Achievments
+        Achivements
         <span class="badge bg-light text-dark rounded-pill align-text-bottom">2</span>
       </a>
     </nav>
