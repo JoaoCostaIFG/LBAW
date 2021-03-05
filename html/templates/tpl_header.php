@@ -14,7 +14,6 @@
 
   <link rel="stylesheet" href="/css/profile.css">
   <link rel="stylesheet" href="/css/responsive.css">
-  <link rel="stylesheet" href="/css/search_results.css">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/tagsinput.css">
 

@@ -25,7 +25,7 @@
     <?php genSidebarLink("/pages/search_results.php", "bi-question-circle", "Question") ?>
     <?php genSidebarLink("/pages/news.php", "bi-newspaper", "News") ?>
     <?php genSidebarLink("/pages/search_results.php", "bi-person", "Users") ?>
-    <?php genSidebarLink("/pages/search_results.php", "bi-trophy", "Leaderboard") ?>
+    <?php genSidebarLink("/pages/leaderboard.php", "bi-trophy", "Leaderboard") ?>
     <?php genSidebarLink("/pages/about.php", "bi-info-circle", "About") ?>
   </ul>
 

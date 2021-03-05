@@ -121,6 +121,15 @@ body {
 }
 /* END FEATURETTE */
 
+.fit-cover{
+  object-fit: cover;
+}
+
+.page-title{
+  margin-top: 1rem;
+  padding-bottom: 0;
+}
+
 /* BEGIN FOOTER */
 footer {
   clear: both;

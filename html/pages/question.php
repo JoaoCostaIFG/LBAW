@@ -40,9 +40,19 @@ require_once '../templates/tpl_header.php';
         <a class="col-4 text-center">Lucas123</a>
         <p class="col-8">Have you tried linking the object instead of the library code?</p>
       </div>
+
       <div class="row">
-        <a class="text-center">Add comment</a>
+        <a class="text-center dropdown-toggle" data-bs-toggle="dropdown" id="commentDropdownLink" aria-expanded="false">Add comment</a>
+        <div class="dropdown-menu" aria-labelledby="commentDropdownLink">
+          <form class="container">
+            <h2>Your Comment</h2>
+            <textarea class="form-control" id="Textarea" rows="7"></textarea>
+            <label class="visually-hidden" for="Textarea">Add comment</label>
+            <button type="submit" class="btn btn-primary">Post Comment</button>
+          </form>
+        </div>
       </div>
+
     </div>
   </div>
 
@@ -75,8 +85,17 @@ require_once '../templates/tpl_header.php';
     </div>
 
     <div class="row">
-      <a class="text-center">Add comment</a>
+      <a class="text-center dropdown-toggle" data-bs-toggle="dropdown" id="commentDropdownLink" aria-expanded="false">Add comment</a>
+      <div class="dropdown-menu" aria-labelledby="commentDropdownLink">
+        <form class="container">
+          <h2>Your Comment</h2>
+          <textarea class="form-control" id="Textarea" rows="7"></textarea>
+          <label class="visually-hidden" for="Textarea">Add comment</label>
+          <button type="submit" class="btn btn-primary">Post Comment</button>
+        </form>
+      </div>
     </div>
+
   </div>
 
   <hr>
@@ -110,9 +129,19 @@ require_once '../templates/tpl_header.php';
         <a class="col-4 text-center">Anon</a>
         <p class="col-8">Can you share the link?</p>
       </div>
+
       <div class="row">
-        <a class="text-center">Add comment</a>
+        <a class="text-center dropdown-toggle" data-bs-toggle="dropdown" id="commentDropdownLink" aria-expanded="false">Add comment</a>
+        <div class="dropdown-menu" aria-labelledby="commentDropdownLink">
+          <form class="container">
+            <h2>Your Comment</h2>
+            <textarea class="form-control" id="Textarea" rows="7"></textarea>
+            <label class="visually-hidden" for="Textarea">Add comment</label>
+            <button type="submit" class="btn btn-primary">Post Comment</button>
+          </form>
+        </div>
       </div>
+
     </div>
   </div>
 
