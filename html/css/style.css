@@ -65,6 +65,10 @@ body {
   padding: 0.5em;
 }
 
+#sidebar li {
+  transition: all 0.3s;
+}
+
 #sidebar li + li {
   border-top: 1px solid #283643;
 }
@@ -72,6 +76,7 @@ body {
 #sidebar li:hover,
 #sidebar li.active {
   background-color: #232129; /* #FF9245 */
+  margin-left: 0.5em; /* extra margin on selected element */
 }
 
 #sidebar li a {
@@ -93,12 +98,22 @@ body {
 }
 /* END SIDEBAR */
 
+/* BEGIN MARKETING CAROUSEL */
 .marketingCarousel {
   background-image: url("/static/banner.png");
   background-size: 100% 100%;
   /* background-size: 100%; */
   min-height: 20em;
 }
+
+/* center marketing carousel contents */
+#marketingCarousel .carousel-item.active,
+#marketingCarousel .carousel-item-next,
+#marketingCarousel .carousel-item-prev {
+  display: flex !important;
+  align-items: center !important;
+}
+/* END MARKETING CAROUSEL */
 
 /* BEGIN FEATURETTE */
 .featurette {

@@ -43,8 +43,8 @@
           </button>
         </div>
         <form id="navbarSeachForm" class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit"><i class="bi-search"></i></button>
-          <input class="form-control ms-2" type="search" placeholder="Search" aria-label="Search">
         </form>
       </div> <!-- .container .d-flex -->
     </nav>
