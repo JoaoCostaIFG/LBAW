@@ -27,6 +27,7 @@
     <?php genSidebarLink("/pages/search_results.php", "bi-person", "Users") ?>
     <?php genSidebarLink("/pages/leaderboard.php", "bi-trophy", "Leaderboard") ?>
     <?php genSidebarLink("/pages/about.php", "bi-info-circle", "About") ?>
+    <?php genSidebarLink("/pages/administration.php", "bi-clipboard-data", "Administration") ?>
   </ul>
 
   <!-- auth -->
