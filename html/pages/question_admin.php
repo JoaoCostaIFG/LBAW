@@ -6,7 +6,8 @@ require_once '../templates/tpl_header.php';
 <main class="container">
   <!-- Question -->
   <div class="row p-1">
-    <h1>Error including library in Zig</h1>
+    <h1 class="col-9">Error including library in Zig</h1>
+    <button class="btn btn-outline-danger btn-sm col-3">Mark as duplicate</button>
     <hr>
     <div class="col col-md-2 col-3 align-self-center border-end border-dark">
       <div class="row fs-3">
@@ -80,7 +81,7 @@ require_once '../templates/tpl_header.php';
     </div>
 
     <div class="row">
-      <button type="button" class="btn btn-danger col-sm-2 offset-sm-7 col-4 offset-5 my-2">Report</button>
+      <button type="button" class="btn btn-danger col-sm-2 offset-sm-7 col-4 offset-5 my-2">Delete</button>
       <p class="text-muted col-3 text-center m-0 align-self-center">Posted 1 day ago</p>
     </div>
 
@@ -120,7 +121,7 @@ require_once '../templates/tpl_header.php';
     </div>
 
     <div class="row">
-      <button type="button" class="btn btn-danger col-sm-2 offset-sm-7 col-4 offset-5 my-2">Report</button>
+      <button type="button" class="btn btn-danger col-sm-2 offset-sm-7 col-4 offset-5 my-2">Delete</button>
       <p class="text-muted col-3 text-center m-0 align-self-center">Posted 1 day ago</p>
     </div>
 
