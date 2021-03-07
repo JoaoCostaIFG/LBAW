@@ -20,6 +20,8 @@ function drawHeader($title)
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js" integrity="sha512-VvWznBcyBJK71YKEKDMpZ0pCVxjNuKwApp4zLF3ul+CiflQi6aIJR+aZCP/qWsoFBA28avL5T5HA+RE+zrGQYg==" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
     <link rel="stylesheet" href="/css/profile.css">
     <link rel="stylesheet" href="/css/responsive.css">
     <link rel="stylesheet" href="/css/style.css">
@@ -137,7 +139,7 @@ function drawHeader($title)
                 <label for="email" class="form-label"><b>Email</b></label>
                 <div class="input-group has-validation">
                   <input type="text" class="form-control" id="email" placeholder="Enter email... (ex: email@example.com)" required>
-                  require_once '../templates/tpl_sidebar.php' <div class="invalid-feedback">
+                  <div class="invalid-feedback">
                     Email is required.
                   </div>
                 </div>

@@ -64,7 +64,7 @@ drawHeader($title);
             <p class="lead">You'll get the help you need and leave behind content that'll help others that have the same problem as you.</p>
           </div>
           <div class="col-12 col-sm-4 col-md-2 text-center text-sm-end">
-            <img src="/static/share.svg" class="featurette-image img-fluid mx-auto"/>
+            <img src="/static/share_dark.svg" class="featurette-image img-fluid mx-auto"/>
           </div>
         </div>
 
@@ -76,7 +76,7 @@ drawHeader($title);
             <p class="lead">Every answer can make the difference.</p>
           </div>
           <div class="col-12 col-sm-4 col-md-2 text-center text-sm-end order-md-1">
-            <img src="/static/help.svg" class="featurette-image img-fluid mx-auto"/>
+            <img src="/static/help_dark.svg" class="featurette-image img-fluid mx-auto"/>
           </div>
         </div>
 
@@ -88,7 +88,7 @@ drawHeader($title);
             <p class="lead">The more good answers you give, the more standing you get. People will see you as a valuable and helpful member of the community.</p>
           </div>
           <div class="col-12 col-sm-4 col-md-2 text-center text-sm-end">
-            <img src="/static/be.svg" class="featurette-image img-fluid mx-auto"/>
+            <img src="/static/be_dark.svg" class="featurette-image img-fluid mx-auto"/>
           </div>
         </div>
 
