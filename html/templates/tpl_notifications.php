@@ -2,7 +2,7 @@
 function draw_notifications()
 { ?>
 
-  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 5">
+  <div class="container-fluid p-3" id="toast-container" style="z-index: 5;">
     <div class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="toast-header">
         <i class="bi bi-exclamation-circle-fill p-1"></i>

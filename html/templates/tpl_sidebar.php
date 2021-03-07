@@ -32,10 +32,11 @@
       <?php genSidebarLink("/pages/home.php", "bi-house-door", "Home") ?>
       <?php genSidebarLink("/pages/search_results.php", "bi-question-circle", "Questions") ?>
       <?php genSidebarLink("/pages/news.php", "bi-newspaper", "News") ?>
-      <?php genSidebarLink("/pages/search_results.php", "bi-person", "Users") ?>
+      <?php genSidebarLink("/pages/search_results.php#users", "bi-person", "Users") ?>
       <?php genSidebarLink("/pages/leaderboard.php", "bi-trophy", "Leaderboard") ?>
       <?php genSidebarLink("/pages/about.php", "bi-info-circle", "About") ?>
       <?php genSidebarLink("/pages/administration.php", "bi-clipboard-data", "Administration") ?>
+      <?php genSidebarLink("/pages/add_question.php", "bi-plus-circle", "Ask Question") ?>
     </ul>
 
     <!-- auth -->
