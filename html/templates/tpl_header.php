@@ -1,3 +1,4 @@
+<?php require_once '../templates/tpl_notifications.php';?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,6 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" integrity="sha512-xmGTNt20S0t62wHLmQec2DauG9T+owP9e6VU8GigI0anN7OXLip9i7IwEhelasml2osdxX71XcYm6BQunTQeQg==" crossorigin="anonymous" />
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js" integrity="sha512-VvWznBcyBJK71YKEKDMpZ0pCVxjNuKwApp4zLF3ul+CiflQi6aIJR+aZCP/qWsoFBA28avL5T5HA+RE+zrGQYg==" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
   <link rel="stylesheet" href="/css/profile.css">
   <link rel="stylesheet" href="/css/responsive.css">
@@ -35,6 +37,7 @@
             <i class="bi bi-cpu"></i>
             <?php echo $title; ?>
           </div>
+          <button type="button" class="btn btn-dark" id="notifications-btn"><i class="bi bi-bell"></i></button>
         </div> <!-- .d-flex -->
         <!-- search -->
         <div id="searchModal-toggler">
@@ -49,6 +52,8 @@
       </div> <!-- .container .d-flex -->
     </nav>
   </header>
+
+  <?php draw_notifications()?>
 
   <!-- BEGIN SEARCH MODAL -->
   <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

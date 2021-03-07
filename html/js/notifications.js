@@ -1,5 +1,5 @@
 // Select .toast-canvas that will wrap all .toast elements
-const toastBtn = document.querySelector("#add-toast-btn");
+const toastBtn = document.querySelector("#notifications-btn");
 let notifications = document.querySelectorAll('.toast');
 let toastsInstances = [];
 let active = false;
