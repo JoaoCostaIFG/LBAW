@@ -96,7 +96,7 @@ function drawHeader($title)
             <div class="modal-body">
               <!-- Email -->
               <div class="input-group mb-3">
-                <label for="email" class="form-label"><b>Email</b></label>
+                <label for="email" class="form-label"><b>Email</b><span class="text-danger"> *</span></label>
                 <div class="input-group has-validation">
                   <input type="text" class="form-control" id="email" placeholder="Enter email... (ex: email@example.com)" required>
                   <div class="invalid-feedback">
@@ -106,7 +106,7 @@ function drawHeader($title)
               </div>
               <!-- Password -->
               <div class="input-group mb-3">
-                <label for="password" class="form-label"><b>Password</b></label>
+                <label for="password" class="form-label"><b>Password</b><span class="text-danger"> *</span></label>
                 <div class="input-group has-validation">
                   <input type="text" class="form-control" id="password" placeholder="Enter password..." required>
                   <div class="invalid-feedback">
@@ -136,7 +136,7 @@ function drawHeader($title)
             <div class="modal-body">
               <!-- Email -->
               <div class="input-group mb-3">
-                <label for="email" class="form-label"><b>Email</b></label>
+                <label for="email" class="form-label"><b>Email</b><span class="text-danger"> *</span></label>
                 <div class="input-group has-validation">
                   <input type="text" class="form-control" id="email" placeholder="Enter email... (ex: email@example.com)" required>
                   <div class="invalid-feedback">
@@ -146,7 +146,7 @@ function drawHeader($title)
               </div>
               <!-- Username -->
               <div class="input-group mb-3">
-                <label for="username" class="form-label"><b>Username</b></label>
+                <label for="username" class="form-label"><b>Username</b><span class="text-danger"> *</span></label>
                 <div class="input-group has-validation">
                   <input type="text" class="form-control" id="username" placeholder="Enter username... (ex: user123)" required>
                   <div class="invalid-feedback">
@@ -156,7 +156,7 @@ function drawHeader($title)
               </div>
               <!-- Password -->
               <div class="input-group mb-3">
-                <label for="password" class="form-label"><b>Password</b></label>
+                <label for="password" class="form-label"><b>Password</b><span class="text-danger"> *</span></label>
                 <div class="input-group has-validation">
                   <input type="text" class="form-control" id="password" placeholder="Enter password..." required>
                   <div class="invalid-feedback">
@@ -166,7 +166,7 @@ function drawHeader($title)
               </div>
               <!-- Repeated Password -->
               <div class="input-group">
-                <label for="repeated_password" class="form-label"><b>Repeat Password</b></label>
+                <label for="repeated_password" class="form-label"><b>Repeat Password</b><span class="text-danger"> *</span></label>
                 <div class="input-group has-validation">
                   <input type="text" class="form-control" id="repeated_password" placeholder="Enter password again..." required>
                   <div class="invalid-feedback">

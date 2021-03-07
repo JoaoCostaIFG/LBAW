@@ -11,7 +11,7 @@ drawHeader($title);
     <form action="">
       <div class="container py-1">
         <div class="col-auto input-group">
-          <label for="question-title" class="form-label"><b>Question Title</b></label>
+          <label for="question-title" class="form-label"><b>Question Title</b><span class="text-danger"> *</span></label>
           <div class="input-group has-validation">
             <input type="text" class="form-control" id="question-title" placeholder="Enter question title... (ex: How to sort an array in c?)" required>
             <div class="invalid-feedback">
@@ -21,7 +21,7 @@ drawHeader($title);
         </div>
 
         <div class="col-auto input-group py-2">
-          <label for="question-details" class="form-label"><b>Question details</b></label>
+          <label for="question-details" class="form-label"><b>Question details</b><span class="text-danger"> *</span></label>
           <div class="input-group has-validation">
             <textarea class="form-control" id="question-details" placeholder="Enter question details..." rows=10 required></textarea>
             <div class="invalid-feedback">

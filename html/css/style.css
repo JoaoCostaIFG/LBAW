@@ -143,3 +143,10 @@ footer {
   z-index: 999;
 }
 /* END FOOTER */
+
+/* NOTIFICATIONS */
+#toast-container {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
