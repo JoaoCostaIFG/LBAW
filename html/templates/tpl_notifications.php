@@ -1,6 +1,7 @@
 <?php
 function draw_notifications()
-{ ?>
+{
+    ?>
 
   <div class="container-fluid p-3" id="toast-container" style="z-index: 5;">
     <div class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
@@ -29,5 +30,5 @@ function draw_notifications()
 
   <script src="/js/notifications.js"></script>
 
-<?php
+    <?php
 } ?>
