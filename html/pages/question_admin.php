@@ -9,7 +9,7 @@ drawHeader($title);
 <main class="container">
   <!-- Question -->
   <div class="row p-1">
-    <h1 class="col-9">Error including library in Zig</h1>
+    <h2 class="col-9 page-title">Error including library in Zig</h2>
     <button class="btn btn-outline-danger btn-sm col-3">Mark as duplicate</button>
     <hr>
     <div class="col col-md-2 col-3 align-self-center border-end border-dark">

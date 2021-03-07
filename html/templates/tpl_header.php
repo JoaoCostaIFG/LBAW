@@ -20,6 +20,8 @@ function drawHeader($title)
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js" integrity="sha512-VvWznBcyBJK71YKEKDMpZ0pCVxjNuKwApp4zLF3ul+CiflQi6aIJR+aZCP/qWsoFBA28avL5T5HA+RE+zrGQYg==" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
     <link rel="stylesheet" href="/css/profile.css">
     <link rel="stylesheet" href="/css/responsive.css">
     <link rel="stylesheet" href="/css/style.css">
@@ -43,7 +45,6 @@ function drawHeader($title)
               <i class="bi bi-cpu"></i>
               <?php echo $title; ?>
             </div>
-            <button type="button" class="btn btn-dark" id="notifications-btn"><i class="bi bi-bell"></i></button>
           </div> <!-- .d-flex -->
           <!-- search -->
           <div id="searchModal-toggler">

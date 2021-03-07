@@ -109,7 +109,7 @@ drawHeader($title);
         <div class="d-flex flex-column justify-content-start align-items-start w-100">
           <!-- Question Text -->
           <section>
-            <a class="fs-5 fw-bold" href="/pages/question.php">How to print current path in Zig</a>
+            <a class="fs-5 fw-bold" href="/pages/question_admin.php">How to print current path in Zig</a>
             <p class="d-none d-md-block">
               How do I print the current directory in Zig? So far I have: const std = @import("std");
               var arena= std.heap.ArenaAllocator.init(std.heap.page_allocator); const alloc = &arena.allocator;...

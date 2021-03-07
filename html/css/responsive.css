@@ -33,3 +33,12 @@
   margin: min(5rem, 5vw) 0 !important; 
 }
 /* END FEATURETTE */
+
+/* BEGIN NOTIFICATIONS */
+@media(min-width:25em) {
+  #toast-container {
+    transform: translateX(-25em);
+    left: 100% !important;
+  }
+}
+/* END NOTIFICATIONS */
