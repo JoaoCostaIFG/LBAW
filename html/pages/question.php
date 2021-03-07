@@ -1,12 +1,15 @@
 <?php
-$title = "Question";
 require_once '../templates/tpl_header.php';
+require_once '../templates/tpl_footer.php';
+
+$title = "Question";
+drawHeader($title);
 ?>
 
 <main class="container">
   <!-- Question -->
   <div class="row p-1">
-    <h1>Error including library in Zig</h1>
+    <h2 class="page-title">Error including library in Zig</h2>
     <hr>
     <div class="col col-md-2 col-3 align-self-center border-end border-dark">
       <div class="row fs-3">
@@ -155,5 +158,5 @@ require_once '../templates/tpl_header.php';
   </div>
 
   <?php
-  require_once '../templates/tpl_footer.php';
+  drawFooter();
   ?>

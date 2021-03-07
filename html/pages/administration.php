@@ -1,6 +1,9 @@
 <?php
-$title = "Administration";
 require_once '../templates/tpl_header.php';
+require_once '../templates/tpl_footer.php';
+
+$title = "Administration";
+drawHeader($title);
 ?>
 
 <main class="container">
@@ -133,5 +136,5 @@ require_once '../templates/tpl_header.php';
   </div>
 
   <?php
-  require_once '../templates/tpl_footer.php';
+  drawFooter();
   ?>

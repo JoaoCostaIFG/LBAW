@@ -1,9 +1,13 @@
-// Select .toast-canvas that will wrap all .toast elements
-const toastBtn = document.querySelector("#notifications-btn");
-let notifications = document.querySelectorAll('.toast');
-let toastsInstances = [];
-let active = false;
+'use strict'
 
+// Select notifications button
+const toastBtn = document.querySelector("#notifications-btn");
+// Select notifications
+let notifications = document.querySelectorAll('.toast');
+let toastsInstances = []; // Toasts instances
+let active = false; 
+
+// Fill toasts instances array
 notifications.forEach(function (toastNode) {
   var toast = new bootstrap.Toast(toastNode, {
     autohide: false
@@ -11,6 +15,7 @@ notifications.forEach(function (toastNode) {
   toastsInstances.push(toast);
 });
 
+// Hide / Show notifications on button click
 toastBtn.addEventListener("click", () => {
   if (active) {
     active = false;

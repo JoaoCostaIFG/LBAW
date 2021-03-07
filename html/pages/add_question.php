@@ -1,6 +1,9 @@
 <?php
-$title="About";
 require_once '../templates/tpl_header.php';
+require_once '../templates/tpl_footer.php';
+
+$title="Add Question";
+drawHeader($title);
 ?>
   <main class="container p-3">
     <h2><b>Add Question</b></h2>
@@ -62,5 +65,5 @@ require_once '../templates/tpl_header.php';
   </main>
 
 <?php
-require_once '../templates/tpl_footer.php';
+drawFooter();
 ?>

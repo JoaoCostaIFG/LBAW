@@ -1,10 +1,13 @@
 <?php
-$title="News";
 require_once '../templates/tpl_header.php';
+require_once '../templates/tpl_footer.php';
+
+$title="News";
+drawHeader($title);
 ?>
 
   <main class="container">
-    <h1>News</h1>
+    <h1 class="page-title">News</h1>
 
     <!-- START FEATURETTES -->
     <hr class="featurette-divider">
@@ -39,5 +42,5 @@ require_once '../templates/tpl_header.php';
   </main>
 
 <?php
-require_once '../templates/tpl_footer.php';
+drawFooter();
 ?>

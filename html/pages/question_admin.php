@@ -1,6 +1,9 @@
 <?php
-$title = "Question";
 require_once '../templates/tpl_header.php';
+require_once '../templates/tpl_footer.php';
+
+$title = "Question";
+drawHeader($title);
 ?>
 
 <main class="container">
@@ -156,5 +159,5 @@ require_once '../templates/tpl_header.php';
   </div>
 
   <?php
-  require_once '../templates/tpl_footer.php';
+  drawFooter();
   ?>

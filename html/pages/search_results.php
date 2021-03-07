@@ -1,10 +1,13 @@
 <?php
-$title = "Search Results";
 require_once '../templates/tpl_header.php';
+require_once '../templates/tpl_footer.php';
+
+$title = "Search Results";
+drawHeader($title);
 ?>
 
 <!-- Page Top -->
-<div class="container">
+<main class="container">
   <h2 class="page-title"> Search Results </h2>
   <div class="py-3 border-bottom pb-0">
     <div class="d-flex flex-row align-items-center justify-content-between">
@@ -56,7 +59,7 @@ require_once '../templates/tpl_header.php';
         </div>
         <div class="d-flex flex-column justify-content-start align-items-start w-100">
           <!-- Question Text -->
-          <div>
+          <section>
             <a class="fs-5 fw-bold" href="/pages/question.php">Error including library in Zig</a>
             <p class="d-none d-md-block">
               Hello!
@@ -64,7 +67,7 @@ require_once '../templates/tpl_header.php';
               I followed the wiki guides and I can compile the code, but everytime I try using the
               library in the code I get thousands of "undefined symbol" errors...
             </p>
-          </div>
+          </section>
           <div class="w-100 gap-1 d-flex flex-row align-items-center justify-content-between align-self-start">
             <!-- Question Tags -->
             <div class="d-none d-sm-block d-grid gap-1 mt-0">
@@ -105,13 +108,13 @@ require_once '../templates/tpl_header.php';
         </div>
         <div class="d-flex flex-column justify-content-start align-items-start w-100">
           <!-- Question Text -->
-          <div>
+          <section>
             <a class="fs-5 fw-bold" href="/pages/question.php">How to print current path in Zig</a>
             <p class="d-none d-md-block">
               How do I print the current directory in Zig? So far I have: const std = @import("std");
               var arena= std.heap.ArenaAllocator.init(std.heap.page_allocator); const alloc = &arena.allocator;...
             </p>
-          </div>
+          </section>
           <div class="w-100 gap-1 d-flex flex-row align-items-center justify-content-between align-self-start">
             <!-- Question Tags -->
             <div class="d-none d-sm-block d-grid gap-1 mt-0">
@@ -213,11 +216,11 @@ require_once '../templates/tpl_header.php';
       </div>
     </div>
   </div>
-</div>
+</main>
 
 <script src="/js/tabs.js"></script>
 
 
 <?php
-require_once '../templates/tpl_footer.php';
+drawFooter();
 ?>
