@@ -1,5 +1,4 @@
 <?php
-require_once '../templates/tpl_notifications.php';
 require_once '../templates/tpl_sidebar.php';
 
 function drawHeader($title)
@@ -59,9 +58,6 @@ function drawHeader($title)
         </div> <!-- .container .d-flex -->
       </nav>
     </header>
-
-    <!-- Notifications -->
-    <?php draw_notifications() ?>
 
     <!-- BEGIN SEARCH MODAL -->
     <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

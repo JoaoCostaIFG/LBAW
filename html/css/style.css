@@ -67,11 +67,12 @@ body {
 }
 
 #sidebar li {
+  padding: 0;
   transition: all 0.3s;
 }
 
 #sidebar li + li {
-  border-top: 1px solid #375A7F;
+  border-top: 1px solid #42474A;
 }
 
 #sidebar li:hover,
@@ -101,6 +102,10 @@ body {
 #sidebar-toggler {
   display: initial !important;
   margin-right: 1rem;
+}
+
+.sidebar-buttons {
+  margin-top: 1em !important;
 }
 /* END SIDEBAR */
 

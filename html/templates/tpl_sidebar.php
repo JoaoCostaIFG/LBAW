@@ -1,24 +1,30 @@
-<?php function genSidebarLink($href, $icon, $text)
+<?php
+require_once '../templates/tpl_notifications.php';
+
+function genSidebarLink($href, $icon, $text)
 {
-  global $title;
-  $is_selected = ($text === $title);
-?>
-  <li class="list-group-item<?php if ($is_selected) echo ' active'?>">
+    global $title;
+    $is_selected = ($text === $title);
+    ?>
+  <li class="list-group-item<?php if ($is_selected) { echo ' active'; 
+                            }?>">
     <a href=<?php echo $href; ?>>
       <i class=<?php echo '"bi ' . $icon . '"'; ?>></i>
       <?php
-      if ($is_selected) echo '<b>';
-      echo " " . $text;
-      if ($is_selected) echo '</b>';
-      ?>
+        if ($is_selected) { echo '<b>';
+        }
+        echo " " . $text;
+        if ($is_selected) { echo '</b>';
+        }
+        ?>
     </a>
   </li>
 <?php } ?>
 
 <?php function drawSidebar()
 {
-  global $title;
-?>
+    global $title;
+    ?>
   <!-- Sidebar -->
   <nav id="sidebar" class="bg-dark text-light" tabindex="0">
     <div class="sidebar-header">
@@ -36,7 +42,6 @@
       <?php genSidebarLink("/pages/leaderboard.php", "bi-trophy", "Leaderboard") ?>
       <?php genSidebarLink("/pages/about.php", "bi-info-circle", "About") ?>
       <?php genSidebarLink("/pages/administration.php", "bi-clipboard-data", "Administration") ?>
-      <?php genSidebarLink("/pages/add_question.php", "bi-plus-circle", "Ask Question") ?>
     </ul>
 
     <!-- auth -->
@@ -46,17 +51,19 @@
         <button type="button" class="btn btn-dark" id="notifications-btn"><i class="bi bi-bell"></i></button>
       </h4>
     </div>
-    <ul class="list-unstyled">
-      <?php genSidebarLink("/pages/profile.php", "bi-person-circle", "Profile") ?>
+    <ul class="list-group">
+      <?php genSidebarLink("/pages/profile.php", "bi-person-circle", "My Profile") ?>
+      <?php genSidebarLink("/pages/add_question.php", "bi-plus-circle", "Ask Question") ?>
+    </ul>
 
-      <div class="row justify-content-evenly">
-        <button class="btn btn-primary col-4" type="button" data-bs-toggle="modal" data-bs-target="#loginModal" aria-controls="loginModal" aria-expanded="false" aria-label="Open login box">
-          Login
-        </button>
-        <button class="btn btn-primary col-4" type="button" data-bs-toggle="modal" data-bs-target="#signupModal" aria-controls="loginModal" aria-expanded="false" aria-label="Open signup box">
-          Sign up
-        </button>
-      </div>
+    <div class="row justify-content-evenly sidebar-buttons">
+      <button class="btn btn-primary col-4" type="button" data-bs-toggle="modal" data-bs-target="#loginModal" aria-controls="loginModal" aria-expanded="false" aria-label="Open login box">
+        Login
+      </button>
+      <button class="btn btn-primary col-4" type="button" data-bs-toggle="modal" data-bs-target="#signupModal" aria-controls="loginModal" aria-expanded="false" aria-label="Open signup box">
+        Sign up
+      </button>
+    </div>
   </nav>
 
   <script defer>
@@ -74,5 +81,7 @@
       // toggler.classList.add("active");
     })
   </script>
-<?php
+
+    <!-- Notifications -->
+    <?php draw_notifications();
 } ?>
