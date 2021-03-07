@@ -5,9 +5,8 @@ require_once '../templates/tpl_footer.php';
 $title="News";
 drawHeader($title);
 ?>
-
   <main class="container">
-    <h1 class="page-title">News</h1>
+    <h2 class="page-title">News</h2>
 
     <!-- START FEATURETTES -->
     <hr class="featurette-divider">
@@ -36,8 +35,6 @@ drawHeader($title);
         <p class="lead">You can now join and use our community.</p>
       </div>
     </div>
-
-    <hr class="featurette-divider">
     <!-- END FEATURETTES -->
   </main>
 

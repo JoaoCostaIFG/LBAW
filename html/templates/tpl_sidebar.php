@@ -47,7 +47,7 @@ function genSidebarLink($href, $icon, $text)
     <!-- auth -->
     <div class="sidebar-subheader">
       <h4>
-        User
+        Username
         <button type="button" class="btn btn-dark" id="notifications-btn"><i class="bi bi-bell"></i></button>
       </h4>
     </div>

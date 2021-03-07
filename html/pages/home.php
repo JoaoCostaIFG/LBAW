@@ -75,7 +75,7 @@ drawHeader($title);
             <h2 class="featurette-heading">Help the community. <span class="text-muted">Answer the questions you see.</span></h2>
             <p class="lead">Every answer can make the difference.</p>
           </div>
-          <div class="col-12 col-sm-4 col-md-2 text-center text-sm-end order-md-1">
+          <div class="col-12 col-sm-4 col-md-2 text-center text-sm-end text-md-start order-md-1">
             <img src="/static/help_dark.svg" class="featurette-image img-fluid mx-auto"/>
           </div>
         </div>

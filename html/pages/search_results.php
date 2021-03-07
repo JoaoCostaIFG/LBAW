@@ -8,7 +8,7 @@ drawHeader($title);
 
 <!-- Page Top -->
 <main class="container">
-  <h2 class="page-title"> Search Results </h2>
+  <h2 class="page-title">Search Results</h2>
   <div class="py-3 border-bottom pb-0">
     <div class="d-flex flex-row align-items-center justify-content-between">
       <!-- Number of Results -->

@@ -18,10 +18,10 @@ drawHeader($title);
         </button>
       </h2>
       <div id="collapseTopic" class="accordion-collapse collapse show" aria-labelledby="headingTopic" data-bs-parent="#accordionAdmin">
-        <div class="accordion-body d-flex flex-wrap justify-content-center mt-3">
+        <div class="accordion-body d-flex bg-dark flex-wrap justify-content-center">
           <div class="container-fluid border rounded m-3 m-sm-1 p-1" style="max-width: 35em;">
             <div class="row">
-              <div class="col-5 align-middle text-center py-5 mt-1">
+              <div class="col-12 col-sm-5 align-middle text-center py-5 mt-1">
                 <img src="/static/images/user.png" class="rounded img-fluid align-middle" width="120" alt="user-pic">
                 <h5 class="fs-5">Rickardo Fontalhao</h5>
                 <h6 class="fs-7">cesarioverde909</h6>
@@ -34,8 +34,12 @@ drawHeader($title);
 
                 <div class="text-start mt-4 me-0 p-0">
                   <b class="fs-5">Accept new topic?</b>
-                  <button type="button" class="btn btn-sm btn-success mx-2" data-bs-toggle="button" autocomplete="off"><i class="bi bi-check2"></i></button>
-                  <button type="button" class="btn btn-sm btn-danger mx-2" data-bs-toggle="button" autocomplete="off"><i class="bi bi-x"></i></button>
+                  <button type="button" class="btn btn-sm btn-success mx-2" data-bs-toggle="button" autocomplete="off">
+                    <i class="bi bi-check2"></i>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-danger mx-2" data-bs-toggle="button" autocomplete="off">
+                    <i class="bi bi-x"></i>
+                  </button>
                 </div>
               </div>
             </div>
@@ -50,10 +54,10 @@ drawHeader($title);
         </button>
       </h2>
       <div id="collapseUser" class="accordion-collapse collapse" aria-labelledby="headingUser" data-bs-parent="#accordionAdmin">
-        <div class="accordion-body d-flex flex-wrap justify-content-center mt-3">
+        <div class="accordion-body d-flex bg-dark flex-wrap justify-content-center">
           <div class="container-fluid border rounded m-3 m-sm-1 p-1" style="max-width: 35em;">
             <div class="row">
-              <div class="col-5 align-middle text-center py-5 mt-1">
+              <div class="col-12 col-sm-5 align-middle text-center py-5 mt-1">
                 <img src="/static/images/user.png" class="rounded img-fluid align-middle" width="120" alt="user-pic">
                 <h5 class="fs-5">João Costa</h5>
                 <h6 class="fs-7">PantufaRGB</h6>
@@ -61,7 +65,7 @@ drawHeader($title);
 
               <div class="col align-middle mt-4 ms-2 me-7 p-2">
                 <h6 class="text-start fs-5"><i><b>Said</b></i></h6>
-                <p class="text-start ms-3 fs-7">Niga nae nae niga niga nae nae</p>
+                <p class="text-start ms-3 fs-7">You suck!</p>
                 <h6 class="text-start fs-5"><i><b>In Question</b></i></h6>
                 <p class="text-start ms-3 fs-7">Why is processing a sorted array faster than processing an unsorted array?</p>
 
@@ -76,7 +80,7 @@ drawHeader($title);
 
           <div class="container-fluid border rounded m-3 m-sm-1 p-1" style="max-width: 35em;">
             <div class="row">
-              <div class="col-5 align-middle text-center py-5 mt-1">
+              <div class="col-12 col-sm-5 align-middle text-center py-5 mt-1">
                 <img src="/static/images/user.png" class="rounded img-fluid align-middle" width="120" alt="user-pic">
                 <h5 class="fs-5">Ana Barros</h5>
                 <h6 class="fs-7">ananachos</h6>
@@ -107,10 +111,10 @@ drawHeader($title);
         </button>
       </h2>
       <div id="collapseModerator" class="accordion-collapse collapse" aria-labelledby="headingModerator" data-bs-parent="#accordionAdmin">
-        <div class="accordion-body d-flex flex-wrap justify-content-center mt-3">
+        <div class="accordion-body d-flex bg-dark flex-wrap justify-content-center">
           <div class="container-fluid border rounded m-3 m-sm-1 p-1" style="max-width: 35em;">
             <div class="row">
-              <div class="col-5 align-middle text-center py-5 mt-1">
+              <div class="col-12 col-sm-5 align-middle text-center py-5 mt-1">
                 <img src="/static/images/user.png" class="rounded img-fluid align-middle" width="120" alt="user-pic">
                 <h5 class="fs-5">Lucas Martins</h5>
                 <h6 class="fs-7">Lucas123</h6>
@@ -136,5 +140,5 @@ drawHeader($title);
   </div>
 
   <?php
-  drawFooter();
-  ?>
+    drawFooter();
+    ?>
