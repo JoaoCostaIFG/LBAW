@@ -56,6 +56,7 @@ body {
 }
 
 #sidebar .sidebar-header {
+  margin: 0;
   padding: 1em;
   background-color: #232129;
   border-bottom: 1px solid #283643;
@@ -70,14 +71,19 @@ body {
 }
 
 #sidebar li + li {
-  border-top: 1px solid #283643;
+  border-top: 1px solid #375A7F;
 }
 
 #sidebar li:hover,
 #sidebar li.active {
-  background-color: #232129; /* #FF9245 */
   margin-left: 0.5em; /* extra margin on selected element */
 }
+
+#sidebar li:hover {
+  border: 1px solid #009670;
+  background-color: #009670;
+}
+
 
 #sidebar li a {
   display: block;
@@ -144,9 +150,10 @@ footer {
 }
 /* END FOOTER */
 
-/* NOTIFICATIONS */
+/* BEGIN NOTIFICATIONS */
 #toast-container {
   position: fixed;
   bottom: 0;
   right: 0;
 }
+/* END NOTIFICATIONS */

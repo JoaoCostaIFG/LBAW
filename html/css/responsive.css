@@ -34,10 +34,11 @@
 }
 /* END FEATURETTE */
 
-/* NOTIFICATIONS */
+/* BEGIN NOTIFICATIONS */
 @media(min-width:25em) {
   #toast-container {
     transform: translateX(-25em);
     left: 100% !important;
   }
 }
+/* END NOTIFICATIONS */

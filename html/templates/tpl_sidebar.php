@@ -3,7 +3,7 @@
   global $title;
   $is_selected = ($text === $title);
 ?>
-  <li <?php if ($is_selected) echo 'class="active"' ?>>
+  <li class="list-group-item<?php if ($is_selected) echo ' active'?>">
     <a href=<?php echo $href; ?>>
       <i class=<?php echo '"bi ' . $icon . '"'; ?>></i>
       <?php
@@ -28,7 +28,7 @@
     <div class="sidebar-subheader">
       <h4>Pages</h4>
     </div>
-    <ul class="list-unstyled">
+    <ul class="list-group">
       <?php genSidebarLink("/pages/home.php", "bi-house-door", "Home") ?>
       <?php genSidebarLink("/pages/search_results.php", "bi-question-circle", "Questions") ?>
       <?php genSidebarLink("/pages/news.php", "bi-newspaper", "News") ?>
@@ -41,10 +41,14 @@
 
     <!-- auth -->
     <div class="sidebar-subheader">
-      <h4>User</h4>
+      <h4>
+        User
+        <button type="button" class="btn btn-dark" id="notifications-btn"><i class="bi bi-bell"></i></button>
+      </h4>
     </div>
     <ul class="list-unstyled">
       <?php genSidebarLink("/pages/profile.php", "bi-person-circle", "Profile") ?>
+
       <div class="row justify-content-evenly">
         <button class="btn btn-primary col-4" type="button" data-bs-toggle="modal" data-bs-target="#loginModal" aria-controls="loginModal" aria-expanded="false" aria-label="Open login box">
           Login

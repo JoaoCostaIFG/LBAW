@@ -45,7 +45,6 @@ function drawHeader($title)
               <i class="bi bi-cpu"></i>
               <?php echo $title; ?>
             </div>
-            <button type="button" class="btn btn-dark" id="notifications-btn"><i class="bi bi-bell"></i></button>
           </div> <!-- .d-flex -->
           <!-- search -->
           <div id="searchModal-toggler">
