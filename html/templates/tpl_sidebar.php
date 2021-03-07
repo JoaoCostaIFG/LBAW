@@ -36,7 +36,7 @@ function genSidebarLink($href, $icon, $text)
     </div>
     <ul class="list-group">
       <?php genSidebarLink("/pages/home.php", "bi-house-door", "Home") ?>
-      <?php genSidebarLink("/pages/search_results.php", "bi-question-circle", "Questions") ?>
+      <?php genSidebarLink("/pages/search_results.php#questions", "bi-question-circle", "Questions") ?>
       <?php genSidebarLink("/pages/news.php", "bi-newspaper", "News") ?>
       <?php genSidebarLink("/pages/search_results.php#users", "bi-person", "Users") ?>
       <?php genSidebarLink("/pages/leaderboard.php", "bi-trophy", "Leaderboard") ?>
