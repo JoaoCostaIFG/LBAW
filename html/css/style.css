@@ -106,7 +106,7 @@ body {
 #sidebar .sidebar-header {
   padding: 1em;
   color: white;
-  background-color: var(--dark);
+  /* background-color: var(--dark); */
   border-bottom: 1px solid var(--sidebar-inner-border-color);
 }
 
