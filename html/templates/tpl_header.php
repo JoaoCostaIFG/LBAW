@@ -3,7 +3,7 @@ require_once '../templates/tpl_sidebar.php';
 
 function drawHeader($title)
 {
-?>
+    ?>
   <!DOCTYPE html>
   <html lang="en">
 
@@ -13,13 +13,14 @@ function drawHeader($title)
 
     <!-- Bootstrap (must come before all other stylesheets) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
+    <!-- using themed bootstrap -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" /> -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" integrity="sha512-xmGTNt20S0t62wHLmQec2DauG9T+owP9e6VU8GigI0anN7OXLip9i7IwEhelasml2osdxX71XcYm6BQunTQeQg==" crossorigin="anonymous" />
+
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js" integrity="sha512-VvWznBcyBJK71YKEKDMpZ0pCVxjNuKwApp4zLF3ul+CiflQi6aIJR+aZCP/qWsoFBA28avL5T5HA+RE+zrGQYg==" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="/css/admin.css">
     <link rel="stylesheet" href="/css/profile.css">
@@ -29,7 +30,7 @@ function drawHeader($title)
 
     <title><?php if (isset($title)) {
               echo $title . ' | ';
-            } ?>Segmentation Fault</title>
+} ?>Segmentation Fault</title>
   </head>
 
   <body>
@@ -52,7 +53,7 @@ function drawHeader($title)
               <i class="bi-search"></i>
             </button>
           </div>
-          <form id="navbarSeachForm" class="d-flex">
+          <form id="navbarSeachForm" class="d-flex" action="../pages/search_results.php">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit"><i class="bi-search"></i></button>
           </form>
@@ -66,11 +67,9 @@ function drawHeader($title)
         <div class="modal-content">
           <!-- bg-dark -->
           <div class="modal-body">
-            <form>
+            <form action="../pages/search_results.php">
               <!-- button is not needed -->
-              <!--
-            <button class="btn btn-outline-success" type="submit"><i class="bi-search"></i></button>
-            -->
+              <!-- <button class="btn btn-outline-success" type="submit"><i class="bi-search"></i></button> -->
               <input class="form-control" type="search" placeholder="Search" aria-label="Search">
             </form>
           </div>
@@ -182,6 +181,6 @@ function drawHeader($title)
     </div>
     <!-- END AUTH MODALS -->
 
-  <?php
-  drawSidebar();
+    <?php
+    drawSidebar();
 }?>
