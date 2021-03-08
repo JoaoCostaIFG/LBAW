@@ -140,6 +140,7 @@ body {
 #sidebar li:hover {
   border: 1px solid var(--green);
   background-color: var(--green);
+  color: white;
 }
 
 #sidebar li a {

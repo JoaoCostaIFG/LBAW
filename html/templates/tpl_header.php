@@ -88,7 +88,7 @@ function drawHeader($title)
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <!-- Login form -->
-          <form action="">
+          <form action="../pages/home_auth.php">
             <div class="modal-body">
               <!-- Email -->
               <div class="input-group mb-3">
@@ -128,7 +128,7 @@ function drawHeader($title)
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <!-- Sign Up Form -->
-          <form action="">
+          <form action="../pages/home_auth.php">
             <div class="modal-body">
               <!-- Email -->
               <div class="input-group mb-3">

@@ -6,8 +6,8 @@ $title = "Home";
 drawHeader($title);
 ?>
 
-<main>
-  <div class="nav-scroller bg--body shadow-sm">
+<main class="container">
+  <div class="nav-scroller bg-body shadow-sm">
     <nav class="nav nav-underline container-fluid p-0 m-0" aria-label="Secondary navigation">
       <a class="btn-secondary nav-link col text-center p-2 m-0" aria-current="page" href="#myCarousel" data-bs-target="#myCarousel" data-bs-slide-to="0">Profile</a>
       <a class="btn-secondary nav-link col text-center p-2 m-0" href="#" data-bs-target="#myCarousel" data-bs-slide-to="1">
