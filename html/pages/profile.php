@@ -9,7 +9,7 @@ drawHeader($title);
 <main class="container">
   <!-- BEGIN TABS -->
   <nav class="mt-2">
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs justify-content-end">
       <li class="nav-item">
         <a href="#profile-tab" class="nav-link active" data-toggle="tab">
           Profile
@@ -77,9 +77,9 @@ drawHeader($title);
             <div class="col-1 p-0 m-0 mb-1 text-start">
               C++
             </div>
-            <div class="row progress ms-auto">
+            <span class="p-0 progress ms-auto" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="50% of your participations are tagged as C++">
               <div class="progress-bar p-0 m-0" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
-            </div>
+            </span>
           </div>
           <div class="col-auto row text-center">
             <div class="col-auto text-center m-0 p-2">
@@ -104,9 +104,9 @@ drawHeader($title);
             <div class="col-1 p-0 m-0 mb-1 text-left">
               C
             </div>
-            <div class="row progress ms-auto">
+            <span class="p-0 progress ms-auto" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="41% of your participations are tagged as C">
               <div class="progress-bar p-0 m-0" role="progressbar" style="width: 41%;" aria-valuenow="41" aria-valuemin="0" aria-valuemax="100">41%</div>
-            </div>
+            </span>
           </div>
           <div class="col-auto row text-center">
             <div class="col-auto text-center m-0 p-2">
@@ -131,9 +131,9 @@ drawHeader($title);
             <div class="col-1 p-0 m-0 mb-1 text-left">
               Git
             </div>
-            <div class="row progress ms-auto">
+            <span class="p-0 progress ms-auto" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="25% of your participations are tagged as Git">
               <div class="progress-bar p-0 m-0" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-            </div>
+            </span>
           </div>
           <div class="col-auto row text-center">
             <div class="col-auto text-center m-0 p-2">

@@ -28,7 +28,6 @@ if (toastBtn != null) {
       toastsInstances.forEach(function (toast) {
         toast.show();
       });
-
     }
   });
 }
