@@ -16,17 +16,19 @@ notifications.forEach(function (toastNode) {
 });
 
 // Hide / Show notifications on button click
-toastBtn.addEventListener("click", () => {
-  if (active) {
-    active = false;
-    toastsInstances.forEach(function (toast) {
-      toast.hide();
-    });
-  } else {
-    active = true;
-    toastsInstances.forEach(function (toast) {
-      toast.show();
-    });
+if (toastBtn != null) {
+  toastBtn.addEventListener("click", () => {
+    if (active) {
+      active = false;
+      toastsInstances.forEach(function (toast) {
+        toast.hide();
+      });
+    } else {
+      active = true;
+      toastsInstances.forEach(function (toast) {
+        toast.show();
+      });
 
-  }
-});
+    }
+  });
+}
