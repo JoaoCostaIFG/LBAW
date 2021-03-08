@@ -1,15 +1,28 @@
-.themed-grid-col {  
+#profile-picture {
+  min-width: 8em;
+  max-width: 18em;
+}
+
+.user-engagement-count {
+  --bs-gutter-x: 0 !important; /* weird problem where row would be bigger than page */
+}
+
+.user-engagement-count div:not(:last-child) {
+  border-right: 1px solid white;
+}
+
+.themed-grid-col {
   background-color: rgba(0, 123, 255, 0);
   border: 1px solid rgba(2, 36, 73, 0.2);
 }
 
-.themed-container { 
-  background-color: rgba(86, 61, 124, .15);
-  border: 1px solid rgba(2, 36, 73, 0.2);
-  border-width: 0.2em;
+.themed-container {
+  background-color: #375a7f;
+  border: 0.2em solid #395682;
+  margin-bottom: 0.5em;
 }
 
-.answered-question div h4{
+.answered-question div h4 {
   background-color: rgba(32, 192, 117, 0.418);
   border: 0.05em solid rgba(0, 228, 102, 0.808);
   border-radius: 0.1em;

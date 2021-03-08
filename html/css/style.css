@@ -166,6 +166,13 @@ body {
 }
 /* END SIDEBAR */
 
+/* BEGIN NAVTABS */
+.nav-link.active {
+  background-color: #3498db !important;
+  border-color: #3498db !important;
+}
+/* END NAVTABS */
+
 /* BEGIN NOTIFICATIONS */
 #toast-container {
   position: fixed;

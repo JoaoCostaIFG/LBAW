@@ -47,7 +47,7 @@ function genSidebarLink($href, $icon, $text)
     <!-- auth -->
     <div class="row justify-content-evenly sidebar-buttons">
       <button class="btn btn-info col-4" type="button" data-bs-toggle="modal" data-bs-target="#loginModal" aria-controls="loginModal" aria-expanded="false" aria-label="Open login box">
-        Login
+        Log in
       </button>
       <button class="btn btn-primary col-4" type="button" data-bs-toggle="modal" data-bs-target="#signupModal" aria-controls="loginModal" aria-expanded="false" aria-label="Open signup box">
         Sign up

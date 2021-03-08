@@ -113,7 +113,7 @@ function drawHeader($title)
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">LogIn</button>
+              <button type="submit" class="btn btn-primary">Log in</button>
             </div>
           </form>
           <script src="/js/form-validation.js"></script>
