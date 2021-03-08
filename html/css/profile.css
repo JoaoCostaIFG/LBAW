@@ -31,3 +31,7 @@
 .unanswered-question div h4 {
   border: 0.05em solid rgba(2, 36, 73, 0.2);
 }
+
+.achievement-logo {
+  min-width: 3em;
+}
