@@ -36,17 +36,19 @@ drawHeader($title);
 
     <!-- Comments -->
     <div class="container">
-      <div class="row bg-light border border-secondary">
+      <div class="comment row bg-dark border border-secondary align-items-center">
         <a class="col-4 text-center">Nachos</a>
         <p class="col-8">I have that problem too.</p>
       </div>
-      <div class="row bg-light border border-secondary">
+      <div class="comment row bg-dark border border-secondary align-items-center">
         <a class="col-4 text-center">Lucas123</a>
         <p class="col-8">Have you tried linking the object instead of the library code?</p>
       </div>
 
       <div class="row">
-        <a class="text-center dropdown-toggle" data-bs-toggle="dropdown" id="commentDropdownLink" aria-expanded="false">Add comment</a>
+        <a class="text-center dropdown-toggle" data-bs-toggle="dropdown" id="commentDropdownLink" aria-expanded="false">
+          Add comment
+        </a>
         <div class="dropdown-menu" aria-labelledby="commentDropdownLink">
           <form class="container">
             <h2>Your Comment</h2>
@@ -89,7 +91,9 @@ drawHeader($title);
     </div>
 
     <div class="row">
-      <a class="text-center dropdown-toggle" data-bs-toggle="dropdown" id="commentDropdownLink" aria-expanded="false">Add comment</a>
+      <a class="text-center dropdown-toggle" data-bs-toggle="dropdown" id="commentDropdownLink" aria-expanded="false">
+        Add comment
+      </a>
       <div class="dropdown-menu" aria-labelledby="commentDropdownLink">
         <form class="container">
           <h2>Your Comment</h2>
@@ -129,7 +133,7 @@ drawHeader($title);
     </div>
 
     <div class="container">
-      <div class="row bg-light border border-secondary">
+      <div class="comment row bg-dark border border-secondary align-items-center">
         <a class="col-4 text-center">Anon</a>
         <p class="col-8">Can you share the link?</p>
       </div>
