@@ -1,7 +1,6 @@
 -- DOMAINS
 CREATE DOMAIN Today AS DATE NOT NULL DEFAULT CURRENT_DATE;
 
-
 -- TABLES
 -- R01
 DROP TABLE IF EXISTS "user" CASCADE;
@@ -37,11 +36,10 @@ CREATE TABLE administrator(
 -- R04
 DROP TABLE IF EXISTS ban CASCADE;
 CREATE TABLE ban(
-  id_user INTEGER,
-  id_admin INTEGER,
-  "date" Today CHECK "date" <= CURRENT_DATE, -- bans can't have happened in the future
+  id_user INTEGER PRIMARY KEY,
+  id_admin INTEGER NOT NULL,
+  "date" Today CHECK ("date" <= CURRENT_DATE), -- bans can't have happened in the future
   reason TEXT,
-  PRIMARY KEY (id_user, id_admin),
   CONSTRAINT fk_user
     FOREIGN KEY(id_user)
       REFERENCES "user"("id"),
@@ -57,7 +55,7 @@ CREATE TABLE news(
   author INTEGER NOT NULL,
   title TEXT NOT NULL,
   body TEXT,
-  "date" Today CHECK "date" <= CURRENT_DATE, -- news can't be posted in the future
+  "date" Today CHECK ("date" <= CURRENT_DATE), -- news can't be posted in the future
   CONSTRAINT fk_author
     FOREIGN KEY(author)
       REFERENCES administrator("id")
@@ -70,7 +68,7 @@ CREATE TABLE topic_proposal(
   id_user INTEGER NOT NULL,
   id_admin INTEGER,
   topic_name TEXT NOT NULL,
-  "date" Today CHECK "date" <= CURRENT_DATE, -- proposals can't have happened in the future
+  "date" Today CHECK ("date" <= CURRENT_DATE), -- proposals can't have happened in the future
   reason TEXT,
   accepted boolean NOT NULL DEFAULT false,
   CONSTRAINT fk_user
@@ -94,7 +92,7 @@ DROP TABLE IF EXISTS achieved CASCADE;
 CREATE TABLE achieved(
   id_user INTEGER,
   id_achievement INTEGER,
-  "date" Today CHECK "date" <= CURRENT_DATE, -- achievements can't be acquired in the future
+  "date" Today CHECK ("date" <= CURRENT_DATE), -- achievements can't be acquired in the future
   PRIMARY KEY (id_user, id_achievement),
   CONSTRAINT fk_user
     FOREIGN KEY(id_user)
@@ -111,7 +109,7 @@ CREATE TABLE post(
   id_owner INTEGER NOT NULL,
   body TEXT NOT NULL,
   --  score INTEGER NOT NULL DEFAULT 0,  -- derived attribute => view
-  "date" Today CHECK "date" <= CURRENT_DATE, -- posts can't be made in the future
+  "date" Today CHECK ("date" <= CURRENT_DATE), -- posts can't be made in the future
   CONSTRAINT fk_owner
     FOREIGN KEY(id_owner)
       REFERENCES "user"("id")
@@ -240,7 +238,7 @@ DROP TABLE IF EXISTS report CASCADE;
 CREATE TABLE report(
   id_post INTEGER,
   reporter INTEGER,
-  "date" Today CHECK "date" <= CURRENT_DATE, -- reports can't be made in the future
+  "date" Today CHECK ("date" <= CURRENT_DATE), -- reports can't be made in the future
   reason TEXT,
   PRIMARY KEY(id_post, reporter),
   CONSTRAINT fk_post
@@ -255,7 +253,7 @@ CREATE TABLE report(
 DROP TABLE IF EXISTS notification CASCADE;
 CREATE TABLE notification(
   "id" SERIAL PRIMARY KEY,
-  "date" Today CHECK "date" <= CURRENT_DATE, -- can't be notified in the future
+  "date" Today CHECK ("date" <= CURRENT_DATE), -- can't be notified in the future
   title TEXT NOT NULL,
   body TEXT,
   recipient INTEGER,

@@ -9,3 +9,11 @@ push:
 
 run:
 	docker run -it -p 8000:80 -v $(shell pwd)/html:/var/www/html ${TARGET}
+
+compose:
+	docker-compose up
+
+reload:
+	psql -U postgres -h localhost -d postgres < database/database.sql
+
+.PHONY: push run compose reload
