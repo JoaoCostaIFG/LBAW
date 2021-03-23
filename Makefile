@@ -15,5 +15,6 @@ compose:
 
 reload:
 	psql -U postgres -h localhost -d postgres < database/database.sql
+	psql -U postgres -h localhost -d postgres < database/populate.sql
 
 .PHONY: push run compose reload

@@ -1,4 +1,5 @@
 -- CLENUP
+DROP DOMAIN IF EXISTS Today CASCADE;
 DROP TABLE IF EXISTS "user" CASCADE;
 DROP TABLE IF EXISTS moderator CASCADE;
 DROP TABLE IF EXISTS administrator CASCADE;
@@ -179,6 +180,24 @@ CREATE TABLE answer(
       REFERENCES question(id)
 );
 
+-- R14
+CREATE TABLE question(
+  id INTEGER PRIMARY KEY,
+  accepted_answer INTEGER,
+  title TEXT UNIQUE NOT NULL,
+  bounty smallint NOT NULL CHECK (
+    bounty >= 0
+    AND bounty <= 500
+  ),
+  closed boolean NOT NULL DEFAULT false,
+  CONSTRAINT fk_post
+    FOREIGN KEY(id)
+      REFERENCES post(id),
+  CONSTRAINT fk_answer
+    FOREIGN KEY(accepted_answer)
+      REFERENCES answer(id)
+);
+
 -- R13
 CREATE TABLE comment(
   id INTEGER PRIMARY KEY,
@@ -202,24 +221,6 @@ CREATE TABLE comment(
       REFERENCES question(id),
   CONSTRAINT fk_answer
     FOREIGN KEY(id_answer)
-      REFERENCES answer(id)
-);
-
--- R14
-CREATE TABLE question(
-  id INTEGER PRIMARY KEY,
-  accepted_answer INTEGER,
-  title TEXT UNIQUE NOT NULL,
-  bounty smallint NOT NULL CHECK (
-    bounty >= 0
-    AND bounty <= 500
-  ),
-  closed boolean NOT NULL DEFAULT false,
-  CONSTRAINT fk_post
-    FOREIGN KEY(id)
-      REFERENCES post(id),
-  CONSTRAINT fk_anser
-    FOREIGN KEY(accepted_answer)
       REFERENCES answer(id)
 );
 

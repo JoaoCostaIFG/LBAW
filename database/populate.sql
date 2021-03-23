@@ -1,34 +1,34 @@
 -- R01
-insert into "user" (id, name, username, email, about, picture, reputation) values (1, 'Myrtia Bernli', 'mbernli0', 'mbernli0@kickstarter.com', 'Developer II', 'http://dummyimage.com/141x100.png/dddddd/000000', 232);
-insert into "user" (id, name, username, email, about, picture, reputation) values (2, 'Viv Dublin', 'vdublin1', 'vdublin1@ucla.edu', 'Help Desk Technician', 'http://dummyimage.com/235x100.png/cc0000/ffffff', 362);
-insert into "user" (id, name, username, email, about, picture, reputation) values (3, 'Nydia Syphas', 'nsyphas2', 'nsyphas2@alexa.com', 'Geological Engineer', 'http://dummyimage.com/246x100.png/ff4444/ffffff', 417);
-insert into "user" (id, name, username, email, about, picture, reputation) values (4, 'Zorana Garvin', 'zgarvin3', 'zgarvin3@technorati.com', 'Product Engineer', 'http://dummyimage.com/161x100.png/dddddd/000000', 733);
-insert into "user" (id, name, username, email, about, picture, reputation) values (5, 'Karlen Lattin', 'klattin4', 'klattin4@dmoz.org', 'Assistant Professor', 'http://dummyimage.com/237x100.png/ff4444/ffffff', 895);
-insert into "user" (id, name, username, email, about, picture, reputation) values (6, 'Hurley Ramey', 'hramey5', 'hramey5@networkadvertising.org', 'Administrative Officer', 'http://dummyimage.com/227x100.png/dddddd/000000', 462);
-insert into "user" (id, name, username, email, about, picture, reputation) values (7, 'Berke Crighten', 'bcrighten6', 'bcrighten6@wiley.com', 'Programmer Analyst I', 'http://dummyimage.com/105x100.png/cc0000/ffffff', 129);
-insert into "user" (id, name, username, email, about, picture, reputation) values (8, 'Dreddy Oppery', 'doppery7', 'doppery7@goo.ne.jp', 'Design Engineer', 'http://dummyimage.com/232x100.png/cc0000/ffffff', 395);
-insert into "user" (id, name, username, email, about, picture, reputation) values (9, 'Marion De la Zenne', 'mde8', 'mde8@youku.com', 'Actuary', 'http://dummyimage.com/179x100.png/ff4444/ffffff', 741);
-insert into "user" (id, name, username, email, about, picture, reputation) values (10, 'Niccolo Newlan', 'nnewlan9', 'nnewlan9@stumbleupon.com', 'Account Representative III', 'http://dummyimage.com/225x100.png/dddddd/000000', 103);
-insert into "user" (id, name, username, email, about, picture, reputation) values (11, 'Wallache Monteaux', 'wmonteauxa', 'wmonteauxa@nydailynews.com', 'Chief Design Engineer', 'http://dummyimage.com/126x100.png/cc0000/ffffff', 327);
-insert into "user" (id, name, username, email, about, picture, reputation) values (12, 'Rance Whiskerd', 'rwhiskerdb', 'rwhiskerdb@ocn.ne.jp', 'Safety Technician I', 'http://dummyimage.com/201x100.png/ff4444/ffffff', 97);
-insert into "user" (id, name, username, email, about, picture, reputation) values (13, 'Win Shimwell', 'wshimwellc', 'wshimwellc@shareasale.com', 'Programmer I', 'http://dummyimage.com/203x100.png/5fa2dd/ffffff', 521);
-insert into "user" (id, name, username, email, about, picture, reputation) values (14, 'Maje Boutflour', 'mboutflourd', 'mboutflourd@yahoo.com', 'Web Developer I', 'http://dummyimage.com/201x100.png/dddddd/000000', 65);
-insert into "user" (id, name, username, email, about, picture, reputation) values (15, 'Rora Suttling', 'rsuttlinge', 'rsuttlinge@buzzfeed.com', 'Librarian', 'http://dummyimage.com/179x100.png/dddddd/000000', 322);
-insert into "user" (id, name, username, email, about, picture, reputation) values (16, 'Brenden De la Yglesia', 'bdef', 'bdef@flavors.me', 'Help Desk Technician', 'http://dummyimage.com/131x100.png/5fa2dd/ffffff', 205);
-insert into "user" (id, name, username, email, about, picture, reputation) values (17, 'Fonsie Steanyng', 'fsteanyngg', 'fsteanyngg@linkedin.com', 'Senior Editor', 'http://dummyimage.com/249x100.png/ff4444/ffffff', 835);
-insert into "user" (id, name, username, email, about, picture, reputation) values (18, 'Windham Chattey', 'wchatteyh', 'wchatteyh@utexas.edu', 'Teacher', 'http://dummyimage.com/227x100.png/cc0000/ffffff', 584);
-insert into "user" (id, name, username, email, about, picture, reputation) values (19, 'Ardella Gatch', 'agatchi', 'agatchi@bloglines.com', 'Financial Analyst', 'http://dummyimage.com/156x100.png/dddddd/000000', 392);
-insert into "user" (id, name, username, email, about, picture, reputation) values (20, 'Nelie Shill', 'nshillj', 'nshillj@skype.com', 'Staff Scientist', 'http://dummyimage.com/107x100.png/ff4444/ffffff', 246);
-insert into "user" (id, name, username, email, about, picture, reputation) values (21, 'Faulkner Gladwell', 'fgladwellk', 'fgladwellk@slate.com', 'Database Administrator I', 'http://dummyimage.com/117x100.png/ff4444/ffffff', 964);
-insert into "user" (id, name, username, email, about, picture, reputation) values (22, 'Currie Goforth', 'cgoforthl', 'cgoforthl@icq.com', 'Cost Accountant', 'http://dummyimage.com/181x100.png/ff4444/ffffff', 207);
-insert into "user" (id, name, username, email, about, picture, reputation) values (23, 'Alvie Ebbing', 'aebbingm', 'aebbingm@biblegateway.com', 'Assistant Manager', 'http://dummyimage.com/200x100.png/cc0000/ffffff', 189);
-insert into "user" (id, name, username, email, about, picture, reputation) values (24, 'Davon Dilnot', 'ddilnotn', 'ddilnotn@pinterest.com', 'Software Consultant', 'http://dummyimage.com/136x100.png/5fa2dd/ffffff', 928);
-insert into "user" (id, name, username, email, about, picture, reputation) values (25, 'Lorrie Jumeau', 'ljumeauo', 'ljumeauo@wikimedia.org', 'Automation Specialist II', 'http://dummyimage.com/104x100.png/dddddd/000000', 587);
-insert into "user" (id, name, username, email, about, picture, reputation) values (26, 'Petronia Giurio', 'pgiuriop', 'pgiuriop@tamu.edu', 'Environmental Tech', 'http://dummyimage.com/159x100.png/5fa2dd/ffffff', 189);
-insert into "user" (id, name, username, email, about, picture, reputation) values (27, 'Aksel Hugonet', 'ahugonetq', 'ahugonetq@shop-pro.jp', 'Graphic Designer', 'http://dummyimage.com/226x100.png/cc0000/ffffff', 2);
-insert into "user" (id, name, username, email, about, picture, reputation) values (28, 'Roxanna Inglesent', 'ringlesentr', 'ringlesentr@godaddy.com', 'Assistant Manager', 'http://dummyimage.com/155x100.png/5fa2dd/ffffff', 188);
-insert into "user" (id, name, username, email, about, picture, reputation) values (29, 'Vidovik Madoc-Jones', 'vmadocjoness', 'vmadocjoness@cyberchimps.com', 'Registered Nurse', 'http://dummyimage.com/114x100.png/5fa2dd/ffffff', 768);
-insert into "user" (id, name, username, email, about, picture, reputation) values (30, 'Winslow Yakushkev', 'wyakushkevt', 'wyakushkevt@tripadvisor.com', 'Technical Writer', 'http://dummyimage.com/117x100.png/cc0000/ffffff', 892);
+insert into "user" (id, name, username, password, email, about, picture, reputation) values (1, 'Torrance Jerrom', 'tjerrom0', 'YeBGgmC', 'tjerrom0@deliciousdays.com', 'Dental Hygienist', 'http://dummyimage.com/102x100.png/ff4444/ffffff', 612);
+insert into "user" (id, name, username, password, email, about, picture, reputation) values (2, 'Keenan O''Bruen', 'kobruen1', 'BTFYEdJ', 'kobruen1@yolasite.com', 'Tax Accountant', 'http://dummyimage.com/135x100.png/dddddd/000000', 215);
+insert into "user" (id, name, username, password, email, about, picture, reputation) values (3, 'Joey Kores', 'jkores2', 'hSpFcNF', 'jkores2@parallels.com', 'Administrative Officer', 'http://dummyimage.com/169x100.png/5fa2dd/ffffff', 449);
+insert into "user" (id, name, username, password, email, about, picture, reputation) values (4, 'Berky Shakespeare', 'bshakespeare3', 'UlBGb5', 'bshakespeare3@deliciousdays.com', 'Biostatistician IV', 'http://dummyimage.com/110x100.png/dddddd/000000', 901);
+insert into "user" (id, name, username, password, email, about, picture, reputation) values (5, 'Ives Shinn', 'ishinn4', 'ct4ESru', 'ishinn4@topsy.com', 'Programmer Analyst IV', 'http://dummyimage.com/226x100.png/cc0000/ffffff', 741);
+insert into "user" (id, name, username, password, email, about, picture, reputation) values (6, 'Ian Franklyn', 'ifranklyn5', 'zLrS0M6kj', 'ifranklyn5@oracle.com', 'Senior Quality Engineer', 'http://dummyimage.com/231x100.png/ff4444/ffffff', 712);
+insert into "user" (id, name, username, password, email, about, picture, reputation) values (7, 'Pernell Danelut', 'pdanelut6', 'Ev58adsWg', 'pdanelut6@shareasale.com', 'Marketing Manager', 'http://dummyimage.com/233x100.png/ff4444/ffffff', 84);
+insert into "user" (id, name, username, password, email, about, picture, reputation) values (8, 'Malachi Rilings', 'mrilings7', 'KzNfOzPGNf0', 'mrilings7@tinypic.com', 'Nurse', 'http://dummyimage.com/248x100.png/ff4444/ffffff', 850);
+insert into "user" (id, name, username, password, email, about, picture, reputation) values (9, 'Gill Lehrian', 'glehrian8', '5so0kMf9N7D9', 'glehrian8@sina.com.cn', 'Junior Executive', 'http://dummyimage.com/170x100.png/ff4444/ffffff', 153);
+insert into "user" (id, name, username, password, email, about, picture, reputation) values (10, 'Baily Bernet', 'bbernet9', 'TTXdHTpMu3N', 'bbernet9@weather.com', 'Chemical Engineer', 'http://dummyimage.com/199x100.png/ff4444/ffffff', 669);
+insert into "user" (id, name, username, password, email, about, picture, reputation) values (11, 'Miner Abazi', 'mabazia', 'EllP4J8DVM', 'mabazia@mashable.com', 'Payment Adjustment Coordinator', 'http://dummyimage.com/141x100.png/dddddd/000000', 345);
+insert into "user" (id, name, username, password, email, about, picture, reputation) values (12, 'Kleon Olech', 'kolechb', 'Nau0PYH5ZS', 'kolechb@studiopress.com', 'Environmental Specialist', 'http://dummyimage.com/198x100.png/5fa2dd/ffffff', 788);
+insert into "user" (id, name, username, password, email, about, picture, reputation) values (13, 'Emmy Sisley', 'esisleyc', 'VICwW4yX', 'esisleyc@noaa.gov', 'Account Representative II', 'http://dummyimage.com/174x100.png/5fa2dd/ffffff', 104);
+insert into "user" (id, name, username, password, email, about, picture, reputation) values (14, 'Olav Zanetto', 'ozanettod', 'OJJLPwNPIIf', 'ozanettod@hostgator.com', 'Senior Developer', 'http://dummyimage.com/116x100.png/dddddd/000000', 655);
+insert into "user" (id, name, username, password, email, about, picture, reputation) values (15, 'Paulina Habbeshaw', 'phabbeshawe', 'QZkZLn', 'phabbeshawe@time.com', 'Librarian', 'http://dummyimage.com/224x100.png/ff4444/ffffff', 91);
+insert into "user" (id, name, username, password, email, about, picture, reputation) values (16, 'Karil Peoples', 'kpeoplesf', '9mLVnY1Fkksm', 'kpeoplesf@behance.net', 'Occupational Therapist', 'http://dummyimage.com/200x100.png/5fa2dd/ffffff', 968);
+insert into "user" (id, name, username, password, email, about, picture, reputation) values (17, 'Daisi Worters', 'dwortersg', 'WEwGru55Bl4a', 'dwortersg@icio.us', 'Help Desk Operator', 'http://dummyimage.com/143x100.png/dddddd/000000', 953);
+insert into "user" (id, name, username, password, email, about, picture, reputation) values (18, 'Cathee Carthy', 'ccarthyh', 'rhfqZj3kV02', 'ccarthyh@twitter.com', 'Senior Quality Engineer', 'http://dummyimage.com/177x100.png/ff4444/ffffff', 360);
+insert into "user" (id, name, username, password, email, about, picture, reputation) values (19, 'Dusty Maxwaile', 'dmaxwailei', 'oZJFF9', 'dmaxwailei@google.nl', 'Systems Administrator II', 'http://dummyimage.com/235x100.png/ff4444/ffffff', 455);
+insert into "user" (id, name, username, password, email, about, picture, reputation) values (20, 'Tybalt Russan', 'trussanj', '1rlJ9S3', 'trussanj@linkedin.com', 'Editor', 'http://dummyimage.com/179x100.png/ff4444/ffffff', 349);
+insert into "user" (id, name, username, password, email, about, picture, reputation) values (21, 'Rhona Kemmett', 'rkemmettk', 'xCrizjpI', 'rkemmettk@lulu.com', 'Information Systems Manager', 'http://dummyimage.com/120x100.png/ff4444/ffffff', 221);
+insert into "user" (id, name, username, password, email, about, picture, reputation) values (22, 'Rubetta Molesworth', 'rmolesworthl', 'HebsnJ7jD1nH', 'rmolesworthl@hexun.com', 'Geologist I', 'http://dummyimage.com/227x100.png/ff4444/ffffff', 375);
+insert into "user" (id, name, username, password, email, about, picture, reputation) values (23, 'Magdaia Volcker', 'mvolckerm', '7B8AVrNiv7FK', 'mvolckerm@bluehost.com', 'VP Product Management', 'http://dummyimage.com/122x100.png/dddddd/000000', 739);
+insert into "user" (id, name, username, password, email, about, picture, reputation) values (24, 'Eleen Bullin', 'ebullinn', 'LrZT0WxXi', 'ebullinn@vk.com', 'Software Engineer IV', 'http://dummyimage.com/172x100.png/5fa2dd/ffffff', 525);
+insert into "user" (id, name, username, password, email, about, picture, reputation) values (25, 'Anallese Thoma', 'athomao', 'DBlMQm', 'athomao@flickr.com', 'Research Assistant III', 'http://dummyimage.com/150x100.png/5fa2dd/ffffff', 330);
+insert into "user" (id, name, username, password, email, about, picture, reputation) values (26, 'Gib Kipping', 'gkippingp', 'f0GXcvW1l', 'gkippingp@joomla.org', 'Operator', 'http://dummyimage.com/120x100.png/cc0000/ffffff', 812);
+insert into "user" (id, name, username, password, email, about, picture, reputation) values (27, 'Jasun Deverock', 'jdeverockq', 'T7ELVdowbl0', 'jdeverockq@addthis.com', 'Statistician IV', 'http://dummyimage.com/115x100.png/cc0000/ffffff', 493);
+insert into "user" (id, name, username, password, email, about, picture, reputation) values (28, 'Jodee Burmaster', 'jburmasterr', 'mffWNq', 'jburmasterr@foxnews.com', 'Biostatistician I', 'http://dummyimage.com/148x100.png/5fa2dd/ffffff', 934);
+insert into "user" (id, name, username, password, email, about, picture, reputation) values (29, 'Glynn Baytrop', 'gbaytrops', 'r4HP1rmMuAfo', 'gbaytrops@ed.gov', 'Sales Representative', 'http://dummyimage.com/218x100.png/5fa2dd/ffffff', 778);
+insert into "user" (id, name, username, password, email, about, picture, reputation) values (30, 'Zilvia Marvell', 'zmarvellt', 'uudLf0', 'zmarvellt@cbslocal.com', 'Senior Quality Engineer', 'http://dummyimage.com/139x100.png/ff4444/ffffff', 928);
 
 -- R02
 insert into moderator (id) values (1);
@@ -39,8 +39,8 @@ insert into moderator (id) values (3);
 insert into administrator (id) values (1);
 
 -- R04
-insert into ban (id_user, id_admin, "date", reason) values (10, 1, "23-03-21", "Verbal abuse.");
-insert into ban (id_user, id_admin, "date", reason) values (11, 1, "22-03-21", "Racist comments.");
+insert into ban (id_user, id_admin, "date", reason) values (10, 1, "2021-03-23", "Verbal abuse.");
+insert into ban (id_user, id_admin, "date", reason) values (11, 1, "2021-03-22", "Racist comments.");
 
 -- R05
 insert into news (id, author, title, subtitle, body, "date") values (1, 1, "Hello and welcome.", "The website is open.", "You can now join and use our community.", "15-03-21");
