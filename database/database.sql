@@ -127,6 +127,7 @@ CREATE TABLE post(
   id SERIAL PRIMARY KEY,
   id_owner INTEGER NOT NULL,
   body TEXT NOT NULL,
+  score INTEGER NOT NULL DEFAULT 0,
   --  score INTEGER NOT NULL DEFAULT 0,  -- derived attribute => view
   "date" Today NOT NULL CHECK ("date" <= CURRENT_DATE), -- posts can't be made in the future
   CONSTRAINT fk_owner
@@ -268,14 +269,10 @@ CREATE TABLE report(
       REFERENCES post(id),
   CONSTRAINT fk_reporter
     FOREIGN KEY(reporter)
-<<<<<<< HEAD
       REFERENCES "user"(id)
-=======
-      REFERENCES "user"("id"),
   CONSTRAINT fk_reviewer
     FOREIGN KEY(reviewer)
-      REFERENCES "moderator"("id")
->>>>>>> postgres
+      REFERENCES "moderator"(id)
 );
 
 -- R19
