@@ -1,5 +1,7 @@
 -- DOMAINS
 CREATE DOMAIN Today AS DATE NOT NULL DEFAULT CURRENT_DATE;
+DROP TYPE IF EXISTS report_state;
+CREATE TYPE report_state AS ENUM ('pending', 'approved', 'rejected');
 
 -- TABLES
 -- R01
@@ -241,12 +243,17 @@ CREATE TABLE report(
   "date" Today CHECK ("date" <= CURRENT_DATE), -- reports can't be made in the future
   reason TEXT,
   PRIMARY KEY(id_post, reporter),
+  state report_state,
+  reviewer INTEGER,
   CONSTRAINT fk_post
     FOREIGN KEY(id_post)
       REFERENCES post("id"),
   CONSTRAINT fk_reporter
     FOREIGN KEY(reporter)
-      REFERENCES "user"("id")
+      REFERENCES "user"("id"),
+  CONSTRAINT fk_reviewer
+    FOREIGN KEY(reviewer)
+      REFERENCES "moderator"("id")
 );
 
 -- R18
