@@ -9,11 +9,12 @@ DROP TABLE IF EXISTS topic_proposal CASCADE;
 DROP TABLE IF EXISTS achievement CASCADE;
 DROP TABLE IF EXISTS achieved CASCADE;
 DROP TABLE IF EXISTS post CASCADE;
+DROP TABLE IF EXISTS answer CASCADE;
+DROP TABLE IF EXISTS question CASCADE;
+DROP TABLE IF EXISTS answer_question;
+DROP TABLE IF EXISTS comment CASCADE;
 DROP TABLE IF EXISTS vote CASCADE;
 DROP TABLE IF EXISTS edit_proposal CASCADE;
-DROP TABLE IF EXISTS answer CASCADE;
-DROP TABLE IF EXISTS comment CASCADE;
-DROP TABLE IF EXISTS question CASCADE;
 DROP TABLE IF EXISTS topic CASCADE;
 DROP TABLE IF EXISTS topic_question CASCADE;
 DROP TABLE IF EXISTS report CASCADE;
@@ -133,42 +134,6 @@ CREATE TABLE post(
 );
 
 -- R10
-CREATE TABLE vote(
-  id_post INTEGER,
-  id_user INTEGER,
-  value smallint CHECK (
-    value = 1
-    OR value = -1
-  ),
-  PRIMARY KEY (id_post, id_user),
-  CONSTRAINT fk_post
-    FOREIGN KEY(id_post)
-      REFERENCES post(id),
-  CONSTRAINT fk_user
-    FOREIGN KEY(id_user)
-      REFERENCES "user"(id)
-);
-
--- R11
-CREATE TABLE edit_proposal(
-  id SERIAL PRIMARY KEY,
-  id_post INTEGER NOT NULL,
-  id_user INTEGER NOT NULL,
-  id_moderator INTEGER,
-  body TEXT NOT NULL,
-  accepted boolean NOT NULL DEFAULT false,
-  CONSTRAINT fk_post
-    FOREIGN KEY(id_post)
-      REFERENCES post(id),
-  CONSTRAINT fk_user
-    FOREIGN KEY(id_user)
-      REFERENCES "user"(id),
-  CONSTRAINT fk_moderator
-    FOREIGN KEY(id_moderator)
-      REFERENCES moderator(id)
-);
-
--- R12
 CREATE TABLE answer(
   id INTEGER PRIMARY KEY,
   id_question INTEGER NOT NULL,
@@ -180,7 +145,7 @@ CREATE TABLE answer(
       REFERENCES question(id)
 );
 
--- R14
+-- R11
 CREATE TABLE question(
   id INTEGER PRIMARY KEY,
   accepted_answer INTEGER,
@@ -196,6 +161,19 @@ CREATE TABLE question(
   CONSTRAINT fk_answer
     FOREIGN KEY(accepted_answer)
       REFERENCES answer(id)
+);
+
+-- R12
+CREATE TABLE answer_question(
+  id_answer INTEGER,
+  id_question INTEGER,
+  PRIMARY KEY(id_answer, id_question),
+  CONSTRAINT fk_answer
+    FOREIGN KEY(id_answer)
+      REFERENCES answer(id),
+  CONSTRAINT fk_question
+    FOREIGN KEY(id_question)
+      REFERENCES question(id)
 );
 
 -- R13
@@ -224,13 +202,49 @@ CREATE TABLE comment(
       REFERENCES answer(id)
 );
 
+-- R14
+CREATE TABLE vote(
+  id_post INTEGER,
+  id_user INTEGER,
+  value smallint CHECK (
+    value = 1
+    OR value = -1
+  ),
+  PRIMARY KEY (id_post, id_user),
+  CONSTRAINT fk_post
+    FOREIGN KEY(id_post)
+      REFERENCES post(id),
+  CONSTRAINT fk_user
+    FOREIGN KEY(id_user)
+      REFERENCES "user"(id)
+);
+
 -- R15
+CREATE TABLE edit_proposal(
+  id SERIAL PRIMARY KEY,
+  id_post INTEGER NOT NULL,
+  id_user INTEGER NOT NULL,
+  id_moderator INTEGER,
+  body TEXT NOT NULL,
+  accepted boolean NOT NULL DEFAULT false,
+  CONSTRAINT fk_post
+    FOREIGN KEY(id_post)
+      REFERENCES post(id),
+  CONSTRAINT fk_user
+    FOREIGN KEY(id_user)
+      REFERENCES "user"(id),
+  CONSTRAINT fk_moderator
+    FOREIGN KEY(id_moderator)
+      REFERENCES moderator(id)
+);
+
+-- R16
 CREATE TABLE topic(
   id SERIAL PRIMARY KEY,
   name TEXT UNIQUE NOT NULL
 );
 
--- R16
+-- R17
 CREATE TABLE topic_question(
   id_topic INTEGER,
   id_question INTEGER,
@@ -243,7 +257,7 @@ CREATE TABLE topic_question(
       REFERENCES question(id)
 );
 
--- R17
+-- R18
 CREATE TABLE report(
   id_post INTEGER,
   reporter INTEGER,
@@ -258,7 +272,7 @@ CREATE TABLE report(
       REFERENCES "user"(id)
 );
 
--- R18
+-- R19
 CREATE TABLE notification(
   id SERIAL PRIMARY KEY,
   "date" Today NOT NULL CHECK ("date" <= CURRENT_DATE), -- can't be notified in the future
@@ -270,7 +284,7 @@ CREATE TABLE notification(
       REFERENCES "user"(id)
 );
 
--- R19
+-- R20
 CREATE TABLE notification_achievement(
   id INTEGER PRIMARY KEY,
   id_achievement INTEGER NOT NULL,
@@ -282,7 +296,7 @@ CREATE TABLE notification_achievement(
       REFERENCES achievement(id)
 );
 
--- R20
+-- R21
 CREATE TABLE notification_post(
   id INTEGER PRIMARY KEY,
   id_post INTEGER NOT NULL,
