@@ -136,13 +136,9 @@ CREATE TABLE post(
 -- R10
 CREATE TABLE answer(
   id INTEGER PRIMARY KEY,
-  id_question INTEGER NOT NULL,
   CONSTRAINT fk_post
     FOREIGN KEY(id)
-      REFERENCES post(id),
-  CONSTRAINT fk_question
-    FOREIGN KEY(id_question)
-      REFERENCES question(id)
+      REFERENCES post(id)
 );
 
 -- R11
