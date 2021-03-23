@@ -47,4 +47,64 @@ insert into news (id, author, title, subtitle, body, "date") values (1, 1, "Hell
 insert into news (id, author, title, subtitle, body, "date") values (2, 1, "We've reached 100 members.", "Our community is growing.", "Thank you everyone from trusting us.", "15-03-21");
 
 -- R06
+INSERT INTO topic_proposal (id, id_user, id_admin, topic_name, "date", reason, accepted) VALUES
 
+-- R16
+INSERT INTO topic (id, name) VALUES (1, "cpp")
+INSERT INTO topic (id, name) VALUES (2, "python")
+INSERT INTO topic (id, name) VALUES (3, "javascript")
+INSERT INTO topic (id, name) VALUES (4, "c")
+INSERT INTO topic (id, name) VALUES (5, "sql")
+INSERT INTO topic (id, name) VALUES (6, "prolog")
+
+--R17
+INSERT INTO topic_question (id_topic, id_question) VALUES (1, 1)
+INSERT INTO topic_question (id_topic, id_question) VALUES (4, 1)
+INSERT INTO topic_question (id_topic, id_question) VALUES (3, 2)
+INSERT INTO topic_question (id_topic, id_question) VALUES (4, 3)
+INSERT INTO topic_question (id_topic, id_question) VALUES (6, 4)
+INSERT INTO topic_question (id_topic, id_question) VALUES (5, 5)
+INSERT INTO topic_question (id_topic, id_question) VALUES (5, 6)
+
+-- R18
+INSERT INTO report (id_post, reporter, "date", reason, "state", reviewer) VALUES (1, 2, "2020-07-29", "He said a bad word", "approved", 2)
+INSERT INTO report (id_post, reporter, "date", reason, "state", reviewer) VALUES (3, 4, "2020-07-30", "He said a bad word", "pending", NULL)
+INSERT INTO report (id_post, reporter, "date", reason, "state", reviewer) VALUES (5, 6, "2020-09-10", NULL, "rejected", 3)
+INSERT INTO report (id_post, reporter, "date", reason, "state", reviewer) VALUES (7, 7, "2020-11-11", "Not helpful", "rejected", 2)
+INSERT INTO report (id_post, reporter, "date", reason, "state", reviewer) VALUES (10, 10, "2020-11-12", NULL, "pending", NULL)
+
+-- R19
+INSERT INTO notification (id, "date", title, body, recipient) VALUES (1, 'New achievement', 'You have achieved: ', 9);
+INSERT INTO notification (id, "date", title, body, recipient) VALUES (2, 'New achievement', 'You have achieved: ', 1);
+INSERT INTO notification (id, "date", title, body, recipient) VALUES (3, 'New achievement', 'You have achieved: ', 1);
+INSERT INTO notification (id, "date", title, body, recipient) VALUES (4, 'New achievement', 'You have achieved: ', 19);
+INSERT INTO notification (id, "date", title, body, recipient) VALUES (5, 'New achievement', 'You have achieved: ', 19);
+INSERT INTO notification (id, "date", title, body, recipient) VALUES (6, 'New achievement', 'You have achieved: ', 4);
+INSERT INTO notification (id, "date", title, body, recipient) VALUES (7, 'New achievement', 'You have achieved: ', 20);
+INSERT INTO notification (id, "date", title, body, recipient) VALUES (8, 'New achievement', 'You have achieved: ', 15);
+INSERT INTO notification (id, "date", title, body, recipient) VALUES (9, 'New achievement', 'You have achieved: ', 14);
+INSERT INTO notification (id, "date", title, body, recipient) VALUES (10, 'New upvote', 'Someone upvoted your post: ', 2);
+INSERT INTO notification (id, "date", title, body, recipient) VALUES (11, 'New upvote', 'Someone upvoted your post: ', 6);
+INSERT INTO notification (id, "date", title, body, recipient) VALUES (12, 'New upvote', 'Someone upvoted your post: ', 17);
+INSERT INTO notification (id, "date", title, body, recipient) VALUES (13, 'New upvote', 'Someone upvoted your post: ', 9);
+INSERT INTO notification (id, "date", title, body, recipient) VALUES (14, 'New upvote', 'Someone upvoted your post: ', 7);
+INSERT INTO notification (id, "date", title, body, recipient) VALUES (15, 'New upvote', 'Someone upvoted your post: ', 8);
+
+-- R20
+INSERT INTO notification_achievement (id, id_achievement) VALUES (1, 6)
+INSERT INTO notification_achievement (id, id_achievement) VALUES (2, 5)
+INSERT INTO notification_achievement (id, id_achievement) VALUES (3, 8)
+INSERT INTO notification_achievement (id, id_achievement) VALUES (4, 8)
+INSERT INTO notification_achievement (id, id_achievement) VALUES (5, 9)
+INSERT INTO notification_achievement (id, id_achievement) VALUES (6, 1)
+INSERT INTO notification_achievement (id, id_achievement) VALUES (7, 2)
+INSERT INTO notification_achievement (id, id_achievement) VALUES (8, 2)
+INSERT INTO notification_achievement (id, id_achievement) VALUES (9, 2)
+
+-- R21
+INSERT INTO notification_post (id, id_post) VALUES (10, 6) -- TODO: Verificar se estes posts pertencem a quem recebe a notificação
+INSERT INTO notification_post (id, id_post) VALUES (11, 5)
+INSERT INTO notification_post (id, id_post) VALUES (12, 8)
+INSERT INTO notification_post (id, id_post) VALUES (13, 8)
+INSERT INTO notification_post (id, id_post) VALUES (14, 9)
+INSERT INTO notification_post (id, id_post) VALUES (15, 1)
