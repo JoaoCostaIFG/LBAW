@@ -15,4 +15,7 @@ $$ LANGUAGE plpgsql;
 
 
 -- TRIGGERS
-
+CREATE TRIGGER update_score
+AFTER UPDATE
+ON vote
+EXECUTE PROCEDURE score(1);
