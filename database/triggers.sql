@@ -12,3 +12,7 @@ $$
         RETURN total;
     END;
 $$ LANGUAGE plpgsql;
+
+
+-- TRIGGERS
+
