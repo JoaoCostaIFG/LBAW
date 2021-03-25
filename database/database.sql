@@ -269,7 +269,7 @@ CREATE TABLE report(
       REFERENCES post(id),
   CONSTRAINT fk_reporter
     FOREIGN KEY(reporter)
-      REFERENCES "user"(id)
+      REFERENCES "user"(id),
   CONSTRAINT fk_reviewer
     FOREIGN KEY(reviewer)
       REFERENCES "moderator"(id)
