@@ -1,22 +1,35 @@
 -- FUNCTIONS
 -- used to store the derived attribute 'score' (see comment in vote table)
-CREATE OR REPLACE FUNCTION score(post_id integer)
-RETURNS integer
-AS
-$$
-    DECLARE
-        total integer;
+CREATE OR REPLACE FUNCTION score()
+RETURNS TRIGGER
+AS $$
+	DECLARE
+        val integer;
+		post_id integer;
     BEGIN
-        SELECT SUM(value) INTO total
-        FROM vote INNER JOIN post ON (post.id = post_id);
-        RETURN total;
+		IF (TG_OP = 'DELETE') THEN
+			val := -OLD.value;
+			post_id := OLD.id_post;
+        ELSIF (TG_OP = 'UPDATE') THEN
+			val := -OLD.value + NEW.value;
+			post_id := NEW.id_post;
+        ELSIF (TG_OP = 'INSERT') THEN
+			val := NEW.value;
+			post_id := NEW.id_post;
+        END IF;
+		
+		UPDATE post
+		SET score = score + val
+		WHERE id = post_id;
+
+		RETURN NULL; -- result is ignored since this is an AFTER trigger
     END;
 $$ LANGUAGE plpgsql;
 
 
 -- TRIGGERS
-DROP TRIGGER IF EXISTS update_score ON CASCADE;
+DROP TRIGGER IF EXISTS update_score ON vote CASCADE;
 CREATE TRIGGER update_score
-AFTER UPDATE
+AFTER DELETE OR INSERT OR UPDATE
 ON vote
-EXECUTE PROCEDURE score;
+FOR EACH ROW EXECUTE FUNCTION score();
