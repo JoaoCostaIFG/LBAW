@@ -44,10 +44,56 @@ insert into ban (id_user, id_admin, "date", reason) values (11, 1, '2021-03-22',
 
 -- R05
 insert into news (id, author, title, subtitle, body, date) values (1, 1, 'Hello and welcome.', 'The website is open.', 'You can now join and use our community.', '2021-03-15');
-insert into news (id, author, title, subtitle, body, date) values (2, 1, 'We have reached 100 members.', 'Our community is growing.', 'Thank you everyone from trusting us.', '2021-03-15');
+insert into news (id, author, title, subtitle, body, date) values (2, 1, 'We have reached 100 members.', 'Our community is growing.', 'Thank you everyone for trusting us.', '2021-03-15');
 
 -- R06
 -- INSERT INTO topic_proposal (id, id_user, id_admin, topic_name, "date", reason, accepted) VALUES
+
+-- R09
+INSERT INTO post(id, id_owner, body, "date") VALUES (1, 1, 'If Python does not have a ternary conditional operator, is it possible to simulate one using other language constructs?', '2008-12-17');
+INSERT INTO post(id, id_owner, body, "date") VALUES (2, 2, "In the Python 3.0 official documentation referenced in a comment above, this is referred to as \"conditional_expressions\" and is very cryptically defined. That documentation doesn't even include the term \"ternary\", so you would be hard-pressed to find it via Google unless you knew exactly what to look for. The version 2 documentation is somewhat more helpful and includes a link to "PEP 308", which includes a lot of interesting historical context related to this question.", '2013-01-10');
+INSERT INTO post(id, id_owner, body, "date") VALUES (3, 3, '<expression 1> if <condition> else <expression 2>', '2010-05-27');
+INSERT INTO post(id, id_owner, body, "date") VALUES (4, 4, 'This one emphasizes the primary intent of the ternary operator: value selection. It also shows that more than one ternary can be chained together into a single expression.', '2010-10-04');
+INSERT INTO post(id, id_owner, body, "date") VALUES (5, 5, 'What is the difference between a function decorated with @staticmethod and one decorated with @classmethod?', '2008-09-25');
+INSERT INTO post(id, id_owner, body, "date") VALUES (6, 6, 'tl;dr >> when compared to normal methods, the static methods and class methods can also be accessed using the class but unlike class methods, static methods are immutable via inheritance.', '2018-07-11');
+INSERT INTO post(id, id_owner, body, "date") VALUES (7, 7, "Basically @classmethod makes a method whose first argument is the class it's called from (rather than the class instance), @staticmethod does not have any implicit arguments.",'2008-09-25');
+INSERT INTO post(id, id_owner, body, "date") VALUES (8, 8, '@classmethod : can be used to create a shared global access to all the instances created of that class..... like updating a record by multiple users.... I particulary found it use ful when creating singletons as well..:)\n@static method: has nothing to do with the class or instance being associated with ...but for readability can use static method', '2017-09-20');
+INSERT INTO post(id, id_owner, body, "date") VALUES (9, 9, "I have an array of numbers and I'm using the .push() method to add elements to it.\nIs there a simple way to remove a specific element from an array?\nI'm looking for the equivalent of something like:\narray.remove(number);\nI have to use core JavaScript. Frameworks are not allowed.", '2011-04-23');
+INSERT INTO post(id, id_owner, body, "date") VALUES (10, 10, 'Find the index of the array element you want to remove using indexOf, and then remove that index with splice.', '2011-04-23');
+INSERT INTO post(id, id_owner, body, "date") VALUES (11, 11, "Serious question: why doesn't JavaScript allow the simple and intuitive method of removing an element at an index? A simple, elegant, myArray.remove(index); seems to be the best solution and is implemented in many other languages (a lot of them older than JavaScript.)", '2020-09-10');
+-- INSERT INTO post(id, id_owner, body, "date") VALUES (12, );
+-- INSERT INTO post(id, id_owner, body, "date") VALUES (13);
+-- INSERT INTO post(id, id_owner, body, "date") VALUES (14);
+-- INSERT INTO post(id, id_owner, body, "date") VALUES (15);
+-- INSERT INTO post(id, id_owner, body, "date") VALUES (16);
+-- INSERT INTO post(id, id_owner, body, "date") VALUES (17);
+-- INSERT INTO post(id, id_owner, body, "date") VALUES (18);
+-- INSERT INTO post(id, id_owner, body, "date") VALUES (19);
+-- INSERT INTO post(id, id_owner, body, "date") VALUES (20);
+
+-- R10
+INSERT INTO answer(id) VALUES (3);
+INSERT INTO answer(id) VALUES (7);
+INSERT INTO answer(id) VALUES (8);
+INSERT INTO answer(id) VALUES (10);
+
+-- R11
+
+INSERT INTO question(id, accepted_answer, title, bounty, closed) VALUES (1, 3, 'Does Python have a ternary conditional operator?', 0, true);
+INSERT INTO question(id, accepted_answer, title, bounty, closed) VALUES (5, NULL, 'Difference between staticmethod and classmethod', 20, false);
+INSERT INTO question(id, accepted_answer, title, bounty, closed) VALUES (9, 10, 'How can I remove a specific item from an array?', 0, true);
+
+
+-- R12
+INSERT INTO answer_question(id_answer, id_question) VALUES (3, 1);
+INSERT INTO answer_question(id_answer, id_question) VALUES (10, 9);
+
+
+-- R13
+INSERT INTO comment(id, id_question, id_answer) VALUES (2, 1, NULL);
+INSERT INTO comment(id, id_question, id_answer) VALUES (4, NULL, 3);
+INSERT INTO comment(id, id_question, id_answer) VALUES (6, 5, NULL);
+INSERT INTO comment(id, id_question, id_answer) VALUES (11, NULL, 10);
 
 -- R16
 INSERT INTO topic (id, name) VALUES (1, 'cpp');
@@ -58,9 +104,9 @@ INSERT INTO topic (id, name) VALUES (5, 'sql');
 INSERT INTO topic (id, name) VALUES (6, 'prolog');
 
 --R17
---  INSERT INTO topic_question (id_topic, id_question) VALUES (1, 1);
---  INSERT INTO topic_question (id_topic, id_question) VALUES (4, 1);
---  INSERT INTO topic_question (id_topic, id_question) VALUES (3, 2);
+ INSERT INTO topic_question (id_topic, id_question) VALUES (2, 1);
+ INSERT INTO topic_question (id_topic, id_question) VALUES (2, 5);
+ INSERT INTO topic_question (id_topic, id_question) VALUES (3, 9);
 --  INSERT INTO topic_question (id_topic, id_question) VALUES (4, 3);
 --  INSERT INTO topic_question (id_topic, id_question) VALUES (6, 4);
 --  INSERT INTO topic_question (id_topic, id_question) VALUES (5, 5);
