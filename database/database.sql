@@ -1,6 +1,6 @@
 -- CLEANUP
 DROP DOMAIN IF EXISTS Today CASCADE;
-DROP TYPE IF EXISTS report_state;
+DROP TYPE IF EXISTS report_state CASCADE;
 DROP TABLE IF EXISTS "user" CASCADE;
 DROP TABLE IF EXISTS moderator CASCADE;
 DROP TABLE IF EXISTS administrator CASCADE;
@@ -28,12 +28,14 @@ DROP TABLE IF EXISTS notification_post CASCADE;
 CREATE DOMAIN Today AS DATE DEFAULT CURRENT_DATE;
 CREATE TYPE report_state AS ENUM ('pending', 'approved', 'rejected');
 
+
 -- TABLES
 -- R01
 CREATE TABLE "user"(
   id SERIAL PRIMARY KEY,
   name TEXT NOT NULL,
   username TEXT UNIQUE NOT NULL,
+  username_tsv TSVECTOR NOT NULL,
   password TEXT NOT NULL,
   email TEXT UNIQUE NOT NULL,
   about TEXT,
@@ -147,6 +149,7 @@ CREATE TABLE question(
   id INTEGER PRIMARY KEY,
   accepted_answer INTEGER,
   title TEXT UNIQUE NOT NULL,
+  title_tsv TSVECTOR NOT NULL,
   bounty smallint NOT NULL CHECK (
     bounty >= 0
     AND bounty <= 500
@@ -238,7 +241,8 @@ CREATE TABLE edit_proposal(
 -- R16
 CREATE TABLE topic(
   id SERIAL PRIMARY KEY,
-  name TEXT UNIQUE NOT NULL
+  name TEXT UNIQUE NOT NULL,
+  name_tsv TSVECTOR NOT NULL
 );
 
 -- R17
@@ -309,3 +313,143 @@ CREATE TABLE notification_post(
     FOREIGN KEY(id_post)
       REFERENCES post(id)
 );
+
+
+-- INDEXES
+CREATE INDEX user_search_idx ON "user" USING GiST (username_tsv);
+CREATE INDEX question_search_idx ON question USING GiST (title_tsv);
+CREATE INDEX topic_search_idx ON topic USING GIN (name_tsv);
+
+
+-- FUNCTIONS
+-- used to store the derived attribute 'score' (see comment in vote table)
+CREATE OR REPLACE FUNCTION score()
+RETURNS TRIGGER
+AS $$
+  DECLARE
+    val integer;
+    post_id integer;
+  BEGIN
+    IF (TG_OP = 'DELETE') THEN
+      val := -OLD.value;
+      post_id := OLD.id_post;
+    ELSIF (TG_OP = 'UPDATE') THEN
+      val := -OLD.value + NEW.value;
+      post_id := NEW.id_post;
+    ELSIF (TG_OP = 'INSERT') THEN
+      val := NEW.value;
+      post_id := NEW.id_post;
+    END IF;
+
+    UPDATE post
+    SET score = score + val
+    WHERE id = post_id;
+    RETURN NULL; -- result is ignored since this is an AFTER trigger
+  END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION reputation()
+RETURNS TRIGGER
+AS $$
+  DECLARE
+    val integer;
+    owner_id integer;
+  BEGIN
+    IF (TG_OP = 'DELETE') THEN
+      val := -OLD.reputation;
+      owner_id := OLD.id_owner;
+    ELSIF (TG_OP = 'UPDATE') THEN
+      val := -OLD.reputation + NEW.reputation;
+      owner_id := NEW.id_owner;
+    ELSIF (TG_OP = 'INSERT') THEN
+      val := NEW.value;
+      owner_id := NEW.id_owner;
+    END IF;
+
+    UPDATE "user"
+    SET reputation = reputation + val
+    WHERE id = owner_id;
+
+    RETURN NULL; -- result is ignored since this is an AFTER trigger
+  END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION user_search_update()
+RETURNS TRIGGER
+AS $$
+  BEGIN
+  IF (TG_OP = 'INSERT') THEN
+    NEW.username_tsv = to_tsvector('english', NEW.username);
+  ELSIF (TG_OP = 'UPDATE') THEN
+    IF NEW.username <> OLD.username THEN
+      NEW.username = to_tsvector('english', NEW.username);
+    END IF;
+  END IF;
+
+  RETURN NEW;
+  END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION question_search_update()
+RETURNS TRIGGER
+AS $$
+  BEGIN
+    IF (TG_OP = 'INSERT') THEN
+      NEW.title_tsv = to_tsvector('english', NEW.title);
+    ELSIF (TG_OP = 'UPDATE') THEN
+      IF NEW.title <> OLD.title THEN
+        NEW.title_tsv = to_tsvector('english', NEW.title);
+      END IF;
+    END IF;
+
+    RETURN NEW;
+  END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION topic_search_update()
+RETURNS TRIGGER
+AS $$
+  BEGIN
+    IF (TG_OP = 'INSERT') THEN
+      NEW.name_tsv = to_tsvector('english', NEW.name);
+    ELSIF (TG_OP = 'UPDATE') THEN
+      IF NEW.name <> OLD.name THEN
+        NEW.name_tsv = to_tsvector('english', NEW.name);
+      END IF;
+    END IF;
+
+    RETURN NEW;
+  END;
+$$ LANGUAGE plpgsql;
+
+
+-- TRIGGERS
+DROP TRIGGER IF EXISTS update_score ON vote CASCADE;
+CREATE TRIGGER update_score
+AFTER DELETE OR INSERT OR UPDATE
+ON vote
+FOR EACH ROW EXECUTE FUNCTION score();
+
+DROP TRIGGER IF EXISTS update_reputation ON post CASCADE;
+CREATE TRIGGER update_reputation
+AFTER DELETE OR INSERT OR UPDATE
+OF score ON post
+FOR EACH ROW EXECUTE FUNCTION reputation();
+
+DROP TRIGGER IF EXISTS user_search_update_trigger ON "user" CASCADE;
+CREATE TRIGGER user_search_update_trigger
+BEFORE INSERT OR UPDATE
+ON "user"
+FOR EACH ROW EXECUTE FUNCTION user_search_update();
+
+DROP TRIGGER IF EXISTS question_search_update_trigger ON question CASCADE;
+CREATE TRIGGER question_search_update_trigger
+BEFORE INSERT OR UPDATE
+ON question
+FOR EACH ROW EXECUTE FUNCTION question_search_update();
+
+DROP TRIGGER IF EXISTS topic_search_update_trigger ON topic CASCADE;
+CREATE TRIGGER topic_search_update_trigger
+BEFORE INSERT OR UPDATE
+ON topic
+FOR EACH ROW EXECUTE FUNCTION topic_search_update();
