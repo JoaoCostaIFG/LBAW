@@ -265,7 +265,7 @@ CREATE TABLE report(
   "date" Today NOT NULL CHECK ("date" <= CURRENT_DATE), -- reports can't be made in the future
   reason TEXT,
   PRIMARY KEY(id_post, reporter),
-  state report_state,
+  "state" report_state,
   reviewer INTEGER,
   CONSTRAINT fk_post
     FOREIGN KEY(id_post)
@@ -316,6 +316,20 @@ CREATE TABLE notification_post(
 
 
 -- INDEXES
+DROP INDEX IF EXISTS date_idx CASCADE;
+DROP INDEX IF EXISTS question_idx CASCADE;
+DROP INDEX IF EXISTS owner_idx CASCADE;
+DROP INDEX IF EXISTS user_idx CASCADE;
+DROP INDEX IF EXISTS state_idx CASCADE;
+DROP INDEX IF EXISTS user_search_idx CASCADE;
+DROP INDEX IF EXISTS question_search_idx CASCADE;
+DROP INDEX IF EXISTS topic_search_idx CASCADE;
+
+CREATE INDEX date_idx ON post USING btree ("date");
+CREATE INDEX question_idx ON answer_question USING hash (id_question);
+CREATE INDEX owner_idx ON post USING hash (id_owner);
+CREATE INDEX user_idx ON achieved USING hash (id_user);
+CREATE INDEX state_idx ON report USING hash ("state");
 CREATE INDEX user_search_idx ON "user" USING GiST (username_tsv);
 CREATE INDEX question_search_idx ON question USING GiST (title_tsv);
 CREATE INDEX topic_search_idx ON topic USING GIN (name_tsv);
