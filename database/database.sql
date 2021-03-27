@@ -206,7 +206,7 @@ CREATE TABLE comment(
 CREATE TABLE vote(
   id_post INTEGER,
   id_user INTEGER,
-  value smallint CHECK (
+  value smallint NOT NULL CHECK (
     value = 1
     OR value = -1
   ),
