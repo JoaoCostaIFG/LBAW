@@ -34,10 +34,10 @@ AS $$
         owner_id integer;
     BEGIN
         IF (TG_OP = 'DELETE') THEN
-            val := -OLD.score;
+            val := -OLD.reputation;
             owner_id := OLD.id_owner;
         ELSIF (TG_OP = 'UPDATE') THEN
-            val := -OLD.score + NEW.score;
+            val := -OLD.reputation + NEW.reputation;
             owner_id := NEW.id_owner;
         ELSIF (TG_OP = 'INSERT') THEN
             val := NEW.value;
@@ -45,7 +45,7 @@ AS $$
         END IF;
         
         UPDATE "user"
-        SET score = score + val
+        SET reputation = reputation + val
         WHERE id = owner_id;
 
         RETURN NULL; -- result is ignored since this is an AFTER trigger
