@@ -33,7 +33,7 @@ CREATE TYPE report_state AS ENUM ('pending', 'approved', 'rejected');
 -- R01
 CREATE TABLE "user"(
   id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL,
+  name TEXT,
   username TEXT UNIQUE NOT NULL,
   username_tsv TSVECTOR NOT NULL,
   password TEXT NOT NULL,
@@ -393,10 +393,10 @@ RETURNS TRIGGER
 AS $$
   BEGIN
   IF (TG_OP = 'INSERT') THEN
-    NEW.username_tsv = to_tsvector('english', NEW.username);
+    NEW.username_tsv = to_tsvector('english', COALESCE(NEW.name, '') || NEW.username);
   ELSIF (TG_OP = 'UPDATE') THEN
-    IF NEW.username <> OLD.username THEN
-      NEW.username = to_tsvector('english', NEW.username);
+    IF NEW.username <> OLD.username or NEW.name <> OLD.name THEN
+      NEW.username = to_tsvector('english', COALESCE(NEW.name, '') || NEW.username);
     END IF;
   END IF;
 
