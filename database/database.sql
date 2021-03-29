@@ -442,7 +442,7 @@ AS $$
   DECLARE
     owner integer;
   BEGIN
-      owner := (SELECT id_owner FROM post WHERE id = NEW.id_post)
+      owner := (SELECT id_owner FROM post WHERE id = NEW.id_post);
       
       IF (owner = NEW.id_user) THEN
         RAISE EXCEPTION 'A user can not vote on its own post.';
@@ -485,9 +485,9 @@ EXECUTE PROCEDURE reopen_question();
 
 DROP TRIGGER IF EXISTS vote_trigger ON vote CASCADE;
 CREATE TRIGGER vote_trigger
-    BEFORE UPDATE ON vote
-    FOR EACH ROW
-    EXECUTE PROCEDURE vote(); 
+BEFORE INSERT OR UPDATE ON vote
+FOR EACH ROW
+EXECUTE PROCEDURE vote(); 
  
 
 -- TRANSACTIONS
