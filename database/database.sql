@@ -454,18 +454,6 @@ FOR EACH ROW EXECUTE FUNCTION topic_search_update();
 -- END TRANSACTION;
 
 --2
-<<<<<<< HEAD
-BEGIN TRANSACTION;
-SELECT COUNT(*) FROM question
-WHERE id_owner = $user;
-
-SELECT * FROM question
-JOIN post ON(post.id = question.id)
-WHERE id_owner = $user
-ORDER BY post."date"
-LIMIT 10;
-END TRANSACTION;
-=======
 -- BEGIN TRANSACTION;
 -- SELECT COUNT(*) FROM question
 -- WHERE id_owner = $user;
@@ -476,4 +464,3 @@ END TRANSACTION;
 -- ORDER BY post."date"
 -- LIMIT 10;
 -- END TRANSACTION;
->>>>>>> e8ac9d3e614dae53a30c0b1e1b4be4f8554fabd7
