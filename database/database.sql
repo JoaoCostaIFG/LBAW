@@ -420,6 +420,16 @@ AS $$
   END;
 $$ LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION reopen_question() RETURNS TRIGGER AS
+$$
+BEGIN
+    IF (OLD.closed <> NEW.closed and OLD.closed = TRUE) THEN
+      RAISE EXCEPTION 'A closed question can not be re-opened.';
+    END IF;
+    RETURN NEW;
+END
+$$
+LANGUAGE plpgsql;
 
 -- TRIGGERS
 DROP TRIGGER IF EXISTS update_score ON vote CASCADE;
@@ -445,6 +455,11 @@ CREATE TRIGGER topic_search_update_trigger
 BEFORE INSERT OR UPDATE
 ON topic
 FOR EACH ROW EXECUTE FUNCTION topic_search_update();
+
+CREATE TRIGGER reopen_question_trigger
+    BEFORE UPDATE ON question
+    FOR EACH ROW
+    EXECUTE PROCEDURE reopen_question(); 
 
 -- TRANSACTIONS
 --1
