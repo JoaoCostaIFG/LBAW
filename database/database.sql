@@ -366,8 +366,6 @@ AS $$
     FROM post as p
     WHERE p.id = post_id and p.id_owner = u.id;
 
-    RAISE NOTICE '%', val;
-
     RETURN NULL; -- result is ignored since this is an AFTER trigger
   END;
 $$ LANGUAGE plpgsql;
@@ -377,10 +375,11 @@ RETURNS TRIGGER
 AS $$
   BEGIN
   IF (TG_OP = 'INSERT') THEN
-    NEW.search = (setweight(to_tsvector('english', NEW.username), 'A') || setweight(to_tsvector('english', COALESCE(NEW.name, '')), 'B'));
+    --  NEW.search = (setweight(to_tsvector('english', NEW.username), 'A') || setweight(to_tsvector('english', COALESCE(NEW.name, '')), 'B'));
+    NEW.search = (setweight(to_tsvector('english', NEW.username), 'A'));
   ELSIF (TG_OP = 'UPDATE') THEN
     IF NEW.username <> OLD.username or NEW.name <> OLD.name THEN
-      NEW.search = (setweight(to_tsvector('english', NEW.username), 'A') || setweight(to_tsvector('english', COALESCE(NEW.name, '')), 'B'));
+      NEW.search = (setweight(to_tsvector('english', NEW.username), 'A'));
     END IF;
   END IF;
 
@@ -391,12 +390,19 @@ $$ LANGUAGE plpgsql;
 CREATE OR REPLACE FUNCTION question_search_update()
 RETURNS TRIGGER
 AS $$
+  DECLARE
+    b text;
   BEGIN
+    -- get the body
+    b := (SELECT body
+           FROM post
+		   WHERE post.id = NEW.id);
+
     IF (TG_OP = 'INSERT') THEN
-      NEW.search = (setweight(to_tsvector('english', NEW.title), 'A') || setweight(to_tsvector('english', NEW.body), 'B'));
+      NEW.search = (setweight(to_tsvector('english', NEW.title), 'A') || setweight(to_tsvector('english', b), 'B'));
     ELSIF (TG_OP = 'UPDATE') THEN
       IF NEW.title <> OLD.title THEN
-        NEW.search = (setweight(to_tsvector('english', NEW.title), 'A') || setweight(to_tsvector('english', NEW.body), 'B'));
+        NEW.search = (setweight(to_tsvector('english', NEW.title), 'A') || setweight(to_tsvector('english', b), 'B'));
       END IF;
     END IF;
 
@@ -473,9 +479,9 @@ FOR EACH ROW EXECUTE FUNCTION topic_search_update();
 
 DROP TRIGGER IF EXISTS reopen_question_trigger ON question CASCADE;
 CREATE TRIGGER reopen_question_trigger
-    BEFORE UPDATE ON question
-    FOR EACH ROW
-    EXECUTE PROCEDURE reopen_question(); 
+BEFORE UPDATE ON question
+FOR EACH ROW
+EXECUTE PROCEDURE reopen_question(); 
 
 DROP TRIGGER IF EXISTS vote_trigger ON vote CASCADE;
 CREATE TRIGGER vote_trigger
