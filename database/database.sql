@@ -467,3 +467,22 @@ CREATE TRIGGER topic_search_update_trigger
 BEFORE INSERT OR UPDATE
 ON topic
 FOR EACH ROW EXECUTE FUNCTION topic_search_update();
+
+-- TRANSACTIONS
+--1
+BEGIN TRANSACTION;
+INSERT INTO post(id, id_owner, body, "date") VALUES($id, $owner, $body, $date);
+INSERT INTO question(id, accepted_answer, title, bounty, closed) VALUES($id, NULL, $title, $bounty, $closed);
+END TRANSACTION;
+
+--2
+BEGIN TRANSACTION;
+SELECT COUNT(*) FROM question
+WHERE id_owner = $user;
+
+SELECT * FROM question
+JOIN post ON(post.id = question.id)
+WHERE id_owner = $user
+ORDER BY post."date"
+LIMIT 10;
+END TRANSACTION;
