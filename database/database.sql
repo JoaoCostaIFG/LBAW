@@ -393,10 +393,10 @@ RETURNS TRIGGER
 AS $$
   BEGIN
     IF (TG_OP = 'INSERT') THEN
-      NEW.search = (setweight(to_tsvector('english', NEW.title), 'A') || setweight(to_tsvector('english', NEW.post), 'B'));
+      NEW.search = (setweight(to_tsvector('english', NEW.title), 'A') || setweight(to_tsvector('english', NEW.body), 'B'));
     ELSIF (TG_OP = 'UPDATE') THEN
       IF NEW.title <> OLD.title THEN
-        NEW.search = (setweight(to_tsvector('english', NEW.title), 'A') || setweight(to_tsvector('english', NEW.post), 'B'));
+        NEW.search = (setweight(to_tsvector('english', NEW.title), 'A') || setweight(to_tsvector('english', NEW.body), 'B'));
       END IF;
     END IF;
 
