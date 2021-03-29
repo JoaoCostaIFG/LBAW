@@ -456,6 +456,7 @@ BEFORE INSERT OR UPDATE
 ON topic
 FOR EACH ROW EXECUTE FUNCTION topic_search_update();
 
+DROP TRIGGER IF EXISTS reopen_question_trigger ON question CASCADE;
 CREATE TRIGGER reopen_question_trigger
     BEFORE UPDATE ON question
     FOR EACH ROW
