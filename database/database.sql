@@ -99,7 +99,7 @@ CREATE TABLE topic_proposal(
     FOREIGN KEY(id_user)
       REFERENCES "user"(id),
   CONSTRAINT fk_admin
-    FOREIGN KEY(id_user)
+    FOREIGN KEY(id_admin)
       REFERENCES administrator(id)
 );
 
@@ -362,31 +362,31 @@ AS $$
   END;
 $$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION reputation()
-RETURNS TRIGGER
-AS $$
-  DECLARE
-    val integer;
-    owner_id integer;
-  BEGIN
-    IF (TG_OP = 'DELETE') THEN
-      val := -OLD.reputation;
-      owner_id := OLD.id_owner;
-    ELSIF (TG_OP = 'UPDATE') THEN
-      val := -OLD.reputation + NEW.reputation;
-      owner_id := NEW.id_owner;
-    ELSIF (TG_OP = 'INSERT') THEN
-      val := NEW.value;
-      owner_id := NEW.id_owner;
-    END IF;
+-- CREATE OR REPLACE FUNCTION reputation()
+-- RETURNS TRIGGER
+-- AS $$
+--   DECLARE
+--     val integer;
+--     owner_id integer;
+--   BEGIN
+--     IF (TG_OP = 'DELETE') THEN
+--       val := -OLD.reputation;
+--       owner_id := OLD.id_owner;
+--     ELSIF (TG_OP = 'UPDATE') THEN
+--       val := -OLD.reputation + NEW.reputation;
+--       owner_id := NEW.id_owner;
+--     ELSIF (TG_OP = 'INSERT') THEN
+--       val := NEW.value;
+--       owner_id := NEW.id_owner;
+--     END IF;
 
-    UPDATE "user"
-    SET reputation = reputation + val
-    WHERE id = owner_id;
+--     UPDATE "user"
+--     SET reputation = reputation + val
+--     WHERE id = owner_id;
 
-    RETURN NULL; -- result is ignored since this is an AFTER trigger
-  END;
-$$ LANGUAGE plpgsql;
+--     RETURN NULL; -- result is ignored since this is an AFTER trigger
+--   END;
+-- $$ LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION user_search_update()
 RETURNS TRIGGER
@@ -445,10 +445,10 @@ ON vote
 FOR EACH ROW EXECUTE FUNCTION score();
 
 DROP TRIGGER IF EXISTS update_reputation ON post CASCADE;
-CREATE TRIGGER update_reputation
-AFTER DELETE OR INSERT OR UPDATE
-OF score ON post
-FOR EACH ROW EXECUTE FUNCTION reputation();
+-- CREATE TRIGGER update_reputation
+-- AFTER DELETE OR INSERT OR UPDATE
+-- OF score ON post
+-- FOR EACH ROW EXECUTE FUNCTION reputation();
 
 DROP TRIGGER IF EXISTS user_search_update_trigger ON "user" CASCADE;
 CREATE TRIGGER user_search_update_trigger
@@ -470,19 +470,19 @@ FOR EACH ROW EXECUTE FUNCTION topic_search_update();
 
 -- TRANSACTIONS
 --1
-BEGIN TRANSACTION;
-INSERT INTO post(id, id_owner, body, "date") VALUES($id, $owner, $body, $date);
-INSERT INTO question(id, accepted_answer, title, bounty, closed) VALUES($id, NULL, $title, $bounty, $closed);
-END TRANSACTION;
+-- BEGIN TRANSACTION;
+-- INSERT INTO post(id, id_owner, body, "date") VALUES($id, $owner, $body, $date);
+-- INSERT INTO question(id, accepted_answer, title, bounty, closed) VALUES($id, NULL, $title, $bounty, $closed);
+-- END TRANSACTION;
 
 --2
-BEGIN TRANSACTION;
-SELECT COUNT(*) FROM question
-WHERE id_owner = $user;
+-- BEGIN TRANSACTION;
+-- SELECT COUNT(*) FROM question
+-- WHERE id_owner = $user;
 
-SELECT * FROM question
-JOIN post ON(post.id = question.id)
-WHERE id_owner = $user
-ORDER BY post."date"
-LIMIT 10;
-END TRANSACTION;
+-- SELECT * FROM question
+-- JOIN post ON(post.id = question.id)
+-- WHERE id_owner = $user
+-- ORDER BY post."date"
+-- LIMIT 10;
+-- END TRANSACTION;
