@@ -431,6 +431,21 @@ END
 $$
 LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION vote() RETURNS TRIGGER 
+AS $$
+  DECLARE
+    owner integer;
+  BEGIN
+      owner := (SELECT id_owner FROM post WHERE id = NEW.id_post)
+      
+      IF (owner = NEW.id_user) THEN
+        RAISE EXCEPTION 'A user can not vote on its own post.';
+      END IF;
+      RETURN NEW;
+  END
+$$
+LANGUAGE plpgsql;
+
 -- TRIGGERS
 DROP TRIGGER IF EXISTS update_score ON vote CASCADE;
 CREATE TRIGGER update_score
@@ -461,6 +476,13 @@ CREATE TRIGGER reopen_question_trigger
     BEFORE UPDATE ON question
     FOR EACH ROW
     EXECUTE PROCEDURE reopen_question(); 
+
+DROP TRIGGER IF EXISTS vote_trigger ON vote CASCADE;
+CREATE TRIGGER vote_trigger
+    BEFORE UPDATE ON vote
+    FOR EACH ROW
+    EXECUTE PROCEDURE vote(); 
+ 
 
 -- TRANSACTIONS
 --1
