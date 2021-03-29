@@ -35,7 +35,7 @@ CREATE TABLE "user"(
   id SERIAL PRIMARY KEY,
   name TEXT,
   username TEXT UNIQUE NOT NULL,
-  username_tsv TSVECTOR NOT NULL,
+  search TSVECTOR NOT NULL,
   password TEXT NOT NULL,
   email TEXT UNIQUE NOT NULL,
   about TEXT,
@@ -149,7 +149,7 @@ CREATE TABLE question(
   id INTEGER PRIMARY KEY,
   accepted_answer INTEGER,
   title TEXT UNIQUE NOT NULL,
-  title_tsv TSVECTOR NOT NULL,
+  search TSVECTOR NOT NULL,
   bounty smallint NOT NULL CHECK (
     bounty >= 0
     AND bounty <= 500
@@ -242,7 +242,7 @@ CREATE TABLE edit_proposal(
 CREATE TABLE topic(
   id SERIAL PRIMARY KEY,
   name TEXT UNIQUE NOT NULL,
-  name_tsv TSVECTOR NOT NULL
+  search TSVECTOR NOT NULL
 );
 
 -- R17
@@ -330,9 +330,9 @@ CREATE INDEX question_idx ON answer_question USING hash (id_question);
 CREATE INDEX owner_idx ON post USING hash (id_owner);
 CREATE INDEX user_idx ON achieved USING hash (id_user);
 CREATE INDEX state_idx ON report USING hash ("state");
-CREATE INDEX user_search_idx ON "user" USING GiST (username_tsv);
-CREATE INDEX question_search_idx ON question USING GiST (title_tsv);
-CREATE INDEX topic_search_idx ON topic USING GIN (name_tsv);
+CREATE INDEX user_search_idx ON "user" USING GiST (search);
+CREATE INDEX question_search_idx ON question USING GiST (search);
+CREATE INDEX topic_search_idx ON topic USING GIN (search);
 
 
 -- FUNCTIONS
@@ -376,7 +376,7 @@ AS $$
       val := -OLD.reputation + NEW.reputation;
       owner_id := NEW.id_owner;
     ELSIF (TG_OP = 'INSERT') THEN
-      val := NEW.value;
+      val := NEW.reputation;
       owner_id := NEW.id_owner;
     END IF;
 
@@ -393,10 +393,10 @@ RETURNS TRIGGER
 AS $$
   BEGIN
   IF (TG_OP = 'INSERT') THEN
-    NEW.username_tsv = to_tsvector('english', COALESCE(NEW.name, '') || NEW.username);
+    NEW.search = (setweight(to_tsvector('english', NEW.username), 'A') || setweight(to_tsvector('english', COALESCE(NEW.name, '')), 'B'));
   ELSIF (TG_OP = 'UPDATE') THEN
     IF NEW.username <> OLD.username or NEW.name <> OLD.name THEN
-      NEW.username = to_tsvector('english', COALESCE(NEW.name, '') || NEW.username);
+      NEW.search = (setweight(to_tsvector('english', NEW.username), 'A') || setweight(to_tsvector('english', COALESCE(NEW.name, '')), 'B'));
     END IF;
   END IF;
 
@@ -409,10 +409,10 @@ RETURNS TRIGGER
 AS $$
   BEGIN
     IF (TG_OP = 'INSERT') THEN
-      NEW.title_tsv = to_tsvector('english', NEW.title);
+      NEW.search = (setweight(to_tsvector('english', NEW.title), 'A') || setweight(to_tsvector('english', NEW.post), 'B'));
     ELSIF (TG_OP = 'UPDATE') THEN
       IF NEW.title <> OLD.title THEN
-        NEW.title_tsv = to_tsvector('english', NEW.title);
+        NEW.search = (setweight(to_tsvector('english', NEW.title), 'A') || setweight(to_tsvector('english', NEW.post), 'B'));
       END IF;
     END IF;
 
@@ -425,10 +425,10 @@ RETURNS TRIGGER
 AS $$
   BEGIN
     IF (TG_OP = 'INSERT') THEN
-      NEW.name_tsv = to_tsvector('english', NEW.name);
+      NEW.search = to_tsvector('english', NEW.name);
     ELSIF (TG_OP = 'UPDATE') THEN
       IF NEW.name <> OLD.name THEN
-        NEW.name_tsv = to_tsvector('english', NEW.name);
+        NEW.seach = to_tsvector('english', NEW.name);
       END IF;
     END IF;
 
