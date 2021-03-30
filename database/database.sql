@@ -343,28 +343,38 @@ AS $$
   DECLARE
     val integer;
     post_id integer;
+    owner_id integer;
   BEGIN
     IF (TG_OP = 'DELETE') THEN
-      val := -OLD.value;
       post_id := OLD.id_post;
     ELSIF (TG_OP = 'UPDATE') THEN
-      val := -OLD.value + NEW.value;
       post_id := NEW.id_post;
     ELSIF (TG_OP = 'INSERT') THEN
-      val := NEW.value;
       post_id := NEW.id_post;
     END IF;
 
+    val := (SELECT sum(value)
+            FROM post JOIN vote ON (post.id = vote.id_post)
+            WHERE id = post_id);
+
     -- update the question score
     UPDATE post
-    SET score = score + val
+    SET score = val
     WHERE id = post_id;
 
     -- update the question's owner reputation
+    owner_id := (SELECT id_owner
+                  FROM post
+                  WHERE id = post_id);
+
+    val := (SELECT count(*)
+            FROM post
+            JOIN "user" ON (post.id_owner = "user".id)
+            WHERE "user".id = owner_id);
+
     UPDATE "user" as u
-    SET reputation = reputation + val
-    FROM post as p
-    WHERE p.id = post_id and p.id_owner = u.id;
+    SET reputation = val
+    WHERE owner_id = u.id;
 
     RETURN NULL; -- result is ignored since this is an AFTER trigger
   END;
@@ -375,11 +385,12 @@ RETURNS TRIGGER
 AS $$
   BEGIN
   IF (TG_OP = 'INSERT') THEN
-    --  NEW.search = (setweight(to_tsvector('english', NEW.username), 'A') || setweight(to_tsvector('english', COALESCE(NEW.name, '')), 'B'));
-    NEW.search = (setweight(to_tsvector('english', NEW.username), 'A'));
+    NEW.search = (setweight(to_tsvector('english', NEW.username), 'A') ||
+      setweight(to_tsvector('english', COALESCE(NEW.name, '')), 'B'));
   ELSIF (TG_OP = 'UPDATE') THEN
     IF NEW.username <> OLD.username or NEW.name <> OLD.name THEN
-      NEW.search = (setweight(to_tsvector('english', NEW.username), 'A'));
+      NEW.search = (setweight(to_tsvector('english', NEW.username), 'A') ||
+        setweight(to_tsvector('english', COALESCE(NEW.name, '')), 'B'));
     END IF;
   END IF;
 
@@ -395,8 +406,8 @@ AS $$
   BEGIN
     -- get the body
     b := (SELECT body
-           FROM post
-		   WHERE post.id = NEW.id);
+          FROM post
+          WHERE post.id = NEW.id);
 
     IF (TG_OP = 'INSERT') THEN
       NEW.search = (setweight(to_tsvector('english', NEW.title), 'A') || setweight(to_tsvector('english', b), 'B'));
@@ -483,7 +494,7 @@ DROP TRIGGER IF EXISTS update_score ON vote CASCADE;
 CREATE TRIGGER update_score
 AFTER DELETE OR INSERT OR UPDATE
 ON vote
-FOR EACH ROW EXECUTE FUNCTION on_score_change();
+EXECUTE FUNCTION on_score_change();
 
 DROP TRIGGER IF EXISTS user_search_update_trigger ON "user" CASCADE;
 CREATE TRIGGER user_search_update_trigger
@@ -507,13 +518,13 @@ DROP TRIGGER IF EXISTS reopen_question_trigger ON question CASCADE;
 CREATE TRIGGER reopen_question_trigger
 BEFORE UPDATE ON question
 FOR EACH ROW
-EXECUTE PROCEDURE reopen_question(); 
+EXECUTE PROCEDURE reopen_question();
 
 DROP TRIGGER IF EXISTS vote_trigger ON vote CASCADE;
 CREATE TRIGGER vote_trigger
 BEFORE INSERT OR UPDATE ON vote
 FOR EACH ROW
-EXECUTE PROCEDURE vote(); 
+EXECUTE PROCEDURE vote();
 
 DROP TRIGGER IF EXISTS notification_achievement_generalization_trigger ON notification_achievement CASCADE;
 CREATE TRIGGER notification_achievement_generalization_trigger
@@ -525,7 +536,7 @@ DROP TRIGGER IF EXISTS notification_post_generalization_trigger ON notification_
 CREATE TRIGGER notification_post_generalization_trigger
 BEFORE INSERT OR UPDATE ON notification_post
 FOR EACH ROW
-EXECUTE PROCEDURE notification_generalization(); 
+EXECUTE PROCEDURE notification_generalization();
  
 DROP TRIGGER IF EXISTS post_answer_generalization_trigger ON answer CASCADE;
 CREATE TRIGGER post_answer_generalization_trigger
