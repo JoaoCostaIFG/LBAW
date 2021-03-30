@@ -524,6 +524,18 @@ AS $$
 $$
 LANGUAGE plpgsql;
 
+-- NOTIFICATIONS
+CREATE OR REPLACE FUNCTION add_achievement_notification() RETURNS TRIGGER 
+AS $$
+  BEGIN
+      INSERT INTO notification (title, body, recipient) VALUES ('New achievement', 'You have achieved: ', NEW.id_user);
+      INSERT INTO notification_achievement (id, id_achievement) VALUES (currval(pg_get_serial_sequence('notification', 'id')), NEW.id_achievement);
+      RETURN NEW;
+  END
+$$
+LANGUAGE plpgsql;
+
+
 -- TRIGGERS
 DROP TRIGGER IF EXISTS update_score ON vote CASCADE;
 CREATE TRIGGER update_score
@@ -604,6 +616,14 @@ CREATE TRIGGER achievement_first_accepted_answer_trigger
 AFTER INSERT OR UPDATE ON question
 FOR EACH ROW
 EXECUTE PROCEDURE achievement_first_accepted_answer();
+
+---- NOTIFICATIONS
+
+DROP TRIGGER IF EXISTS add_achievement_notification ON question CASCADE;
+CREATE TRIGGER add_achievement_notification
+AFTER INSERT ON achieved
+FOR EACH ROW
+EXECUTE PROCEDURE add_achievement_notification(); 
 
 
 -- TRANSACTIONS
