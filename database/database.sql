@@ -492,19 +492,76 @@ EXECUTE PROCEDURE vote();
 
 -- TRANSACTIONS
 --1
--- BEGIN TRANSACTION;
--- INSERT INTO post(id, id_owner, body, "date") VALUES($id, $owner, $body, $date);
--- INSERT INTO question(id, accepted_answer, title, bounty, closed) VALUES($id, NULL, $title, $bounty, $closed);
--- END TRANSACTION;
+CREATE OR REPLACE FUNCTION vote() RETURNS TRIGGER 
+AS $$
+  DECLARE
+    owner integer;
+  BEGIN
+      owner := (SELECT id_owner FROM post WHERE id = NEW.id_post);
+      
+      IF (owner = NEW.id_user) THEN
+        RAISE EXCEPTION 'A user can not vote on its own post.';
+      END IF;
+      RETURN NEW;
+  END
+$$
+LANGUAGE plpgsql;
 
---2
--- BEGIN TRANSACTION;
--- SELECT COUNT(*) FROM question
--- WHERE id_owner = $user;
+CREATE OR REPLACE PROCEDURE create_question
+(
+  OwnerUser INT,
+  Body TEXT,
+  DatePost DATE,
+  Title TEXT,
+  Bounty INT,
+  Closed BOOLEAN
+)
+LANGUAGE plpgsql
+AS
+$$
+DECLARE
+BEGIN
+  INSERT INTO post(id_owner, body, "date") VALUES(OwnerUser, Body, DatePost);
+  -- INSERT INTO question(id, accepted_answer, title, bounty, closed) SELECT(1, NULL, Title, Bounty, Closed);
+  INSERT INTO question(id, accepted_answer, title, bounty, closed) 
+  	VALUES (currval(pg_get_serial_sequence('post','id')), NULL, Title, Bounty, Closed);
+END
+$$;
 
--- SELECT * FROM question
--- JOIN post ON(post.id = question.id)
--- WHERE id_owner = $user
--- ORDER BY post."date"
--- LIMIT 10;
--- END TRANSACTION;
+CREATE OR REPLACE PROCEDURE create_comment
+(
+  OwnerUser INT,
+  Body TEXT,
+  DatePost DATE,
+  IdQuestion INT,
+  IdAnswer INT
+)
+LANGUAGE plpgsql
+AS
+$$
+DECLARE
+BEGIN
+  INSERT INTO post(id_owner, body, "date") VALUES(OwnerUser, Body, DatePost);
+  -- INSERT INTO question(id, accepted_answer, title, bounty, closed) SELECT(1, NULL, Title, Bounty, Closed);
+  INSERT INTO comment(id, id_question, id_answer) VALUES (currval(pg_get_serial_sequence('post','id')), IdQuestion, IdAnswer);
+END
+$$;
+
+CREATE OR REPLACE PROCEDURE create_answer
+(
+  OwnerUser INT,
+  Body TEXT,
+  DatePost DATE,
+  IdQuestion INT
+)
+LANGUAGE plpgsql
+AS
+$$
+DECLARE
+BEGIN
+  INSERT INTO post(id_owner, body, "date") VALUES(OwnerUser, Body, DatePost);
+  -- INSERT INTO question(id, accepted_answer, title, bounty, closed) SELECT(1, NULL, Title, Bounty, Closed);
+  INSERT INTO answer(id) VALUES (currval(pg_get_serial_sequence('post','id')));
+  INSERT INTO answer_question(id_answer, id_question) VALUES(currval(pg_get_serial_sequence('post','id')), IdQuestion);
+END
+$$;

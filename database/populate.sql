@@ -1,35 +1,35 @@
 -- R01
-insert into "user" (id, name, username, password, email, about, picture, reputation) values
-  (1, 'Torrance Jerrom', 'tjerrom0', 'YeBGgmC', 'tjerrom0@deliciousdays.com', 'Dental Hygienist', 'http://dummyimage.com/102x100.png/ff4444/ffffff', 612),
-  (2, 'Keenan O''Bruen', 'kobruen1', 'BTFYEdJ', 'kobruen1@yolasite.com', 'Tax Accountant', 'http://dummyimage.com/135x100.png/dddddd/000000', 215),
-  (3, 'Joey Kores', 'jkores2', 'hSpFcNF', 'jkores2@parallels.com', 'Administrative Officer', 'http://dummyimage.com/169x100.png/5fa2dd/ffffff', 449),
-  (4, 'Berky Shakespeare', 'bshakespeare3', 'UlBGb5', 'bshakespeare3@deliciousdays.com', 'Biostatistician IV', 'http://dummyimage.com/110x100.png/dddddd/000000', 901),
-  (5, 'Ives Shinn', 'ishinn4', 'ct4ESru', 'ishinn4@topsy.com', 'Programmer Analyst IV', 'http://dummyimage.com/226x100.png/cc0000/ffffff', 741),
-  (6, 'Ian Franklyn', 'ifranklyn5', 'zLrS0M6kj', 'ifranklyn5@oracle.com', 'Senior Quality Engineer', 'http://dummyimage.com/231x100.png/ff4444/ffffff', 712),
-  (7, 'Pernell Danelut', 'pdanelut6', 'Ev58adsWg', 'pdanelut6@shareasale.com', 'Marketing Manager', 'http://dummyimage.com/233x100.png/ff4444/ffffff', 84),
-  (8, 'Malachi Rilings', 'mrilings7', 'KzNfOzPGNf0', 'mrilings7@tinypic.com', 'Nurse', 'http://dummyimage.com/248x100.png/ff4444/ffffff', 850),
-  (9, 'Gill Lehrian', 'glehrian8', '5so0kMf9N7D9', 'glehrian8@sina.com.cn', 'Junior Executive', 'http://dummyimage.com/170x100.png/ff4444/ffffff', 153),
-  (10, 'Baily Bernet', 'bbernet9', 'TTXdHTpMu3N', 'bbernet9@weather.com', 'Chemical Engineer', 'http://dummyimage.com/199x100.png/ff4444/ffffff', 669),
-  (11, 'Miner Abazi', 'mabazia', 'EllP4J8DVM', 'mabazia@mashable.com', 'Payment Adjustment Coordinator', 'http://dummyimage.com/141x100.png/dddddd/000000', 345),
-  (12, 'Kleon Olech', 'kolechb', 'Nau0PYH5ZS', 'kolechb@studiopress.com', 'Environmental Specialist', 'http://dummyimage.com/198x100.png/5fa2dd/ffffff', 788),
-  (13, 'Emmy Sisley', 'esisleyc', 'VICwW4yX', 'esisleyc@noaa.gov', 'Account Representative II', 'http://dummyimage.com/174x100.png/5fa2dd/ffffff', 104),
-  (14, 'Olav Zanetto', 'ozanettod', 'OJJLPwNPIIf', 'ozanettod@hostgator.com', 'Senior Developer', 'http://dummyimage.com/116x100.png/dddddd/000000', 655),
-  (15, 'Paulina Habbeshaw', 'phabbeshawe', 'QZkZLn', 'phabbeshawe@time.com', 'Librarian', 'http://dummyimage.com/224x100.png/ff4444/ffffff', 91),
-  (16, 'Karil Peoples', 'kpeoplesf', '9mLVnY1Fkksm', 'kpeoplesf@behance.net', 'Occupational Therapist', 'http://dummyimage.com/200x100.png/5fa2dd/ffffff', 968),
-  (17, 'Daisi Worters', 'dwortersg', 'WEwGru55Bl4a', 'dwortersg@icio.us', 'Help Desk Operator', 'http://dummyimage.com/143x100.png/dddddd/000000', 953),
-  (18, 'Cathee Carthy', 'ccarthyh', 'rhfqZj3kV02', 'ccarthyh@twitter.com', 'Senior Quality Engineer', 'http://dummyimage.com/177x100.png/ff4444/ffffff', 360),
-  (19, 'Dusty Maxwaile', 'dmaxwailei', 'oZJFF9', 'dmaxwailei@google.nl', 'Systems Administrator II', 'http://dummyimage.com/235x100.png/ff4444/ffffff', 455),
-  (20, 'Tybalt Russan', 'trussanj', '1rlJ9S3', 'trussanj@linkedin.com', 'Editor', 'http://dummyimage.com/179x100.png/ff4444/ffffff', 349),
-  (21, 'Rhona Kemmett', 'rkemmettk', 'xCrizjpI', 'rkemmettk@lulu.com', 'Information Systems Manager', 'http://dummyimage.com/120x100.png/ff4444/ffffff', 221),
-  (22, 'Rubetta Molesworth', 'rmolesworthl', 'HebsnJ7jD1nH', 'rmolesworthl@hexun.com', 'Geologist I', 'http://dummyimage.com/227x100.png/ff4444/ffffff', 375),
-  (23, 'Magdaia Volcker', 'mvolckerm', '7B8AVrNiv7FK', 'mvolckerm@bluehost.com', 'VP Product Management', 'http://dummyimage.com/122x100.png/dddddd/000000', 739),
-  (24, 'Eleen Bullin', 'ebullinn', 'LrZT0WxXi', 'ebullinn@vk.com', 'Software Engineer IV', 'http://dummyimage.com/172x100.png/5fa2dd/ffffff', 525),
-  (25, 'Anallese Thoma', 'athomao', 'DBlMQm', 'athomao@flickr.com', 'Research Assistant III', 'http://dummyimage.com/150x100.png/5fa2dd/ffffff', 330),
-  (26, 'Gib Kipping', 'gkippingp', 'f0GXcvW1l', 'gkippingp@joomla.org', 'Operator', 'http://dummyimage.com/120x100.png/cc0000/ffffff', 812),
-  (27, 'Jasun Deverock', 'jdeverockq', 'T7ELVdowbl0', 'jdeverockq@addthis.com', 'Statistician IV', 'http://dummyimage.com/115x100.png/cc0000/ffffff', 493),
-  (28, 'Jodee Burmaster', 'jburmasterr', 'mffWNq', 'jburmasterr@foxnews.com', 'Biostatistician I', 'http://dummyimage.com/148x100.png/5fa2dd/ffffff', 934),
-  (29, 'Glynn Baytrop', 'gbaytrops', 'r4HP1rmMuAfo', 'gbaytrops@ed.gov', 'Sales Representative', 'http://dummyimage.com/218x100.png/5fa2dd/ffffff', 778),
-  (30, 'Zilvia Marvell', 'zmarvellt', 'uudLf0', 'zmarvellt@cbslocal.com', 'Senior Quality Engineer', 'http://dummyimage.com/139x100.png/ff4444/ffffff', 928);
+insert into "user" (name, username, password, email, about, picture, reputation) values
+  ('Torrance Jerrom', 'tjerrom0', 'YeBGgmC', 'tjerrom0@deliciousdays.com', 'Dental Hygienist', 'http://dummyimage.com/102x100.png/ff4444/ffffff', 612),
+  ('Keenan O''Bruen', 'kobruen1', 'BTFYEdJ', 'kobruen1@yolasite.com', 'Tax Accountant', 'http://dummyimage.com/135x100.png/dddddd/000000', 215),
+  ('Joey Kores', 'jkores2', 'hSpFcNF', 'jkores2@parallels.com', 'Administrative Officer', 'http://dummyimage.com/169x100.png/5fa2dd/ffffff', 449),
+  ('Berky Shakespeare', 'bshakespeare3', 'UlBGb5', 'bshakespeare3@deliciousdays.com', 'Biostatistician IV', 'http://dummyimage.com/110x100.png/dddddd/000000', 901),
+  ('Ives Shinn', 'ishinn4', 'ct4ESru', 'ishinn4@topsy.com', 'Programmer Analyst IV', 'http://dummyimage.com/226x100.png/cc0000/ffffff', 741),
+  ('Ian Franklyn', 'ifranklyn5', 'zLrS0M6kj', 'ifranklyn5@oracle.com', 'Senior Quality Engineer', 'http://dummyimage.com/231x100.png/ff4444/ffffff', 712),
+  ('Pernell Danelut', 'pdanelut6', 'Ev58adsWg', 'pdanelut6@shareasale.com', 'Marketing Manager', 'http://dummyimage.com/233x100.png/ff4444/ffffff', 84),
+  ('Malachi Rilings', 'mrilings7', 'KzNfOzPGNf0', 'mrilings7@tinypic.com', 'Nurse', 'http://dummyimage.com/248x100.png/ff4444/ffffff', 850),
+  ('Gill Lehrian', 'glehrian8', '5so0kMf9N7D9', 'glehrian8@sina.com.cn', 'Junior Executive', 'http://dummyimage.com/170x100.png/ff4444/ffffff', 153),
+  ('Baily Bernet', 'bbernet9', 'TTXdHTpMu3N', 'bbernet9@weather.com', 'Chemical Engineer', 'http://dummyimage.com/199x100.png/ff4444/ffffff', 669),
+  ('Miner Abazi', 'mabazia', 'EllP4J8DVM', 'mabazia@mashable.com', 'Payment Adjustment Coordinator', 'http://dummyimage.com/141x100.png/dddddd/000000', 345),
+  ('Kleon Olech', 'kolechb', 'Nau0PYH5ZS', 'kolechb@studiopress.com', 'Environmental Specialist', 'http://dummyimage.com/198x100.png/5fa2dd/ffffff', 788),
+  ('Emmy Sisley', 'esisleyc', 'VICwW4yX', 'esisleyc@noaa.gov', 'Account Representative II', 'http://dummyimage.com/174x100.png/5fa2dd/ffffff', 104),
+  ('Olav Zanetto', 'ozanettod', 'OJJLPwNPIIf', 'ozanettod@hostgator.com', 'Senior Developer', 'http://dummyimage.com/116x100.png/dddddd/000000', 655),
+  ('Paulina Habbeshaw', 'phabbeshawe', 'QZkZLn', 'phabbeshawe@time.com', 'Librarian', 'http://dummyimage.com/224x100.png/ff4444/ffffff', 91),
+  ('Karil Peoples', 'kpeoplesf', '9mLVnY1Fkksm', 'kpeoplesf@behance.net', 'Occupational Therapist', 'http://dummyimage.com/200x100.png/5fa2dd/ffffff', 968),
+  ('Daisi Worters', 'dwortersg', 'WEwGru55Bl4a', 'dwortersg@icio.us', 'Help Desk Operator', 'http://dummyimage.com/143x100.png/dddddd/000000', 953),
+  ('Cathee Carthy', 'ccarthyh', 'rhfqZj3kV02', 'ccarthyh@twitter.com', 'Senior Quality Engineer', 'http://dummyimage.com/177x100.png/ff4444/ffffff', 360),
+  ('Dusty Maxwaile', 'dmaxwailei', 'oZJFF9', 'dmaxwailei@google.nl', 'Systems Administrator II', 'http://dummyimage.com/235x100.png/ff4444/ffffff', 455),
+  ('Tybalt Russan', 'trussanj', '1rlJ9S3', 'trussanj@linkedin.com', 'Editor', 'http://dummyimage.com/179x100.png/ff4444/ffffff', 349),
+  ('Rhona Kemmett', 'rkemmettk', 'xCrizjpI', 'rkemmettk@lulu.com', 'Information Systems Manager', 'http://dummyimage.com/120x100.png/ff4444/ffffff', 221),
+  ('Rubetta Molesworth', 'rmolesworthl', 'HebsnJ7jD1nH', 'rmolesworthl@hexun.com', 'Geologist I', 'http://dummyimage.com/227x100.png/ff4444/ffffff', 375),
+  ('Magdaia Volcker', 'mvolckerm', '7B8AVrNiv7FK', 'mvolckerm@bluehost.com', 'VP Product Management', 'http://dummyimage.com/122x100.png/dddddd/000000', 739),
+  ('Eleen Bullin', 'ebullinn', 'LrZT0WxXi', 'ebullinn@vk.com', 'Software Engineer IV', 'http://dummyimage.com/172x100.png/5fa2dd/ffffff', 525),
+  ('Anallese Thoma', 'athomao', 'DBlMQm', 'athomao@flickr.com', 'Research Assistant III', 'http://dummyimage.com/150x100.png/5fa2dd/ffffff', 330),
+  ('Gib Kipping', 'gkippingp', 'f0GXcvW1l', 'gkippingp@joomla.org', 'Operator', 'http://dummyimage.com/120x100.png/cc0000/ffffff', 812),
+  ('Jasun Deverock', 'jdeverockq', 'T7ELVdowbl0', 'jdeverockq@addthis.com', 'Statistician IV', 'http://dummyimage.com/115x100.png/cc0000/ffffff', 493),
+  ('Jodee Burmaster', 'jburmasterr', 'mffWNq', 'jburmasterr@foxnews.com', 'Biostatistician I', 'http://dummyimage.com/148x100.png/5fa2dd/ffffff', 934),
+  ('Glynn Baytrop', 'gbaytrops', 'r4HP1rmMuAfo', 'gbaytrops@ed.gov', 'Sales Representative', 'http://dummyimage.com/218x100.png/5fa2dd/ffffff', 778),
+  ('Zilvia Marvell', 'zmarvellt', 'uudLf0', 'zmarvellt@cbslocal.com', 'Senior Quality Engineer', 'http://dummyimage.com/139x100.png/ff4444/ffffff', 928);
 
 -- R02
 insert into moderator (id) values (1), (2), (3);
@@ -68,24 +68,24 @@ INSERT INTO achieved(id_user, id_achievement, "date") VALUES (10, 2, '2011-04-23
 INSERT INTO achieved(id_user, id_achievement, "date") VALUES (16, 2, '2020-09-20');
 
 -- R09
-INSERT INTO post(id, id_owner, body, "date") VALUES
-  (1, 1, 'If Python does not have a ternary conditional operator, is it possible to simulate one using other language constructs?', '2008-12-17'),
-  (2, 2, 'In the Python 3.0 official documentation referenced in a comment above, this is referred to as "conditional_expressions" and is very cryptically defined. That documentation doesn''t even include the term "ternary", so you would be hard-pressed to find it via Google unless you knew exactly what to look for. The version 2 documentation is somewhat more helpful and includes a link to "PEP 308", which includes a lot of interesting historical context related to this question.', '2013-01-10'),
-  (3, 3, '<expression 2> if <condition> else <expression 1>', '2010-05-27'),
-  (4, 4, 'This one emphasizes the primary intent of the ternary operator: value selection. It also shows that more than one ternary can be chained together into a single expression.', '2010-10-04'),
-  (5, 5, 'What is the difference between a function decorated with @staticmethod and one decorated with @classmethod?', '2008-09-25'),
-  (6, 6, 'tl;dr >> when compared to normal methods, the static methods and class methods can also be accessed using the class but unlike class methods, static methods are immutable via inheritance.', '2018-07-11'),
-  (7, 7, 'Basically @classmethod makes a method whose first argument is the class it''s called from (rather than the class instance), @staticmethod does not have any implicit arguments.','2008-09-25'),
-  (8, 8, '@classmethod : can be used to create a shared global access to all the instances created of that class..... like updating a record by multiple users.... I particulary found it use ful when creating singletons as well..:)\n@static method: has nothing to do with the class or instance being associated with ...but for readability can use static method', '2017-09-20'),
-  (9, 9, 'I have an array of numbers and I''m using the .push() method to add elements to it.\nIs there a simple way to remove a specific element from an array?\nI''m looking for the equivalent of something like:\narray.remove(number);\nI have to use core JavaScript. Frameworks are not allowed.', '2011-04-23'),
-  (10, 10, 'Find the index of the array element you want to remove using indexOf, and then remove that index with splice.', '2011-04-23'),
-  (11, 11, 'Serious question: why doesn''t JavaScript allow the simple and intuitive method of removing an element at an index? A simple, elegant, myArray.remove(index); seems to be the best solution and is implemented in many other languages (a lot of them older than JavaScript.)', '2020-09-10'),
-  (12, 12, 'I''m trying to use the code from this repository. The problem is that it isn''t a package (I think?) because it can''t be found on PyPI and there''s no setup.py file (so I can''t use pip install git+<repo link>). How would I then be able to use this code in my project?', '2021-03-28'),
-  (13, 13, 'That repository doesn''t seem to be properly packaged for library use at all. I''d recommend forking it, making the changes you need to make it usable (moving the files into a package, adding a setup.py) and then using that as a git+https:// style requirement.', '2021-03-28'),
-  (14, 14, 'Exactly, the repo is also under an MIT License, which really even allows keeping the source files in the project directly.', '2021-03-28'),
-  (15, 15, 'How do you set, clear, and toggle a bit?', '2019-08-22'),
-  (16, 16, 'Use the bitwise OR operator (|) to set a bit.', '2020-09-20'),
-  (17, 17, 'You are very dumb haha','2020-09-20');
+INSERT INTO post(id_owner, body, "date") VALUES
+  (1, 'If Python does not have a ternary conditional operator, is it possible to simulate one using other language constructs?', '2008-12-17'),
+  (2, 'In the Python 3.0 official documentation referenced in a comment above, this is referred to as "conditional_expressions" and is very cryptically defined. That documentation doesn''t even include the term "ternary", so you would be hard-pressed to find it via Google unless you knew exactly what to look for. The version 2 documentation is somewhat more helpful and includes a link to "PEP 308", which includes a lot of interesting historical context related to this question.', '2013-01-10'),
+  (3, '<expression 2> if <condition> else <expression 1>', '2010-05-27'),
+  (4, 'This one emphasizes the primary intent of the ternary operator: value selection. It also shows that more than one ternary can be chained together into a single expression.', '2010-10-04'),
+  (5, 'What is the difference between a function decorated with @staticmethod and one decorated with @classmethod?', '2008-09-25'),
+  (6, 'tl;dr >> when compared to normal methods, the static methods and class methods can also be accessed using the class but unlike class methods, static methods are immutable via inheritance.', '2018-07-11'),
+  (7, 'Basically @classmethod makes a method whose first argument is the class it''s called from (rather than the class instance), @staticmethod does not have any implicit arguments.','2008-09-25'),
+  (8, '@classmethod : can be used to create a shared global access to all the instances created of that class..... like updating a record by multiple users.... I particulary found it use ful when creating singletons as well..:)\n@static method: has nothing to do with the class or instance being associated with ...but for readability can use static method', '2017-09-20'),
+  (9, 'I have an array of numbers and I''m using the .push() method to add elements to it.\nIs there a simple way to remove a specific element from an array?\nI''m looking for the equivalent of something like:\narray.remove(number);\nI have to use core JavaScript. Frameworks are not allowed.', '2011-04-23'),
+  (10, 'Find the index of the array element you want to remove using indexOf, and then remove that index with splice.', '2011-04-23'),
+  (11, 'Serious question: why doesn''t JavaScript allow the simple and intuitive method of removing an element at an index? A simple, elegant, myArray.remove(index); seems to be the best solution and is implemented in many other languages (a lot of them older than JavaScript.)', '2020-09-10'),
+  (12, 'I''m trying to use the code from this repository. The problem is that it isn''t a package (I think?) because it can''t be found on PyPI and there''s no setup.py file (so I can''t use pip install git+<repo link>). How would I then be able to use this code in my project?', '2021-03-28'),
+  (13, 'That repository doesn''t seem to be properly packaged for library use at all. I''d recommend forking it, making the changes you need to make it usable (moving the files into a package, adding a setup.py) and then using that as a git+https:// style requirement.', '2021-03-28'),
+  (14, 'Exactly, the repo is also under an MIT License, which really even allows keeping the source files in the project directly.', '2021-03-28'),
+  (15, 'How do you set, clear, and toggle a bit?', '2019-08-22'),
+  (16, 'Use the bitwise OR operator (|) to set a bit.', '2020-09-20'),
+  (17, 'You are very dumb haha','2020-09-20');
 
 
 -- R10
@@ -134,17 +134,17 @@ INSERT INTO vote(id_post, id_user, value) VALUES
   (5, 11, 1);
 
 -- R15
-INSERT INTO edit_proposal(id, id_post, id_user, id_moderator, body) VALUES
-  (1, 3, 5, NULL, '<expression 2> if <condition> else <expression 1>');
+INSERT INTO edit_proposal(id_post, id_user, id_moderator, body) VALUES
+  (3, 5, NULL, '<expression 2> if <condition> else <expression 1>');
 
 
 -- R16
-INSERT INTO topic (id, name) VALUES (1, 'cpp');
-INSERT INTO topic (id, name) VALUES (2, 'python');
-INSERT INTO topic (id, name) VALUES (3, 'javascript');
-INSERT INTO topic (id, name) VALUES (4, 'c');
-INSERT INTO topic (id, name) VALUES (5, 'sql');
-INSERT INTO topic (id, name) VALUES (6, 'prolog');
+INSERT INTO topic (name) VALUES ('cpp');
+INSERT INTO topic (name) VALUES ('python');
+INSERT INTO topic (name) VALUES ('javascript');
+INSERT INTO topic (name) VALUES ('c');
+INSERT INTO topic (name) VALUES ('sql');
+INSERT INTO topic (name) VALUES ('prolog');
 
 --R17
 INSERT INTO topic_question (id_topic, id_question) VALUES (2, 1);
