@@ -505,7 +505,9 @@ AS $$
       question_amount := (SELECT COUNT(*) FROM post JOIN question ON(post.id = question.id) WHERE post.id_owner = owner_id);
       
       IF (question_amount = 1) THEN
-        INSERT INTO achieved(id_user, id_achievement) VALUES (owner_id, 1);
+        IF NOT EXISTS (SELECT * FROM achieved WHERE id_user = owner_id AND id_achievement = 1) THEN
+          INSERT INTO achieved(id_user, id_achievement) VALUES (owner_id, 1);
+        END IF;
       END IF;
       RETURN NEW;
   END
