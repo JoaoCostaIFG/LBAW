@@ -124,7 +124,6 @@ INSERT INTO comment(id, id_question, id_answer) VALUES (17, 15, NULL);
 
 -- R14
 INSERT INTO vote(id_post, id_user, value) VALUES 
-  (1, 1, 1),
   (1, 2, -1),
   (1, 3, 1),
   (1, 4, -1),
