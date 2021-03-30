@@ -1,35 +1,35 @@
 -- R01
-insert into "user" (name, username, password, email, about, picture, reputation) values
-  ('Torrance Jerrom', 'tjerrom0', 'YeBGgmC', 'tjerrom0@deliciousdays.com', 'Dental Hygienist', 'http://dummyimage.com/102x100.png/ff4444/ffffff', 612),
-  ('Keenan O''Bruen', 'kobruen1', 'BTFYEdJ', 'kobruen1@yolasite.com', 'Tax Accountant', 'http://dummyimage.com/135x100.png/dddddd/000000', 215),
-  ('Joey Kores', 'jkores2', 'hSpFcNF', 'jkores2@parallels.com', 'Administrative Officer', 'http://dummyimage.com/169x100.png/5fa2dd/ffffff', 449),
-  ('Berky Shakespeare', 'bshakespeare3', 'UlBGb5', 'bshakespeare3@deliciousdays.com', 'Biostatistician IV', 'http://dummyimage.com/110x100.png/dddddd/000000', 901),
-  ('Ives Shinn', 'ishinn4', 'ct4ESru', 'ishinn4@topsy.com', 'Programmer Analyst IV', 'http://dummyimage.com/226x100.png/cc0000/ffffff', 741),
-  ('Ian Franklyn', 'ifranklyn5', 'zLrS0M6kj', 'ifranklyn5@oracle.com', 'Senior Quality Engineer', 'http://dummyimage.com/231x100.png/ff4444/ffffff', 712),
-  ('Pernell Danelut', 'pdanelut6', 'Ev58adsWg', 'pdanelut6@shareasale.com', 'Marketing Manager', 'http://dummyimage.com/233x100.png/ff4444/ffffff', 84),
-  ('Malachi Rilings', 'mrilings7', 'KzNfOzPGNf0', 'mrilings7@tinypic.com', 'Nurse', 'http://dummyimage.com/248x100.png/ff4444/ffffff', 850),
-  ('Gill Lehrian', 'glehrian8', '5so0kMf9N7D9', 'glehrian8@sina.com.cn', 'Junior Executive', 'http://dummyimage.com/170x100.png/ff4444/ffffff', 153),
-  ('Baily Bernet', 'bbernet9', 'TTXdHTpMu3N', 'bbernet9@weather.com', 'Chemical Engineer', 'http://dummyimage.com/199x100.png/ff4444/ffffff', 669),
-  ('Miner Abazi', 'mabazia', 'EllP4J8DVM', 'mabazia@mashable.com', 'Payment Adjustment Coordinator', 'http://dummyimage.com/141x100.png/dddddd/000000', 345),
-  ('Kleon Olech', 'kolechb', 'Nau0PYH5ZS', 'kolechb@studiopress.com', 'Environmental Specialist', 'http://dummyimage.com/198x100.png/5fa2dd/ffffff', 788),
-  ('Emmy Sisley', 'esisleyc', 'VICwW4yX', 'esisleyc@noaa.gov', 'Account Representative II', 'http://dummyimage.com/174x100.png/5fa2dd/ffffff', 104),
-  ('Olav Zanetto', 'ozanettod', 'OJJLPwNPIIf', 'ozanettod@hostgator.com', 'Senior Developer', 'http://dummyimage.com/116x100.png/dddddd/000000', 655),
-  ('Paulina Habbeshaw', 'phabbeshawe', 'QZkZLn', 'phabbeshawe@time.com', 'Librarian', 'http://dummyimage.com/224x100.png/ff4444/ffffff', 91),
-  ('Karil Peoples', 'kpeoplesf', '9mLVnY1Fkksm', 'kpeoplesf@behance.net', 'Occupational Therapist', 'http://dummyimage.com/200x100.png/5fa2dd/ffffff', 968),
-  ('Daisi Worters', 'dwortersg', 'WEwGru55Bl4a', 'dwortersg@icio.us', 'Help Desk Operator', 'http://dummyimage.com/143x100.png/dddddd/000000', 953),
-  ('Cathee Carthy', 'ccarthyh', 'rhfqZj3kV02', 'ccarthyh@twitter.com', 'Senior Quality Engineer', 'http://dummyimage.com/177x100.png/ff4444/ffffff', 360),
-  ('Dusty Maxwaile', 'dmaxwailei', 'oZJFF9', 'dmaxwailei@google.nl', 'Systems Administrator II', 'http://dummyimage.com/235x100.png/ff4444/ffffff', 455),
-  ('Tybalt Russan', 'trussanj', '1rlJ9S3', 'trussanj@linkedin.com', 'Editor', 'http://dummyimage.com/179x100.png/ff4444/ffffff', 349),
-  ('Rhona Kemmett', 'rkemmettk', 'xCrizjpI', 'rkemmettk@lulu.com', 'Information Systems Manager', 'http://dummyimage.com/120x100.png/ff4444/ffffff', 221),
-  ('Rubetta Molesworth', 'rmolesworthl', 'HebsnJ7jD1nH', 'rmolesworthl@hexun.com', 'Geologist I', 'http://dummyimage.com/227x100.png/ff4444/ffffff', 375),
-  ('Magdaia Volcker', 'mvolckerm', '7B8AVrNiv7FK', 'mvolckerm@bluehost.com', 'VP Product Management', 'http://dummyimage.com/122x100.png/dddddd/000000', 739),
-  ('Eleen Bullin', 'ebullinn', 'LrZT0WxXi', 'ebullinn@vk.com', 'Software Engineer IV', 'http://dummyimage.com/172x100.png/5fa2dd/ffffff', 525),
-  ('Anallese Thoma', 'athomao', 'DBlMQm', 'athomao@flickr.com', 'Research Assistant III', 'http://dummyimage.com/150x100.png/5fa2dd/ffffff', 330),
-  ('Gib Kipping', 'gkippingp', 'f0GXcvW1l', 'gkippingp@joomla.org', 'Operator', 'http://dummyimage.com/120x100.png/cc0000/ffffff', 812),
-  ('Jasun Deverock', 'jdeverockq', 'T7ELVdowbl0', 'jdeverockq@addthis.com', 'Statistician IV', 'http://dummyimage.com/115x100.png/cc0000/ffffff', 493),
-  ('Jodee Burmaster', 'jburmasterr', 'mffWNq', 'jburmasterr@foxnews.com', 'Biostatistician I', 'http://dummyimage.com/148x100.png/5fa2dd/ffffff', 934),
-  ('Glynn Baytrop', 'gbaytrops', 'r4HP1rmMuAfo', 'gbaytrops@ed.gov', 'Sales Representative', 'http://dummyimage.com/218x100.png/5fa2dd/ffffff', 778),
-  ('Zilvia Marvell', 'zmarvellt', 'uudLf0', 'zmarvellt@cbslocal.com', 'Senior Quality Engineer', 'http://dummyimage.com/139x100.png/ff4444/ffffff', 928);
+insert into "user" (id, name, username, password, email, about, picture) values
+  ('Torrance Jerrom', 'tjerrom0', 'YeBGgmC', 'tjerrom0@deliciousdays.com', 'Dental Hygienist', 'http://dummyimage.com/102x100.png/ff4444/ffffff'),
+  ('Keenan O''Bruen', 'kobruen1', 'BTFYEdJ', 'kobruen1@yolasite.com', 'Tax Accountant', 'http://dummyimage.com/135x100.png/dddddd/000000'),
+  ('Joey Kores', 'jkores2', 'hSpFcNF', 'jkores2@parallels.com', 'Administrative Officer', 'http://dummyimage.com/169x100.png/5fa2dd/ffffff'),
+  ('Berky Shakespeare', 'bshakespeare3', 'UlBGb5', 'bshakespeare3@deliciousdays.com', 'Biostatistician IV', 'http://dummyimage.com/110x100.png/dddddd/000000'),
+  ('Ives Shinn', 'ishinn4', 'ct4ESru', 'ishinn4@topsy.com', 'Programmer Analyst IV', 'http://dummyimage.com/226x100.png/cc0000/ffffff'),
+  ('Ian Franklyn', 'ifranklyn5', 'zLrS0M6kj', 'ifranklyn5@oracle.com', 'Senior Quality Engineer', 'http://dummyimage.com/231x100.png/ff4444/ffffff'),
+  ('Pernell Danelut', 'pdanelut6', 'Ev58adsWg', 'pdanelut6@shareasale.com', 'Marketing Manager', 'http://dummyimage.com/233x100.png/ff4444/ffffff'),
+  ('Malachi Rilings', 'mrilings7', 'KzNfOzPGNf0', 'mrilings7@tinypic.com', 'Nurse', 'http://dummyimage.com/248x100.png/ff4444/ffffff'),
+  ('Gill Lehrian', 'glehrian8', '5so0kMf9N7D9', 'glehrian8@sina.com.cn', 'Junior Executive', 'http://dummyimage.com/170x100.png/ff4444/ffffff'),
+  ('Baily Bernet', 'bbernet9', 'TTXdHTpMu3N', 'bbernet9@weather.com', 'Chemical Engineer', 'http://dummyimage.com/199x100.png/ff4444/ffffff'),
+  ('Miner Abazi', 'mabazia', 'EllP4J8DVM', 'mabazia@mashable.com', 'Payment Adjustment Coordinator', 'http://dummyimage.com/141x100.png/dddddd/000000'),
+  ('Kleon Olech', 'kolechb', 'Nau0PYH5ZS', 'kolechb@studiopress.com', 'Environmental Specialist', 'http://dummyimage.com/198x100.png/5fa2dd/ffffff'),
+  ('Emmy Sisley', 'esisleyc', 'VICwW4yX', 'esisleyc@noaa.gov', 'Account Representative II', 'http://dummyimage.com/174x100.png/5fa2dd/ffffff'),
+  ('Olav Zanetto', 'ozanettod', 'OJJLPwNPIIf', 'ozanettod@hostgator.com', 'Senior Developer', 'http://dummyimage.com/116x100.png/dddddd/000000'),
+  ('Paulina Habbeshaw', 'phabbeshawe', 'QZkZLn', 'phabbeshawe@time.com', 'Librarian', 'http://dummyimage.com/224x100.png/ff4444/ffffff'),
+  ('Karil Peoples', 'kpeoplesf', '9mLVnY1Fkksm', 'kpeoplesf@behance.net', 'Occupational Therapist', 'http://dummyimage.com/200x100.png/5fa2dd/ffffff'),
+  ('Daisi Worters', 'dwortersg', 'WEwGru55Bl4a', 'dwortersg@icio.us', 'Help Desk Operator', 'http://dummyimage.com/143x100.png/dddddd/000000'),
+  ('Cathee Carthy', 'ccarthyh', 'rhfqZj3kV02', 'ccarthyh@twitter.com', 'Senior Quality Engineer', 'http://dummyimage.com/177x100.png/ff4444/ffffff'),
+  ('Dusty Maxwaile', 'dmaxwailei', 'oZJFF9', 'dmaxwailei@google.nl', 'Systems Administrator II', 'http://dummyimage.com/235x100.png/ff4444/ffffff'),
+  ('Tybalt Russan', 'trussanj', '1rlJ9S3', 'trussanj@linkedin.com', 'Editor', 'http://dummyimage.com/179x100.png/ff4444/ffffff'),
+  ('Rhona Kemmett', 'rkemmettk', 'xCrizjpI', 'rkemmettk@lulu.com', 'Information Systems Manager', 'http://dummyimage.com/120x100.png/ff4444/ffffff'),
+  ('Rubetta Molesworth', 'rmolesworthl', 'HebsnJ7jD1nH', 'rmolesworthl@hexun.com', 'Geologist I', 'http://dummyimage.com/227x100.png/ff4444/ffffff'),
+  ('Magdaia Volcker', 'mvolckerm', '7B8AVrNiv7FK', 'mvolckerm@bluehost.com', 'VP Product Management', 'http://dummyimage.com/122x100.png/dddddd/000000'),
+  ('Eleen Bullin', 'ebullinn', 'LrZT0WxXi', 'ebullinn@vk.com', 'Software Engineer IV', 'http://dummyimage.com/172x100.png/5fa2dd/ffffff'),
+  ('Anallese Thoma', 'athomao', 'DBlMQm', 'athomao@flickr.com', 'Research Assistant III', 'http://dummyimage.com/150x100.png/5fa2dd/ffffff'),
+  ('Gib Kipping', 'gkippingp', 'f0GXcvW1l', 'gkippingp@joomla.org', 'Operator', 'http://dummyimage.com/120x100.png/cc0000/ffffff'),
+  ('Jasun Deverock', 'jdeverockq', 'T7ELVdowbl0', 'jdeverockq@addthis.com', 'Statistician IV', 'http://dummyimage.com/115x100.png/cc0000/ffffff'),
+  ('Jodee Burmaster', 'jburmasterr', 'mffWNq', 'jburmasterr@foxnews.com', 'Biostatistician I', 'http://dummyimage.com/148x100.png/5fa2dd/ffffff'),
+  ('Glynn Baytrop', 'gbaytrops', 'r4HP1rmMuAfo', 'gbaytrops@ed.gov', 'Sales Representative', 'http://dummyimage.com/218x100.png/5fa2dd/ffffff'),
+  ('Zilvia Marvell', 'zmarvellt', 'uudLf0', 'zmarvellt@cbslocal.com', 'Senior Quality Engineer', 'http://dummyimage.com/139x100.png/ff4444/ffffff');
 
 -- R02
 insert into moderator (id) values (1), (2), (3);
@@ -58,14 +58,14 @@ INSERT INTO achievement(id, title, body) VALUES
   (2, 'Get first accepted answer', 'An answer you posted was chosen as the accepted answer');
 
 -- R08
-INSERT INTO achieved(id_user, id_achievement, "date") VALUES (1, 1, '2008-12-17');
-INSERT INTO achieved(id_user, id_achievement, "date") VALUES (5, 1, '2008-09-25');
-INSERT INTO achieved(id_user, id_achievement, "date") VALUES (9, 1, '2011-04-23');
-INSERT INTO achieved(id_user, id_achievement, "date") VALUES (12, 1, '2021-03-28');
-INSERT INTO achieved(id_user, id_achievement, "date") VALUES (15, 1, '2019-08-22');
-INSERT INTO achieved(id_user, id_achievement, "date") VALUES (3, 2, '2010-05-27');
-INSERT INTO achieved(id_user, id_achievement, "date") VALUES (10, 2, '2011-04-23');
-INSERT INTO achieved(id_user, id_achievement, "date") VALUES (16, 2, '2020-09-20');
+-- INSERT INTO achieved(id_user, id_achievement, "date") VALUES (1, 1, '2008-12-17');
+-- INSERT INTO achieved(id_user, id_achievement, "date") VALUES (5, 1, '2008-09-25');
+-- INSERT INTO achieved(id_user, id_achievement, "date") VALUES (9, 1, '2011-04-23');
+-- INSERT INTO achieved(id_user, id_achievement, "date") VALUES (12, 1, '2021-03-28');
+-- INSERT INTO achieved(id_user, id_achievement, "date") VALUES (15, 1, '2019-08-22');
+-- INSERT INTO achieved(id_user, id_achievement, "date") VALUES (3, 2, '2010-05-27');
+-- INSERT INTO achieved(id_user, id_achievement, "date") VALUES (10, 2, '2011-04-23');
+-- INSERT INTO achieved(id_user, id_achievement, "date") VALUES (16, 2, '2020-09-20');
 
 -- R09
 INSERT INTO post(id_owner, body, "date") VALUES
@@ -158,31 +158,31 @@ INSERT INTO topic_question (id_topic, id_question) VALUES (4, 15);
 INSERT INTO report (id_post, reporter, "date", reason, state, reviewer) VALUES (15, 15, '2020-07-29', 'He called me dumb', 'pending', 2);
 
 -- R19
-INSERT INTO notification (id, "date", title, body, recipient) VALUES (1, '2021-03-01', 'New achievement', 'You have achieved: ', 1);
-INSERT INTO notification (id, "date", title, body, recipient) VALUES (2, '2021-03-02', 'New achievement', 'You have achieved: ', 5);
-INSERT INTO notification (id, "date", title, body, recipient) VALUES (3, '2021-03-03', 'New achievement', 'You have achieved: ', 9);
-INSERT INTO notification (id, "date", title, body, recipient) VALUES (4, '2021-03-04', 'New achievement', 'You have achieved: ', 12);
-INSERT INTO notification (id, "date", title, body, recipient) VALUES (5, '2021-03-05', 'New achievement', 'You have achieved: ', 15);
-INSERT INTO notification (id, "date", title, body, recipient) VALUES (6, '2021-03-06', 'New achievement', 'You have achieved: ', 3);
-INSERT INTO notification (id, "date", title, body, recipient) VALUES (7, '2021-03-07', 'New achievement', 'You have achieved: ', 10);
-INSERT INTO notification (id, "date", title, body, recipient) VALUES (8, '2021-03-08', 'New achievement', 'You have achieved: ', 16);
-INSERT INTO notification (id, "date", title, body, recipient) VALUES (9, '2021-03-10', 'New answer', 'Someone answered your question: ', 1);
-INSERT INTO notification (id, "date", title, body, recipient) VALUES (10, '2021-03-11', 'New answer', 'Someone answered your question: ', 9);
-INSERT INTO notification (id, "date", title, body, recipient) VALUES (11, '2021-03-12', 'New answer', 'Someone answered your question: ', 15);
-INSERT INTO notification (id, "date", title, body, recipient) VALUES (12, '2021-03-13', 'New answer', 'Someone answered your question: ', 5);
-INSERT INTO notification (id, "date", title, body, recipient) VALUES (13, '2021-03-14', 'New answer', 'Someone answered your question: ', 5);
-INSERT INTO notification (id, "date", title, body, recipient) VALUES (14, '2021-03-15', 'New answer', 'Someone answered your question: ', 12);
+-- INSERT INTO notification ("date", title, body, recipient) VALUES (1, '2021-03-01', 'New achievement', 'You have achieved: ', 1);
+-- INSERT INTO notification ("date", title, body, recipient) VALUES (2, '2021-03-02', 'New achievement', 'You have achieved: ', 5);
+-- INSERT INTO notification ("date", title, body, recipient) VALUES (3, '2021-03-03', 'New achievement', 'You have achieved: ', 9);
+-- INSERT INTO notification ("date", title, body, recipient) VALUES (4, '2021-03-04', 'New achievement', 'You have achieved: ', 12);
+-- INSERT INTO notification ("date", title, body, recipient) VALUES (5, '2021-03-05', 'New achievement', 'You have achieved: ', 15);
+-- INSERT INTO notification ("date", title, body, recipient) VALUES (6, '2021-03-06', 'New achievement', 'You have achieved: ', 3);
+-- INSERT INTO notification ("date", title, body, recipient) VALUES (7, '2021-03-07', 'New achievement', 'You have achieved: ', 10);
+-- INSERT INTO notification ("date", title, body, recipient) VALUES (8, '2021-03-08', 'New achievement', 'You have achieved: ', 16);
+INSERT INTO notification ("date", title, body, recipient) VALUES ('2021-03-10', 'New answer', 'Someone answered your question: ', 1);
+INSERT INTO notification ("date", title, body, recipient) VALUES ('2021-03-11', 'New answer', 'Someone answered your question: ', 9);
+INSERT INTO notification ("date", title, body, recipient) VALUES ('2021-03-12', 'New answer', 'Someone answered your question: ', 15);
+INSERT INTO notification ("date", title, body, recipient) VALUES ('2021-03-13', 'New answer', 'Someone answered your question: ', 5);
+INSERT INTO notification ("date", title, body, recipient) VALUES ('2021-03-14', 'New answer', 'Someone answered your question: ', 5);
+INSERT INTO notification ("date", title, body, recipient) VALUES ('2021-03-15', 'New answer', 'Someone answered your question: ', 12);
 
 -- R20
-INSERT INTO notification_achievement (id, id_achievement) VALUES (1, 1);
-INSERT INTO notification_achievement (id, id_achievement) VALUES (2, 1);
-INSERT INTO notification_achievement (id, id_achievement) VALUES (3, 1);
-INSERT INTO notification_achievement (id, id_achievement) VALUES (4, 1);
-INSERT INTO notification_achievement (id, id_achievement) VALUES (5, 1);
-INSERT INTO notification_achievement (id, id_achievement) VALUES (6, 1);
-INSERT INTO notification_achievement (id, id_achievement) VALUES (7, 2);
-INSERT INTO notification_achievement (id, id_achievement) VALUES (8, 2);
-INSERT INTO notification_achievement (id, id_achievement) VALUES (9, 2);
+-- INSERT INTO notification_achievement (id, id_achievement) VALUES (1, 1);
+-- INSERT INTO notification_achievement (id, id_achievement) VALUES (2, 1);
+-- INSERT INTO notification_achievement (id, id_achievement) VALUES (3, 1);
+-- INSERT INTO notification_achievement (id, id_achievement) VALUES (4, 1);
+-- INSERT INTO notification_achievement (id, id_achievement) VALUES (5, 1);
+-- INSERT INTO notification_achievement (id, id_achievement) VALUES (6, 1);
+-- INSERT INTO notification_achievement (id, id_achievement) VALUES (7, 2);
+-- INSERT INTO notification_achievement (id, id_achievement) VALUES (8, 2);
+-- INSERT INTO notification_achievement (id, id_achievement) VALUES (9, 2);
 
 -- R21
 INSERT INTO notification_post (id, id_post) VALUES (9, 1);

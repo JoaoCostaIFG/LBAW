@@ -343,28 +343,38 @@ AS $$
   DECLARE
     val integer;
     post_id integer;
+    owner_id integer;
   BEGIN
     IF (TG_OP = 'DELETE') THEN
-      val := -OLD.value;
       post_id := OLD.id_post;
     ELSIF (TG_OP = 'UPDATE') THEN
-      val := -OLD.value + NEW.value;
       post_id := NEW.id_post;
     ELSIF (TG_OP = 'INSERT') THEN
-      val := NEW.value;
       post_id := NEW.id_post;
     END IF;
 
+    val := (SELECT sum(value)
+            FROM post JOIN vote ON (post.id = vote.id_post)
+            WHERE id = post_id);
+
     -- update the question score
     UPDATE post
-    SET score = score + val
+    SET score = val
     WHERE id = post_id;
 
     -- update the question's owner reputation
+    owner_id := (SELECT id_owner
+                  FROM post
+                  WHERE id = post_id);
+
+    val := (SELECT count(*)
+            FROM post
+            JOIN "user" ON (post.id_owner = "user".id)
+            WHERE "user".id = owner_id);
+
     UPDATE "user" as u
-    SET reputation = reputation + val
-    FROM post as p
-    WHERE p.id = post_id and p.id_owner = u.id;
+    SET reputation = val
+    WHERE owner_id = u.id;
 
     RETURN NULL; -- result is ignored since this is an AFTER trigger
   END;
@@ -375,11 +385,12 @@ RETURNS TRIGGER
 AS $$
   BEGIN
   IF (TG_OP = 'INSERT') THEN
-    --  NEW.search = (setweight(to_tsvector('english', NEW.username), 'A') || setweight(to_tsvector('english', COALESCE(NEW.name, '')), 'B'));
-    NEW.search = (setweight(to_tsvector('english', NEW.username), 'A'));
+    NEW.search = (setweight(to_tsvector('english', NEW.username), 'A') ||
+      setweight(to_tsvector('english', COALESCE(NEW.name, '')), 'B'));
   ELSIF (TG_OP = 'UPDATE') THEN
     IF NEW.username <> OLD.username or NEW.name <> OLD.name THEN
-      NEW.search = (setweight(to_tsvector('english', NEW.username), 'A'));
+      NEW.search = (setweight(to_tsvector('english', NEW.username), 'A') ||
+        setweight(to_tsvector('english', COALESCE(NEW.name, '')), 'B'));
     END IF;
   END IF;
 
@@ -392,18 +403,23 @@ RETURNS TRIGGER
 AS $$
   DECLARE
     b text;
+    topics text;
   BEGIN
     -- get the body
     b := (SELECT body
-           FROM post
-		   WHERE post.id = NEW.id);
+          FROM post
+          WHERE post.id = NEW.id);
 
-    IF (TG_OP = 'INSERT') THEN
-      NEW.search = (setweight(to_tsvector('english', NEW.title), 'A') || setweight(to_tsvector('english', b), 'B'));
-    ELSIF (TG_OP = 'UPDATE') THEN
-      IF NEW.title <> OLD.title THEN
-        NEW.search = (setweight(to_tsvector('english', NEW.title), 'A') || setweight(to_tsvector('english', b), 'B'));
-      END IF;
+    -- get the topics
+    topics := (SELECT string_agg(name, ' ')
+                FROM topic JOIN topic_question ON (topic.id = topic_question.id_topic)
+                  JOIN question ON (question.id = topic_question.id_question)
+                WHERE question.id = NEW.id);
+
+    IF (TG_OP = 'INSERT' OR TG_OP = 'UPDATE') THEN
+      NEW.search = (setweight(to_tsvector('english', NEW.title), 'A') ||
+                    setweight(to_tsvector('english', b), 'B') ||
+                    setweight(to_tsvector('english', COALESCE(topics, '')), 'C'));
     END IF;
 
     RETURN NEW;
@@ -443,7 +459,7 @@ AS $$
     owner integer;
   BEGIN
       owner := (SELECT id_owner FROM post WHERE id = NEW.id_post);
-      
+
       IF (owner = NEW.id_user) THEN
         RAISE EXCEPTION 'A user can not vote on its own post.';
       END IF;
@@ -452,12 +468,94 @@ AS $$
 $$
 LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION notification_generalization() RETURNS TRIGGER 
+AS $$
+  BEGIN
+      IF EXISTS (SELECT *
+        FROM notification_post, notification_achievement
+        WHERE notification_post.id = New.id OR notification_achievement.id = New.id) THEN
+        RAISE EXCEPTION 'Notification must be disjoint.';
+      END IF;
+      RETURN NEW;
+  END
+$$
+LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION post_generalization() RETURNS TRIGGER 
+AS $$
+  BEGIN
+      IF EXISTS (SELECT * 
+        FROM question, answer, comment  
+        WHERE question.id = New.id OR answer.id = New.id OR comment.id = New.id) THEN
+        RAISE EXCEPTION 'Post must be disjoint.';
+      END IF;
+      RETURN NEW;
+  END
+$$
+LANGUAGE plpgsql;
+
+-- Achievements
+CREATE OR REPLACE FUNCTION achievement_first_question() RETURNS TRIGGER 
+AS $$
+  DECLARE
+    owner_id integer;
+    question_amount integer;
+  BEGIN
+      owner_id := (SELECT post.id_owner AS owner_id FROM post JOIN question ON(post.id = question.id) WHERE post.id = NEW.id);
+      question_amount := (SELECT COUNT(*) FROM post JOIN question ON(post.id = question.id) WHERE post.id_owner = owner_id);
+      
+      IF (question_amount = 1) THEN
+        IF NOT EXISTS (SELECT * FROM achieved WHERE id_user = owner_id AND id_achievement = 1) THEN
+          INSERT INTO achieved(id_user, id_achievement) VALUES (owner_id, 1);
+        END IF;
+      END IF;
+      RETURN NEW;
+  END
+$$
+LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION achievement_first_accepted_answer() RETURNS TRIGGER 
+AS $$
+  DECLARE
+    accepted_answer_id integer;
+    answer_owner_id integer;
+  BEGIN
+      accepted_answer_id := NEW.accepted_answer;
+
+      IF (accepted_answer_id IS NOT NULL) THEN
+        answer_owner_id := (SELECT id_owner FROM post WHERE id = accepted_answer_id);
+        IF NOT EXISTS (SELECT * FROM achieved WHERE id_user = answer_owner_id AND id_achievement = 2) THEN 
+          INSERT INTO achieved(id_user, id_achievement) VALUES (answer_owner_id, 2);
+        END IF;
+      END IF;
+      RETURN NEW;
+  END
+$$
+LANGUAGE plpgsql;
+
+-- NOTIFICATIONS
+CREATE OR REPLACE FUNCTION add_achievement_notification() RETURNS TRIGGER 
+AS $$
+  BEGIN
+      INSERT INTO notification (title, body, recipient) VALUES ('New achievement', 'You have achieved: ', NEW.id_user);
+      INSERT INTO notification_achievement (id, id_achievement) VALUES (currval(pg_get_serial_sequence('notification', 'id')), NEW.id_achievement);
+      RETURN NEW;
+  END
+$$
+LANGUAGE plpgsql;
+
+
 -- TRIGGERS
+
+-- Update score
+
 DROP TRIGGER IF EXISTS update_score ON vote CASCADE;
 CREATE TRIGGER update_score
 AFTER DELETE OR INSERT OR UPDATE
 ON vote
-FOR EACH ROW EXECUTE FUNCTION on_score_change();
+EXECUTE FUNCTION on_score_change();
+
+-- Search user
 
 DROP TRIGGER IF EXISTS user_search_update_trigger ON "user" CASCADE;
 CREATE TRIGGER user_search_update_trigger
@@ -465,11 +563,15 @@ BEFORE INSERT OR UPDATE
 ON "user"
 FOR EACH ROW EXECUTE FUNCTION user_search_update();
 
+-- Search question
+
 DROP TRIGGER IF EXISTS question_search_update_trigger ON question CASCADE;
 CREATE TRIGGER question_search_update_trigger
 BEFORE INSERT OR UPDATE
 ON question
 FOR EACH ROW EXECUTE FUNCTION question_search_update();
+
+-- Search topic
 
 DROP TRIGGER IF EXISTS topic_search_update_trigger ON topic CASCADE;
 CREATE TRIGGER topic_search_update_trigger
@@ -477,18 +579,78 @@ BEFORE INSERT OR UPDATE
 ON topic
 FOR EACH ROW EXECUTE FUNCTION topic_search_update();
 
+-- Reopen question
+
 DROP TRIGGER IF EXISTS reopen_question_trigger ON question CASCADE;
 CREATE TRIGGER reopen_question_trigger
 BEFORE UPDATE ON question
 FOR EACH ROW
-EXECUTE PROCEDURE reopen_question(); 
+EXECUTE PROCEDURE reopen_question();
+
+-- Vote on its own post
 
 DROP TRIGGER IF EXISTS vote_trigger ON vote CASCADE;
 CREATE TRIGGER vote_trigger
 BEFORE INSERT OR UPDATE ON vote
 FOR EACH ROW
-EXECUTE PROCEDURE vote(); 
- 
+EXECUTE PROCEDURE vote();
+
+-- Notification Generalization
+
+DROP TRIGGER IF EXISTS notification_achievement_generalization_trigger ON notification_achievement CASCADE;
+CREATE TRIGGER notification_achievement_generalization_trigger
+BEFORE INSERT OR UPDATE ON notification_achievement
+FOR EACH ROW
+EXECUTE PROCEDURE notification_generalization(); 
+
+DROP TRIGGER IF EXISTS notification_post_generalization_trigger ON notification_post CASCADE;
+CREATE TRIGGER notification_post_generalization_trigger
+BEFORE INSERT OR UPDATE ON notification_post
+FOR EACH ROW
+EXECUTE PROCEDURE notification_generalization();
+
+--- Post generalization
+
+DROP TRIGGER IF EXISTS post_answer_generalization_trigger ON answer CASCADE;
+CREATE TRIGGER post_answer_generalization_trigger
+BEFORE INSERT OR UPDATE ON answer
+FOR EACH ROW
+EXECUTE PROCEDURE post_generalization();
+
+DROP TRIGGER IF EXISTS post_question_generalization_trigger ON question CASCADE;
+CREATE TRIGGER post_question_generalization_trigger
+BEFORE INSERT OR UPDATE ON question
+FOR EACH ROW
+EXECUTE PROCEDURE post_generalization(); 
+
+DROP TRIGGER IF EXISTS post_comment_generalization_trigger ON comment CASCADE;
+CREATE TRIGGER post_comment_generalization_trigger
+BEFORE INSERT OR UPDATE ON comment
+FOR EACH ROW
+EXECUTE PROCEDURE post_generalization();
+
+---- Achievements
+
+DROP TRIGGER IF EXISTS achievement_first_question_trigger ON question CASCADE;
+CREATE TRIGGER achievement_first_question_trigger
+AFTER INSERT ON question
+FOR EACH ROW
+EXECUTE PROCEDURE achievement_first_question(); 
+
+DROP TRIGGER IF EXISTS achievement_first_accepted_answer_trigger ON question CASCADE;
+CREATE TRIGGER achievement_first_accepted_answer_trigger
+AFTER INSERT OR UPDATE ON question
+FOR EACH ROW
+EXECUTE PROCEDURE achievement_first_accepted_answer();
+
+---- NOTIFICATIONS
+
+DROP TRIGGER IF EXISTS add_achievement_notification ON question CASCADE;
+CREATE TRIGGER add_achievement_notification
+AFTER INSERT ON achieved
+FOR EACH ROW
+EXECUTE PROCEDURE add_achievement_notification(); 
+
 
 -- TRANSACTIONS
 --1
