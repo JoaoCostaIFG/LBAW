@@ -58,14 +58,14 @@ INSERT INTO achievement(id, title, body) VALUES
   (2, 'Get first accepted answer', 'An answer you posted was chosen as the accepted answer');
 
 -- R08
-INSERT INTO achieved(id_user, id_achievement, "date") VALUES (1, 1, '2008-12-17');
-INSERT INTO achieved(id_user, id_achievement, "date") VALUES (5, 1, '2008-09-25');
-INSERT INTO achieved(id_user, id_achievement, "date") VALUES (9, 1, '2011-04-23');
-INSERT INTO achieved(id_user, id_achievement, "date") VALUES (12, 1, '2021-03-28');
-INSERT INTO achieved(id_user, id_achievement, "date") VALUES (15, 1, '2019-08-22');
-INSERT INTO achieved(id_user, id_achievement, "date") VALUES (3, 2, '2010-05-27');
-INSERT INTO achieved(id_user, id_achievement, "date") VALUES (10, 2, '2011-04-23');
-INSERT INTO achieved(id_user, id_achievement, "date") VALUES (16, 2, '2020-09-20');
+-- INSERT INTO achieved(id_user, id_achievement, "date") VALUES (1, 1, '2008-12-17');
+-- INSERT INTO achieved(id_user, id_achievement, "date") VALUES (5, 1, '2008-09-25');
+-- INSERT INTO achieved(id_user, id_achievement, "date") VALUES (9, 1, '2011-04-23');
+-- INSERT INTO achieved(id_user, id_achievement, "date") VALUES (12, 1, '2021-03-28');
+-- INSERT INTO achieved(id_user, id_achievement, "date") VALUES (15, 1, '2019-08-22');
+-- INSERT INTO achieved(id_user, id_achievement, "date") VALUES (3, 2, '2010-05-27');
+-- INSERT INTO achieved(id_user, id_achievement, "date") VALUES (10, 2, '2011-04-23');
+-- INSERT INTO achieved(id_user, id_achievement, "date") VALUES (16, 2, '2020-09-20');
 
 -- R09
 INSERT INTO post(id, id_owner, body, "date") VALUES
