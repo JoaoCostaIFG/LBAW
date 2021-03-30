@@ -516,8 +516,10 @@ AS $$
       accepted_answer_id := NEW.accepted_answer;
 
       IF (accepted_answer_id IS NOT NULL) THEN
-        answer_owner_id := (SELECT id_owner FROM post where id = accepted_answer_id);
-        INSERT INTO achieved(id_user, id_achievement) VALUES (answer_owner_id, 2);
+        answer_owner_id := (SELECT id_owner FROM post WHERE id = accepted_answer_id);
+        IF NOT EXISTS (SELECT * FROM achieved WHERE id_user = answer_owner_id AND id_achievement = 2) THEN 
+          INSERT INTO achieved(id_user, id_achievement) VALUES (answer_owner_id, 2);
+        END IF;
       END IF;
       RETURN NEW;
   END
@@ -525,11 +527,16 @@ $$
 LANGUAGE plpgsql;
 
 -- TRIGGERS
+
+-- Update score
+
 DROP TRIGGER IF EXISTS update_score ON vote CASCADE;
 CREATE TRIGGER update_score
 AFTER DELETE OR INSERT OR UPDATE
 ON vote
 EXECUTE FUNCTION on_score_change();
+
+-- Search user
 
 DROP TRIGGER IF EXISTS user_search_update_trigger ON "user" CASCADE;
 CREATE TRIGGER user_search_update_trigger
@@ -537,11 +544,15 @@ BEFORE INSERT OR UPDATE
 ON "user"
 FOR EACH ROW EXECUTE FUNCTION user_search_update();
 
+-- Search question
+
 DROP TRIGGER IF EXISTS question_search_update_trigger ON question CASCADE;
 CREATE TRIGGER question_search_update_trigger
 BEFORE INSERT OR UPDATE
 ON question
 FOR EACH ROW EXECUTE FUNCTION question_search_update();
+
+-- Search topic
 
 DROP TRIGGER IF EXISTS topic_search_update_trigger ON topic CASCADE;
 CREATE TRIGGER topic_search_update_trigger
@@ -549,17 +560,23 @@ BEFORE INSERT OR UPDATE
 ON topic
 FOR EACH ROW EXECUTE FUNCTION topic_search_update();
 
+-- Reopen question
+
 DROP TRIGGER IF EXISTS reopen_question_trigger ON question CASCADE;
 CREATE TRIGGER reopen_question_trigger
 BEFORE UPDATE ON question
 FOR EACH ROW
 EXECUTE PROCEDURE reopen_question();
 
+-- Vote on its own post
+
 DROP TRIGGER IF EXISTS vote_trigger ON vote CASCADE;
 CREATE TRIGGER vote_trigger
 BEFORE INSERT OR UPDATE ON vote
 FOR EACH ROW
 EXECUTE PROCEDURE vote();
+
+-- Notification Generalization
 
 DROP TRIGGER IF EXISTS notification_achievement_generalization_trigger ON notification_achievement CASCADE;
 CREATE TRIGGER notification_achievement_generalization_trigger
@@ -572,6 +589,8 @@ CREATE TRIGGER notification_post_generalization_trigger
 BEFORE INSERT OR UPDATE ON notification_post
 FOR EACH ROW
 EXECUTE PROCEDURE notification_generalization();
+
+--- Post generalization
 
 DROP TRIGGER IF EXISTS post_answer_generalization_trigger ON answer CASCADE;
 CREATE TRIGGER post_answer_generalization_trigger
