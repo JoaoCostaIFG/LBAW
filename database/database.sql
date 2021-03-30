@@ -502,14 +502,14 @@ BEFORE INSERT OR UPDATE ON vote
 FOR EACH ROW
 EXECUTE PROCEDURE vote(); 
 
-DROP TRIGGER IF EXISTS notification_achievement_generalization_trigger ON vote CASCADE;
+DROP TRIGGER IF EXISTS notification_achievement_generalization_trigger ON notification_achievement CASCADE;
 CREATE TRIGGER notification_generalization_trigger
 BEFORE INSERT OR UPDATE ON notification_achievement
 FOR EACH ROW
 EXECUTE PROCEDURE notification_generalization(); 
 
-DROP TRIGGER IF EXISTS notification_achievement_generalization_trigger ON vote CASCADE;
-CREATE TRIGGER notification_generalization_trigger
+DROP TRIGGER IF EXISTS notification_post_generalization_trigger ON notification_post CASCADE;
+CREATE TRIGGER notification_post_generalization_trigger
 BEFORE INSERT OR UPDATE ON notification_post
 FOR EACH ROW
 EXECUTE PROCEDURE notification_generalization(); 
