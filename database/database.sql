@@ -474,7 +474,55 @@ AS $$
       IF EXISTS (SELECT *
         FROM notification_post, notification_achievement
         WHERE notification_post.id = New.id OR notification_achievement.id = New.id) THEN
-        RAISE EXCEPTION 'Notification already exists and must be disjoint.';
+        RAISE EXCEPTION 'Notification must be disjoint.';
+      END IF;
+      RETURN NEW;
+  END
+$$
+LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION post_generalization() RETURNS TRIGGER 
+AS $$
+  BEGIN
+      IF EXISTS (SELECT * 
+        FROM question, answer, comment  
+        WHERE question.id = New.id OR answer.id = New.id OR comment.id = New.id) THEN
+        RAISE EXCEPTION 'Post must be disjoint.';
+      END IF;
+      RETURN NEW;
+  END
+$$
+LANGUAGE plpgsql;
+
+-- Achievements
+CREATE OR REPLACE FUNCTION achievement_first_question() RETURNS TRIGGER 
+AS $$
+  DECLARE
+    owner_id integer;
+    question_amount integer;
+  BEGIN
+      owner_id := (SELECT post.id_owner AS owner_id FROM post JOIN question ON(post.id = question.id) WHERE post.id = NEW.id);
+      question_amount := (SELECT COUNT(*) FROM post JOIN question ON(post.id = question.id) WHERE post.id_owner = owner_id);
+      
+      IF (question_amount = 1) THEN
+        INSERT INTO achieved(id_user, id_achievement) VALUES (owner_id, 1);
+      END IF;
+      RETURN NEW;
+  END
+$$
+LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION achievement_first_accepted_answer() RETURNS TRIGGER 
+AS $$
+  DECLARE
+    accepted_answer_id integer;
+    answer_owner_id integer;
+  BEGIN
+      accepted_answer_id := NEW.accepted_answer;
+
+      IF (accepted_answer_id IS NOT NULL) THEN
+        answer_owner_id := (SELECT id_owner FROM post where id = accepted_answer_id);
+        INSERT INTO achieved(id_user, id_achievement) VALUES (answer_owner_id, 2);
       END IF;
       RETURN NEW;
   END
@@ -529,6 +577,38 @@ CREATE TRIGGER notification_post_generalization_trigger
 BEFORE INSERT OR UPDATE ON notification_post
 FOR EACH ROW
 EXECUTE PROCEDURE notification_generalization();
+
+DROP TRIGGER IF EXISTS post_answer_generalization_trigger ON answer CASCADE;
+CREATE TRIGGER post_answer_generalization_trigger
+BEFORE INSERT OR UPDATE ON answer
+FOR EACH ROW
+EXECUTE PROCEDURE post_generalization();
+
+DROP TRIGGER IF EXISTS post_question_generalization_trigger ON question CASCADE;
+CREATE TRIGGER post_question_generalization_trigger
+BEFORE INSERT OR UPDATE ON question
+FOR EACH ROW
+EXECUTE PROCEDURE post_generalization(); 
+
+DROP TRIGGER IF EXISTS post_comment_generalization_trigger ON comment CASCADE;
+CREATE TRIGGER post_comment_generalization_trigger
+BEFORE INSERT OR UPDATE ON comment
+FOR EACH ROW
+EXECUTE PROCEDURE post_generalization();
+
+---- Achievements
+
+DROP TRIGGER IF EXISTS achievement_first_question_trigger ON question CASCADE;
+CREATE TRIGGER achievement_first_question_trigger
+AFTER INSERT ON question
+FOR EACH ROW
+EXECUTE PROCEDURE achievement_first_question(); 
+
+DROP TRIGGER IF EXISTS achievement_first_accepted_answer_trigger ON question CASCADE;
+CREATE TRIGGER achievement_first_accepted_answer_trigger
+AFTER INSERT OR UPDATE ON question
+FOR EACH ROW
+EXECUTE PROCEDURE achievement_first_accepted_answer();
 
 
 -- TRANSACTIONS
