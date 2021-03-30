@@ -452,6 +452,19 @@ AS $$
 $$
 LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION notification_generalization() RETURNS TRIGGER 
+AS $$
+  BEGIN
+      IF EXISTS (SELECT * 
+        FROM notification_post, notification_achievement  
+        WHERE notification_post.id = New.id OR notification_achievement.id = New.id) THEN
+        RAISE EXCEPTION 'Notification already exists and must be disjoint.';
+      END IF;
+      RETURN NEW;
+  END
+$$
+LANGUAGE plpgsql;
+
 -- TRIGGERS
 DROP TRIGGER IF EXISTS update_score ON vote CASCADE;
 CREATE TRIGGER update_score
@@ -488,6 +501,18 @@ CREATE TRIGGER vote_trigger
 BEFORE INSERT OR UPDATE ON vote
 FOR EACH ROW
 EXECUTE PROCEDURE vote(); 
+
+DROP TRIGGER IF EXISTS notification_achievement_generalization_trigger ON vote CASCADE;
+CREATE TRIGGER notification_generalization_trigger
+BEFORE INSERT OR UPDATE ON notification_achievement
+FOR EACH ROW
+EXECUTE PROCEDURE notification_generalization(); 
+
+DROP TRIGGER IF EXISTS notification_achievement_generalization_trigger ON vote CASCADE;
+CREATE TRIGGER notification_generalization_trigger
+BEFORE INSERT OR UPDATE ON notification_post
+FOR EACH ROW
+EXECUTE PROCEDURE notification_generalization(); 
  
 
 -- TRANSACTIONS
