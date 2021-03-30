@@ -458,7 +458,20 @@ AS $$
       IF EXISTS (SELECT * 
         FROM notification_post, notification_achievement  
         WHERE notification_post.id = New.id OR notification_achievement.id = New.id) THEN
-        RAISE EXCEPTION 'Notification already exists and must be disjoint.';
+        RAISE EXCEPTION 'Notification must be disjoint.';
+      END IF;
+      RETURN NEW;
+  END
+$$
+LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION post_generalization() RETURNS TRIGGER 
+AS $$
+  BEGIN
+      IF EXISTS (SELECT * 
+        FROM question, answer, comment  
+        WHERE question.id = New.id OR answer.id = New.id OR comment.id = New.id) THEN
+        RAISE EXCEPTION 'Post must be disjoint.';
       END IF;
       RETURN NEW;
   END
@@ -514,6 +527,23 @@ BEFORE INSERT OR UPDATE ON notification_post
 FOR EACH ROW
 EXECUTE PROCEDURE notification_generalization(); 
  
+DROP TRIGGER IF EXISTS post_answer_generalization_trigger ON answer CASCADE;
+CREATE TRIGGER post_answer_generalization_trigger
+BEFORE INSERT OR UPDATE ON answer
+FOR EACH ROW
+EXECUTE PROCEDURE post_generalization();
+
+DROP TRIGGER IF EXISTS post_question_generalization_trigger ON question CASCADE;
+CREATE TRIGGER post_question_generalization_trigger
+BEFORE INSERT OR UPDATE ON question
+FOR EACH ROW
+EXECUTE PROCEDURE post_generalization(); 
+
+DROP TRIGGER IF EXISTS post_comment_generalization_trigger ON comment CASCADE;
+CREATE TRIGGER post_comment_generalization_trigger
+BEFORE INSERT OR UPDATE ON comment
+FOR EACH ROW
+EXECUTE PROCEDURE post_generalization(); 
 
 -- TRANSACTIONS
 --1
