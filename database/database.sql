@@ -403,18 +403,23 @@ RETURNS TRIGGER
 AS $$
   DECLARE
     b text;
+    topics text;
   BEGIN
     -- get the body
     b := (SELECT body
           FROM post
           WHERE post.id = NEW.id);
 
-    IF (TG_OP = 'INSERT') THEN
-      NEW.search = (setweight(to_tsvector('english', NEW.title), 'A') || setweight(to_tsvector('english', b), 'B'));
-    ELSIF (TG_OP = 'UPDATE') THEN
-      IF NEW.title <> OLD.title THEN
-        NEW.search = (setweight(to_tsvector('english', NEW.title), 'A') || setweight(to_tsvector('english', b), 'B'));
-      END IF;
+    -- get the topics
+    topics := (SELECT string_agg(name, ' ')
+                FROM topic JOIN topic_question ON (topic.id = topic_question.id_topic)
+                  JOIN question ON (question.id = topic_question.id_question)
+                WHERE question.id = NEW.id);
+
+    IF (TG_OP = 'INSERT' OR TG_OP = 'UPDATE') THEN
+      NEW.search = (setweight(to_tsvector('english', NEW.title), 'A') ||
+                    setweight(to_tsvector('english', b), 'B') ||
+                    setweight(to_tsvector('english', COALESCE(topics, '')), 'C'));
     END IF;
 
     RETURN NEW;
@@ -454,7 +459,7 @@ AS $$
     owner integer;
   BEGIN
       owner := (SELECT id_owner FROM post WHERE id = NEW.id_post);
-      
+
       IF (owner = NEW.id_user) THEN
         RAISE EXCEPTION 'A user can not vote on its own post.';
       END IF;
@@ -466,8 +471,8 @@ LANGUAGE plpgsql;
 CREATE OR REPLACE FUNCTION notification_generalization() RETURNS TRIGGER 
 AS $$
   BEGIN
-      IF EXISTS (SELECT * 
-        FROM notification_post, notification_achievement  
+      IF EXISTS (SELECT *
+        FROM notification_post, notification_achievement
         WHERE notification_post.id = New.id OR notification_achievement.id = New.id) THEN
         RAISE EXCEPTION 'Notification already exists and must be disjoint.';
       END IF;
