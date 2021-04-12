@@ -57,36 +57,6 @@ INSERT INTO achievement(id, title, body) VALUES
   (1, 'Post first question', 'You posted your first question on Segmentation Fault'),
   (2, 'Get first accepted answer', 'An answer you posted was chosen as the accepted answer');
 
--- R08
--- INSERT INTO achieved(id_user, id_achievement, "date") VALUES (1, 1, '2008-12-17');
--- INSERT INTO achieved(id_user, id_achievement, "date") VALUES (5, 1, '2008-09-25');
--- INSERT INTO achieved(id_user, id_achievement, "date") VALUES (9, 1, '2011-04-23');
--- INSERT INTO achieved(id_user, id_achievement, "date") VALUES (12, 1, '2021-03-28');
--- INSERT INTO achieved(id_user, id_achievement, "date") VALUES (15, 1, '2019-08-22');
--- INSERT INTO achieved(id_user, id_achievement, "date") VALUES (3, 2, '2010-05-27');
--- INSERT INTO achieved(id_user, id_achievement, "date") VALUES (10, 2, '2011-04-23');
--- INSERT INTO achieved(id_user, id_achievement, "date") VALUES (16, 2, '2020-09-20');
-
--- R09
--- INSERT INTO post(id_owner, body, "date") VALUES
---   (1, 'If Python does not have a ternary conditional operator, is it possible to simulate one using other language constructs?', '2008-12-17'),
---   (2, 'In the Python 3.0 official documentation referenced in a comment above, this is referred to as "conditional_expressions" and is very cryptically defined. That documentation doesn''t even include the term "ternary", so you would be hard-pressed to find it via Google unless you knew exactly what to look for. The version 2 documentation is somewhat more helpful and includes a link to "PEP 308", which includes a lot of interesting historical context related to this question.', '2013-01-10'),
---   (3, '<expression 2> if <condition> else <expression 1>', '2010-05-27'),
---   (4, 'This one emphasizes the primary intent of the ternary operator: value selection. It also shows that more than one ternary can be chained together into a single expression.', '2010-10-04'),
---   (5, 'What is the difference between a function decorated with @staticmethod and one decorated with @classmethod?', '2008-09-25'),
---   (6, 'tl;dr >> when compared to normal methods, the static methods and class methods can also be accessed using the class but unlike class methods, static methods are immutable via inheritance.', '2018-07-11'),
---   (7, 'Basically @classmethod makes a method whose first argument is the class it''s called from (rather than the class instance), @staticmethod does not have any implicit arguments.','2008-09-25'),
---   (8, '@classmethod : can be used to create a shared global access to all the instances created of that class..... like updating a record by multiple users.... I particulary found it use ful when creating singletons as well..:)\n@static method: has nothing to do with the class or instance being associated with ...but for readability can use static method', '2017-09-20'),
---   (9, 'I have an array of numbers and I''m using the .push() method to add elements to it.\nIs there a simple way to remove a specific element from an array?\nI''m looking for the equivalent of something like:\narray.remove(number);\nI have to use core JavaScript. Frameworks are not allowed.', '2011-04-23'),
---   (10, 'Find the index of the array element you want to remove using indexOf, and then remove that index with splice.', '2011-04-23'),
---   (11, 'Serious question: why doesn''t JavaScript allow the simple and intuitive method of removing an element at an index? A simple, elegant, myArray.remove(index); seems to be the best solution and is implemented in many other languages (a lot of them older than JavaScript.)', '2020-09-10'),
---   (12, 'I''m trying to use the code from this repository. The problem is that it isn''t a package (I think?) because it can''t be found on PyPI and there''s no setup.py file (so I can''t use pip install git+<repo link>). How would I then be able to use this code in my project?', '2021-03-28'),
---   (13, 'That repository doesn''t seem to be properly packaged for library use at all. I''d recommend forking it, making the changes you need to make it usable (moving the files into a package, adding a setup.py) and then using that as a git+https:// style requirement.', '2021-03-28'),
---   (14, 'Exactly, the repo is also under an MIT License, which really even allows keeping the source files in the project directly.', '2021-03-28'),
---   (15, 'How do you set, clear, and toggle a bit?', '2019-08-22'),
---   (16, 'Use the bitwise OR operator (|) to set a bit.', '2020-09-20'),
---   (17, 'You are very dumb haha','2020-09-20');
-
 -- CREATE OR REPLACE PROCEDURE create_question(OwnerUser INT, Body TEXT, DatePost DATE, Title TEXT, Bounty INT, Closed BOOLEAN)
 -- CREATE OR REPLACE PROCEDURE create_answer(OwnerUser INT, Body TEXT, DatePost DATE, IdQuestion INT)
 -- CREATE OR REPLACE PROCEDURE create_comment(OwnerUser INT, Body TEXT, DatePost DATE, IdQuestion INT, IdAnswer INT)
@@ -111,39 +81,6 @@ CALL create_comment(17, 'You are very dumb haha','2020-09-20', 15, NULL);
 UPDATE question SET accepted_answer = 3 WHERE id = 1;
 UPDATE question SET accepted_answer = 10 WHERE id = 9;
 UPDATE question SET accepted_answer = 16 WHERE id = 15;
-
--- R11
--- INSERT INTO question(id, accepted_answer, title, bounty, closed) VALUES (1, 3, 'Does Python have a ternary conditional operator?', 0, true);
--- INSERT INTO question(id, accepted_answer, title, bounty, closed) VALUES (5, NULL, 'Difference between staticmethod and classmethod', 20, false);
--- INSERT INTO question(id, accepted_answer, title, bounty, closed) VALUES (9, 10, 'How can I remove a specific item from an array?', 0, true);
--- INSERT INTO question(id, accepted_answer, title, bounty, closed) VALUES (12, NULL, 'How to use non-packaged Python code from GitHub?', 30, false);
--- INSERT INTO question(id, accepted_answer, title, bounty, closed) VALUES (15, 16, 'How do you set, clear, and toggle a single bit?', 0, true);
-
--- R10
-
--- INSERT INTO answer(id) VALUES (3);
--- INSERT INTO answer(id) VALUES (7);
--- INSERT INTO answer(id) VALUES (8);
--- INSERT INTO answer(id) VALUES (10);
--- INSERT INTO answer(id) VALUES (13);
--- INSERT INTO answer(id) VALUES (16);
-
--- -- R12
--- INSERT INTO answer_question(id_answer, id_question) VALUES (3, 1);
--- INSERT INTO answer_question(id_answer, id_question) VALUES (10, 9);
--- INSERT INTO answer_question(id_answer, id_question) VALUES (16, 15);
--- INSERT INTO answer_question(id_answer, id_question) VALUES (7, 5);
--- INSERT INTO answer_question(id_answer, id_question) VALUES (8, 5);
--- INSERT INTO answer_question(id_answer, id_question) VALUES (13, 12);
-
-
--- -- R13
--- INSERT INTO comment(id, id_question, id_answer) VALUES (2, 1, NULL);
--- INSERT INTO comment(id, id_question, id_answer) VALUES (4, NULL, 3);
--- INSERT INTO comment(id, id_question, id_answer) VALUES (6, 5, NULL);
--- INSERT INTO comment(id, id_question, id_answer) VALUES (11, NULL, 10);
--- INSERT INTO comment(id, id_question, id_answer) VALUES (14, 12, NULL);
--- INSERT INTO comment(id, id_question, id_answer) VALUES (17, 15, NULL);
 
 -- R14
 INSERT INTO vote(id_post, id_user, value) VALUES 
