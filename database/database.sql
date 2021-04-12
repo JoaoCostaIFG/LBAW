@@ -617,9 +617,10 @@ BEFORE INSERT OR UPDATE ON answer
 FOR EACH ROW
 EXECUTE PROCEDURE post_generalization();
 
+-- This trigger cannot be run on update because when we want to change the accepted answer it will not allow it
 DROP TRIGGER IF EXISTS post_question_generalization_trigger ON question CASCADE;
 CREATE TRIGGER post_question_generalization_trigger
-BEFORE INSERT OR UPDATE ON question
+BEFORE INSERT ON question
 FOR EACH ROW
 EXECUTE PROCEDURE post_generalization(); 
 
