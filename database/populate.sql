@@ -126,12 +126,12 @@ INSERT INTO report (id_post, reporter, "date", reason, state, reviewer) VALUES (
 -- INSERT INTO notification ("date", title, body, recipient) VALUES (6, '2021-03-06', 'New achievement', 'You have achieved: ', 3);
 -- INSERT INTO notification ("date", title, body, recipient) VALUES (7, '2021-03-07', 'New achievement', 'You have achieved: ', 10);
 -- INSERT INTO notification ("date", title, body, recipient) VALUES (8, '2021-03-08', 'New achievement', 'You have achieved: ', 16);
-INSERT INTO notification ("date", title, body, recipient) VALUES ('2021-03-10', 'New answer', 'Someone answered your question: ', 1);
-INSERT INTO notification ("date", title, body, recipient) VALUES ('2021-03-11', 'New answer', 'Someone answered your question: ', 9);
-INSERT INTO notification ("date", title, body, recipient) VALUES ('2021-03-12', 'New answer', 'Someone answered your question: ', 15);
-INSERT INTO notification ("date", title, body, recipient) VALUES ('2021-03-13', 'New answer', 'Someone answered your question: ', 5);
-INSERT INTO notification ("date", title, body, recipient) VALUES ('2021-03-14', 'New answer', 'Someone answered your question: ', 5);
-INSERT INTO notification ("date", title, body, recipient) VALUES ('2021-03-15', 'New answer', 'Someone answered your question: ', 12);
+-- INSERT INTO notification ("date", title, body, recipient) VALUES ('2021-03-10', 'New answer', 'Someone answered your question: ', 1);
+-- INSERT INTO notification ("date", title, body, recipient) VALUES ('2021-03-11', 'New answer', 'Someone answered your question: ', 9);
+-- INSERT INTO notification ("date", title, body, recipient) VALUES ('2021-03-12', 'New answer', 'Someone answered your question: ', 15);
+-- INSERT INTO notification ("date", title, body, recipient) VALUES ('2021-03-13', 'New answer', 'Someone answered your question: ', 5);
+-- INSERT INTO notification ("date", title, body, recipient) VALUES ('2021-03-14', 'New answer', 'Someone answered your question: ', 5);
+-- INSERT INTO notification ("date", title, body, recipient) VALUES ('2021-03-15', 'New answer', 'Someone answered your question: ', 12);
 
 -- R20
 -- INSERT INTO notification_achievement (id, id_achievement) VALUES (1, 1);
@@ -145,9 +145,9 @@ INSERT INTO notification ("date", title, body, recipient) VALUES ('2021-03-15', 
 -- INSERT INTO notification_achievement (id, id_achievement) VALUES (9, 2);
 
 -- R21
-INSERT INTO notification_post (id, id_post) VALUES (9, 1);
-INSERT INTO notification_post (id, id_post) VALUES (10, 9);
-INSERT INTO notification_post (id, id_post) VALUES (11, 15);
-INSERT INTO notification_post (id, id_post) VALUES (12, 5);
-INSERT INTO notification_post (id, id_post) VALUES (13, 5);
-INSERT INTO notification_post (id, id_post) VALUES (14, 12);
+-- INSERT INTO notification_post (id, id_post) VALUES (9, 1);
+-- INSERT INTO notification_post (id, id_post) VALUES (10, 9);
+-- INSERT INTO notification_post (id, id_post) VALUES (11, 15);
+-- INSERT INTO notification_post (id, id_post) VALUES (12, 5);
+-- INSERT INTO notification_post (id, id_post) VALUES (13, 5);
+-- INSERT INTO notification_post (id, id_post) VALUES (14, 12);

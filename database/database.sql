@@ -544,6 +544,32 @@ AS $$
 $$
 LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION add_new_answer_notification() RETURNS TRIGGER 
+AS $$
+  BEGIN
+      INSERT INTO notification (title, body, recipient) VALUES ('New answer', 'Someone answered your question: ', NEW.id_question);
+      INSERT INTO notification_post (id, id_post) VALUES (currval(pg_get_serial_sequence('notification', 'id')), NEW.id_question);
+      RETURN NEW;
+  END
+$$
+LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION add_new_comment_notification() RETURNS TRIGGER 
+AS $$
+  BEGIN
+      IF (NEW.id_question IS NOT NULL) THEN
+        INSERT INTO notification (title, body, recipient) VALUES ('New Comment', 'Someone commented your question: ', NEW.id_question);
+        INSERT INTO notification_post (id, id_post) VALUES (currval(pg_get_serial_sequence('notification', 'id')), NEW.id_question);
+      END IF;
+      IF (NEW.id_answer IS NOT NULL) THEN
+        INSERT INTO notification (title, body, recipient) VALUES ('New Comment', 'Someone commented your answer: ', NEW.id_answer);
+        INSERT INTO notification_post (id, id_post) VALUES (currval(pg_get_serial_sequence('notification', 'id')), NEW.id_answer);
+      END IF;
+      RETURN NEW;
+  END
+$$
+LANGUAGE plpgsql;
+
 
 -- TRIGGERS
 
@@ -617,7 +643,7 @@ BEFORE INSERT OR UPDATE ON answer
 FOR EACH ROW
 EXECUTE PROCEDURE post_generalization();
 
--- This trigger cannot be run on update because when we want to change the accepted answer it will not allow it
+-- This trigger cannot be run on update because when we want to set or change the accepted answer it will not allow it
 DROP TRIGGER IF EXISTS post_question_generalization_trigger ON question CASCADE;
 CREATE TRIGGER post_question_generalization_trigger
 BEFORE INSERT ON question
@@ -650,8 +676,19 @@ DROP TRIGGER IF EXISTS add_achievement_notification ON question CASCADE;
 CREATE TRIGGER add_achievement_notification
 AFTER INSERT ON achieved
 FOR EACH ROW
-EXECUTE PROCEDURE add_achievement_notification(); 
+EXECUTE PROCEDURE add_achievement_notification();
 
+DROP TRIGGER IF EXISTS add_new_answer_notification ON question CASCADE;
+CREATE TRIGGER add_new_answer_notification
+AFTER INSERT ON answer_question
+FOR EACH ROW
+EXECUTE PROCEDURE add_new_answer_notification();
+
+DROP TRIGGER IF EXISTS add_new_comment_notification ON question CASCADE;
+CREATE TRIGGER add_new_comment_notification
+AFTER INSERT ON comment
+FOR EACH ROW
+EXECUTE PROCEDURE add_new_comment_notification();
 
 -- TRANSACTIONS
 --1
