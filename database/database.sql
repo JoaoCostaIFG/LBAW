@@ -672,19 +672,19 @@ EXECUTE PROCEDURE achievement_first_accepted_answer();
 
 ---- NOTIFICATIONS
 
-DROP TRIGGER IF EXISTS add_achievement_notification ON question CASCADE;
+DROP TRIGGER IF EXISTS add_achievement_notification ON achieved CASCADE;
 CREATE TRIGGER add_achievement_notification
 AFTER INSERT ON achieved
 FOR EACH ROW
 EXECUTE PROCEDURE add_achievement_notification();
 
-DROP TRIGGER IF EXISTS add_new_answer_notification ON question CASCADE;
+DROP TRIGGER IF EXISTS add_new_answer_notification ON answer_question CASCADE;
 CREATE TRIGGER add_new_answer_notification
 AFTER INSERT ON answer_question
 FOR EACH ROW
 EXECUTE PROCEDURE add_new_answer_notification();
 
-DROP TRIGGER IF EXISTS add_new_comment_notification ON question CASCADE;
+DROP TRIGGER IF EXISTS add_new_comment_notification ON comment CASCADE;
 CREATE TRIGGER add_new_comment_notification
 AFTER INSERT ON comment
 FOR EACH ROW
