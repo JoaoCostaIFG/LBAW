@@ -34,13 +34,13 @@ CREATE TYPE report_state AS ENUM ('pending', 'approved', 'rejected');
 CREATE TABLE "user"(
   id SERIAL PRIMARY KEY,
   name TEXT,
-  username TEXT UNIQUE NOT NULL,
-  search TSVECTOR NOT NULL,
-  password TEXT NOT NULL,
-  email TEXT UNIQUE NOT NULL,
+  username TEXT UNIQUE,
+  search TSVECTOR,
+  password TEXT,
+  email TEXT UNIQUE,
   about TEXT,
   picture TEXT,
-  reputation INTEGER NOT NULL DEFAULT 0
+  reputation INTEGER DEFAULT 0
 );
 
 -- R02
@@ -686,6 +686,22 @@ CREATE TRIGGER post_comment_generalization_trigger
 BEFORE INSERT OR UPDATE ON comment
 FOR EACH ROW
 EXECUTE PROCEDURE post_generalization();
+
+DROP RULE IF EXISTS remove_user ON "user" CASCADE;
+CREATE RULE remove_user
+AS ON DELETE TO "user"
+DO INSTEAD
+    UPDATE "user"
+    SET
+      name = 'Deleted User',
+      username = NULL,
+      search = '',
+      password = NULL,
+      email = NULL,
+      about = NULL,
+      picture = NULL,
+      reputation = NULL
+    WHERE id = Old.id;
 
 ---- Achievements
 
