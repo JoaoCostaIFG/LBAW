@@ -520,15 +520,46 @@ AS $$
     accepted_answer_id integer;
     answer_owner_id integer;
   BEGIN
-      accepted_answer_id := NEW.accepted_answer;
+    accepted_answer_id := NEW.accepted_answer;
 
-      IF (accepted_answer_id IS NOT NULL) THEN
-        answer_owner_id := (SELECT id_owner FROM post WHERE id = accepted_answer_id);
-        IF NOT EXISTS (SELECT * FROM achieved WHERE id_user = answer_owner_id AND id_achievement = 2) THEN 
-          INSERT INTO achieved(id_user, id_achievement) VALUES (answer_owner_id, 2);
-        END IF;
+    IF (accepted_answer_id IS NOT NULL) THEN
+      answer_owner_id := (SELECT id_owner FROM post WHERE id = accepted_answer_id);
+      IF NOT EXISTS (SELECT * FROM achieved WHERE id_user = answer_owner_id AND id_achievement = 2) THEN 
+        INSERT INTO achieved(id_user, id_achievement) VALUES (answer_owner_id, 2);
       END IF;
+    END IF;
+    RETURN NEW;
+  END
+$$
+LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION achievement_reputation() RETURNS TRIGGER 
+AS $$
+  BEGIN
+    IF (NEW.reputation < 100) THEN
       RETURN NEW;
+    END IF;
+    IF (NEW.reputation >= 100) THEN
+      IF (NOT EXISTS (SELECT * FROM achieved WHERE id_user = New.id AND id_achievement = 3)) THEN
+        INSERT INTO achieved(id_user, id_achievement) VALUES (New.id, 3);
+      END IF;
+    END IF;
+    IF (NEW.reputation >= 200) THEN
+      IF (NOT EXISTS (SELECT * FROM achieved WHERE id_user = New.id AND id_achievement = 4)) THEN
+        INSERT INTO achieved(id_user, id_achievement) VALUES (New.id, 4);
+      END IF;
+    END IF;
+    IF (NEW.reputation >= 500) THEN
+      IF (NOT EXISTS (SELECT * FROM achieved WHERE id_user = New.id AND id_achievement = 5)) THEN
+        INSERT INTO achieved(id_user, id_achievement) VALUES (New.id, 5);
+      END IF;
+    END IF;
+    IF (NEW.reputation >= 1000) THEN
+      IF (NOT EXISTS (SELECT * FROM achieved WHERE id_user = New.id AND id_achievement = 6)) THEN
+        INSERT INTO achieved(id_user, id_achievement) VALUES (New.id, 6);
+      END IF;
+    END IF;
+    RETURN NEW;
   END
 $$
 LANGUAGE plpgsql;
@@ -669,6 +700,12 @@ CREATE TRIGGER achievement_first_accepted_answer_trigger
 AFTER INSERT OR UPDATE ON question
 FOR EACH ROW
 EXECUTE PROCEDURE achievement_first_accepted_answer();
+
+DROP TRIGGER IF EXISTS achievement_reputation_trigger ON "user" CASCADE;
+CREATE TRIGGER achievement_reputation_trigger
+AFTER INSERT OR UPDATE ON "user"
+FOR EACH ROW
+EXECUTE PROCEDURE achievement_reputation();
 
 ---- NOTIFICATIONS
 

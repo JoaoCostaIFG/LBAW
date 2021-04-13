@@ -55,7 +55,11 @@ INSERT INTO topic_proposal (id, id_user, id_admin, topic_name, "date", reason, a
 -- R07
 INSERT INTO achievement(id, title, body) VALUES
   (1, 'Post first question', 'You posted your first question on Segmentation Fault'),
-  (2, 'Get first accepted answer', 'An answer you posted was chosen as the accepted answer');
+  (2, 'Get first accepted answer', 'An answer you posted was chosen as the accepted answer'),
+  (3, 'Reached 100 reputation', 'You have reached 100 reputation! Thank you for your contribution'),
+  (4, 'Reached 200 reputation', 'You have reached 200 reputation! Thank you for your contribution'),
+  (5, 'Reached 500 reputation', 'You have reached 500 reputation! Thank you for your contribution'),
+  (6, 'Reached 1000 reputation', 'You have reached 1000 reputation! Thank you for your contribution');
 
 -- CREATE OR REPLACE PROCEDURE create_question(OwnerUser INT, Body TEXT, DatePost DATE, Title TEXT, Bounty INT, Closed BOOLEAN)
 -- CREATE OR REPLACE PROCEDURE create_answer(OwnerUser INT, Body TEXT, DatePost DATE, IdQuestion INT)
@@ -81,6 +85,10 @@ CALL create_comment(17, 'You are very dumb haha','2020-09-20', 15, NULL);
 UPDATE question SET accepted_answer = 3 WHERE id = 1;
 UPDATE question SET accepted_answer = 10 WHERE id = 9;
 UPDATE question SET accepted_answer = 16 WHERE id = 15;
+
+UPDATE "user" SET reputation = 550 WHERE id = 1;
+UPDATE "user" SET reputation = 1050 WHERE id = 2;
+UPDATE "user" SET reputation = 150 WHERE id = 3;
 
 -- R14
 INSERT INTO vote(id_post, id_user, value) VALUES 
