@@ -744,22 +744,6 @@ FOR EACH ROW
 EXECUTE PROCEDURE add_new_comment_notification();
 
 -- TRANSACTIONS
---1
-CREATE OR REPLACE FUNCTION vote() RETURNS TRIGGER 
-AS $$
-  DECLARE
-    owner integer;
-  BEGIN
-      owner := (SELECT id_owner FROM post WHERE id = NEW.id_post);
-      
-      IF (owner = NEW.id_user) THEN
-        RAISE EXCEPTION 'A user can not vote on its own post.';
-      END IF;
-      RETURN NEW;
-  END
-$$
-LANGUAGE plpgsql;
-
 CREATE OR REPLACE PROCEDURE create_question
 (
   OwnerUser INT,
@@ -816,5 +800,61 @@ BEGIN
   -- INSERT INTO question(id, accepted_answer, title, bounty, closed) SELECT(1, NULL, Title, Bounty, Closed);
   INSERT INTO answer(id) VALUES (currval(pg_get_serial_sequence('post','id')));
   INSERT INTO answer_question(id_answer, id_question) VALUES(currval(pg_get_serial_sequence('post','id')), IdQuestion);
+END
+$$;
+
+CREATE OR REPLACE PROCEDURE create_moderator
+(
+  Name TEXT,
+  Username TEXT,
+  Password TEXT,
+  Email TEXT,
+  About TEXT,
+  Picture TEXT
+)
+LANGUAGE plpgsql
+AS
+$$
+DECLARE
+BEGIN
+  INSERT INTO "user" (name, username, password, email, about, picture) VALUES(Name, Username, Password, Email, About, Picture)
+  INSERT INTO moderator (id) VALUES(currval(pg_get_serial_sequence('user','id')));
+END
+$$;
+
+CREATE OR REPLACE PROCEDURE create_admin
+(
+  Name TEXT,
+  Username TEXT,
+  Password TEXT,
+  Email TEXT,
+  About TEXT,
+  Picture TEXT
+)
+LANGUAGE plpgsql
+AS
+$$
+DECLARE
+BEGIN
+  INSERT INTO "user" (name, username, password, email, about, picture) VALUES(Name, Username, Password, Email, About, Picture)
+  INSERT INTO moderator (id) VALUES(currval(pg_get_serial_sequence('user','id')));
+  INSERT INTO administrator (id) VALUES(currval(pg_get_serial_sequence('user','id')));
+END
+$$;
+
+CREATE OR REPLACE PROCEDURE ban_user
+(
+  idUser INT,
+  idAdmin INT,
+  date TEXT,
+  reason TEXT
+)
+LANGUAGE plpgsql
+AS
+$$
+DECLARE
+BEGIN
+  DELETE FROM "user" WHERE id=idUser;
+  INSERT INTO ban(id_user, id_admin, "date", reason) VALUES(idUser, idAdmin, date, reason);
 END
 $$;
