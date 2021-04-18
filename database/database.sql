@@ -817,7 +817,7 @@ AS
 $$
 DECLARE
 BEGIN
-  INSERT INTO "user" (name, username, password, email, about, picture) VALUES(Name, Username, Password, Email, About, Picture)
+  INSERT INTO "user" (name, username, password, email, about, picture) VALUES(Name, Username, Password, Email, About, Picture);
   INSERT INTO moderator (id) VALUES(currval(pg_get_serial_sequence('user','id')));
 END
 $$;
@@ -836,7 +836,7 @@ AS
 $$
 DECLARE
 BEGIN
-  INSERT INTO "user" (name, username, password, email, about, picture) VALUES(Name, Username, Password, Email, About, Picture)
+  INSERT INTO "user" (name, username, password, email, about, picture) VALUES(Name, Username, Password, Email, About, Picture);
   INSERT INTO moderator (id) VALUES(currval(pg_get_serial_sequence('user','id')));
   INSERT INTO administrator (id) VALUES(currval(pg_get_serial_sequence('user','id')));
 END
