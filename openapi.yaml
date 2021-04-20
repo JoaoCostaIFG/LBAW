@@ -1,0 +1,473 @@
+openapi: 3.0.0
+info:
+  version: '1.0'
+  title: SegmentationFault
+  description: SegmentationFault OpenAPI specification
+servers:
+  - description: Production server
+    url: http://dbm.fe.up.pt
+externalDocs:
+  description: Find more info here
+  url: https://git.fe.up.pt/lbaw/components/-/wikis/eap
+tags:
+  - name: 'M01: Authentication and individual profile'
+  - name: 'M02: Questions'
+  - name: 'M03: Answers and comments'
+  - name: "M04: Other user's profiles"
+  - name: 'M05: Administration and static pages'
+paths:
+  /login:
+    get:
+      operationId: R101
+      summary: 'R101: Login form'
+      description: 'Provide login form. Access: PUB'
+      tags:
+        - 'M01: Authentication and individual profile'
+      responses:
+        '200':
+          description: 'Ok.'
+    post:
+      operationId: R102
+      summary: 'R102: Login action'
+      description: 'Process the login form submission. Access: PUB'
+      tags:
+        - 'M01: Authentication and individual profile'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlenconded:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+                - email
+                - password
+      responses:
+        '302':
+          description: 'Redirect after processing the login credentials.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful authentication. Redirect to user profile.'
+                  value: '/users/{id}'
+                302Error:
+                  description: 'Failed authentication. Redirect to login form.'
+                  value: '/login'
+  /logout:
+    post:
+      operationId: R103
+      summary: 'R103: Logout action'
+      description: 'Logout the current authenticated used. Access: USR, ADM'
+      tags:
+        - 'M01: Authentication and individual profile'
+      responses:
+        '302':
+          description: 'Redirect after processing the logout.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful logout. Redirect to home page.'
+                  value: '/'
+  /register:
+    get:
+      operationId: R104
+      summary: 'R104: Register Form'
+      description: 'Provide new user registration form. Access: PUB'
+      tags:
+        - 'M01: Authentication and individual profile'
+      responses:
+        '200':
+          description: 'Ok.'
+    post:
+      operationId: R105
+      summary: 'R105: Register Action'
+      description: 'Processes the new user registration form submission. Access: PUB'
+      tags:
+        - 'M01: Authentication and individual profile'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                username:
+                  type: string
+                password:
+                  type: string
+                  format: password
+                repeat_password:
+                  type: string
+                  format: password
+              required:
+                - email
+                - username
+                - password
+                - repeat_password
+      responses:
+        '302':
+          description: 'Redirect after processing the new user information.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful user creation. Redirect to user profile.'
+                  value: '/users/{id}'
+                302Failure:
+                  description: 'Failed user creation. Redirect to register form.'
+                  value: '/resgister'
+  /api/user:
+    get:
+      operationId: R106
+      summary: "R106: View own profile"
+      description: "Returns the information of the authenticated user's profile as JSON. Access: OWN"
+      tags:
+        - 'M01: Authentication and individual profile'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    username:
+                      type: string
+                    email:
+                      type: string
+                    about:
+                      type: string
+                    reputation:
+                      type: integer
+                example:
+                  - id: 1
+                    name: 'Nachos'
+                    username: 'NachosNomNom'
+                    email: 'nachos@outlook.com'
+                    about: "I'm hungry."
+                    reputation: 999999
+        '401':
+          description: 'Unauthorized (not signed-in).'
+
+  /api/questions:
+    get:
+      operationId: R201
+      summary: 'R201: Search questions API'
+      description: 'Searches for questions and returns the results as JSON. Access: PUB'
+      tags: 
+        - 'M02: Questions'
+      parameters:
+        - in: query
+          name: query
+          description: String to use for full-text search
+          schema:
+            type: string
+          required: false
+        - in: query
+          name: item
+          description: Comma-separated topics of the question
+          schema:
+            type: string
+          required: false
+        - in: query
+          name: owner
+          description: Boolean with the owner flag value
+          schema:
+            type: boolean
+          required: false
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    title:
+                      type: string
+                    content:
+                      type: string
+                    date:
+                      type: string
+                    author:
+                      type: integer
+                    topics:
+                      type: string
+                    bounty:
+                      type: integer
+                    score:
+                      type: integer
+                    answers:
+                      type: string
+                    comments:
+                      type: string
+                example:
+                  - id: 1
+                    title: 'Why is processing a sorted array faster than processing an unsorted array?'
+                    content: 'Here is a piece of C++ code that shows some very peculiar behavior. For some strange reason, sorting the data miraculously makes the code almost six times faster'
+                    date: '2012-06-27'
+                    author: 5
+                    topics: 'java, c++, performance, optimization, branch-prediction'
+                    bounty: 500
+                    score: 25407
+                    answers: '2, 3, 4'
+                    comments: '5, 6'
+        '404':
+          description: 'Not found.'
+  /api/answers/${id}:
+    get:
+      operationId: R301
+      summary: 'R301: View a question'
+      description: 'Searches for a given question and returns the results as JSON. Access: PUB'
+      tags: 
+        - 'M02: Questions'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    content:
+                      type: string
+                    date:
+                      type: string
+                    author:
+                      type: integer
+                    score:
+                      type: integer
+                    comments:
+                      type: string
+                example:
+                  - id: 2
+                    content: 'You are a victim of branch prediction fail.'
+                    date: '2012-06-27'
+                    owner: 6
+                    score: 32952
+                    comments: '7, 8, 9, 10'
+        '404':
+          description: 'Not found.'
+  /api/comments/${id}:
+    get:
+      operationId: R302
+      summary: 'R302: View a question'
+      description: 'Searches for a given comment and returns the results as JSON. Access: PUB'
+      tags: 
+        - 'M02: Questions'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    content:
+                      type: string
+                    date:
+                      type: string
+                    author:
+                      type: integer
+                    score:
+                      type: integer
+                example:
+                  - id: 7
+                    content: 'this is all C++?'
+                    date: '2012-07-01'
+                    author: 7
+                    score: 24
+        '404':
+          description: 'Not found.'
+
+  /users/{id}:
+    get:
+      operationId: R401
+      summary: "R401: View a user's profile"
+      description: "Show the public information of a user's profile. Access: PUB"
+      tags:
+        - "M04: Other user's profiles"
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: 'Ok.'
+        '404':
+          description: 'Not found.'
+  /api/users/${id}:
+    get:
+      operationId: R402
+      summary: 'R402: View a question'
+      description: 'Searches for a given user and returns the results as JSON. Access: PUB'
+      tags: 
+        - "M04: Other user's profiles"
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    username:
+                      type: string
+                    email:
+                      type: string
+                    about:
+                      type: string
+                    reputation:
+                      type: integer
+                example:
+                  - id: 1
+                    name: 'Nachos'
+                    username: 'NachosNomNom'
+                    email: 'nachos@outlook.com'
+                    about: "I'm hungry."
+                    reputation: 999999
+        '404':
+          description: 'Not found.'
+
+  /administration:
+    get:
+      operationId: R501
+      summary: "R501: View own administration page"
+      description: 'Retreive pending topic proposal and pending user reports forms.'
+      tags:
+        - 'M05: User Administration and Static pages'
+      responses:
+        '200':
+          description: 'Ok.'
+        '401':
+          description: 'Unauthorized (not signed-in or admin).'
+  /api/news:
+    get:
+      operationId: R502
+      summary: "R502: Retreive news"
+      description: "Show the website's news. Access: PUB."
+      tags:
+        - 'M05: User Administration and Static pages'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    title:
+                      type: string
+                    subtitle:
+                      type: string
+                    body:
+                      type: string
+                    date:
+                      type: string
+                    author:
+                      type: integer
+                example:
+                  - id: 1
+                    title: 'Welcome to Segmentation Fault'
+                    subtitle: 'Building a community-driven database of knowledge by asking and answering questions.'
+                    body: 'We are proud to present the Segmentation float website. A site where you can easily find any answer to any question. Help us grow by submiting or asking a question.'
+                    date: '2012-06-27'
+                    author: 2
+        '404':
+          description: 'Not found.'
+    post:
+      operationId: R503
+      summary: 'R503: Submit a news section'
+      description: 'Insert a news section into the website. Access: ADM'
+      tags:
+        - 'M05: User Administration and Static pages'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                title:
+                  type: string
+                subtitle:
+                  type: string
+                body:
+                  type: string
+                date:
+                  type: string
+                author:
+                  type: integer
+              required:
+                - id
+                - title
+                - author
+      responses:
+        '200':
+          description: 'News added successfully'
+        '400':
+          description: 'Failed to add news'
