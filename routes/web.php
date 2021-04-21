@@ -11,7 +11,11 @@
 |
 */
 // Home
-Route::get('/', 'AboutController@about');
+Route::get('about', 'AboutController@about');
+Route::get('/', function() {
+    $user = \App\Models\Post::first()->owner()->get();
+    echo $user;
+});
 
 // Cards
 Route::get('cards', 'CardController@list');
