@@ -9,6 +9,9 @@ class User extends Model
 {
     use HasFactory;
 
+    // Don't add create and update timestamps in database.
+    public $timestamps = false;
+
     /**
      * The attributes that should be hidden for arrays.
      *

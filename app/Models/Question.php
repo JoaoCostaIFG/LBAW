@@ -9,6 +9,9 @@ class Question extends Model
 {
     use HasFactory;
 
+    // Don't add create and update timestamps in database.
+    public $timestamps = false;
+
     public function post()
     {
         return $this->hasOne(Post::class, 'id');
