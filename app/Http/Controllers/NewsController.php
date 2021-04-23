@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-class AboutController extends Controller
+class NewsController extends Controller
 {
     public function show()
     {
-        return view("pages.about");
+        return view("pages.news");
     }
 
 }
