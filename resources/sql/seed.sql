@@ -131,6 +131,10 @@ CREATE TABLE post(
   body TEXT NOT NULL,
   score INTEGER NOT NULL DEFAULT 0,
   "date" Today NOT NULL CHECK ("date" <= CURRENT_DATE), -- posts can't be made in the future
+  id_post INTEGER,
+  postable_type TEXT NOT NULL
+    CHECK (postable_type = 'answer' OR postable_type = 'question'
+      OR postable_type = 'comment'),
   CONSTRAINT fk_owner
     FOREIGN KEY(id_owner)
       REFERENCES "user"(id)
@@ -138,15 +142,12 @@ CREATE TABLE post(
 
 -- R10
 CREATE TABLE answer(
-  id INTEGER PRIMARY KEY,
-  CONSTRAINT fk_post
-    FOREIGN KEY(id)
-      REFERENCES post(id)
+  id SERIAL PRIMARY KEY
 );
 
 -- R11
 CREATE TABLE question(
-  id INTEGER PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   accepted_answer INTEGER,
   title TEXT UNIQUE NOT NULL,
   search TSVECTOR NOT NULL,
@@ -155,9 +156,6 @@ CREATE TABLE question(
     AND bounty <= 500
   ),
   closed boolean NOT NULL DEFAULT false,
-  CONSTRAINT fk_post
-    FOREIGN KEY(id)
-      REFERENCES post(id),
   CONSTRAINT fk_answer
     FOREIGN KEY(accepted_answer)
       REFERENCES answer(id)
@@ -178,7 +176,7 @@ CREATE TABLE answer_question(
 
 -- R13
 CREATE TABLE comment(
-  id INTEGER PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   id_question INTEGER,
   id_answer INTEGER,
   CHECK (
@@ -191,9 +189,6 @@ CREATE TABLE comment(
       AND id_answer = NULL
     )
   ),
-  CONSTRAINT fk_post
-    FOREIGN KEY(id)
-      REFERENCES post(id),
   CONSTRAINT fk_question
     FOREIGN KEY(id_question)
       REFERENCES question(id),
@@ -757,11 +752,23 @@ LANGUAGE plpgsql
 AS
 $$
 DECLARE
+  IdPost INT;
+  IdQuestion INT;
 BEGIN
-  INSERT INTO post(id_owner, body, "date") VALUES(OwnerUser, Body, DatePost);
   -- INSERT INTO question(id, accepted_answer, title, bounty, closed) SELECT(1, NULL, Title, Bounty, Closed);
-  INSERT INTO question(id, accepted_answer, title, bounty, closed) 
-  	VALUES (currval(pg_get_serial_sequence('post','id')), NULL, Title, Bounty, Closed);
+  -- TODO hack of inserting post before question to not worry about text search for now
+
+  INSERT INTO post(id_owner, body, "date", postable_type)
+    VALUES(OwnerUser, Body, DatePost, 'question')
+    RETURNING id INTO IdPost;
+
+  INSERT INTO question(accepted_answer, title, bounty, closed) 
+  	VALUES (NULL, Title, Bounty, Closed)
+    RETURNING id INTO IdQuestion;
+
+  UPDATE post
+  SET id_post = IdPost
+  WHERE post.id = IdQuestion;
 END
 $$;
 
@@ -778,9 +785,10 @@ AS
 $$
 DECLARE
 BEGIN
-  INSERT INTO post(id_owner, body, "date") VALUES(OwnerUser, Body, DatePost);
   -- INSERT INTO question(id, accepted_answer, title, bounty, closed) SELECT(1, NULL, Title, Bounty, Closed);
-  INSERT INTO comment(id, id_question, id_answer) VALUES (currval(pg_get_serial_sequence('post','id')), IdQuestion, IdAnswer);
+  INSERT INTO comment(id_question, id_answer) VALUES (IdQuestion, IdAnswer);
+  INSERT INTO post(id_owner, body, "date", id_post, postable_type)
+    VALUES(OwnerUser, Body, DatePost, currval(pg_get_serial_sequence('comment','id')), 'comment');
 END
 $$;
 
@@ -796,10 +804,11 @@ AS
 $$
 DECLARE
 BEGIN
-  INSERT INTO post(id_owner, body, "date") VALUES(OwnerUser, Body, DatePost);
   -- INSERT INTO question(id, accepted_answer, title, bounty, closed) SELECT(1, NULL, Title, Bounty, Closed);
-  INSERT INTO answer(id) VALUES (currval(pg_get_serial_sequence('post','id')));
-  INSERT INTO answer_question(id_answer, id_question) VALUES(currval(pg_get_serial_sequence('post','id')), IdQuestion);
+  INSERT INTO answer DEFAULT VALUES;
+  INSERT INTO answer_question(id_answer, id_question) VALUES(currval(pg_get_serial_sequence('answer','id')), IdQuestion);
+  INSERT INTO post(id_owner, body, "date", id_post, postable_type)
+    VALUES(OwnerUser, Body, DatePost, currval(pg_get_serial_sequence('answer','id')), 'answer');
 END
 $$;
 

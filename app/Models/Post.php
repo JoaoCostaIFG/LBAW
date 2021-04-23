@@ -10,7 +10,7 @@ class Post extends Model
     use HasFactory;
 
     protected $table = "post";
-
+    
     // Don't add create and update timestamps in database.
     public $timestamps = false;
 
