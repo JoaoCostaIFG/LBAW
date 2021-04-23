@@ -16,7 +16,7 @@ Route::get('/', function() {
     echo $user;
 });
 // Pages
-Route::get('/about', 'AboutController@show');
+Route::view('/about', 'pages.about');
 Route::get('/news', 'NewsController@show');
 
 // Cards
