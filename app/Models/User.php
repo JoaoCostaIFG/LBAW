@@ -12,6 +12,8 @@ class User extends Model
     // Don't add create and update timestamps in database.
     public $timestamps = false;
 
+    protected $table = "user";
+
     /**
      * The attributes that should be hidden for arrays.
      *
