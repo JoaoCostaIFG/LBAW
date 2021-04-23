@@ -10,5 +10,5 @@
 @each('partials.news_item', $news, 'news')
 <!-- END FEATURETTES -->
 </main>
-
+@stop
 

@@ -16,6 +16,7 @@ Route::get('/', function() {
     echo $user;
 });
 // Pages
+Route::view('/home', 'pages.index');
 Route::view('/about', 'pages.about');
 Route::get('/news', 'NewsController@show');
 

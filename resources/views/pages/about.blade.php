@@ -19,7 +19,7 @@
       recognize you for the worth of your achievements and community contributions.</p>
     </div>
     <div class="col-12 col-md-6 col-lg-3">
-      <img src="/static/about.png" width="100%">
+      <img src="{{ asset('images/about.png') }}" width="100%">
     </div>
   </div>
 
