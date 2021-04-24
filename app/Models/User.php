@@ -42,4 +42,14 @@ class User extends Model
     {
         return $this->hasManyThrough(Comment::Class, Post::Class, 'id_owner', 'id', 'id', 'id');
     }
+
+    public function scopeSearch($query, $search)
+    {
+        if (!$search) {
+            return $query;
+        }
+
+        return $query->whereRaw('search @@ to_tsquery(?)', [$search])->
+            orderByRaw('ts_rank(search, plainto_tsquery(?)) DESC', [$search]);
+    }
 }
