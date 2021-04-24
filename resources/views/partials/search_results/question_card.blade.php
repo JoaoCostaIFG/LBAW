@@ -3,7 +3,7 @@
   <div class="d-flex flex-sm-column flex-row justify-content-start align-items-center gap-1 ">
     <!-- Number Votes -->
     <div class="d-flex flex-sm-column flex-row justify-content-center align-items-center gap-1">
-      <span class="fs-4">{{ $question->score }}</span>
+      <span class="fs-4">{{ $question->post->score }}</span>
       <span>Votes</span>
       <span class="d-sm-none"><i class="bi bi-arrow-down-up"></i></span>
     </div>
