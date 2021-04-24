@@ -68,38 +68,14 @@
     </div>
     <!-- Users -->
     <div class="tab-pane fade" id="users">
-      <!-- Row Users -->
-      <div class="row p-2 gap-2">
-      <?php
-       $user_name = 'Smart Guy';
-       $username = 'SmartGuy1';
-       $image = 'user.png';
-       $user_points = 355;
-      drawUserCard($user_name, $username, $image, $user_points);
-
-      $user_name = 'Get a log';
-      $username = 'log10';
-      $image = 'user.png';
-      $user_points = 59;
-     drawUserCard($user_name, $username, $image, $user_points);
-      ?>
-      </div>
-      <!-- Row Users -->
-      <div class="row p-2 gap-2">
-      <?php
-       $user_name = 'Bazinga';
-       $username = 'bazinga201';
-       $image = 'user.png';
-       $user_points = 466;
-      drawUserCard($user_name, $username, $image, $user_points);
-
-      $user_name = 'Minecraft Site';
-      $username = 'BlocoDeMad';
-      $image = 'user.png';
-      $user_points = 52;
-     drawUserCard($user_name, $username, $image, $user_points);
-      ?>
-      </div>
+      @for ($i = 0; $i < count($users); $i+=2)
+        <div class="row p-2 gap-2">
+          @include('partials.search_results.user_card', ['user' => $users[$i]])
+          @if (isset($users[$i + 1]))
+            @include('partials.search_results.user_card', ['user' => $users[$i + 1]])
+          @endif
+        </div>
+      @endfor
     </div>
   </div>
 </div>
@@ -161,25 +137,4 @@ function drawQuestionCard($username, $user_points, $votes, $answers, $question_t
     </div>
   </div>
 <?php
-}
-
-function drawUserCard($user_name, $username, $image, $user_points)
-{ ?>
-  <!-- User Card -->
-  <div class=" border col-md d-flex flex-row justify-content-between">
-    <div class=" p-3 d-flex flex-row gap-2">
-      <img class="rounded-2 fit-cover" src="/static/images/<?php echo $image;?>" alt="User Picture" width="70px" height="70px">
-      <div class="d-flex flex-column justify-content-center align-items-start">
-        <!-- Username -->
-        <span class="fs-5"><?php echo $user_name;?></span>
-        <a href="/pages/profile.php"><?php echo $username;?></a>
-      </div>
-    </div>
-    <!-- User Points -->
-    <div class="d-flex flex-sm-column flex-row justify-content-center align-items-center p-3">
-      <span class="fs-5"><?php echo $user_points;?></span>
-      <span class="d-none d-sm-block">Points</span>
-      <span class="d-sm-none"><i class="bi bi-award"></i></span>
-    </div>
-  </div>
-<?php } ?>
+} ?>

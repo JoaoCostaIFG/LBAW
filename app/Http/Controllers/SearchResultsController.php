@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+
 use Illuminate\Http\Request;
 
 class SearchResultsController extends Controller
@@ -11,7 +13,8 @@ class SearchResultsController extends Controller
     }
 
     public function show(){
-        // TODO: Send users and posts
-        return view("pages.search_results");
+        // TODO: Send users and posts from search
+        $users = User::all();
+        return view("pages.search_results", ['users' => $users]);
     }
 }
