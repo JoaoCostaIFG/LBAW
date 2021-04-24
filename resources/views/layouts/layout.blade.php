@@ -191,7 +191,6 @@
     <!-- TODO Sidebar -->
 
     <main>
-
       <section id="content">
         @yield('content')
       </section>

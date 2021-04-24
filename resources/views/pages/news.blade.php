@@ -3,12 +3,12 @@
 @section('title', 'News')
 
 @section('content')
-<main class="container">
+<div class="container">
 <h2 class="page-title">News</h2>
 
 <!-- START FEATURETTES -->
 @each('partials.news_item', $news, 'news')
 <!-- END FEATURETTES -->
-</main>
+</div>
 @stop
 

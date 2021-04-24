@@ -3,7 +3,7 @@
 @section('title', 'About')
     
 @section('content')
-<main class="container">
+<div class="container">
   <h1 class="page-title">About</h1>
   <hr>
 
@@ -57,5 +57,5 @@
       </div><!-- /.col -->
     </div><!-- /.row -->
   </div>
-</main>
+</div>
 @stop
