@@ -21,11 +21,9 @@ class SearchResultsController extends Controller
          Questions missing: 
           - question number of answers
           - post body (limited number of characters)
-          - question tags
-          - number of days since post
-          - owner pic
         */
+        // TODO: Number of results
         $questions = Question::all(); // Replace this
-        return view("pages.search_results", ['users' => $users, 'question' => $questions]);
+        return view("pages.search_results", ['users' => $users, 'questions' => $questions]);
     }
 }

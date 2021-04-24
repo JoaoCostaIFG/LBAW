@@ -34,4 +34,16 @@ class Question extends Model
             'id_answer'
         );
     }
+
+    public function topics()
+    {
+        return $this->hasManyThrough(
+            Topic::class,
+            TopicQuestion::class,
+            'id_question',
+            'id',
+            'id',
+            'id_topic'
+        );
+    }
 }

@@ -7,9 +7,9 @@
       <span>Votes</span>
       <span class="d-sm-none"><i class="bi bi-arrow-down-up"></i></span>
     </div>
-    <!-- Number Answers -->
+    <!-- TODO Number Answers -->
     <div class="d-flex  flex-sm-column flex-row justify-content-center align-items-center gap-1">
-      <span class="fs-4">{{ $question->num_answers }}</span>
+      <span class="fs-4"> 10 </span>
       <span>Answers</span>
       <span class="d-sm-none"><i class="bi bi-chat-left-text"></i></span>
     </div>
@@ -22,27 +22,29 @@
       <p class="d-none d-md-block">{{ $question->post->body }}</p>
     </section>
     <div class="w-100 gap-1 d-flex flex-row align-items-center justify-content-between align-self-start">
-      <!-- Question Tags -->
+      <!-- Question Topics -->
       <div class="d-none d-sm-block d-grid gap-1 mt-0">
-        @foreach ($question->tags as $tag)
-          <a class="badge bg-primary text-decoration-none">{{ $tag }}</a>
+        @foreach ($question->topics as $topic)
+          <a class="badge bg-primary text-decoration-none">{{ $topic->name }}</a>
         @endforeach
       </div>
       <!-- Question Date -->
       <div class="d-flex flex-row gap-2 align-items-center">
-        <span class="align-self-end">Posted {{ $question->days }} days ago</span>
+        <span class="align-self-end">
+          Posted {{ (new DateTime($question->post->date))->diff(new DateTime('NOW'))->days }} days ago
+        </span>
         <!-- Author User Info -->
         <!-- User Profile Pic  -->
-        <img class="d-none d-md-block rounded-2 fit-cover" src="../static/images/user.png" alt="User Picture" width="40px" height="40px">
+        <img class="d-none d-md-block rounded-2 fit-cover" src="{{ asset('images/user.png') }}" alt="User Picture" width="40px" height="40px">
         <div class="d-flex flex-row flex-md-column justify-content-center align-items-start">
           <!-- Owner Username -->
           <span class="d-md-none">by&nbsp;</span>
           <a href="/pages/profile.php">
-            {{ $question->owner->username }}
+            {{ $question->post->owner->username }}
           </a>
           <!-- Owner Reputation -->
           <span class="d-none d-md-block">
-            {{ $question->owner->reputation }}
+            {{ $question->post->owner->reputation }}
             <i class="bi bi-award"></i>
           </span>
         </div>

@@ -39,7 +39,9 @@
   <div class="tab-content">
     <!-- Questions Tab -->
     <div class="tab-pane fade show active" id="questions">
-      <!-- TODO: Questions -->
+      @foreach ($questions as $question)
+        @include('partials.search_results.question_card')
+      @endforeach
       
     </div>
     <!-- Users -->
