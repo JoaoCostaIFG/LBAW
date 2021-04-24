@@ -18,6 +18,7 @@ Route::get('/', function() {
 // Pages
 Route::view('/home', 'pages.index');
 Route::view('/about', 'pages.about');
+Route::get('/search_results', 'SearchResultsController@show');
 Route::get('/news', 'NewsController@show');
 Route::get('/leaderboard', 'LeaderboardController@show');
 
