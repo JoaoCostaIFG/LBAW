@@ -17,4 +17,21 @@ class Question extends Model
     {
         return $this->hasOne(Post::class, 'id');
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'id_question');
+    }
+
+    public function answers()
+    {
+        return $this->hasManyThrough(
+            Answer::class,
+            AnswerQuestion::class,
+            'id_question',
+            'id',
+            'id',
+            'id_answer'
+        );
+    }
 }
