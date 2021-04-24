@@ -17,5 +17,10 @@ class Answer extends Model
     {
         return $this->hasOne(Post::class, 'id');
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'id_answer');
+    }
 }
 

@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class AnswerQuestion extends Model
 {
     use HasFactory;
 
-    protected $table = "post";
+    protected $table = "answer_question";
 
     // Don't add create and update timestamps in database.
     public $timestamps = false;
@@ -20,13 +20,13 @@ class Post extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      * TODO this won't work, use morph instead
      */
-    public function owner()
+    public function question()
     {
-        return $this->belongsTo(User::class, 'id_owner');
+        return $this->hasOne(Question::class, 'id', 'id_question');
     }
 
-    public function comments()
+    public function answer()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasOne(Answer::class, 'id', 'id_answer');
     }
 }

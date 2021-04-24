@@ -41,6 +41,7 @@ Route::view('/about', 'pages.about');
 Route::get('/search_results', 'SearchResultsController@show');
 Route::get('/news', 'NewsController@show');
 Route::get('/leaderboard', 'LeaderboardController@show');
+Route::get('/question/{id}', 'QuestionController@show');
 
 // Cards
 Route::get('cards', 'CardController@list');

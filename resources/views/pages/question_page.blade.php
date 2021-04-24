@@ -4,8 +4,8 @@
 
 @section('content')
 <div class="container">
-    @include('partials.question')
+    @include('partials.posts.question')
     <hr>
-    @each('partials.answer', $question->answers, 'answer')
+    @each('partials.posts.answer', $question->answers, 'answer')
 </div>
 @stop
