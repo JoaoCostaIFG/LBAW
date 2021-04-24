@@ -1,9 +1,7 @@
 @extends('layouts.layout')
 
-@include('partials.leaderboard_entry')
-
 @section('title', 'Leaderboard')
-    
+
 @section('content')
 
 <div class="container">
@@ -25,11 +23,9 @@
         </thead>
         <tbody>
 
-          <?php
-            $usersLen = count($users);
-            for($i = 0; $i < $usersLen; $i++){ 
-              drawLeaderboardUserEntry($i + 1, $users[$i]);
-            }?>
+            @foreach ($users as $user)
+                @include('partials.leaderboard.leaderboard_user_entry', ['place' => $loop->index + 1])
+            @endforeach
 
         </tbody>
       </table>
@@ -49,12 +45,11 @@
           </tr>
         </thead>
         <tbody>
-          <!-- TODO: Questions -->
-          <?php
-            $questionsLen = count($questions);
-            for($i = 0; $i < $questionsLen; $i++){ 
-              drawLeaderboardQuestionEntry($i + 1, $questions[$i]);
-            }?>
+
+            @foreach ($questions as $question)
+                @include('partials.leaderboard.leaderboard_question_entry', ['place' => $loop->index + 1])
+            @endforeach
+
         </tbody>
       </table>
     </div>
