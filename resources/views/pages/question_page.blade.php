@@ -8,3 +8,4 @@
     <hr>
     @each('partials.answer', $question->answers, 'answer')
 </main>
+@stop
