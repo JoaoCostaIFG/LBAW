@@ -19,6 +19,7 @@ Route::get('/', function() {
 Route::view('/home', 'pages.index');
 Route::view('/about', 'pages.about');
 Route::get('/news', 'NewsController@show');
+Route::get('/leaderboard', 'LeaderboardController@show');
 
 // Cards
 Route::get('cards', 'CardController@list');
