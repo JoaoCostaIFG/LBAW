@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@include('partials.leaderboard_entry')
+
 @section('title', 'Leaderboard')
     
 @section('content')
@@ -7,6 +9,8 @@
 <div class="container">
   <h2 class="page-title">Leaderboard</h2>
   <div class="container-fluid row justify-content-center mt-4">
+
+    <!-- Users Leaderboard -->
     <div class="col-auto">
       <table class="table table-dark table-striped table-bordered align-middle">
         <thead>
@@ -23,24 +27,15 @@
 
           <?php
             $usersLen = count($users);
-            for($i = 0; $i < $usersLen; $i++){ ?>
-              <tr>
-                <th scope="row" class="text-center">
-                  {{ $i + 1 }}
-                </th>
-                <td class="text-center">
-                  {{ $users[$i]['username'] }}
-                </td>
-                <td class="text-center">
-                  {{$users[$i]['reputation']}}
-                </td>
-              </tr>
-            <?php }?>
+            for($i = 0; $i < $usersLen; $i++){ 
+              drawLeaderboardUserEntry($i + 1, $users[$i]);
+            }?>
 
         </tbody>
       </table>
     </div>
 
+    <!-- Questions Leaderboard -->
     <div class="col-auto align-self-center">
       <table class="table table-dark table-striped table-bordered align-middle">
         <thead>
@@ -55,13 +50,14 @@
         </thead>
         <tbody>
           <!-- TODO: Questions -->
-          <tr>
-            <th scope="row" class="text-center">1.</th>
-            <td class="text-center">Why do html pretifiers make code longer?</td>
-            <td class="text-center">366</td>
-          </tr>
+          <?php
+            $questionsLen = count($questions);
+            for($i = 0; $i < $questionsLen; $i++){ 
+              drawLeaderboardQuestionEntry($i + 1, $questions[$i]);
+            }?>
         </tbody>
       </table>
     </div>
   </div>
 </div>
+@stop

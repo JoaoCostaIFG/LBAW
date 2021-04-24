@@ -9,8 +9,9 @@ class NewsController extends Controller
 {
     public function show()
     {
-        // TODO: News model?
-        $news = DB::table('news')->get();
+        $news = DB::table('news')
+            ->select('title', 'subtitle', 'body')
+            ->get();
 
         return view("pages.news", ['news' => $news]);
     }

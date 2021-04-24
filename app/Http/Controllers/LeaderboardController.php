@@ -5,17 +5,32 @@ namespace App\Http\Controllers;
 use App\Models\User;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LeaderboardController extends Controller
 {
     public function getTopUsers()
     {
-        $users = User::orderBy('reputation', 'desc')->limit(50)->get();
+        $users = User::orderBy('reputation', 'desc')
+            ->select('username', 'reputation')
+            ->limit(50)
+            ->get();
         return $users;
+    }
+
+    public function getTopQuestions()
+    {
+        $questions = DB::table('post')
+            ->join('question', 'post.id', '=', 'question.id')
+            ->orderBy('score', 'desc')
+            ->limit(20)
+            ->get();
+        return $questions;
     }
 
     public function show(){
         $users = $this->getTopUsers();
-        return view("pages.leaderboard", ['users' => $users]);
+        $questions = $this->getTopQuestions();
+        return view("pages.leaderboard", ['users' => $users, 'questions' => $questions]);
     }
 }
