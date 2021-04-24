@@ -35,11 +35,11 @@ function genSidebarLink($href, $icon, $text)
       <h4>Pages</h4>
     </div>
     <ul class="list-group">
-      <?php genSidebarLink("/pages/home.php", "bi-house-door", "Home") ?>
+      <?php genSidebarLink(url('home'), "bi-house-door", "Home") ?>
       <?php genSidebarLink("/pages/search_results.php#questions", "bi-question-circle", "Questions") ?>
       <?php genSidebarLink("/pages/news.php", "bi-newspaper", "News") ?>
       <?php genSidebarLink("/pages/search_results.php#users", "bi-person", "Users") ?>
-      <?php genSidebarLink("/pages/leaderboard.php", "bi-trophy", "Leaderboard") ?>
+      <?php genSidebarLink(url('leaderboard'), "bi-trophy", "Leaderboard") ?>
       <?php genSidebarLink("/pages/about.php", "bi-info-circle", "About") ?>
     </ul>
 
@@ -71,12 +71,12 @@ function genSidebarLink($href, $icon, $text)
       <h4>Pages</h4>
     </div>
     <ul class="list-group">
-      <?php genSidebarLink("/pages/home.php", "bi-house-door", "Home") ?>
+      <?php genSidebarLink(url('home'), "bi-house-door", "Home") ?>
       <?php genSidebarLink("/pages/search_results.php#questions", "bi-question-circle", "Questions") ?>
       <?php genSidebarLink("/pages/news.php", "bi-newspaper", "News") ?>
       <?php genSidebarLink("/pages/search_results.php#users", "bi-person", "Users") ?>
-      <?php genSidebarLink("/pages/leaderboard.php", "bi-trophy", "Leaderboard") ?>
-      <?php genSidebarLink("/pages/about.php", "bi-info-circle", "About") ?>
+      <?php genSidebarLink(url('leaderboard'), "bi-trophy", "Leaderboard") ?>
+      <?php genSidebarLink(url('about'), "bi-info-circle", "About") ?>
       <?php genSidebarLink("/pages/administration.php", "bi-clipboard-data", "Administration") ?>
     </ul>
 
