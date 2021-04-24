@@ -10,19 +10,19 @@ use Illuminate\Http\Request;
 class SearchResultsController extends Controller
 {
     public function search(Request $request){
-        $validatedData = $request->validate([
-            'search' => 'required'
-        ]);
+        //$validatedData = $request->validate([
+            //'search' => 'required'
+        //]);
 
-        $questions = Question::search($validatedData['search'])->get();
-        $users = User::search($validatedData['search'])->get();
+        $search_data = $request->input('search');
+        if ($search_data == "") {
+            echo "?";
+            return view("pages.search_results", ['questions' => Question::all(), 'users' => User::all()]);
+        }
 
-        return view("pages.search_results", ['questions' => $questions, 'users' => $users]);
-    }
+        $questions = Question::search($search_data)->get();
+        $users = User::search($search_data)->get();
 
-    public function show(Request $request) {
-        // TODO: Send users and posts from search
-        $users = User::all();
-        return view("pages.search_results", ['users' => $users]);
+        return view("pages.search_results", ['questions' => [], 'users' => $users]);
     }
 }

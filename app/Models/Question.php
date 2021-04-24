@@ -18,6 +18,35 @@ class Question extends Model
         return $this->hasOne(Post::class, 'id');
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'id_question');
+    }
+
+    public function answers()
+    {
+        return $this->hasManyThrough(
+            Answer::class,
+            AnswerQuestion::class,
+            'id_question',
+            'id',
+            'id',
+            'id_answer'
+        );
+    }
+
+    public function topics()
+    {
+        return $this->hasManyThrough(
+            Topic::class,
+            TopicQuestion::class,
+            'id_question',
+            'id',
+            'id',
+            'id_topic'
+        );
+    }
+
     // search brought to you by https://matthewdaly.co.uk/blog/2017/12/02/full-text-search-with-laravel-and-postgresql/
     // TODO add topic search here
     public function scopeSearch($query, $search)
