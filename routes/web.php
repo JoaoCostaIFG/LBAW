@@ -11,9 +11,29 @@
 |
 */
 // Home
+
+use \App\Models\User;
 Route::get('/', function() {
-    $user = \App\Models\Post::first()->owner()->get();
-    echo $user;
+    $user_id = 2;
+    $questions = User::find($user_id)->questions;
+    foreach ($questions as $question) {
+        echo($question);
+        echo($question->post);
+    }
+
+    echo('<br>---<br>');
+    $answers = User::find($user_id)->answers;
+    foreach ($answers as $answer) {
+        echo($answer);
+        echo($answer->post);
+    }
+
+    echo('---<br>');
+    $comments = User::find($user_id)->comments;
+    foreach ($comments as $comment) {
+        echo($comment);
+        echo($comment->post);
+    }
 });
 // Pages
 Route::view('/home', 'pages.index');
