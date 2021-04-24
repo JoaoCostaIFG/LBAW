@@ -68,9 +68,14 @@
     </div>
     <!-- Users -->
     <div class="tab-pane fade" id="users">
-      @foreach ($users as $user)
-        @include('partials.search_results.user_card', ['index' => $loop->index])
-      @endforeach
+      @for ($i = 0; $i < count($users); $i+=2)
+        <div class="row p-2 gap-2">
+          @include('partials.search_results.user_card', ['user' => $users[$i]])
+          @if (isset($users[$i + 1]))
+            @include('partials.search_results.user_card', ['user' => $users[$i + 1]])
+          @endif
+        </div>
+      @endfor
     </div>
   </div>
 </div>
