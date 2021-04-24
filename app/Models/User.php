@@ -25,11 +25,21 @@ class User extends Model
 
     public function posts()
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Post::class, 'id');
     }
 
     public function questions()
     {
-        // TODO
+        return $this->hasManyThrough(Question::Class, Post::Class, 'id_owner', 'id', 'id', 'id');
+    }
+
+    public function answers()
+    {
+        return $this->hasManyThrough(Answer::Class, Post::Class, 'id_owner', 'id', 'id', 'id');
+    }
+
+    public function comments()
+    {
+        return $this->hasManyThrough(Comment::Class, Post::Class, 'id_owner', 'id', 'id', 'id');
     }
 }
