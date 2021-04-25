@@ -4,11 +4,11 @@
 
 @section('content')
 <div class="container">
-<h2 class="page-title">News</h2>
+  <h2 class="page-title">News</h2>
 
-<!-- START FEATURETTES -->
-@each('partials.news_item', $news, 'news')
-<!-- END FEATURETTES -->
+  <!-- START FEATURETTES -->
+  @each('partials.news_item', $news, 'news')
+  <!-- END FEATURETTES -->
 </div>
 @stop
 
