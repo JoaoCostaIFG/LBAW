@@ -11,7 +11,7 @@
         @include('partials.sidebar.sidebar_link', ['href' => "/pages/search_results.php#questions", 'icon' => "bi-question-circle", 'text' =>  "Questions"])
         @include('partials.sidebar.sidebar_link', ['href' => "/news", 'icon' => "bi-newspaper", 'text' =>  "News"])
         @include('partials.sidebar.sidebar_link', ['href' => "/pages/search_results.php#users", 'icon' => "bi-person", 'text' =>  "Users"])
-        @include('partials.sidebar.sidebar_link', ['href' => "/leaderboard", 'icon' => "bi-trophy", 'text' =>  "Leaderboard"]) {{-- Only autheticated????? --}}
+        @include('partials.sidebar.sidebar_link', ['href' => "/leaderboard", 'icon' => "bi-trophy", 'text' =>  "Leaderboard"])
         @include('partials.sidebar.sidebar_link', ['href' => "/about", 'icon' => "bi-info-circle", 'text' =>  "About"])
         {{-- @auth('admin') --}}
         @auth
