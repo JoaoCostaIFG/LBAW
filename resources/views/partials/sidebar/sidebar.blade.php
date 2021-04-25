@@ -35,6 +35,7 @@
     @auth
     <div class="sidebar-subheader">
         <h4>
+        {{-- TODO --}}
           <img src="/static/images/a.jpg" class="rounded" width="32" alt="user-pic">
           {{ Auth::user()->username }}
           <button type="button" class="btn btn-dark" id="notifications-btn">
