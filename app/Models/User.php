@@ -43,6 +43,18 @@ class User extends Model
         return $this->hasManyThrough(Comment::Class, Post::Class, 'id_owner', 'id', 'id', 'id');
     }
 
+    public function achievements()
+    {
+        return $this->hasManyThrough(
+            Achievement::class,
+            Achieved::class,
+            'id_user',
+            'id',
+            'id',
+            'id_achievement'
+        );
+    }
+
     public function scopeSearch($query, $search)
     {
         if (!$search) {

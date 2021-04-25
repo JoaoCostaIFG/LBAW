@@ -3,6 +3,7 @@
 @section('title', 'Profile')
 
 @section('content')
+<div class="container">
   <!-- BEGIN TABS -->
   <nav class="mt-2">
     <ul class="nav nav-tabs justify-content-center">
@@ -52,9 +53,23 @@
   <div class="tab-content">
     @include('partials.profile.about_tab') <!-- about tab -->
     @include('partials.profile.activity_tab') <!-- activity tab -->
-    @include('partials.profile.achievements_tab') <!-- achievements tab -->
+
+    <!-- BEGIN ACHIEVEMENTS TAB -->
+    <div id="achievements" class="tab-pane fade">
+      <div class="container-fluid themed-container text-left">
+        <h5 class="m-0 p-1">Achievements</h5>
+      </div>
+
+      <div class="container d-flex flex-wrap justify-content-center mt-3">
+        @foreach ($achievements as $achievement)
+          @include('partials.profile.achievement_card', ['achieved' => $user->achievements->contains($achievement)])
+        @endforeach
+
+      </div>
+    </div>
+    <!-- END ACHIEVEMENTS TAB -->
   </div>
   <!-- END TAB CONTENTS -->
-
+</div>
   <script src="/js/tabs.js"></script>
   @stop
