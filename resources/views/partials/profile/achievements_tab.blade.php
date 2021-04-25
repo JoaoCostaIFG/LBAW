@@ -1,5 +1,5 @@
 <!-- BEGIN ACHIEVEMENTS TAB -->
-<div id="achievements-tab" class="tab-pane fade">
+<div id="achievements" class="tab-pane fade">
     <div class="container-fluid themed-container text-left">
       <h5 class="m-0 p-1">Achievements</h5>
     </div>

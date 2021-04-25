@@ -1,5 +1,5 @@
 <!-- BEGIN ACTIVITY TAB -->
-<div id="activity-tab" class="tab-pane fade">
+<div id="activity" class="tab-pane fade">
     <div class="container-fluid themed-container text-left">
       <h5 class="m-0 p-1">Top Topics</h5>
     </div>

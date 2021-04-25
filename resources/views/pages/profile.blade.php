@@ -7,18 +7,18 @@
   <nav class="mt-2">
     <ul class="nav nav-tabs justify-content-center">
       <li class="nav-item">
-        <a href="#profile-tab" class="nav-link active" data-toggle="tab">
+        <a href="#profile" class="nav-link active" data-toggle="tab">
           Profile
         </a>
       </li>
       <li class="nav-item">
-        <a href="#activity-tab" class="nav-link" data-toggle="tab">
+        <a href="#activity" class="nav-link" data-toggle="tab">
           Activity
           <span class="badge bg-light text-dark rounded-pill">27</span> <!-- TODO -->
         </a>
       </li>
       <li class="nav-item">
-        <a href="#achievements-tab" class="nav-link" data-toggle="tab">
+        <a href="#achievements" class="nav-link" data-toggle="tab">
           Achievements
           <span class="badge bg-light text-dark rounded-pill">2</span>
         </a>
@@ -55,4 +55,6 @@
     @include('partials.profile.achievements_tab') <!-- achievements tab -->
   </div>
   <!-- END TAB CONTENTS -->
+
+  <script src="/js/tabs.js"></script>
   @stop
