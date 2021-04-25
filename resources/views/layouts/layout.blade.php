@@ -36,7 +36,7 @@
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="navbar-brand">
-              <a href="/pages/home.php">Segmentation <b>fault</b></a>
+              <a href="{{ url('home') }}">Segmentation <b>fault</b></a>
               <i class="bi bi-cpu"></i>
               @yield('title')
             </div>
@@ -47,8 +47,8 @@
               <i class="bi-search"></i>
             </button>
           </div>
-          <form id="navbarSeachForm" class="d-flex" action="../pages/search_results.php">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <form id="navbarSeachForm" class="d-flex" action="{{ url('search') }}">
+            <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit"><i class="bi-search"></i></button>
           </form>
         </div> <!-- .container .d-flex -->
@@ -61,10 +61,10 @@
         <div class="modal-content">
           <!-- bg-dark -->
           <div class="modal-body">
-            <form action="../pages/search_results.php">
+            <form action="{{ url('search') }}">
               <!-- button is not needed -->
               <!-- <button class="btn btn-outline-success" type="submit"><i class="bi-search"></i></button> -->
-              <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+              <input class="form-control" type="search" name="search" placeholder="Search" aria-label="Search">
             </form>
           </div>
         </div>

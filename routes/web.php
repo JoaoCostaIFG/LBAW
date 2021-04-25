@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Question;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,31 +15,30 @@
 
 use \App\Models\User;
 Route::get('/', function() {
-    $user_id = 2;
-    $questions = User::find($user_id)->questions;
-    foreach ($questions as $question) {
-        echo($question);
-        echo($question->post);
-    }
+    // $user_id = 2;
+    // $questions = User::find($user_id)->questions;
+    // foreach ($questions as $question) {
+    //     echo($question);
+    //     echo($question->post);
+    // }
 
-    echo('<br>---<br>');
-    $answers = User::find($user_id)->answers;
-    foreach ($answers as $answer) {
-        echo($answer);
-        echo($answer->post);
-    }
+    // echo('<br>---<br>');
+    // $answers = User::find($user_id)->answers;
+    // foreach ($answers as $answer) {
+    //     echo($answer);
+    //     echo($answer->post);
+    // }
 
-    echo('---<br>');
-    $comments = User::find($user_id)->comments;
-    foreach ($comments as $comment) {
-        echo($comment);
-        echo($comment->post);
-    }
+    // echo('---<br>');
+    // $comments = User::find($user_id)->comments;
+    // foreach ($comments as $comment) {
+    //     echo($comment);
+    //     echo($comment->post);
 });
 // Pages
 Route::view('/home', 'pages.index');
 Route::view('/about', 'pages.about');
-Route::get('/search_results', 'SearchResultsController@show');
+Route::get('/search', 'SearchResultsController@search');
 Route::get('/news', 'NewsController@show');
 Route::get('/leaderboard', 'LeaderboardController@show');
 Route::get('/question/{id}', 'QuestionController@show');

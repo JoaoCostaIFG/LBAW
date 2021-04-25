@@ -2,28 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Question;
+use App\Models\User;
 
 use Illuminate\Http\Request;
 
 class SearchResultsController extends Controller
 {
     public function search(Request $request){
-        // $users =  User::whereRaw('user.search @@ plainto_tsquery(\'english\', ?)', array(strtolower($q)));
-    }
+        //$validatedData = $request->validate([
+            //'search' => 'required'
+        //]);
 
-    public function show(){
-        // TODO: Send users from search
-        $users = User::all(); // Replace this
-        // TODO: Send questions from search
-        /*
-         Questions missing: 
-          - question number of answers
-          - post body (limited number of characters)
-        */
-        // TODO: Number of results
-        $questions = Question::all(); // Replace this
-        return view("pages.search_results", ['users' => $users, 'questions' => $questions]);
+        $search_data = $request->input('search');
+        if ($search_data == "") {
+            return view("pages.search_results", ['questions' => Question::all(), 'users' => User::all()]);
+        }
+
+        $questions = Question::search($search_data)->get();
+        $users = User::search($search_data)->get();
+
+        return view("pages.search_results", ['questions' => $questions, 'users' => $users]);
     }
 }
