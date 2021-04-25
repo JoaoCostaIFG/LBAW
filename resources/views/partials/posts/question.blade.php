@@ -1,5 +1,5 @@
 <div class="row p-1">
-    <h2 class="page-title">{{ $question->post->title }}</h2>
+    <h2 class="page-title">{{ $question->title }}</h2>
     <hr>
     <div class="col col-md-2 col-3 align-self-center border-end border-dark">
         <div class="row fs-3">
