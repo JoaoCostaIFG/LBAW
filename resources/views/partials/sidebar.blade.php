@@ -5,7 +5,7 @@ function genSidebarLink($href, $icon, $text)
     global $title;
     $is_selected = ($text === $title);
     ?>
-  <li class="list-group-item<?php if ($is_selected) { echo ' active'; 
+  <li class="list-group-item<?php if ($is_selected) { echo ' active';
                             }?>">
     <a href=<?php echo $href; ?>>
       <i class=<?php echo '"bi ' . $icon . '"'; ?>></i>
@@ -96,9 +96,7 @@ function genSidebarLink($href, $icon, $text)
     </ul>
 
     <div class="row justify-content-evenly sidebar-buttons">
-      <button class="btn btn-danger col-4" type="button" data-bs-toggle="modal" data-bs-target="#signupModal" aria-controls="loginModal" aria-expanded="false" aria-label="Open signup box">
-        Sign up
-      </button>
+      <a class="btn btn-danger col-4" href="/logout">Logout</a>
     </div>
   </nav>
 

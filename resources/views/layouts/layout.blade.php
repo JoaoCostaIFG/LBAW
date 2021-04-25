@@ -81,7 +81,8 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <!-- Login form -->
-          <form action="../pages/home_auth.php">
+          @include('auth.login')
+          {{-- <form action="../pages/home_auth.php">
             <div class="modal-body">
               <!-- Email -->
               <div class="input-group mb-3">
@@ -108,7 +109,7 @@
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-primary">Log in</button>
             </div>
-          </form>
+          </form> --}}
           <script src="/js/form-validation.js"></script>
         </div>
       </div>
@@ -121,7 +122,8 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <!-- Sign Up Form -->
-          <form action="../pages/home_auth.php">
+          @include('auth.register')
+          {{-- <form action="../pages/home_auth.php">
             <div class="modal-body">
               <!-- Email -->
               <div class="input-group mb-3">
@@ -168,7 +170,7 @@
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-primary">SignUp</button>
             </div>
-          </form>
+          </form> --}}
           <script src="/js/form-validation.js"></script>
         </div>
       </div>

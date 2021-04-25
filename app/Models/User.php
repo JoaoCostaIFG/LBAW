@@ -3,10 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Model
-{
+class User extends Authenticatable {
     use HasFactory;
 
     // Don't add create and update timestamps in database.
@@ -23,6 +22,10 @@ class User extends Model
         'password', 'remember_token',
     ];
 
+    protected $fillable = [
+        'username', 'password', 'email'
+    ];
+
     public function posts()
     {
         return $this->hasMany(Post::class, 'id');
@@ -30,17 +33,17 @@ class User extends Model
 
     public function questions()
     {
-        return $this->hasManyThrough(Question::Class, Post::Class, 'id_owner', 'id', 'id', 'id');
+        return $this->hasManyThrough(Question::class, Post::class, 'id_owner', 'id', 'id', 'id');
     }
 
     public function answers()
     {
-        return $this->hasManyThrough(Answer::Class, Post::Class, 'id_owner', 'id', 'id', 'id');
+        return $this->hasManyThrough(Answer::class, Post::class, 'id_owner', 'id', 'id', 'id');
     }
 
     public function comments()
     {
-        return $this->hasManyThrough(Comment::Class, Post::Class, 'id_owner', 'id', 'id', 'id');
+        return $this->hasManyThrough(Comment::class, Post::class, 'id_owner', 'id', 'id', 'id');
     }
 
     public function scopeSearch($query, $search)
