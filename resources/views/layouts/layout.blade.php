@@ -82,35 +82,6 @@
           </div>
           <!-- Login form -->
           @include('auth.login')
-          {{-- <form action="../pages/home_auth.php">
-            <div class="modal-body">
-              <!-- Email -->
-              <div class="input-group mb-3">
-                <label for="email" class="form-label"><b>Email</b><span class="text-danger"> *</span></label>
-                <div class="input-group has-validation">
-                  <input type="text" class="form-control" id="email" placeholder="Enter email... (ex: email@example.com)" required>
-                  <div class="invalid-feedback">
-                    Email is required.
-                  </div>
-                </div>
-              </div>
-              <!-- Password -->
-              <div class="input-group mb-3">
-                <label for="password" class="form-label"><b>Password</b><span class="text-danger"> *</span></label>
-                <div class="input-group has-validation">
-                  <input type="text" class="form-control" id="password" placeholder="Enter password..." required>
-                  <div class="invalid-feedback">
-                    Password is required.
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Log in</button>
-            </div>
-          </form> --}}
-          <script src="/js/form-validation.js"></script>
         </div>
       </div>
     </div>
@@ -123,60 +94,11 @@
           </div>
           <!-- Sign Up Form -->
           @include('auth.register')
-          {{-- <form action="../pages/home_auth.php">
-            <div class="modal-body">
-              <!-- Email -->
-              <div class="input-group mb-3">
-                <label for="email" class="form-label"><b>Email</b><span class="text-danger"> *</span></label>
-                <div class="input-group has-validation">
-                  <input type="text" class="form-control" id="email" placeholder="Enter email... (ex: email@example.com)" required>
-                  <div class="invalid-feedback">
-                    Email is required.
-                  </div>
-                </div>
-              </div>
-              <!-- Username -->
-              <div class="input-group mb-3">
-                <label for="username" class="form-label"><b>Username</b><span class="text-danger"> *</span></label>
-                <div class="input-group has-validation">
-                  <input type="text" class="form-control" id="username" placeholder="Enter username... (ex: user123)" required>
-                  <div class="invalid-feedback">
-                    Username is required.
-                  </div>
-                </div>
-              </div>
-              <!-- Password -->
-              <div class="input-group mb-3">
-                <label for="password" class="form-label"><b>Password</b><span class="text-danger"> *</span></label>
-                <div class="input-group has-validation">
-                  <input type="text" class="form-control" id="password" placeholder="Enter password..." required>
-                  <div class="invalid-feedback">
-                    Password is required.
-                  </div>
-                </div>
-              </div>
-              <!-- Repeated Password -->
-              <div class="input-group">
-                <label for="repeated_password" class="form-label"><b>Repeat Password</b><span class="text-danger"> *</span></label>
-                <div class="input-group has-validation">
-                  <input type="text" class="form-control" id="repeated_password" placeholder="Enter password again..." required>
-                  <div class="invalid-feedback">
-                    Repeated password is required.
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">SignUp</button>
-            </div>
-          </form> --}}
-          <script src="/js/form-validation.js"></script>
         </div>
       </div>
     </div>
     <!-- Sidebar -->
-    @include('partials.sidebar')
+    @include('partials.sidebar.sidebar', ['title' => app()->view->getSections()['title']])
 
     <main>
       <section id="content">
