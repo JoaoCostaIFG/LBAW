@@ -72,31 +72,6 @@
     </div>
     <!-- END SEARCH MODAL -->
 
-    <!-- BEGIN AUTH MODALS -->
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3 class="modal-title" id="loginModalLabel">Login</h3>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <!-- Login form -->
-          @include('auth.login')
-        </div>
-      </div>
-    </div>
-    <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3 class="modal-title" id="signupModalLabel">Signup</h3>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <!-- Sign Up Form -->
-          @include('auth.register')
-        </div>
-      </div>
-    </div>
     <!-- Sidebar -->
     @include('partials.sidebar.sidebar', ['title' => app()->view->getSections()['title']])
 

@@ -39,16 +39,13 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function getUser(){
-        return $request->user();
-    }
 
     public function home() {
         return redirect('login');
     }
 
     public function login(Request $request) {
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->all('username', 'password');
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
@@ -57,7 +54,7 @@ class LoginController extends Controller
         }
 
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'username' => 'The provided credentials do not match our records.',
         ]);
     }
 

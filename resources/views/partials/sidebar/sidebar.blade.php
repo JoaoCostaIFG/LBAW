@@ -26,12 +26,12 @@
     <!-- auth -->
     @guest
         <div class="row justify-content-evenly sidebar-buttons">
-        <button class="btn btn-info col-4" type="button" data-bs-toggle="modal" data-bs-target="#loginModal" aria-controls="loginModal" aria-expanded="false" aria-label="Open login box">
+        <a class="btn btn-info col-4" href="/login" type="button" aria-expanded="false" aria-label="Open login box">
           Log in
-        </button>
-        <button class="btn btn-primary col-4" type="button" data-bs-toggle="modal" data-bs-target="#signupModal" aria-controls="loginModal" aria-expanded="false" aria-label="Open signup box">
+        </a>
+        <a class="btn btn-primary col-4" href="/register" type="button" aria-controls="loginModal" aria-expanded="false" aria-label="Open signup box">
           Sign up
-        </button>
+        </a>
       </div>
     @endguest
 

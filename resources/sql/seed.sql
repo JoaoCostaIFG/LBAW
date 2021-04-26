@@ -894,8 +894,9 @@ insert into "user" (name, username, password, email, about, picture) values
   ('Gib Kipping', 'gkippingp', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'gkippingp@joomla.org', 'Operator', 'http://dummyimage.com/120x100.png/cc0000/ffffff'),
   ('Jasun Deverock', 'jdeverockq', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'jdeverockq@addthis.com', 'Statistician IV', 'http://dummyimage.com/115x100.png/cc0000/ffffff'),
   ('Jodee Burmaster', 'jburmasterr', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'jburmasterr@foxnews.com', 'Biostatistician I', 'http://dummyimage.com/148x100.png/5fa2dd/ffffff'),
-  ('Glynn Baytrop', 'gbaytrops', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'gbaytrops@ed.gov', 'Sales Representative', 'http://dummyimage.com/218x100.png/5fa2dd/ffffff'),
-  ('Zilvia Marvell', 'zmarvellt', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'zmarvellt@cbslocal.com', 'Senior Quality Engineer', 'http://dummyimage.com/139x100.png/ff4444/ffffff');
+  ('Glynn Baytrop', 'gbaytrops', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'gbaytropj,s@ed.gov', 'Sales Representative', 'http://dummyimage.com/218x100.png/5fa2dd/ffffff'),
+  ('Zilvia Marvell', 'zmarvellt', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'zmarvellt@cbslocal.com', 'Senior Quality Engineer', 'http://dummyimage.com/139x100.png/ff4444/ffffff'),
+  ('1', '1', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', '1', '1', 'http://dummyimage.com/139x100.png/ff4444/ffffff');
 
 -- R02
 insert into moderator (id) values (1), (2), (3);
