@@ -17,7 +17,7 @@
   <div class="d-flex flex-column justify-content-start align-items-start w-100">
     <section>
       <!-- Question Title -->
-      <a class="fs-5 fw-bold" href="/pages/question_admin.php">{{ $question->title }}</a>
+      <a class="fs-5 fw-bold" href="/question/{{ $question->id }}">{{ $question->title }}</a>
       <!-- Question body -->
       <p class="d-none d-md-block">{{ $question->post->body }}</p>
     </section>

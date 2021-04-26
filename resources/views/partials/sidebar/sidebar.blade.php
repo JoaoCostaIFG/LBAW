@@ -39,7 +39,7 @@
     <div class="sidebar-subheader">
         <h4>
         {{-- TODO --}}
-          <img src="/static/images/a.jpg" class="rounded" width="32" alt="user-pic">
+          <img src="{{ Auth::user()->picture }}" class="rounded" width="32" alt="user-pic">
           {{ Auth::user()->username }}
           <button type="button" class="btn btn-dark" id="notifications-btn">
             <i class="bi bi-bell"></i>
@@ -58,44 +58,6 @@
 
 </nav>
 
-
-<?php
-function draw_notifications()
-{
-    ?>
-
-  <div class="container-fluid p-3" id="toast-container" style="z-index: 5;">
-    <div class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
-      <div class="toast-header">
-        <i class="bi bi-exclamation-circle-fill p-1"></i>
-        <strong class="me-auto">New Vote</strong>
-        <small>11 mins ago</small>
-        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-      </div>
-      <div class="toast-body">
-        PantufaRGB has upvoted to your question.
-      </div>
-    </div>
-    <div class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
-      <div class="toast-header">
-        <i class="bi bi-exclamation-circle-fill p-1"></i>
-        <strong class="me-auto">New Reply</strong>
-        <small>34 mins ago</small>
-        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-      </div>
-      <div class="toast-body">
-        PantufaRGB has repied to your question.
-      </div>
-    </div>
-  </div>
-
-  <script src="/js/notifications.js"></script>
-
-    <?php
-}
-
-?>
-
 <script defer>
     document.querySelector("#sidebar-toggler").addEventListener("click", function() {
         let sidebar = document.querySelector("#sidebar");
@@ -107,4 +69,9 @@ function draw_notifications()
 </script>
 
 <!-- Notifications -->
-<?php draw_notifications();
+@auth
+    <div class="container-fluid p-3" id="toast-container" style="z-index: 5;">
+        @each('partials.sidebar.notification', Auth::user()->notifications, 'notification')
+    </div>
+    <script src="/js/notifications.js"></script>
+@endauth

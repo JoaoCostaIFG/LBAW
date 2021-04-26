@@ -12,4 +12,16 @@ class Achievement extends Model
 
     // Don't add create and update timestamps in database.
     public $timestamps = false;
+
+    public function user()
+    {
+        return $this->hasOneThrough(
+            User::class,
+            Achieved::class,
+            'id_user',
+            'id',
+            'id',
+            'id'
+        );
+    }
 }

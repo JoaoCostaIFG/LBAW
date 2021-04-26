@@ -25,7 +25,13 @@ class Answer extends Model
 
     public function question()
     {
-        return $this->hasOneThrough(Question::class, AnswerQuestion::class, 'id_answer', 'id', 'id', 'id_question');
+        return $this->hasOneThrough(
+            Question::class,
+            AnswerQuestion::class,
+            'id_answer',
+            'id',
+            'id',
+            'id_question');
     }
 }
 

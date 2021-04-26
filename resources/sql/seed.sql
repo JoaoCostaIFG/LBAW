@@ -866,7 +866,7 @@ $$;
 
 -- R01
 insert into "user" (name, username, password, email, about, picture) values
-  ('Torrance Jerrom', 'tjerrom0', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'tjerrom0@deliciousdays.com', 'Dental Hygienist', 'http://dummyimage.com/102x100.png/ff4444/ffffff'),
+  ('Torrance Jerrom', 'tjerrom0', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'tjerrom0@deliciousdays.com', 'Dental Hygienist', '/image/a.jpg'),
   ('Keenan O''Bruen', 'kobruen1', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'kobruen1@yolasite.com', 'Tax Accountant', 'http://dummyimage.com/135x100.png/dddddd/000000'),
   ('Joey Kores', 'jkores2', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'jkores2@parallels.com', 'Administrative Officer', 'http://dummyimage.com/169x100.png/5fa2dd/ffffff'),
   ('Berky Shakespeare', 'bshakespeare3', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'bshakespeare3@deliciousdays.com', 'Biostatistician IV', 'http://dummyimage.com/110x100.png/dddddd/000000'),

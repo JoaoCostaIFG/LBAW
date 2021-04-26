@@ -78,4 +78,9 @@ class User extends Authenticatable {
         return $query->whereRaw('search @@ to_tsquery(?)', [$search])->
             orderByRaw('ts_rank(search, plainto_tsquery(?)) DESC', [$search]);
     }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class, 'id', 'id');
+    }
 }
