@@ -23,7 +23,7 @@ Route::get('/news', 'NewsController@show');
 Route::get('/leaderboard', 'LeaderboardController@show');
 Route::get('/question/{id}', 'QuestionController@show');
 Route::get('/profile/{id}', 'ProfileController@show');
-Route::get('administration', 'NewsController@show')->middleware('role:administrator');;
+Route::get('administration', 'AdministrationController@show')->middleware('role:administrator');
 
 // Cards
 Route::get('cards', 'CardController@list');

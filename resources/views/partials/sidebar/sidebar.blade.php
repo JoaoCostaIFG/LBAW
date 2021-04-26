@@ -16,7 +16,7 @@
         @auth
             @if(Auth::user()->hasRole('administrator'))
             {{-- @auth --}}
-                @include('partials.sidebar.sidebar_link', ['href' => "/pages/administration.php", 'icon' => "bi-clipboard-data", 'text' =>  "Administration"])
+                @include('partials.sidebar.sidebar_link', ['href' => "/administration", 'icon' => "bi-clipboard-data", 'text' =>  "Administration"])
             {{-- @endauth --}}
             @endif
         @endauth

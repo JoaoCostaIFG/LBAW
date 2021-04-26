@@ -896,13 +896,14 @@ insert into "user" (name, username, password, email, about, picture) values
   ('Jodee Burmaster', 'jburmasterr', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'jburmasterr@foxnews.com', 'Biostatistician I', 'http://dummyimage.com/148x100.png/5fa2dd/ffffff'),
   ('Glynn Baytrop', 'gbaytrops', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'gbaytropj,s@ed.gov', 'Sales Representative', 'http://dummyimage.com/218x100.png/5fa2dd/ffffff'),
   ('Zilvia Marvell', 'zmarvellt', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'zmarvellt@cbslocal.com', 'Senior Quality Engineer', 'http://dummyimage.com/139x100.png/ff4444/ffffff'),
-  ('1', '1', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', '1', '1', 'http://dummyimage.com/139x100.png/ff4444/ffffff');
+  ('1', '1', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', '1', '1', 'http://dummyimage.com/139x100.png/ff4444/ffffff'),
+  ('admin', 'admin', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'admin', 'admin', 'http://dummyimage.com/139x100.png/ff4444/ffffff');
 
 -- R02
-insert into moderator (id) values (1), (2), (3);
+insert into moderator (id) values (1), (2), (3), (32);
 
 -- R03
-insert into administrator (id) values (1);
+insert into administrator (id) values (1), (32);
 
 -- R04
 insert into ban (id_user, id_admin, "date", reason) values

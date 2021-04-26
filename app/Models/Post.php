@@ -29,4 +29,19 @@ class Post extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function question()
+    {
+        return $this->hasOne(Question::class, 'id', 'id');
+    }
+
+    public function answer()
+    {
+        return $this->hasOne(Answer::class, 'id', 'id');
+    }
+
+    public function comment()
+    {
+        return $this->hasOne(Comment::class, 'id', 'id');
+    }
 }
