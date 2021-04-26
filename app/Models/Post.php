@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Prophecy\Doubler\Generator\Node\ReturnTypeNode;
 
 class Post extends Model
 {
+    // TODO Store type in constructor
     use HasFactory;
 
     protected $table = "post";
@@ -31,17 +31,17 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
-    private function question()
+    protected function question()
     {
         return $this->hasOne(Question::class, 'id', 'id');
     }
 
-    private function answer()
+    protected function answer()
     {
         return $this->hasOne(Answer::class, 'id', 'id');
     }
 
-    private function comment()
+    protected function comment()
     {
         return $this->hasOne(Comment::class, 'id', 'id');
     }
@@ -53,5 +53,19 @@ class Post extends Model
             return $this->answer();
         else // if ($this->comment()->exists()) -> Not needed
             return $this->comment();
+    }
+
+    public function type() {
+        return $this->child->getTable();
+    }
+
+    public function getQuestionId() {
+
+        if ($this->question()->exists())
+            return $this->question->id;
+        else if ($this->answer()->exists())
+            return $this->answer->question->id;
+        else // if ($this->comment()->exists()) -> Not needed
+            return $this->comment->getQuestionId();
     }
 }

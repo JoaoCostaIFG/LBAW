@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Models\EditProposal;
+use App\Models\Report;
+use App\Models\TopicProposal;
 
 class AdministrationController extends Controller
 {
-    public function show(){
-        echo('<br>');
-        $posts = Post::all();
-        foreach ($posts as $post) {
-            echo($post->child);
-            echo('<br>');
-        }
-        return view("pages.administration");
+    public function show() {
+        $reports = Report::pending()->get();
+        $edit_proposals = EditProposal::pending()->get();
+        $topic_proposals = TopicProposal::pending()->get();
+        
+        return view("pages.administration", ['reports' => $reports,
+         'edit_proposals' => $edit_proposals, 'topic_proposals' => $topic_proposals]);
     }
 }
 

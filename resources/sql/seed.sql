@@ -916,9 +916,10 @@ insert into news (id, author, title, subtitle, body, date) values
   (2, 1, 'We have reached 100 members.', 'Our community is growing.', 'Thank you everyone for trusting us.', '2021-03-15');
 
 -- R06
-INSERT INTO topic_proposal (id, id_user, id_admin, topic_name, "date", reason, accepted) VALUES
-  (1, 3, NULL, 'zig', '2020-03-28', 'interesting language', false),
-  (2, 1, 1, 'c++', '2020-03-28','i like c plus plus', false);
+INSERT INTO topic_proposal (id_user, id_admin, topic_name, "date", reason, accepted) VALUES
+  (3, NULL, 'zig', '2020-03-28', 'interesting language', false),
+  (3, NULL, 'bazinga', '2021-03-03', 'big bog theorom', false),
+  (1, 1, 'c++', '2020-01-11','i like c plus plus', false);
 
 -- R07
 INSERT INTO achievement(id, title, body) VALUES
@@ -970,8 +971,9 @@ INSERT INTO vote(id_post, id_user, value) VALUES
   (5, 11, 1);
 
 -- R15
-INSERT INTO edit_proposal(id_post, id_user, id_moderator, body) VALUES
-  (3, 5, NULL, '<expression 2> if <condition> else <expression 1>');
+INSERT INTO edit_proposal(id_post, id_user, id_moderator, body, accepted) VALUES
+  (3, 5, NULL, '<expression 2> if <condition> else <expression 1>', false),
+  (2, 2, 32, 'padoru estás disponivel para dar', false);
 
 
 -- R16
@@ -991,4 +993,8 @@ INSERT INTO topic_question (id_topic, id_question) VALUES (1, 15);
 INSERT INTO topic_question (id_topic, id_question) VALUES (4, 15);
 
 -- R18
-INSERT INTO report (id_post, reporter, "date", reason, state, reviewer) VALUES (15, 15, '2020-07-29', 'He called me dumb', 'pending', 2);
+INSERT INTO report (id_post, reporter, "date", reason, state, reviewer) VALUES
+  (2, 1, '2020-07-29', 'He called me dumb', 'pending', 2),
+  (7, 5, '2021-01-09', 'He called me not cool', 'pending', 2),
+  (10, 10, '2020-09-20', 'He was bad', 'approved', 2),
+  (15, 15, '2020-11-12', 'He is sheldon cooper', 'rejected', 2);

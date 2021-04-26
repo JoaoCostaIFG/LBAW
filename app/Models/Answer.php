@@ -22,5 +22,10 @@ class Answer extends Model
     {
         return $this->hasMany(Comment::class, 'id_answer');
     }
+
+    public function question()
+    {
+        return $this->hasOneThrough(Question::class, AnswerQuestion::class, 'id_answer', 'id', 'id', 'id_question');
+    }
 }
 
