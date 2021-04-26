@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable {
     use HasFactory;
@@ -25,6 +26,16 @@ class User extends Authenticatable {
     protected $fillable = [
         'username', 'password', 'email'
     ];
+
+    public function hasRole($role) {
+        if (DB::table('administrator')->where('id', $this->id)->exists() && ($role === 'administrator' || $role === 'moderator')) {
+            return true;
+        }
+        if (DB::table('moderator')->where('id', $this->id)->exists() && $role === 'moderator') {
+            return true;
+        }
+        return false;
+    }
 
     public function posts()
     {

@@ -13,11 +13,14 @@
         @include('partials.sidebar.sidebar_link', ['href' => "/pages/search_results.php#users", 'icon' => "bi-person", 'text' =>  "Users"])
         @include('partials.sidebar.sidebar_link', ['href' => "/leaderboard", 'icon' => "bi-trophy", 'text' =>  "Leaderboard"])
         @include('partials.sidebar.sidebar_link', ['href' => "/about", 'icon' => "bi-info-circle", 'text' =>  "About"])
-        {{-- @auth('admin') --}}
         @auth
-            @include('partials.sidebar.sidebar_link', ['href' => "/pages/administration.php", 'icon' => "bi-clipboard-data", 'text' =>  "Administration"])
+            @if(Auth::user()->hasRole('administrator'))
+            {{-- @auth --}}
+                @include('partials.sidebar.sidebar_link', ['href' => "/pages/administration.php", 'icon' => "bi-clipboard-data", 'text' =>  "Administration"])
+            {{-- @endauth --}}
+            @endif
         @endauth
-        {{-- @endauth --}}
+
     </ul>
 
     <!-- auth -->
