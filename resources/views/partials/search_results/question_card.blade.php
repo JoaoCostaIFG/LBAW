@@ -9,7 +9,7 @@
     </div>
     <!-- TODO Number Answers -->
     <div class="d-flex  flex-sm-column flex-row justify-content-center align-items-center gap-1">
-      <span class="fs-4"> 10 </span>
+      <span class="fs-4"> {{ count($question->answers) }} </span>
       <span>Answers</span>
       <span class="d-sm-none"><i class="bi bi-chat-left-text"></i></span>
     </div>
