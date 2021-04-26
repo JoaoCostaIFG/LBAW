@@ -21,7 +21,7 @@
       <li class="nav-item">
         <a href="#achievements" class="nav-link" data-toggle="tab">
           Achievements
-          <span class="badge bg-light text-dark rounded-pill">2</span>
+          <span class="badge bg-light text-dark rounded-pill">{{ count($user->achievements) }}</span>
         </a>
       </li>
     </ul>
@@ -36,11 +36,11 @@
   </div>
   <div class="row user-engagement-count">
     <div class="col-4 themed-grid-col text-center">
-      <h4 class="m-0 p-0">35</h4>
+      <h4 class="m-0 p-0">{{ count($user->answers) }}</h4>
       <p class="m-0 p-0">Answers</p>
     </div>
     <div class="col-4 themed-grid-col text-center">
-      <h4 class="m-0 p-0">190</h4>
+      <h4 class="m-0 p-0">{{ count($user->questions) }}</h4>
       <p class="m-0 p-0">Questions</p>
     </div>
     <div class="col-4 themed-grid-col text-center">
