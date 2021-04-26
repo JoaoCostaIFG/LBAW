@@ -55,7 +55,10 @@ class Question extends Model
             return $query;
         }
 
-        return $query->whereRaw('search @@ to_tsquery(?)', [$search])->
-            orderByRaw('ts_rank(search, plainto_tsquery(?)) DESC', [$search]);
+        return $query->join('post', 'post.id', '=', 'question.id')->
+            join('user', 'user.id', '=', 'post.id_owner')->
+            whereRaw('"question".search @@ to_tsquery(?) OR "user".search @@ to_tsquery(?)', [$search, $search])->
+            orderByRaw('ts_rank("question".search, plainto_tsquery(?)) DESC', [$search])->
+            orderByRaw('ts_rank("user".search, plainto_tsquery(?)) DESC', [$search]);
     }
 }
