@@ -8,9 +8,9 @@ class AdministrationController extends Controller
 {
     public function show(){
         echo('<br>');
-        $posts = Post::with('question')->with('answer')->with('comment')->get();
+        $posts = Post::all();
         foreach ($posts as $post) {
-            echo($post);
+            echo($post->child);
             echo('<br>');
         }
         return view("pages.administration");

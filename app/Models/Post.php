@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Prophecy\Doubler\Generator\Node\ReturnTypeNode;
 
 class Post extends Model
 {
@@ -30,18 +31,27 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function question()
+    private function question()
     {
         return $this->hasOne(Question::class, 'id', 'id');
     }
 
-    public function answer()
+    private function answer()
     {
         return $this->hasOne(Answer::class, 'id', 'id');
     }
 
-    public function comment()
+    private function comment()
     {
         return $this->hasOne(Comment::class, 'id', 'id');
+    }
+
+    public function child() {
+        if ($this->question()->exists())
+            return $this->question();
+        else if ($this->answer()->exists())
+            return $this->answer();
+        else // if ($this->comment()->exists()) -> Not needed
+            return $this->comment();
     }
 }
