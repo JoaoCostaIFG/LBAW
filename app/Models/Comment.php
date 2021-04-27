@@ -13,6 +13,13 @@ class Comment extends Model
     // Don't add create and update timestamps in database.
     public $timestamps = false;
 
+    public function getQuestionIdAttribute() {
+        if ($this->question()->exists())
+            return $this->question->id;
+        else // if ($this->answer()->exists())
+            return $this->answer->question->id;
+    }
+
     public function post()
     {
         return $this->belongsTo(Post::class, 'id');
@@ -33,12 +40,5 @@ class Comment extends Model
             return $this->question();
         else // if ($this->answer()->exists())
             return $this->answer();
-    }
-
-    public function getQuestionId() {
-        if ($this->question()->exists())
-            return $this->question->id;
-        else // if ($this->answer()->exists())
-            return $this->answer->question->id;
     }
 }

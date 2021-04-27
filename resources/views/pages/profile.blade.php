@@ -52,7 +52,19 @@
   <!-- BEGIN TAB CONTENTS -->
   <div class="tab-content">
     @include('partials.profile.about_tab') <!-- about tab -->
-    @include('partials.profile.activity_tab') <!-- activity tab -->
+
+      <!-- BEGIN ACTIVITY TAB -->
+    <div id="activity" class="tab-pane fade">
+      <div class="container-fluid themed-container text-left">
+        <h5 class="m-0 p-1">Top Topics</h5>
+      </div>
+      @include('partials.profile.top_topic_card')
+      <div class="container-fluid themed-container text-left">
+        <h5 class="m-0 p-1">Top Posts</h5>
+      </div>
+      @each('partials.profile.top_post_card', $user->questions, 'question')
+    </div>
+    <!-- END ACTIVITY TAB -->
 
     <!-- BEGIN ACHIEVEMENTS TAB -->
     <div id="achievements" class="tab-pane fade">

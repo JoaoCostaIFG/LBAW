@@ -9,9 +9,11 @@ class Question extends Model
 {
     use HasFactory;
     protected $table = "question";
-
-    // Don't add create and update timestamps in database.
     public $timestamps = false;
+
+    public function getQuestionIdAttribute() {
+        return $this->id;
+    }
 
     public function post()
     {
