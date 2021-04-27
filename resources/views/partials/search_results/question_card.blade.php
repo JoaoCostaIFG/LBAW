@@ -39,7 +39,7 @@
         <div class="d-flex flex-row flex-md-column justify-content-center align-items-start">
           <!-- Owner Username -->
           <span class="d-md-none">by&nbsp;</span>
-          <a href="/pages/profile.php">
+          <a href="/profile/{{ $question->post->owner->id }}">
             {{ $question->post->owner->username }}
           </a>
           <!-- Owner Reputation -->

@@ -9,7 +9,7 @@
           {{ $user->name }}
       </span>
       <!-- Userame -->
-      <a href="/pages/profile.php">
+      <a href="/profile/{{ $user->id }}">
           {{ $user->username }}
       </a>
     </div>
