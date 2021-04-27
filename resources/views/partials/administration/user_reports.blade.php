@@ -1,6 +1,6 @@
 <?php 
 $user = $report->post->owner;
-$question_url = 'question/' . $report->post->question_id;
+$question_url = 'question/' . $report->post->parentQuestion->id;
 $type = $report->post->type;
 ?>
 <div class="container-fluid border rounded m-3 m-sm-1 p-1" style="max-width: 35em;">
