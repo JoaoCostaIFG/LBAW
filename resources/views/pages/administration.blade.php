@@ -22,6 +22,8 @@
                     </div>
                 </div>
             </div>
+
+            @if(Auth::user()->hasRole('administrator'))
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingUser">
                     <button class="accordion-button collapsed fs-4" type="button" data-bs-toggle="collapse"
@@ -38,6 +40,8 @@
                     </div>
                 </div>
             </div>
+            @endif
+
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingEdit">
                     <button class="accordion-button collapsed fs-4" type="button" data-bs-toggle="collapse"
