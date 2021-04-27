@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('title', 'Search Results')
-    
+
 @section('content')
 
 <!-- Page Top -->
@@ -38,15 +38,15 @@
   <div class="tab-content">
     <!-- Questions Tab -->
     <div class="tab-pane fade show active" id="questions">
-      <h6 class="m-0 d-none d-md-block pt-2 pb-2" id="questions"><?php echo count($questions)?> result(s)</h6>
+      <h6 class="m-0 d-none d-md-block pt-2 pb-2" id="questions">{{ count($questions) }} result(s)</h6>
       @foreach ($questions as $question)
         @include('partials.search_results.question_card')
       @endforeach
-      
+
     </div>
     <!-- Users -->
     <div class="tab-pane fade" id="users">
-      <h6 class="m-0 d-none d-md-block pt-2 pb-2" id="users"><?php echo count($users)?> result(s)</h6>
+      <h6 class="m-0 d-none d-md-block pt-2 pb-2" id="users">{{ count($users) }} result(s)</h6>
       @for ($i = 0; $i < count($users); $i+=2)
         <div class="row p-2 gap-2">
           @include('partials.search_results.user_card', ['user' => $users[$i]])
