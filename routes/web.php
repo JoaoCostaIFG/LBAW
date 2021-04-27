@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Question;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,33 +13,18 @@
 */
 // Home
 
-use \App\Models\User;
-Route::get('/', function() {
-    $user_id = 2;
-    $questions = User::find($user_id)->questions;
-    foreach ($questions as $question) {
-        echo($question);
-        echo($question->post);
-    }
-
-    echo('<br>---<br>');
-    $answers = User::find($user_id)->answers;
-    foreach ($answers as $answer) {
-        echo($answer);
-        echo($answer->post);
-    }
-
-    echo('---<br>');
-    $comments = User::find($user_id)->comments;
-    foreach ($comments as $comment) {
-        echo($comment);
-        echo($comment->post);
-    }
-});
+use \App\Models\Post;
+Route::view('/', 'pages.index');
 // Pages
 Route::view('/home', 'pages.index');
 Route::view('/about', 'pages.about');
+Route::get('/search', 'SearchResultsController@search');
 Route::get('/news', 'NewsController@show');
+Route::get('/leaderboard', 'LeaderboardController@show');
+Route::get('/question/{id}', 'QuestionController@show');
+Route::get('/profile/{id}', 'ProfileController@show');
+Route::get('administration', 'AdministrationController@show')->middleware('role:moderator');
+Route::view('ask_question', 'pages.ask_question')->middleware('auth');
 
 // Cards
 Route::get('cards', 'CardController@list');
@@ -57,3 +43,11 @@ Route::post('login', 'Auth\LoginController@login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
+
+// TODO remove
+Route::get('/test', function() {
+  $user = Post::find(6);
+  echo('?');
+  echo($user->questionId);
+  echo('?');
+});

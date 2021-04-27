@@ -1,6 +1,9 @@
 #profile-picture {
-  min-width: 8em;
-  max-width: 18em;
+  object-fit: cover;  
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
 }
 
 .user-engagement-count {

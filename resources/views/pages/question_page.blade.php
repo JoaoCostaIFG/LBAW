@@ -3,9 +3,9 @@
 @section('title', 'Question')
 
 @section('content')
-<main class="container">
-    @include('partials.question')
+<div class="container">
+    @include('partials.posts.question')
     <hr>
-    @each('partials.answer', $question->answers, 'answer')
-</main>
+    @each('partials.posts.answer', $question->answers, 'answer')
+</div>
 @stop

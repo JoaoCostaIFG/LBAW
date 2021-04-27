@@ -1,9 +1,10 @@
 <div class="container">
 
-    @each('partials.comment', $post->comments, 'comment')
+    @each('partials.posts.comment', $post->comments, 'comment')
 
     <div class="row">
-        <a class="text-center dropdown-toggle" data-bs-toggle="dropdown" id="commentDropdownLink" aria-expanded="false">
+        <a class="text-center dropdown-toggle" data-bs-toggle="dropdown"
+         id="commentDropdownLink" aria-expanded="false">
             Add comment
         </a>
         <div class="dropdown-menu" aria-labelledby="commentDropdownLink">
