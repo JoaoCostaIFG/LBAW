@@ -1,6 +1,7 @@
 <?php
 $user = $edit_proposal->user;
 $post = $edit_proposal->post;
+$question_url = "question/" . $post->question_id;
 ?>
 <div class="container-fluid border rounded m-3 m-sm-1 p-1" style="max-width: 35em;">
   <div class="row align-items-center p-3">
@@ -12,8 +13,8 @@ $post = $edit_proposal->post;
       </div>
 
       <div class="col text-start align-middle">
-          <h6 class="fs-5"><i>Proposed an edit to a(n) <a href="question/{{ $post->getQuestionId() }}">
-            {{ $post->type() }}</a> of <b>{{ $post->owner->username }}</b></i></h6>
+          <h6 class="fs-5"><i>Proposed an edit to a(n) <a href="{{ $question_url }}">
+            {{ $post->type }}</a> of <b>{{ $post->owner->username }}</b></i></h6>
           <p class="ms-3 fs-7">{{ $post->body }}</p>
           <h6 class="fs-5"><i><b>To be changed to</b></i></h6>
           <p class="ms-3 fs-7">{{ $edit_proposal->body }}</p>

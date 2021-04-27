@@ -1,7 +1,7 @@
 <?php 
 $user = $report->post->owner;
-$question_url = $report->post->getQuestionId();
-$type = $report->post->type();
+$question_url = 'question/' . $report->post->question_id;
+$type = $report->post->type;
 ?>
 <div class="container-fluid border rounded m-3 m-sm-1 p-1" style="max-width: 35em;">
     <div class="row align-items-center p-3">
@@ -17,10 +17,10 @@ $type = $report->post->type();
             <p class="text-start ms-3 fs-7">{{ mb_strimwidth($report->post->body, 0, 128, "...") }}</p>
             <h6 class="text-start fs-5">
               <i><b>In this 
-                <a href="{{ 'question/' . $question_url }}">{{ $type }}</a>
+                <a href="{{ $question_url }}">{{ $type }}</a>
               </b></i>
             </h6>
-            @if ($report->post->type() == "question")
+            @if ($type == "question")
               <p class="text-start ms-3 fs-7">Why is processing a sorted array faster than processing
                   an unsorted array?</p>
             @endif
