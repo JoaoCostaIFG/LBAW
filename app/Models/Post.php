@@ -11,9 +11,32 @@ class Post extends Model
     use HasFactory;
 
     protected $table = "post";
+    private $child;
 
     // Don't add create and update timestamps in database.
     public $timestamps = false;
+
+    public function getChildAttribute()
+    {
+        if (empty($this->child)) {
+            if ($this->question()->exists())
+                $this->child = $this->question();
+            else if ($this->answer()->exists())
+                $this->child = $this->answer();
+            else // if ($this->comment()->exists()) -> Not needed
+                $this->child = $this->comment();
+        }
+
+        return $this->child->get()[0];
+    }
+
+    public function getTypeAttribute() {
+        return $this->getChildAttribute()->getTable();
+    }
+
+    public function getQuestionIdAttribute() {
+        return $this->getChildAttribute()->questionId;
+    }
 
     /**
      * Get the user that owns the Post
@@ -44,28 +67,5 @@ class Post extends Model
     protected function comment()
     {
         return $this->hasOne(Comment::class, 'id', 'id');
-    }
-
-    public function child() {
-        if ($this->question()->exists())
-            return $this->question();
-        else if ($this->answer()->exists())
-            return $this->answer();
-        else // if ($this->comment()->exists()) -> Not needed
-            return $this->comment();
-    }
-
-    public function type() {
-        return $this->child->getTable();
-    }
-
-    public function getQuestionId() {
-
-        if ($this->question()->exists())
-            return $this->question->id;
-        else if ($this->answer()->exists())
-            return $this->answer->question->id;
-        else // if ($this->comment()->exists()) -> Not needed
-            return $this->comment->getQuestionId();
     }
 }

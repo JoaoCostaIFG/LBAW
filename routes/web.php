@@ -13,7 +13,7 @@ use App\Models\Question;
 */
 // Home
 
-use \App\Models\User;
+use \App\Models\Post;
 Route::view('/', 'pages.index');
 // Pages
 Route::view('/home', 'pages.index');
@@ -42,3 +42,11 @@ Route::post('login', 'Auth\LoginController@login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
+
+// TODO remove
+Route::get('/test', function() {
+  $user = Post::find(6);
+  echo('?');
+  echo($user->questionId);
+  echo('?');
+});
