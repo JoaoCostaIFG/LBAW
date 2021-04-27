@@ -15,12 +15,23 @@ class Answer extends Model
 
     public function post()
     {
-        return $this->hasOne(Post::class, 'id');
+        return $this->belongsTo(Post::class, 'id');
     }
 
     public function comments()
     {
         return $this->hasMany(Comment::class, 'id_answer');
+    }
+
+    public function question()
+    {
+        return $this->hasOneThrough(
+            Question::class,
+            AnswerQuestion::class,
+            'id_answer',
+            'id',
+            'id',
+            'id_question');
     }
 }
 

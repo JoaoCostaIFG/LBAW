@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    // TODO Store type in constructor
     use HasFactory;
 
     protected $table = "post";
@@ -28,5 +29,43 @@ class Post extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    protected function question()
+    {
+        return $this->hasOne(Question::class, 'id', 'id');
+    }
+
+    protected function answer()
+    {
+        return $this->hasOne(Answer::class, 'id', 'id');
+    }
+
+    protected function comment()
+    {
+        return $this->hasOne(Comment::class, 'id', 'id');
+    }
+
+    public function child() {
+        if ($this->question()->exists())
+            return $this->question();
+        else if ($this->answer()->exists())
+            return $this->answer();
+        else // if ($this->comment()->exists()) -> Not needed
+            return $this->comment();
+    }
+
+    public function type() {
+        return $this->child->getTable();
+    }
+
+    public function getQuestionId() {
+
+        if ($this->question()->exists())
+            return $this->question->id;
+        else if ($this->answer()->exists())
+            return $this->answer->question->id;
+        else // if ($this->comment()->exists()) -> Not needed
+            return $this->comment->getQuestionId();
     }
 }

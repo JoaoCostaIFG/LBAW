@@ -10,7 +10,6 @@
   <div class="py-3 border-bottom pb-0">
     <div class="d-flex flex-row align-items-center justify-content-between">
       <!-- TODO: Number of Results -->
-      <h6 class="m-0 d-none d-md-block">50 results</h6>
       <!-- Tabs -->
       <ul class="nav nav-tabs">
         <li class="nav-item">
@@ -39,6 +38,7 @@
   <div class="tab-content">
     <!-- Questions Tab -->
     <div class="tab-pane fade show active" id="questions">
+      <h6 class="m-0 d-none d-md-block pt-2 pb-2" id="questions"><?php echo count($questions)?> result(s)</h6>
       @foreach ($questions as $question)
         @include('partials.search_results.question_card')
       @endforeach
@@ -46,6 +46,7 @@
     </div>
     <!-- Users -->
     <div class="tab-pane fade" id="users">
+      <h6 class="m-0 d-none d-md-block pt-2 pb-2" id="users"><?php echo count($users)?> result(s)</h6>
       @for ($i = 0; $i < count($users); $i+=2)
         <div class="row p-2 gap-2">
           @include('partials.search_results.user_card', ['user' => $users[$i]])

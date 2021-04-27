@@ -14,6 +14,10 @@ class TopicQuestion extends Model
     // Don't add create and update timestamps in database.
     public $timestamps = false;
 
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'id_user');
+    }
 
     public function question()
     {

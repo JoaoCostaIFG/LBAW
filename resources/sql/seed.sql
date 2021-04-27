@@ -453,7 +453,7 @@ END
 $$
 LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION vote() RETURNS TRIGGER 
+CREATE OR REPLACE FUNCTION vote() RETURNS TRIGGER
 AS $$
   DECLARE
     owner integer;
@@ -468,7 +468,7 @@ AS $$
 $$
 LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION notification_generalization() RETURNS TRIGGER 
+CREATE OR REPLACE FUNCTION notification_generalization() RETURNS TRIGGER
 AS $$
   BEGIN
       IF EXISTS (SELECT *
@@ -481,11 +481,11 @@ AS $$
 $$
 LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION post_generalization() RETURNS TRIGGER 
+CREATE OR REPLACE FUNCTION post_generalization() RETURNS TRIGGER
 AS $$
   BEGIN
-      IF EXISTS (SELECT * 
-        FROM question, answer, comment  
+      IF EXISTS (SELECT *
+        FROM question, answer, comment
         WHERE question.id = New.id OR answer.id = New.id OR comment.id = New.id) THEN
         RAISE EXCEPTION 'Post must be disjoint.';
       END IF;
@@ -495,7 +495,7 @@ $$
 LANGUAGE plpgsql;
 
 -- Achievements
-CREATE OR REPLACE FUNCTION achievement_first_question() RETURNS TRIGGER 
+CREATE OR REPLACE FUNCTION achievement_first_question() RETURNS TRIGGER
 AS $$
   DECLARE
     owner_id integer;
@@ -503,7 +503,7 @@ AS $$
   BEGIN
       owner_id := (SELECT post.id_owner AS owner_id FROM post JOIN question ON(post.id = question.id) WHERE post.id = NEW.id);
       question_amount := (SELECT COUNT(*) FROM post JOIN question ON(post.id = question.id) WHERE post.id_owner = owner_id);
-      
+
       IF (question_amount = 1) THEN
         IF NOT EXISTS (SELECT * FROM achieved WHERE id_user = owner_id AND id_achievement = 1) THEN
           INSERT INTO achieved(id_user, id_achievement) VALUES (owner_id, 1);
@@ -514,7 +514,7 @@ AS $$
 $$
 LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION achievement_first_accepted_answer() RETURNS TRIGGER 
+CREATE OR REPLACE FUNCTION achievement_first_accepted_answer() RETURNS TRIGGER
 AS $$
   DECLARE
     accepted_answer_id integer;
@@ -524,7 +524,7 @@ AS $$
 
     IF (accepted_answer_id IS NOT NULL) THEN
       answer_owner_id := (SELECT id_owner FROM post WHERE id = accepted_answer_id);
-      IF NOT EXISTS (SELECT * FROM achieved WHERE id_user = answer_owner_id AND id_achievement = 2) THEN 
+      IF NOT EXISTS (SELECT * FROM achieved WHERE id_user = answer_owner_id AND id_achievement = 2) THEN
         INSERT INTO achieved(id_user, id_achievement) VALUES (answer_owner_id, 2);
       END IF;
     END IF;
@@ -533,7 +533,7 @@ AS $$
 $$
 LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION achievement_reputation() RETURNS TRIGGER 
+CREATE OR REPLACE FUNCTION achievement_reputation() RETURNS TRIGGER
 AS $$
   BEGIN
     IF (NEW.reputation < 100) THEN
@@ -565,7 +565,7 @@ $$
 LANGUAGE plpgsql;
 
 -- NOTIFICATIONS
-CREATE OR REPLACE FUNCTION add_achievement_notification() RETURNS TRIGGER 
+CREATE OR REPLACE FUNCTION add_achievement_notification() RETURNS TRIGGER
 AS $$
   BEGIN
       INSERT INTO notification (title, body, recipient) VALUES ('New achievement', 'You have achieved: ', NEW.id_user);
@@ -575,7 +575,7 @@ AS $$
 $$
 LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION add_new_answer_notification() RETURNS TRIGGER 
+CREATE OR REPLACE FUNCTION add_new_answer_notification() RETURNS TRIGGER
 AS $$
   BEGIN
       INSERT INTO notification (title, body, recipient) VALUES ('New answer', 'Someone answered your question: ', NEW.id_question);
@@ -585,7 +585,7 @@ AS $$
 $$
 LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION add_new_comment_notification() RETURNS TRIGGER 
+CREATE OR REPLACE FUNCTION add_new_comment_notification() RETURNS TRIGGER
 AS $$
   BEGIN
       IF (NEW.id_question IS NOT NULL) THEN
@@ -658,7 +658,7 @@ DROP TRIGGER IF EXISTS notification_achievement_generalization_trigger ON notifi
 CREATE TRIGGER notification_achievement_generalization_trigger
 BEFORE INSERT OR UPDATE ON notification_achievement
 FOR EACH ROW
-EXECUTE PROCEDURE notification_generalization(); 
+EXECUTE PROCEDURE notification_generalization();
 
 DROP TRIGGER IF EXISTS notification_post_generalization_trigger ON notification_post CASCADE;
 CREATE TRIGGER notification_post_generalization_trigger
@@ -679,7 +679,7 @@ DROP TRIGGER IF EXISTS post_question_generalization_trigger ON question CASCADE;
 CREATE TRIGGER post_question_generalization_trigger
 BEFORE INSERT ON question
 FOR EACH ROW
-EXECUTE PROCEDURE post_generalization(); 
+EXECUTE PROCEDURE post_generalization();
 
 DROP TRIGGER IF EXISTS post_comment_generalization_trigger ON comment CASCADE;
 CREATE TRIGGER post_comment_generalization_trigger
@@ -709,7 +709,7 @@ DROP TRIGGER IF EXISTS achievement_first_question_trigger ON question CASCADE;
 CREATE TRIGGER achievement_first_question_trigger
 AFTER INSERT ON question
 FOR EACH ROW
-EXECUTE PROCEDURE achievement_first_question(); 
+EXECUTE PROCEDURE achievement_first_question();
 
 DROP TRIGGER IF EXISTS achievement_first_accepted_answer_trigger ON question CASCADE;
 CREATE TRIGGER achievement_first_accepted_answer_trigger
@@ -760,7 +760,7 @@ DECLARE
 BEGIN
   INSERT INTO post(id_owner, body, "date") VALUES(OwnerUser, Body, DatePost);
   -- INSERT INTO question(id, accepted_answer, title, bounty, closed) SELECT(1, NULL, Title, Bounty, Closed);
-  INSERT INTO question(id, accepted_answer, title, bounty, closed) 
+  INSERT INTO question(id, accepted_answer, title, bounty, closed)
   	VALUES (currval(pg_get_serial_sequence('post','id')), NULL, Title, Bounty, Closed);
 END
 $$;
@@ -866,42 +866,44 @@ $$;
 
 -- R01
 insert into "user" (name, username, password, email, about, picture) values
-  ('Torrance Jerrom', 'tjerrom0', 'YeBGgmC', 'tjerrom0@deliciousdays.com', 'Dental Hygienist', 'http://dummyimage.com/102x100.png/ff4444/ffffff'),
-  ('Keenan O''Bruen', 'kobruen1', 'BTFYEdJ', 'kobruen1@yolasite.com', 'Tax Accountant', 'http://dummyimage.com/135x100.png/dddddd/000000'),
-  ('Joey Kores', 'jkores2', 'hSpFcNF', 'jkores2@parallels.com', 'Administrative Officer', 'http://dummyimage.com/169x100.png/5fa2dd/ffffff'),
-  ('Berky Shakespeare', 'bshakespeare3', 'UlBGb5', 'bshakespeare3@deliciousdays.com', 'Biostatistician IV', 'http://dummyimage.com/110x100.png/dddddd/000000'),
-  ('Ives Shinn', 'ishinn4', 'ct4ESru', 'ishinn4@topsy.com', 'Programmer Analyst IV', 'http://dummyimage.com/226x100.png/cc0000/ffffff'),
-  ('Ian Franklyn', 'ifranklyn5', 'zLrS0M6kj', 'ifranklyn5@oracle.com', 'Senior Quality Engineer', 'http://dummyimage.com/231x100.png/ff4444/ffffff'),
-  ('Pernell Danelut', 'pdanelut6', 'Ev58adsWg', 'pdanelut6@shareasale.com', 'Marketing Manager', 'http://dummyimage.com/233x100.png/ff4444/ffffff'),
-  ('Malachi Rilings', 'mrilings7', 'KzNfOzPGNf0', 'mrilings7@tinypic.com', 'Nurse', 'http://dummyimage.com/248x100.png/ff4444/ffffff'),
-  ('Gill Lehrian', 'glehrian8', '5so0kMf9N7D9', 'glehrian8@sina.com.cn', 'Junior Executive', 'http://dummyimage.com/170x100.png/ff4444/ffffff'),
-  ('Baily Bernet', 'bbernet9', 'TTXdHTpMu3N', 'bbernet9@weather.com', 'Chemical Engineer', 'http://dummyimage.com/199x100.png/ff4444/ffffff'),
-  ('Miner Abazi', 'mabazia', 'EllP4J8DVM', 'mabazia@mashable.com', 'Payment Adjustment Coordinator', 'http://dummyimage.com/141x100.png/dddddd/000000'),
-  ('Kleon Olech', 'kolechb', 'Nau0PYH5ZS', 'kolechb@studiopress.com', 'Environmental Specialist', 'http://dummyimage.com/198x100.png/5fa2dd/ffffff'),
-  ('Emmy Sisley', 'esisleyc', 'VICwW4yX', 'esisleyc@noaa.gov', 'Account Representative II', 'http://dummyimage.com/174x100.png/5fa2dd/ffffff'),
-  ('Olav Zanetto', 'ozanettod', 'OJJLPwNPIIf', 'ozanettod@hostgator.com', 'Senior Developer', 'http://dummyimage.com/116x100.png/dddddd/000000'),
-  ('Paulina Habbeshaw', 'phabbeshawe', 'QZkZLn', 'phabbeshawe@time.com', 'Librarian', 'http://dummyimage.com/224x100.png/ff4444/ffffff'),
-  ('Karil Peoples', 'kpeoplesf', '9mLVnY1Fkksm', 'kpeoplesf@behance.net', 'Occupational Therapist', 'http://dummyimage.com/200x100.png/5fa2dd/ffffff'),
-  ('Daisi Worters', 'dwortersg', 'WEwGru55Bl4a', 'dwortersg@icio.us', 'Help Desk Operator', 'http://dummyimage.com/143x100.png/dddddd/000000'),
-  ('Cathee Carthy', 'ccarthyh', 'rhfqZj3kV02', 'ccarthyh@twitter.com', 'Senior Quality Engineer', 'http://dummyimage.com/177x100.png/ff4444/ffffff'),
-  ('Dusty Maxwaile', 'dmaxwailei', 'oZJFF9', 'dmaxwailei@google.nl', 'Systems Administrator II', 'http://dummyimage.com/235x100.png/ff4444/ffffff'),
-  ('Tybalt Russan', 'trussanj', '1rlJ9S3', 'trussanj@linkedin.com', 'Editor', 'http://dummyimage.com/179x100.png/ff4444/ffffff'),
-  ('Rhona Kemmett', 'rkemmettk', 'xCrizjpI', 'rkemmettk@lulu.com', 'Information Systems Manager', 'http://dummyimage.com/120x100.png/ff4444/ffffff'),
-  ('Rubetta Molesworth', 'rmolesworthl', 'HebsnJ7jD1nH', 'rmolesworthl@hexun.com', 'Geologist I', 'http://dummyimage.com/227x100.png/ff4444/ffffff'),
-  ('Magdaia Volcker', 'mvolckerm', '7B8AVrNiv7FK', 'mvolckerm@bluehost.com', 'VP Product Management', 'http://dummyimage.com/122x100.png/dddddd/000000'),
-  ('Eleen Bullin', 'ebullinn', 'LrZT0WxXi', 'ebullinn@vk.com', 'Software Engineer IV', 'http://dummyimage.com/172x100.png/5fa2dd/ffffff'),
-  ('Anallese Thoma', 'athomao', 'DBlMQm', 'athomao@flickr.com', 'Research Assistant III', 'http://dummyimage.com/150x100.png/5fa2dd/ffffff'),
-  ('Gib Kipping', 'gkippingp', 'f0GXcvW1l', 'gkippingp@joomla.org', 'Operator', 'http://dummyimage.com/120x100.png/cc0000/ffffff'),
-  ('Jasun Deverock', 'jdeverockq', 'T7ELVdowbl0', 'jdeverockq@addthis.com', 'Statistician IV', 'http://dummyimage.com/115x100.png/cc0000/ffffff'),
-  ('Jodee Burmaster', 'jburmasterr', 'mffWNq', 'jburmasterr@foxnews.com', 'Biostatistician I', 'http://dummyimage.com/148x100.png/5fa2dd/ffffff'),
-  ('Glynn Baytrop', 'gbaytrops', 'r4HP1rmMuAfo', 'gbaytrops@ed.gov', 'Sales Representative', 'http://dummyimage.com/218x100.png/5fa2dd/ffffff'),
-  ('Zilvia Marvell', 'zmarvellt', 'uudLf0', 'zmarvellt@cbslocal.com', 'Senior Quality Engineer', 'http://dummyimage.com/139x100.png/ff4444/ffffff');
+  ('Torrance Jerrom', 'tjerrom0', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'tjerrom0@deliciousdays.com', 'Dental Hygienist', '/image/a.jpg'),
+  ('Keenan O''Bruen', 'kobruen1', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'kobruen1@yolasite.com', 'Tax Accountant', 'http://dummyimage.com/135x100.png/dddddd/000000'),
+  ('Joey Kores', 'jkores2', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'jkores2@parallels.com', 'Administrative Officer', 'http://dummyimage.com/169x100.png/5fa2dd/ffffff'),
+  ('Berky Shakespeare', 'bshakespeare3', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'bshakespeare3@deliciousdays.com', 'Biostatistician IV', 'http://dummyimage.com/110x100.png/dddddd/000000'),
+  ('Ives Shinn', 'ishinn4', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'ishinn4@topsy.com', 'Programmer Analyst IV', 'http://dummyimage.com/226x100.png/cc0000/ffffff'),
+  ('Ian Franklyn', 'ifranklyn5', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'ifranklyn5@oracle.com', 'Senior Quality Engineer', 'http://dummyimage.com/231x100.png/ff4444/ffffff'),
+  ('Pernell Danelut', 'pdanelut6', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'pdanelut6@shareasale.com', 'Marketing Manager', 'http://dummyimage.com/233x100.png/ff4444/ffffff'),
+  ('Malachi Rilings', 'mrilings7', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'mrilings7@tinypic.com', 'Nurse', 'http://dummyimage.com/248x100.png/ff4444/ffffff'),
+  ('Gill Lehrian', 'glehrian8', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'glehrian8@sina.com.cn', 'Junior Executive', 'http://dummyimage.com/170x100.png/ff4444/ffffff'),
+  ('Baily Bernet', 'bbernet9', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'bbernet9@weather.com', 'Chemical Engineer', 'http://dummyimage.com/199x100.png/ff4444/ffffff'),
+  ('Miner Abazi', 'mabazia', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'mabazia@mashable.com', 'Payment Adjustment Coordinator', 'http://dummyimage.com/141x100.png/dddddd/000000'),
+  ('Kleon Olech', 'kolechb', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'kolechb@studiopress.com', 'Environmental Specialist', 'http://dummyimage.com/198x100.png/5fa2dd/ffffff'),
+  ('Emmy Sisley', 'esisleyc', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'esisleyc@noaa.gov', 'Account Representative II', 'http://dummyimage.com/174x100.png/5fa2dd/ffffff'),
+  ('Olav Zanetto', 'ozanettod', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'ozanettod@hostgator.com', 'Senior Developer', 'http://dummyimage.com/116x100.png/dddddd/000000'),
+  ('Paulina Habbeshaw', 'phabbeshawe', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'phabbeshawe@time.com', 'Librarian', 'http://dummyimage.com/224x100.png/ff4444/ffffff'),
+  ('Karil Peoples', 'kpeoplesf', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'kpeoplesf@behance.net', 'Occupational Therapist', 'http://dummyimage.com/200x100.png/5fa2dd/ffffff'),
+  ('Daisi Worters', 'dwortersg', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'dwortersg@icio.us', 'Help Desk Operator', 'http://dummyimage.com/143x100.png/dddddd/000000'),
+  ('Cathee Carthy', 'ccarthyh', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'ccarthyh@twitter.com', 'Senior Quality Engineer', 'http://dummyimage.com/177x100.png/ff4444/ffffff'),
+  ('Dusty Maxwaile', 'dmaxwailei', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'dmaxwailei@google.nl', 'Systems Administrator II', 'http://dummyimage.com/235x100.png/ff4444/ffffff'),
+  ('Tybalt Russan', 'trussanj', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'trussanj@linkedin.com', 'Editor', 'http://dummyimage.com/179x100.png/ff4444/ffffff'),
+  ('Rhona Kemmett', 'rkemmettk', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'rkemmettk@lulu.com', 'Information Systems Manager', 'http://dummyimage.com/120x100.png/ff4444/ffffff'),
+  ('Rubetta Molesworth', 'rmolesworthl', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'rmolesworthl@hexun.com', 'Geologist I', 'http://dummyimage.com/227x100.png/ff4444/ffffff'),
+  ('Magdaia Volcker', 'mvolckerm', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'mvolckerm@bluehost.com', 'VP Product Management', 'http://dummyimage.com/122x100.png/dddddd/000000'),
+  ('Eleen Bullin', 'ebullinn', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'ebullinn@vk.com', 'Software Engineer IV', 'http://dummyimage.com/172x100.png/5fa2dd/ffffff'),
+  ('Anallese Thoma', 'athomao', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'athomao@flickr.com', 'Research Assistant III', 'http://dummyimage.com/150x100.png/5fa2dd/ffffff'),
+  ('Gib Kipping', 'gkippingp', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'gkippingp@joomla.org', 'Operator', 'http://dummyimage.com/120x100.png/cc0000/ffffff'),
+  ('Jasun Deverock', 'jdeverockq', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'jdeverockq@addthis.com', 'Statistician IV', 'http://dummyimage.com/115x100.png/cc0000/ffffff'),
+  ('Jodee Burmaster', 'jburmasterr', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'jburmasterr@foxnews.com', 'Biostatistician I', 'http://dummyimage.com/148x100.png/5fa2dd/ffffff'),
+  ('Glynn Baytrop', 'gbaytrops', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'gbaytropj,s@ed.gov', 'Sales Representative', 'http://dummyimage.com/218x100.png/5fa2dd/ffffff'),
+  ('Zilvia Marvell', 'zmarvellt', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'zmarvellt@cbslocal.com', 'Senior Quality Engineer', 'http://dummyimage.com/139x100.png/ff4444/ffffff'),
+  ('1', '1', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', '1', '1', 'http://dummyimage.com/139x100.png/ff4444/ffffff'),
+  ('admin', 'admin', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'admin', 'admin', 'http://dummyimage.com/139x100.png/ff4444/ffffff');
 
 -- R02
-insert into moderator (id) values (1), (2), (3);
+insert into moderator (id) values (1), (2), (3), (32);
 
 -- R03
-insert into administrator (id) values (1);
+insert into administrator (id) values (1), (32);
 
 -- R04
 insert into ban (id_user, id_admin, "date", reason) values
@@ -914,9 +916,10 @@ insert into news (id, author, title, subtitle, body, date) values
   (2, 1, 'We have reached 100 members.', 'Our community is growing.', 'Thank you everyone for trusting us.', '2021-03-15');
 
 -- R06
-INSERT INTO topic_proposal (id, id_user, id_admin, topic_name, "date", reason, accepted) VALUES 
-  (1, 3, NULL, 'zig', '2020-03-28', 'interesting language', false),
-  (2, 1, 1, 'c++', '2020-03-28','i like c plus plus', false);
+INSERT INTO topic_proposal (id_user, id_admin, topic_name, "date", reason, accepted) VALUES
+  (3, NULL, 'zig', '2020-03-28', 'interesting language', false),
+  (3, NULL, 'bazinga', '2021-03-03', 'big bog theorom', false),
+  (1, 1, 'c++', '2020-01-11','i like c plus plus', false);
 
 -- R07
 INSERT INTO achievement(id, title, body) VALUES
@@ -957,7 +960,7 @@ UPDATE "user" SET reputation = 1050 WHERE id = 2;
 UPDATE "user" SET reputation = 150 WHERE id = 3;
 
 -- R14
-INSERT INTO vote(id_post, id_user, value) VALUES 
+INSERT INTO vote(id_post, id_user, value) VALUES
   (1, 2, -1),
   (1, 3, 1),
   (1, 4, -1),
@@ -968,8 +971,9 @@ INSERT INTO vote(id_post, id_user, value) VALUES
   (5, 11, 1);
 
 -- R15
-INSERT INTO edit_proposal(id_post, id_user, id_moderator, body) VALUES
-  (3, 5, NULL, '<expression 2> if <condition> else <expression 1>');
+INSERT INTO edit_proposal(id_post, id_user, id_moderator, body, accepted) VALUES
+  (3, 5, NULL, '<expression 2> if <condition> else <expression 1>', false),
+  (2, 2, 32, 'padoru estás disponivel para dar', false);
 
 
 -- R16
@@ -989,4 +993,8 @@ INSERT INTO topic_question (id_topic, id_question) VALUES (1, 15);
 INSERT INTO topic_question (id_topic, id_question) VALUES (4, 15);
 
 -- R18
-INSERT INTO report (id_post, reporter, "date", reason, state, reviewer) VALUES (15, 15, '2020-07-29', 'He called me dumb', 'pending', 2);
+INSERT INTO report (id_post, reporter, "date", reason, state, reviewer) VALUES
+  (2, 1, '2020-07-29', 'He called me dumb', 'pending', 2),
+  (7, 5, '2021-01-09', 'He called me not cool', 'pending', 2),
+  (10, 10, '2020-09-20', 'He was bad', 'approved', 2),
+  (15, 15, '2020-11-12', 'He is sheldon cooper', 'rejected', 2);

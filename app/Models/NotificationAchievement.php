@@ -5,18 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Achieved extends Model
+class NotificationAchievement extends Model
 {
     use HasFactory;
-
-    protected $table = "achieved";
+    protected $table = "notification_achievement";
 
     // Don't add create and update timestamps in database.
     public $timestamps = false;
 
-    public function user()
+    public function notification()
     {
-        return $this->hasOne(User::class, 'id', 'id_user');
+        return $this->belongsTo(Notification::class, 'id');
     }
 
     public function achievement()

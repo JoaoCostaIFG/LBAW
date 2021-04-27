@@ -9,7 +9,7 @@
     </div>
     <!-- TODO Number Answers -->
     <div class="d-flex  flex-sm-column flex-row justify-content-center align-items-center gap-1">
-      <span class="fs-4"> 10 </span>
+      <span class="fs-4"> {{ count($question->answers) }} </span>
       <span>Answers</span>
       <span class="d-sm-none"><i class="bi bi-chat-left-text"></i></span>
     </div>
@@ -17,7 +17,7 @@
   <div class="d-flex flex-column justify-content-start align-items-start w-100">
     <section>
       <!-- Question Title -->
-      <a class="fs-5 fw-bold" href="/pages/question_admin.php">{{ $question->title }}</a>
+      <a class="fs-5 fw-bold" href="/question/{{ $question->id }}">{{ $question->title }}</a>
       <!-- Question body -->
       <p class="d-none d-md-block">{{ $question->post->body }}</p>
     </section>

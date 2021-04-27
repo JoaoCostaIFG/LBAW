@@ -5,13 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Achieved extends Model
+class EditProposal extends Model
 {
     use HasFactory;
 
-    protected $table = "achieved";
-
-    // Don't add create and update timestamps in database.
+    protected $table = "edit_proposal";
     public $timestamps = false;
 
     public function user()
@@ -19,8 +17,13 @@ class Achieved extends Model
         return $this->hasOne(User::class, 'id', 'id_user');
     }
 
-    public function achievement()
+    public function post()
     {
-        return $this->hasOne(Achievement::class, 'id', 'id_achievement');
+        return $this->hasOne(Post::class, 'id', 'id_post');
+    }
+
+    public function scopePending($query) {
+        return $query->whereNull('id_moderator');
     }
 }
+
