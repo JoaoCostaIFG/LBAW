@@ -9,7 +9,8 @@
         </div>
         <div class="row p-sm-3 p-0">
             <img src="{{ $question->post->owner->picture }}" class="center p-2 p-sm-3" alt="">
-            <a class="d-block text-center">{{ $question->post->owner->username }}</a> <!--  style="overflow:hidden; -->
+            <a class="d-block text-center" href="/profile/{{ $question->post->owner->id }}">
+            {{ $question->post->owner->username }}</a> <!--  style="overflow:hidden; -->
             <span class="d-block text-center">{{ $question->post->owner->reputation }} Points</span>
         </div>
     </div>
