@@ -75,7 +75,7 @@ class RegisterController extends Controller
 
         $validation = $this->validator($request->all());
         if ($validation->fails()) {
-            return back()->withErrors($validation);
+            return back()->withErrors($validation)->withInput($request->except('password'));
         }
 
         $user = $this->create($request->all());
