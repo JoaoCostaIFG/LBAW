@@ -27,19 +27,11 @@ class User extends Authenticatable {
         'username', 'password', 'email'
     ];
 
-    public function hasRole($role) {
-        if (DB::table('administrator')->where('id', $this->id)->exists() && ($role === 'administrator' || $role === 'moderator')) {
-            return true;
-        }
-        if (DB::table('moderator')->where('id', $this->id)->exists() && $role === 'moderator') {
-            return true;
-        }
-        return false;
-    }
+    // Relations
 
     public function posts()
     {
-        return $this->hasMany(Post::class, 'id');
+        return $this->hasMany(Post::class, 'id_owner', 'id');
     }
 
     public function questions()
@@ -69,6 +61,13 @@ class User extends Authenticatable {
         );
     }
 
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class, 'id', 'id');
+    }
+
+    // Search functions
+
     public function scopeSearch($query, $search)
     {
         if (!$search) {
@@ -79,8 +78,41 @@ class User extends Authenticatable {
             orderByRaw('ts_rank(search, plainto_tsquery(?)) DESC', [$search]);
     }
 
-    public function notifications()
-    {
-        return $this->hasMany(Notification::class, 'id', 'id');
+    public function hasRole($role) {
+        if (DB::table('administrator')->where('id', $this->id)->exists() && ($role === 'administrator' || $role === 'moderator')) {
+            return true;
+        }
+        if (DB::table('moderator')->where('id', $this->id)->exists() && $role === 'moderator') {
+            return true;
+        }
+        return false;
     }
+
+    public function getTopicParticipation()
+    {
+        $query = DB::query()->fromSub(function ($q) {
+                $questions_topic = Topic::selectRaw('topic.id as topic_id, post.id as post_id, post.score as score')
+                    ->join('topic_question', 'topic.id', '=', 'topic_question.id_topic')
+                    ->join('question', 'question.id', '=', 'topic_question.id_question')
+                    ->join('post', 'post.id', '=', 'question.id')
+                    ->join('user', 'user.id', '=', 'post.id_owner')
+                    ->where('user.id', '=', $this->id);
+
+                $q->from('topic')->
+                    selectRaw('topic.id as topic_id, post.id as post_id, post.score as score')
+                    ->join('topic_question', 'topic.id', '=', 'topic_question.id_topic')
+                    ->join('question', 'question.id', '=', 'topic_question.id_question')
+                    ->join('answer_question', 'question.id', '=', 'answer_question.id_question')
+                    ->join('answer', 'answer.id', '=', 'answer_question.id_answer')
+                    ->join('post', 'post.id', '=', 'answer.id')
+                    ->join('user', 'user.id', '=', 'post.id_owner')
+                    ->where('user.id', '=', $this->id)->union($questions_topic);
+            }, 'table')
+            ->selectRaw('topic_id, count(post_id) as cnt, sum(score) as score')
+            ->groupBy('topic_id')
+            ->orderBy('cnt', 'desc');
+
+        return $query->get();
+    }
+
 }

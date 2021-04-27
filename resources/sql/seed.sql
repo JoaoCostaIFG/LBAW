@@ -950,6 +950,8 @@ CALL create_comment(14, 'Exactly, the repo is also under an MIT License, which r
 CALL create_question(15, 'How do you set, clear, and toggle a bit?', '2019-08-22', 'How do you set, clear, and toggle a single bit?', 0, true);
 CALL create_answer(16, 'Use the bitwise OR operator (|) to set a bit.', '2020-09-20', 15);
 CALL create_comment(17, 'You are very dumb haha','2020-09-20', 15, NULL);
+CALL create_question(1, 'How do you post a question', '2019-08-22', 'is it here?', 0, false);
+CALL create_answer(1, 'Someone delete this please', '2021-02-21', 18);
 
 UPDATE question SET accepted_answer = 3 WHERE id = 1;
 UPDATE question SET accepted_answer = 10 WHERE id = 9;
@@ -991,6 +993,9 @@ INSERT INTO topic_question (id_topic, id_question) VALUES (3, 9);
 INSERT INTO topic_question (id_topic, id_question) VALUES (2, 12);
 INSERT INTO topic_question (id_topic, id_question) VALUES (1, 15);
 INSERT INTO topic_question (id_topic, id_question) VALUES (4, 15);
+INSERT INTO topic_question (id_topic, id_question) VALUES (1, 18);
+INSERT INTO topic_question (id_topic, id_question) VALUES (2, 18);
+INSERT INTO topic_question (id_topic, id_question) VALUES (6, 18);
 
 -- R18
 INSERT INTO report (id_post, reporter, "date", reason, state, reviewer) VALUES

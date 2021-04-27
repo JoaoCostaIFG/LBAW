@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Question;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +12,7 @@ use App\Models\Question;
 */
 // Home
 
+use \App\Models\User;
 use \App\Models\Post;
 Route::view('/', 'pages.index');
 // Pages
@@ -46,8 +46,8 @@ Route::post('register', 'Auth\RegisterController@register');
 
 // TODO remove
 Route::get('/test', function() {
-  $user = Post::find(6);
-  echo('?');
-  echo($user->questionId);
-  echo('?');
+  $user = User::find(1);
+  $post = Post::find(1);
+  echo $user->getTopicParticipation();
+  // echo $post->parentQuestion;
 });
