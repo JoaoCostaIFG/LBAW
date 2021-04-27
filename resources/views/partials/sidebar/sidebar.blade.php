@@ -48,7 +48,7 @@
       </div>
       <ul class="list-group">
           @include('partials.sidebar.sidebar_link', ['href' => "/profile/" . Auth::id(), 'icon' => "bi-person-circle", 'text' =>  "My Profile"])
-          @include('partials.sidebar.sidebar_link', ['href' => "/pages/add_question.php", 'icon' => "bi-plus-circle", 'text' =>  "Ask Question"]) {{-- TODO --}}
+          @include('partials.sidebar.sidebar_link', ['href' => "/ask_question", 'icon' => "bi-plus-circle", 'text' =>  "Ask Question"]) {{-- TODO --}}
       </ul>
 
       <div class="row justify-content-evenly sidebar-buttons">

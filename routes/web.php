@@ -24,6 +24,7 @@ Route::get('/leaderboard', 'LeaderboardController@show');
 Route::get('/question/{id}', 'QuestionController@show');
 Route::get('/profile/{id}', 'ProfileController@show');
 Route::get('administration', 'AdministrationController@show')->middleware('role:moderator');
+Route::view('ask_question', 'pages.ask_question')->middleware('auth');
 
 // Cards
 Route::get('cards', 'CardController@list');
