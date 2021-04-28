@@ -31,11 +31,17 @@ Route::get('cards', 'CardController@list');
 Route::get('cards/{id}', 'CardController@show');
 
 // API
-Route::put('api/cards', 'CardController@create');
-Route::delete('api/cards/{card_id}', 'CardController@delete');
-Route::put('api/cards/{card_id}/', 'ItemController@create');
-Route::post('api/item/{id}', 'ItemController@update');
-Route::delete('api/item/{id}', 'ItemController@delete');
+Route::post('api/comments', 'CommentController@create');
+
+// Route::put('api/cards', 'CardController@create');
+// Route::delete('api/cards/{card_id}', 'CardController@delete');
+// Route::put('api/cards/{card_id}/', 'ItemController@create');
+// Route::post('api/item/{id}', 'ItemController@update');
+// Route::delete('api/item/{id}', 'ItemController@delete');
+
+//Ajax
+Route::post('ajax/comment', 'AjaxController@comment');
+
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -46,8 +52,8 @@ Route::post('register', 'Auth\RegisterController@register');
 
 // TODO remove
 Route::get('/test', function() {
-  $user = User::find(1);
-  $post = Post::find(1);
-  echo $user->getTopicParticipation();
-  // echo $post->parentQuestion;
+  $user = Post::find(6);
+  echo('?');
+  echo($user->questionId);
+  echo('?');
 });

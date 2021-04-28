@@ -26,6 +26,6 @@
         <p class="text-muted col-3 text-center m-0 align-self-center">Posted {{ (new DateTime($answer->post->date))->diff(new DateTime('NOW'))->days }} day ago</p>
     </div>
 
-    @include('partials.posts.comment_block', ['post' => $answer])
+    @include('partials.posts.comment_block', ['post' => $answer, 'answer_id' => $answer->id])
 
 </div>

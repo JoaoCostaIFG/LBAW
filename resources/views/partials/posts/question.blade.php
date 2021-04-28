@@ -22,5 +22,5 @@
     </div>
 
     <!-- Comments -->
-    @include('partials.posts.comment_block', ['post' => $question]) {{-- Maybe needs to receive post and not answer/question --}}
+    @include('partials.posts.comment_block', ['post' => $question, 'question_id' => $question->id]) {{-- Maybe needs to receive post and not answer/question --}}
 </div>
