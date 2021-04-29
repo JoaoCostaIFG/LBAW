@@ -11,10 +11,9 @@ externalDocs:
   url: https://git.fe.up.pt/lbaw/lbaw2021/lbaw2113/-/wikis/eap
 tags:
   - name: 'M01: Authentication and individual profile'
-  - name: 'M02: Questions'
-  - name: 'M03: Answers and comments'
-  - name: "M04: Other user's profiles"
-  - name: 'M05: Administration and static pages'
+  - name: 'M02: Posts'
+  - name: "M03: Other user's profiles"
+  - name: 'M04: Administration and static pages'
 paths:
   /login:
     get:
@@ -133,7 +132,7 @@ paths:
   /api/user:
     get:
       operationId: R106
-      summary: "R106: View own profile"
+      summary: "R106: View own profile API"
       description: "Returns the information of the authenticated user's profile as JSON. Access: OWN"
       tags:
         - 'M01: Authentication and individual profile'
@@ -196,7 +195,7 @@ paths:
       summary: 'R201: Search questions API'
       description: 'Searches for questions and returns the results as JSON. Access: PUB'
       tags: 
-        - 'M02: Questions'
+        - 'M02: Posts'
       parameters:
         - in: query
           name: query
@@ -265,7 +264,7 @@ paths:
       summary: 'R202: Question submission form'
       description: 'Provide new question submission form. Access: USR'
       tags:
-        - 'M02: Questions'
+        - 'M02: Posts'
       responses:
         '200':
           description: 'Ok.'
@@ -274,7 +273,7 @@ paths:
       summary: 'R203: Question submission action'
       description: 'Processes the new user registration form submission. Access: USR'
       tags:
-        - 'M02: Questions'
+        - 'M02: Posts'
       requestBody:
         required: true
         content:
@@ -305,14 +304,13 @@ paths:
                 302Failure:
                   description: 'Failed question posting. Redirect to new question posting form.'
                   value: '/user/ask'
-
   /question/${id}/answer:
     get:
-      operationId: R301
-      summary: 'R301: Answer submission form.'
+      operationId: R204
+      summary: 'R204: Answer submission form.'
       description: 'Posts an answer to a question. Access: USR'
       tags: 
-        - 'M03: Answers and comments'
+        - 'M02: Posts'
       parameters:
         - in: path
           name: id
@@ -323,11 +321,11 @@ paths:
         '200':
           description: 'Ok.'
     put:
-      operationId: R302
-      summary: 'R302: Answer submission action.'
+      operationId: R205
+      summary: 'R205: Answer submission action.'
       description: 'Processes the new question answer form submission. Access: USR'
       tags: 
-        - 'M03: Answers and comments'
+        - 'M02: Posts'
       parameters:
         - in: path
           name: id
@@ -359,13 +357,76 @@ paths:
                 302Failure:
                   description: 'Failed question answer posting. Redirect to question answer posting form.'
                   value: '/question/${id}/answer'
+  /post/${id}/vote:
+    get:
+      operationId: R206
+      summary: "R206: Get a post's score."
+      description: 'Get the score of a post. Access: PUB'
+      tags: 
+        - 'M02: Posts'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: 'Ok.'
+    put:
+      operationId: R207
+      summary: 'R207: Vote on post.'
+      description: 'Votes on a post. Access: USR'
+      tags: 
+        - 'M02: Posts'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                value:
+                  type: integer
+                  minimum: -1
+                  maximum: 1
+              required:
+                - value
+      responses:
+        '200':
+          description: 'Ok.'
+        '500':
+          description: 'Internal server error.'
+    delete:
+      operationId: R208
+      summary: 'R208: Vote deletion action'
+      description: 'Deletes a vote on a post. Access: OWN'
+      tags:
+        - 'M02: Posts'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: 'Ok.'
+        '500':
+          description: 'Internal server error.'
   /api/answers/${id}:
     get:
-      operationId: R303
-      summary: 'R303: View a question'
+      operationId: R209
+      summary: 'R209: View a question API'
       description: 'Searches for a given answer and returns the results as JSON. Access: PUB'
       tags: 
-        - 'M03: Answers and comments'
+        - 'M02: Posts'
       parameters:
         - in: path
           name: id
@@ -405,11 +466,11 @@ paths:
           description: 'Not found.'
   /api/comments/${id}:
     get:
-      operationId: R304
-      summary: 'R304: View a comment'
+      operationId: R210
+      summary: 'R210: View a comment API'
       description: 'Searches for a given comment and returns the results as JSON. Access: PUB'
-      tags: 
-        - 'M03: Answers and comments'
+      tags:
+        - 'M02: Posts'
       parameters:
         - in: path
           name: id
@@ -447,11 +508,11 @@ paths:
 
   /users/{id}:
     get:
-      operationId: R401
-      summary: "R401: View a user's profile"
+      operationId: R301
+      summary: "R301: View a user's profile"
       description: "Show the public information of a user's profile. Access: PUB"
       tags:
-        - "M04: Other user's profiles"
+        - "M03: Other user's profiles"
       parameters:
         - in: path
           name: id
@@ -465,11 +526,11 @@ paths:
           description: 'Not found.'
   /api/users/${id}:
     get:
-      operationId: R402
-      summary: 'R402: View a user'
+      operationId: R302
+      summary: 'R302: View a user API'
       description: 'Searches for a given user and returns the results as JSON. Access: PUB'
       tags: 
-        - "M04: Other user's profiles"
+        - "M03: Other user's profiles"
       parameters:
         - in: path
           name: id
@@ -510,11 +571,11 @@ paths:
 
   /administration:
     get:
-      operationId: R501
-      summary: "R501: View own administration page"
+      operationId: R401
+      summary: "R401: View own administration page"
       description: 'Retreive pending topic proposal and pending user reports forms.'
       tags:
-        - 'M05: Administration and static pages'
+        - 'M04: Administration and static pages'
       responses:
         '200':
           description: 'Ok.'
@@ -522,11 +583,11 @@ paths:
           description: 'Unauthorized (not signed-in or admin).'
   /api/news:
     get:
-      operationId: R502
-      summary: "R502: Retreive news"
+      operationId: R402
+      summary: "R402: Retreive news API"
       description: "Show the website's news. Access: PUB."
       tags:
-        - 'M05: Administration and static pages'
+        - 'M04: Administration and static pages'
       responses:
         '200':
           description: Success
@@ -559,11 +620,11 @@ paths:
         '404':
           description: 'Not found.'
     post:
-      operationId: R503
-      summary: 'R503: Submit a news section'
+      operationId: R403
+      summary: 'R403: Submit a news section API'
       description: 'Insert a news section into the website. Access: ADM'
       tags:
-        - 'M05: Administration and static pages'
+        - 'M04: Administration and static pages'
       requestBody:
         required: true
         content:
