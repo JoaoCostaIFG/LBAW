@@ -21,7 +21,8 @@ class VoteController extends Controller
             return null;
         }
 
-        if (is_null($request->post_id) || is_null($request->value)) {
+        if (is_null($request->post_id) || is_null($request->value)
+            || Post::find($request->post_id)->owner->id == Auth::id()) {
             return null;
         }
 
