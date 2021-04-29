@@ -88,6 +88,17 @@ class User extends Authenticatable {
         return false;
     }
 
+    public function getVote($post) {
+        $vote = Vote::join('user', 'user.id', '=', 'vote.id_user')
+            ->join('post', 'vote.id_post', '=', 'post.id')
+            ->where('user.id', '=', $this->id)
+            ->where('post.id', '=', $post->id);
+        if ($vote->exists())
+            return $vote->get()[0];
+        return false;
+    }
+
+
     public function getTopicParticipation()
     {
         $query = DB::query()->fromSub(function ($q) {

@@ -1,10 +1,6 @@
 <div class="row py-2">
     <div class="col col-md-2 col-3 align-self-center border-end border-dark">
-        <div class="row fs-3">
-            <i class="bi bi-caret-up d-block text-center"></i>
-            <span class="d-block text-center">{{ $answer->post->score }}</span>
-            <i class="bi bi-caret-down d-block text-center"></i>
-        </div>
+        @include('partials.posts.vote', ['post' => $answer->post])
         <div class="row p-sm-3 p-0">
             <img src="{{ $answer->post->owner->picture }}" class="center p-2 p-sm-3" alt="">
             <a class="d-block text-center" href="/profile/{{$answer->post->owner->id}}">{{ $answer->post->owner->username }}</a>

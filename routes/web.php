@@ -32,6 +32,7 @@ Route::get('cards/{id}', 'CardController@show');
 
 // API
 Route::post('api/comments', 'CommentController@create');
+Route::put('api/{id}/vote/', 'VoteController@create');
 
 // Route::put('api/cards', 'CardController@create');
 // Route::delete('api/cards/{card_id}', 'CardController@delete');
