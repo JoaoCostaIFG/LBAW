@@ -1,8 +1,7 @@
 'use strict'
 
 function addAnswer(answer_id, question_id) {
-    // removeError();
-    // let text = document.getElementsByName("answer_text" + question_id)[0].value;
+    removeError();
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
@@ -11,13 +10,6 @@ function addAnswer(answer_id, question_id) {
         let form = document.getElementById("end-comment-" + (answer_id == null ? question_id : answer_id));
         let doc = new DOMParser().parseFromString(response, "text/html").body.childNodes[0]; //Get returned node from server
         form.parentNode.insertBefore(doc, form);
-        // questions.innerHTML += response;
-        //Error
-        // if (response.substr(0, 2) === "<p") {
-        //   return;
-        // }
-        // toggleAnswerInput(question_id);
-        // hideAnswerButton(question_id);
       }
     };
 
@@ -37,13 +29,11 @@ function addAnswer(answer_id, question_id) {
   }
 
   function removeError() {
-    let questionError = document.getElementById("answer-error");
-    if (questionError) {
-      questionError.remove();
+    let commentError = document.getElementById("comment-error");
+    if (commentError) {
+        commentError.remove();
     }
   }
-
-
 
 function encodeForAjax(data) {
     return Object.keys(data).map(function (k) {

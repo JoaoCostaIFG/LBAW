@@ -22,6 +22,9 @@ class AjaxController extends Controller
 
         // $comment = App::call('App\Http\Controllers\CommentController@create', ['request' => $request]);
 
+        if(is_null($comment)){
+            return "<p id=\"comment-error\" class=\"text-danger\">An error occurred while processing your request</p>";
+        }
         return view('partials.posts.comment', ['comment' => $comment]);
     }
 }
