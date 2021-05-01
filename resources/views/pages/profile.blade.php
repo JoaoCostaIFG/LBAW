@@ -52,31 +52,9 @@
   <!-- BEGIN TAB CONTENTS -->
   <div class="tab-content">
     @include('partials.profile.about_tab') <!-- about tab -->
-      <button class="btn btn-danger col24" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal" aria-controls="deleteModal" aria-expanded="false" aria-label="Open delete account box">
-        Delete Account
-      </button>
-    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            Confirm answer
-          </div>
-          <div class="modal-body">
-            Are you sure
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-sm btn-success mx-2" data-bs-toggle="button"
-                  autocomplete="off">
-                  <i class="bi bi-check2"></i>
-              </button>
-              <button type="button" class="btn btn-sm btn-danger mx-2" data-bs-toggle="button"
-                  autocomplete="off">
-                  <i class="bi bi-x"></i>
-              </button>
-          </div>
-        </div>
-      </div>
-    </div>
+    @if(Auth::check())
+      @include('partials.profile.delete') <!-- about tab -->
+    @endif
 
       <!-- BEGIN ACTIVITY TAB -->
     <div id="activity" class="tab-pane fade">
