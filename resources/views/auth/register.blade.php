@@ -3,7 +3,7 @@
 @section('title', 'Register')
 
 @section('content')
-<form method="POST" action="{{ route('register') }}">
+<form class="container-md bg-primary p-3" method="POST" action="{{ route('register') }}">
     {{ csrf_field() }}
     <!-- Email -->
     <div class="input-group mb-3">
