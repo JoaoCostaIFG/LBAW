@@ -37,7 +37,7 @@
         <input type="checkbox" class="form-check-input" id="remember_me_check">
         <label class="form-check-label" for="remember_me_check">Remember me</label>
       </div>
-      <button type="submit" class="btn btn-primary">Log in</button>
+      <button type="submit" class="btn btn-info">Log in</button>
     </form>
   </div>
 </div>

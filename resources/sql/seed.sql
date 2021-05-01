@@ -296,10 +296,12 @@ CREATE TABLE notification_achievement(
   id_achievement INTEGER NOT NULL,
   CONSTRAINT fk_notification
     FOREIGN KEY(id)
-      REFERENCES notification(id),
+      REFERENCES notification(id)
+      ON DELETE CASCADE,
   CONSTRAINT fk_achievement
     FOREIGN KEY(id_achievement)
       REFERENCES achievement(id)
+      ON DELETE CASCADE
 );
 
 -- R21
@@ -308,10 +310,12 @@ CREATE TABLE notification_post(
   id_post INTEGER NOT NULL,
   CONSTRAINT fk_notification
     FOREIGN KEY(id)
-      REFERENCES notification(id),
+      REFERENCES notification(id)
+      ON DELETE CASCADE,
   CONSTRAINT fk_post
     FOREIGN KEY(id_post)
       REFERENCES post(id)
+      ON DELETE CASCADE
 );
 
 
@@ -690,7 +694,7 @@ EXECUTE PROCEDURE post_generalization();
 DROP RULE IF EXISTS remove_user ON "user" CASCADE;
 CREATE RULE remove_user
 AS ON DELETE TO "user"
-DO INSTEAD
+DO INSTEAD(
     UPDATE "user"
     SET
       name = 'Deleted User',
@@ -702,6 +706,9 @@ DO INSTEAD
       picture = NULL,
       reputation = NULL
     WHERE id = Old.id;
+    DELETE FROM "achieved" WHERE id_user = Old.id;
+    DELETE FROM "notification" WHERE id = Old.id;
+);
 
 ---- Achievements
 

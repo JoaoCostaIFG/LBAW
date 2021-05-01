@@ -16,13 +16,13 @@ use \App\Models\User;
 use \App\Models\Post;
 Route::view('/', 'pages.index');
 // Pages
-Route::view('/home', 'pages.index');
+Route::view('/home', 'pages.index')->name('home');
 Route::view('/about', 'pages.about');
 Route::get('/search', 'SearchResultsController@search');
 Route::get('/news', 'NewsController@show');
 Route::get('/leaderboard', 'LeaderboardController@show');
 Route::get('/question/{id}', 'QuestionController@show');
-Route::get('/profile/{id}', 'ProfileController@show');
+Route::get('/profile/{id}', 'UserController@show')->name('profile');
 Route::get('administration', 'AdministrationController@show')->middleware('role:moderator');
 Route::view('ask_question', 'pages.ask_question')->middleware('auth');
 
@@ -44,6 +44,9 @@ Route::delete('api/{id}/vote/', 'VoteController@delete');
 //Ajax
 Route::post('ajax/comment', 'AjaxController@comment');
 
+// User
+Route::delete('user', 'UserController@delete')->name('user');
+Route::get('user', 'UserController@showOwn');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -54,8 +57,10 @@ Route::post('register', 'Auth\RegisterController@register');
 
 // TODO remove
 Route::get('/test', function() {
-  $user = Post::find(6);
-  echo('?');
-  echo($user->questionId);
-  echo('?');
+  $not = DB::table('achieved')->get();
+  $data = collect($not)->map(function($x){ return (array) $x; })->toArray(); 
+  foreach ($data as $n) {
+    print_r($n);
+    echo "<br>";
+  }
 });
