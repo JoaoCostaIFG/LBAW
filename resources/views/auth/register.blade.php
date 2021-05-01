@@ -3,11 +3,11 @@
 @section('title', 'Register')
 
 @section('content')
-<form class="container-md auth-form" method="POST" action="{{ route('register') }}">
+<form class="container-sm auth-form" method="POST" action="{{ route('register') }}">
     {{ csrf_field() }}
     <!-- Email -->
     <div class="input-group mb-3">
-      <label for="email" class="form-label"><b>Email address</b><span class="text-danger"> *</span></label>
+      <label for="email" class="form-label"><i class="bi bi-envelope-fill"></i> <b>Email address</b> <span class="text-danger">*</span></label>
       <div class="input-group has-validation">
         <input id="email" type="email" class="form-control" name="email" placeholder="Enter email... (e.g.: email@example.com)"value="{{ old('email') }}" required autofocus>
         @if ($errors->has('email'))
