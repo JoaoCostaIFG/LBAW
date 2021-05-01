@@ -3,7 +3,7 @@
 @section('title', 'Register')
 
 @section('content')
-<form class="container-md auth-form py-3 px-5" method="POST" action="{{ route('register') }}">
+<form class="container-md auth-form" method="POST" action="{{ route('register') }}">
     {{ csrf_field() }}
     <!-- Email -->
     <div class="input-group mb-3">
@@ -19,7 +19,7 @@
     </div>
     <!-- Username -->
     <div class="input-group mb-3">
-      <label for="username" class="form-label"><b>Username</b><span class="text-danger"> *</span></label>
+      <label for="username" class="form-label"><i class="bi bi-person-fill"></i> <b>Username</b> <span class="text-danger">*</span></label>
       <div class="input-group has-validation">
         <input id="username" type="text" class="form-control" name="username" placeholder="Enter username..." value="{{ old('username') }}" required>
         @if ($errors->has('username'))
@@ -31,7 +31,7 @@
     </div>
     <!-- Password -->
     <div class="input-group mb-3">
-      <label for="password" class="form-label"><b>Password</b><span class="text-danger"> *</span></label>
+      <label for="password" class="form-label"><i class="bi bi-lock-fill"></i> <b>Password</b> <span class="text-danger">*</span></label>
       <div class="input-group has-validation">
         <input id="password" type="password" class="form-control" name="password" placeholder="Enter password..." required>
         @if ($errors->has('password'))
@@ -43,7 +43,7 @@
     </div>
     <!-- Repeated Password -->
     <div class="input-group">
-      <label for="repeated_password" class="form-label"><b>Repeat Password</b><span class="text-danger"> *</span></label>
+      <label for="repeated_password" class="form-label"><i class="bi bi-lock-fill"></i> <b>Repeat Password</b> <span class="text-danger">*</span></label>
       <div class="input-group has-validation">
         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Repeat password..." required>
       </div>

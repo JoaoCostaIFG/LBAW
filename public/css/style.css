@@ -29,6 +29,8 @@ body {
 
 /* BEGIN AUTH */
 .auth-form {
+  padding: 6em 3em;
+
   background: rgb(83,0,96);
   background: -moz-linear-gradient(180deg, rgba(83,0,96,1) 0%, rgba(86,121,9,1) 35%, rgba(0,212,255,1) 100%);
   background: -webkit-linear-gradient(180deg, rgba(83,0,96,1) 0%, rgba(86,121,9,1) 35%, rgba(0,212,255,1) 100%);
