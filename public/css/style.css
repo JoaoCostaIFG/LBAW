@@ -28,18 +28,43 @@ body {
 /* END HEADER */
 
 /* BEGIN AUTH */
-.auth-form {
-  margin: 2rem 4rem;
-  padding: 6em 3em;
-
+.auth-container {
+  padding: 1rem 0;
   width: 100%;
-  max-width: 540px;
 
+  /* background color */
   background: rgb(113,3,130);
   background: -moz-linear-gradient(212deg, rgba(113,3,130,1) 0%, rgba(1,2,48,1) 100%);
   background: -webkit-linear-gradient(212deg, rgba(113,3,130,1) 0%, rgba(1,2,48,1) 100%);
   background: linear-gradient(212deg, rgba(113,3,130,1) 0%, rgba(1,2,48,1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#710382",endColorstr="#010230",GradientType=1);
+}
+
+.auth-form-container {
+  margin: 2rem auto;
+  padding: 3em;
+  width: 100%;
+  max-width: 540px;
+
+  border-radius: 25px;
+  /* box shadow */
+  -webkit-box-shadow: 3px 3px 5px 6px #171717;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    3px 3px 5px 6px #171717;  /* Firefox 3.5 - 3.6 */
+  box-shadow:         3px 3px 5px 6px #171717;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+  /* background color */
+  background: #222222;
+}
+
+.auth-form {
+  margin-top: 1em;
+}
+
+.auth-form button {
+  width: 100%;
+  /* box shadow */
+  -webkit-box-shadow: 2px 2px 5px 0px #171717;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    2px 2px 5px 0px #171717;  /* Firefox 3.5 - 3.6 */
+  box-shadow:         2px 2px 5px 0px #171717;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
 }
 /* END AUTH */
 
