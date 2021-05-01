@@ -1,53 +1,61 @@
-<form method="POST" action="{{ route('register') }}">
-    {{ csrf_field() }}
-    <div class="modal-body">
+@extends('layouts.layout')
+
+@section('title', 'Register')
+
+@section('content')
+<div class="auth-container">
+  <div class="auth-form-container">
+    <span class="lead fs-3 fw-bold">Welcome to Segmentation fault</span>
+
+    <form class="auth-form" method="POST" action="{{ route('register') }}">
+      {{ csrf_field() }}
       <!-- Email -->
       <div class="input-group mb-3">
-        <label for="email" class="form-label"><b>Email address</b><span class="text-danger"> *</span></label>
+        <label for="email" class="form-label"><i class="bi bi-envelope-fill"></i> <b>Email address</b> <span class="text-danger">*</span></label>
         <div class="input-group has-validation">
-            <input id="email" type="email" name="email" value="{{ old('email') }}" required>
-            @if ($errors->has('email'))
-              <span class="error">
-                  {{ $errors->first('email') }}
-              </span>
-            @endif
+          <input id="email" type="email" class="form-control" name="email" placeholder="Enter email... (e.g.: email@example.com)"value="{{ old('email') }}" required autofocus>
+          @if ($errors->has('email'))
+            <span class="invalid-feedback">
+              {{ $errors->first('email') }}
+            </span>
+          @endif
         </div>
       </div>
       <!-- Username -->
       <div class="input-group mb-3">
-        <label for="username" class="form-label"><b>Username</b><span class="text-danger"> *</span></label>
+        <label for="username" class="form-label"><i class="bi bi-person-fill"></i> <b>Username</b> <span class="text-danger">*</span></label>
         <div class="input-group has-validation">
-            <input id="username" type="text" name="username" value="{{ old('username') }}" required autofocus>
-            @if ($errors->has('username'))
-              <span class="error">
-                  {{ $errors->first('username') }}
-              </span>
-            @endif
+          <input id="username" type="text" class="form-control" name="username" placeholder="Enter username..." value="{{ old('username') }}" required>
+          @if ($errors->has('username'))
+            <span class="invalid-feedback">
+              {{ $errors->first('username') }}
+            </span>
+          @endif
         </div>
       </div>
       <!-- Password -->
       <div class="input-group mb-3">
-        <label for="password" class="form-label"><b>Password</b><span class="text-danger"> *</span></label>
+        <label for="password" class="form-label"><i class="bi bi-lock-fill"></i> <b>Password</b> <span class="text-danger">*</span></label>
         <div class="input-group has-validation">
-            <input id="password" type="password" name="password" required>
-            @if ($errors->has('password'))
-              <span class="error">
-                  {{ $errors->first('password') }}
-              </span>
-            @endif
+          <input id="password" type="password" class="form-control" name="password" placeholder="Enter password..." required>
+          @if ($errors->has('password'))
+            <span class="invalid-feedback">
+              {{ $errors->first('password') }}
+            </span>
+          @endif
         </div>
       </div>
       <!-- Repeated Password -->
-      <div class="input-group">
-        <label for="repeated_password" class="form-label"><b>Repeat Password</b><span class="text-danger"> *</span></label>
+      <div class="input-group mb-3">
+        <label for="repeated_password" class="form-label"><i class="bi bi-lock-fill"></i> <b>Repeat Password</b> <span class="text-danger">*</span></label>
         <div class="input-group has-validation">
-          <input id="password-confirm" type="password" name="password_confirmation" required>
+          <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Repeat password..." required>
         </div>
       </div>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      <button type="submit" class="btn btn-primary">Signup</button>
-    </div>
-</form>
+      <!-- submit button -->
+      <button type="submit" class="btn btn-primary mt-2">Signup</button>
+    </form>
+  </div>
+</div>
 <script src="/js/form-validation.js"></script>
+@stop

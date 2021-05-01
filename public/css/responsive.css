@@ -25,6 +25,13 @@
   }
   /* END SEACH */
 }
+/* small and smaller */
+@media (max-width: 576px) {
+  .auth-form-container {
+    border-radius: 0 !important;
+  }
+}
+
 
 /* BEGIN FEATURETTE */
 .featurette-divider {
