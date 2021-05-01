@@ -9,7 +9,7 @@
     <ul class="nav nav-tabs justify-content-center">
       <li class="nav-item">
         <a href="#profile" class="nav-link active" data-toggle="tab">
-          Profile
+          About
         </a>
       </li>
       <li class="nav-item">

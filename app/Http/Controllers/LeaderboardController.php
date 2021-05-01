@@ -11,7 +11,7 @@ class LeaderboardController extends Controller
     public function getTopUsers()
     {
         $users = User::orderBy('reputation', 'desc')
-            ->select('username', 'reputation')
+            ->select('id', 'username', 'reputation')
             ->limit(50)
             ->get();
         return $users;
