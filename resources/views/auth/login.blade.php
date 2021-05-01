@@ -9,12 +9,12 @@
   <div class="input-group mb-3">
     <label for="username" class="form-label"><b>Username</b><span class="text-danger"> *</span></label>
     <div class="input-group has-validation">
-      <input id="username" type="text" class="form-control" name="username" placeholder="Enter email... (ex: email@example.com)" value="{{ old('username') }}" required autofocus>
-        @if ($errors->has('username'))
-            <span class="invalid-feedback">
-              {{ $errors->first('username') }}
-            </span>
-        @endif
+      <input id="username" type="text" class="form-control" name="username" placeholder="Enter your username..." value="{{ old('username') }}" required autofocus>
+      @if ($errors->has('username'))
+        <span class="invalid-feedback">
+          {{ $errors->first('username') }}
+        </span>
+      @endif
     </div>
   </div>
   <!-- Password -->
@@ -22,11 +22,11 @@
     <label for="password" class="form-label"><b>Password</b><span class="text-danger"> *</span></label>
     <div class="input-group has-validation">
       <input id="password" type="password" class="form-control" name="password" placeholder="Enter password..." required>
-        @if ($errors->has('password'))
-          <span class="invalid-feedback">
-              {{ $errors->first('password') }}
-          </span>
-        @endif
+      @if ($errors->has('password'))
+        <span class="invalid-feedback">
+          {{ $errors->first('password') }}
+        </span>
+      @endif
     </div>
   </div>
   <button type="submit" class="btn btn-primary">Log in</button>
