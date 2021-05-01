@@ -3,7 +3,7 @@
 @section('title', 'Login')
 
 @section('content')
-<form class="container-sm authform" method="POST" action="{{ route('login') }}">
+<form class="auth-form" method="POST" action="{{ route('login') }}">
   {{ csrf_field() }}
   <!-- Username -->
   <div class="input-group mb-3">

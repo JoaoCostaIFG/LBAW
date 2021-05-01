@@ -29,14 +29,17 @@ body {
 
 /* BEGIN AUTH */
 .auth-form {
-  margin-top: 2rem;
+  margin: 2rem 4rem;
   padding: 6em 3em;
 
+  width: 100%;
+  max-width: 540px;
+
   background: rgb(113,3,130);
-  background: -moz-linear-gradient(180deg, rgba(113,3,130,1) 0%, rgba(0,162,195,1) 100%);
-  background: -webkit-linear-gradient(180deg, rgba(113,3,130,1) 0%, rgba(0,162,195,1) 100%);
-  background: linear-gradient(180deg, rgba(113,3,130,1) 0%, rgba(0,162,195,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#710382",endColorstr="#00a2c3",GradientType=1);
+  background: -moz-linear-gradient(212deg, rgba(113,3,130,1) 0%, rgba(1,2,48,1) 100%);
+  background: -webkit-linear-gradient(212deg, rgba(113,3,130,1) 0%, rgba(1,2,48,1) 100%);
+  background: linear-gradient(212deg, rgba(113,3,130,1) 0%, rgba(1,2,48,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#710382",endColorstr="#010230",GradientType=1);
 }
 /* END AUTH */
 
