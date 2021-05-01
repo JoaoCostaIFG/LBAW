@@ -7,12 +7,16 @@ function addAnswer(answer_id, question_id) {
       if (this.readyState == 4 && this.status == 200) {
         //Trim is used because the reponse text comes with new lines behind
         let response = xhttp.responseText.trim("\n");
-        let form = document.getElementById("end-comment-" + (answer_id == null ? question_id : answer_id));
         let doc = new DOMParser().parseFromString(response, "text/html").body.childNodes[0]; //Get returned node from server
-        form.parentNode.insertBefore(doc, form);
+        console.log(doc);
       }
     };
 
+    let form = document.getElementById("end-comment-" + (answer_id == null ? question_id : answer_id));
+    let body = document.getElementById("Textarea" + (answer_id == null ? question_id : answer_id));
+    form.parentNode.insertBefore(body.childNodes[0], form);
+    console.log(body);
+    
     xhttp.open("post", "/ajax/comment", true);
     xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhttp.setRequestHeader("X-CSRF-TOKEN", document.querySelector('meta[name="csrf-token"]').getAttribute('content'));

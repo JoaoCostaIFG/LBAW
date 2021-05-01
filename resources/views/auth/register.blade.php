@@ -1,3 +1,8 @@
+@extends('layouts.layout')
+
+@section('title', 'Register')
+
+@section('content')
 <form method="POST" action="{{ route('register') }}">
     {{ csrf_field() }}
     <div class="modal-body">
@@ -51,3 +56,4 @@
     </div>
 </form>
 <script src="/js/form-validation.js"></script>
+@stop

@@ -1,3 +1,8 @@
+@extends('layouts.layout')
+
+@section('title', 'Login')
+
+@section('content')
 <form method="POST" action="{{ route('login') }}">
   {{ csrf_field() }}
   <!-- Username -->
@@ -28,3 +33,4 @@
   <button type="submit" class="btn btn-primary">Log in</button>
 </form>
 <script src="/js/form-validation.js"></script>
+@stop
