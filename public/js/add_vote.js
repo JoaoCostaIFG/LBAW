@@ -11,6 +11,10 @@ function toggleVoteIcon(node, type) {
   }
 }
 
+function changeScore(node, deltaScore) {
+  node.innerHTML = parseInt(node.innerHTML) + deltaScore;
+}
+
 function addVote(post_id, is_upvote) {
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
@@ -64,6 +68,7 @@ function removeVote(post_id) {
 
 function updateVote(post_id, is_upvote) {
     removeError();
+    let score = document.getElementById("score-" + post_id);
     let upvote = document.getElementById("btn-upvote-" + post_id);
     let downvote = document.getElementById("btn-downvote-" + post_id);
     let upvoteWasVoted = upvote.classList.contains('bi-caret-up-fill');
@@ -72,23 +77,31 @@ function updateVote(post_id, is_upvote) {
       if (upvoteWasVoted) {
         removeVote(post_id);
         toggleVoteIcon(upvote, "up");
+        changeScore(score, -1);
       }
       else {
         toggleVoteIcon(upvote, "up");
-        if (downvoteWasVoted)
+        if (downvoteWasVoted) {
           toggleVoteIcon(downvote, "down");
+          changeScore(score, 1);
+        }
         addVote(post_id, is_upvote);
+        changeScore(score, 1);
       }
     } else {
       if (downvoteWasVoted) {
         removeVote(post_id)
         toggleVoteIcon(downvote, "down");
+        changeScore(score, 1);
       }
       else {
         toggleVoteIcon(downvote, "down");
-        if (upvoteWasVoted)
+        if (upvoteWasVoted) {
           toggleVoteIcon(upvote, "up");
+          changeScore(score, -1);
+        }
         addVote(post_id, is_upvote);
+        changeScore(score, -1);
       }
     }
 }

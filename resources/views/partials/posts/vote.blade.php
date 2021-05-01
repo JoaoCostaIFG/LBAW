@@ -18,7 +18,7 @@ if ($vote)
       class="btn btn-lg p-0 m-0 text-center d-block
         bi-caret-up{{$up_text}} {{ $can_vote ? 'text-success cursor-na' : ''}}"
       style="width: 20% {{ $can_vote ? '' : '; cursor: not-allowed'}}"></a>
-    <span class="d-block text-center">{{ $post->score }}</span>
+    <span class="d-block text-center" id="score-{{$post->id}}">{{ $post->score }}</span>
     <a id="btn-downvote-{{$post->id}}" onclick="updateVote({{$post->id}}, false)"
       class="btn btn-lg p-0 text-center d-block
         bi-caret-down{{$down_text}} {{ $can_vote ? 'text-danger cursor-na' : ''}}"
