@@ -9,7 +9,7 @@
     <div class="input-group mb-3">
       <label for="email" class="form-label"><b>Email address</b><span class="text-danger"> *</span></label>
       <div class="input-group has-validation">
-        <input id="email" type="email" class="form-control" name="email" placeholder="Enter email... (ex: email@example.com)"value="{{ old('email') }}" required autofocus>
+        <input id="email" type="email" class="form-control" name="email" placeholder="Enter email... (e.g.: email@example.com)"value="{{ old('email') }}" required autofocus>
         @if ($errors->has('email'))
           <span class="invalid-feedback">
             {{ $errors->first('email') }}
@@ -45,7 +45,7 @@
     <div class="input-group">
       <label for="repeated_password" class="form-label"><b>Repeat Password</b><span class="text-danger"> *</span></label>
       <div class="input-group has-validation">
-        <input id="password-confirm" type="password" name="password_confirmation" required>
+        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Repeat password..." required>
       </div>
     </div>
     <button type="submit" class="btn btn-primary">Signup</button>
