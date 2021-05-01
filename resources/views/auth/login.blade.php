@@ -4,9 +4,9 @@
   <div class="input-group mb-3">
     <label for="username" class="form-label"><b>Username</b><span class="text-danger"> *</span></label>
     <div class="input-group has-validation">
-        <input id="username" type="username" name="username" value="{{ old('username') }}" required autofocus>
+      <input id="username" type="text" class="form-control" name="username" placeholder="Enter email... (ex: email@example.com)" value="{{ old('username') }}" required autofocus>
         @if ($errors->has('username'))
-            <span class="error">
+            <span class="invalid-feedback">
               {{ $errors->first('username') }}
             </span>
         @endif
@@ -16,9 +16,9 @@
   <div class="input-group mb-3">
     <label for="password" class="form-label"><b>Password</b><span class="text-danger"> *</span></label>
     <div class="input-group has-validation">
-        <input id="password" type="password" name="password" required>
+      <input id="password" type="password" class="form-control" name="password" placeholder="Enter password..." required>
         @if ($errors->has('password'))
-          <span class="error">
+          <span class="invalid-feedback">
               {{ $errors->first('password') }}
           </span>
         @endif
