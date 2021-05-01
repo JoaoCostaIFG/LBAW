@@ -2,13 +2,7 @@
     <h2 class="page-title">{{ $question->title }}</h2>
     <hr>
     <div class="col col-md-2 col-3 align-self-center border-end border-dark">
-        @include('partials.posts.vote', ['post' => $question->post])
-        <div class="row p-sm-3 p-0">
-            <img src="{{ $question->post->owner->picture }}" class="center p-2 p-sm-3" alt="">
-            <a class="d-block text-center" href="/profile/{{ $question->post->owner->id }}">
-            {{ $question->post->owner->username }}</a> <!--  style="overflow:hidden; -->
-            <span class="d-block text-center">{{ $question->post->owner->reputation }} Points</span>
-        </div>
+        @include('partials.posts.user_card', ['post' => $question->post])
     </div>
     <div class="col col-md-10 col-9">
         <p class="text-break">{{ $question->post->body }}</p>

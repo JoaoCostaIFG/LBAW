@@ -52,7 +52,7 @@
   <!-- BEGIN TAB CONTENTS -->
   <div class="tab-content">
     @include('partials.profile.about_tab') <!-- about tab -->
-    @if(Auth::check())
+    @if(Auth::check() && Auth::id() == $user->id)
       @include('partials.profile.delete') <!-- about tab -->
     @endif
 

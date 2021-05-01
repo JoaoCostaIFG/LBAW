@@ -39,14 +39,20 @@
         <div class="d-flex flex-row flex-md-column justify-content-center align-items-start">
           <!-- Owner Username -->
           <span class="d-md-none">by&nbsp;</span>
-          <a href="/profile/{{ $question->post->owner->id }}">
-            {{ $question->post->owner->username }}
-          </a>
-          <!-- Owner Reputation -->
-          <span class="d-none d-md-block">
-            {{ $question->post->owner->reputation }}
-            <i class="bi bi-award"></i>
-          </span>
+          @if (is_null($question->post->owner->username))
+            <span class="d-none d-md-block">
+              Deleted User
+            </span>
+          @else
+            <a href="/profile/{{ $question->post->owner->id }}">
+              {{ $question->post->owner->username }}
+            </a>
+            <!-- Owner Reputation -->
+            <span class="d-none d-md-block">
+              {{ $question->post->owner->reputation }}
+              <i class="bi bi-award"></i>
+            </span>
+          @endif
         </div>
       </div>
     </div>
