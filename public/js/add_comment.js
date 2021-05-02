@@ -1,6 +1,6 @@
 'use strict'
 
-function addAnswer(answer_id, question_id) {
+function addComment(answer_id, question_id) {
     removeError();
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {

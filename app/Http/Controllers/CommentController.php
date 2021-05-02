@@ -54,4 +54,12 @@ class CommentController extends Controller
 
         return $comment;
     }
+
+    public function update(Request $request)
+    {
+        $comment = Comment::find($request->id);
+        $this->authorize('update', $comment);
+
+        $comment->post->update(['body' => $request->body]);
+    }
 }

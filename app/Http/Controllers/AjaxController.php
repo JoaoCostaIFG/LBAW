@@ -13,7 +13,7 @@ class AjaxController extends Controller
      *
      * @return boolean The creation of a comment was successful
      */
-    public function comment(Request $request)
+    public function add_comment(Request $request)
     {
 
         $comment_controller = new CommentController();
