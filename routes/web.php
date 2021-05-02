@@ -57,10 +57,11 @@ Route::post('register', 'Auth\RegisterController@register');
 
 // TODO remove
 Route::get('/test', function() {
-  $not = DB::table('achieved')->get();
-  $data = collect($not)->map(function($x){ return (array) $x; })->toArray(); 
-  foreach ($data as $n) {
-    print_r($n);
-    echo "<br>";
-  }
+  $user = User::find(1);
+  echo $user->getAnswerParticipation()->get();
+  echo "<br>";
+  echo $user->getQuestionParticipation()->get();
+  echo "<br>";
+  echo $user->getTopicParticipation()->get();
+  echo "<br>";
 });
