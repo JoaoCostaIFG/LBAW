@@ -13,20 +13,29 @@ function addAnswer(answer_id, question_id) {
       }
     };
 
-    
-    xhttp.open("post", "/ajax/comment", true);
-    xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhttp.setRequestHeader("X-CSRF-TOKEN", document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
-    xhttp.send(
-        encodeForAjax({
+    let request_data;
+    if (answer_id === null) {
+        request_data = encodeForAjax({
             question_id: question_id,
+            body: document.getElementById("Textarea" + (answer_id == null ? question_id : answer_id)).value,
+            csrf: document
+              .querySelector("meta[name='csrf-token']")
+              .getAttribute("content"),
+        });
+    } else {
+        request_data = encodeForAjax({
             answer_id: answer_id,
             body: document.getElementById("Textarea" + (answer_id == null ? question_id : answer_id)).value,
             csrf: document
               .querySelector("meta[name='csrf-token']")
               .getAttribute("content"),
-        })
-    );
+        });
+    }
+
+    xhttp.open("post", "/ajax/comment", true);
+    xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhttp.setRequestHeader("X-CSRF-TOKEN", document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
+    xhttp.send(request_data);
   }
 
   function removeError() {
