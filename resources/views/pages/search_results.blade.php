@@ -40,7 +40,7 @@
     <div class="tab-pane fade show active" id="questions">
       <h6 class="m-0 d-none d-md-block pt-2 pb-2" id="questions">{{ count($questions) }} result(s)</h6>
       @foreach ($questions as $question)
-        @include('partials.search_results.question_card')
+        @include('partials.question_card')
       @endforeach
 
     </div>

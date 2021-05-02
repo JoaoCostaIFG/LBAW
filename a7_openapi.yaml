@@ -8,13 +8,12 @@ servers:
     url: http://dbm.fe.up.pt
 externalDocs:
   description: Find more info here
-  url: https://git.fe.up.pt/lbaw/components/-/wikis/eap
+  url: https://git.fe.up.pt/lbaw/lbaw2021/lbaw2113/-/wikis/eap
 tags:
   - name: 'M01: Authentication and individual profile'
-  - name: 'M02: Questions'
-  - name: 'M03: Answers and comments'
-  - name: "M04: Other user's profiles"
-  - name: 'M05: Administration and static pages'
+  - name: 'M02: Posts'
+  - name: "M03: Other user's profiles"
+  - name: 'M04: Administration and static pages'
 paths:
   /login:
     get:
@@ -64,7 +63,7 @@ paths:
     post:
       operationId: R103
       summary: 'R103: Logout action'
-      description: 'Logout the current authenticated used. Access: USR, ADM'
+      description: 'Logout the current authenticated used. Access: USR'
       tags:
         - 'M01: Authentication and individual profile'
       responses:
@@ -81,7 +80,7 @@ paths:
   /register:
     get:
       operationId: R104
-      summary: 'R104: Register Form'
+      summary: 'R104: Register form'
       description: 'Provide new user registration form. Access: PUB'
       tags:
         - 'M01: Authentication and individual profile'
@@ -90,7 +89,7 @@ paths:
           description: 'Ok.'
     post:
       operationId: R105
-      summary: 'R105: Register Action'
+      summary: 'R105: Register action'
       description: 'Processes the new user registration form submission. Access: PUB'
       tags:
         - 'M01: Authentication and individual profile'
@@ -129,11 +128,11 @@ paths:
                   value: '/users/{id}'
                 302Failure:
                   description: 'Failed user creation. Redirect to register form.'
-                  value: '/resgister'
+                  value: '/register'
   /api/user:
     get:
       operationId: R106
-      summary: "R106: View own profile"
+      summary: "R106: View own profile API"
       description: "Returns the information of the authenticated user's profile as JSON. Access: OWN"
       tags:
         - 'M01: Authentication and individual profile'
@@ -168,6 +167,64 @@ paths:
                     reputation: 999999
         '401':
           description: 'Unauthorized (not signed-in).'
+  /user:
+    delete:
+      operationId: R107
+      summary: 'R107: User deletion action'
+      description: 'Deletes a user. Access: OWN'
+      tags:
+        - 'M01: Authentication and individual profile'
+      responses:
+        '302':
+          description: 'Redirect after processing the user deletion information.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful user deletion. Redirect to register page.'
+                  value: '/register'
+                302Failure:
+                  description: 'Failed user deletion. Redirect to user profile page.'
+                  value: '/user'
+    patch:
+      operationId: R108
+      summary: "R108: Edit user's profile"
+      description: 'Processes the new user profile information. Access: OWN'
+      tags: 
+        - 'M01: Authentication and individual profile'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                username:
+                  type: string
+                password:
+                  type: string
+                  format: password
+                repeat_password:
+                  type: string
+                  format: password
+      responses:
+        '302':
+          description: 'Redirect after processing the updated user profile information.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful profile editing. Redirect to user profile.'
+                  value: '/user'
+                302Failure:
+                  description: 'Failed profile editing. Redirect to profile editing page.'
+                  value: '/user'
 
   /api/questions:
     get:
@@ -175,7 +232,7 @@ paths:
       summary: 'R201: Search questions API'
       description: 'Searches for questions and returns the results as JSON. Access: PUB'
       tags: 
-        - 'M02: Questions'
+        - 'M02: Posts'
       parameters:
         - in: query
           name: query
@@ -238,13 +295,257 @@ paths:
                     comments: '5, 6'
         '404':
           description: 'Not found.'
+  /user/ask:
+    get:
+      operationId: R202
+      summary: 'R202: Question submission form'
+      description: 'Provide new question submission form. Access: USR'
+      tags:
+        - 'M02: Posts'
+      responses:
+        '200':
+          description: 'Ok.'
+    post:
+      operationId: R203
+      summary: 'R203: Question submission action'
+      description: 'Processes the new user registration form submission. Access: USR'
+      tags:
+        - 'M02: Posts'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                body:
+                  type: string
+                bounty:
+                  type: integer
+                tags:
+                  type: string
+              required:
+                - title
+                - body
+      responses:
+        '302':
+          description: 'Redirect after processing the new question information.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful question posting. Redirect to new question.'
+                  value: '/question/${id}'
+                302Failure:
+                  description: 'Failed question posting. Redirect to new question posting form.'
+                  value: '/user/ask'
+  /question/${id}/answer:
+    get:
+      operationId: R204
+      summary: 'R204: Answer submission form'
+      description: 'Posts an answer to a question. Access: USR'
+      tags: 
+        - 'M02: Posts'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: 'Ok.'
+    put:
+      operationId: R205
+      summary: 'R205: Answer submission action'
+      description: 'Processes the new question answer form submission. Access: USR'
+      tags: 
+        - 'M02: Posts'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                body:
+                  type: string
+              required:
+                - body
+      responses:
+        '302':
+          description: 'Redirect after processing the new answer information.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful question answer posting. Redirect to question.'
+                  value: '/question/${id}'
+                302Failure:
+                  description: 'Failed question answer posting. Redirect to question answer posting form.'
+                  value: '/question/${id}/answer'
+  /question/${id}/close:
+    post:
+      operationId: R206
+      summary: 'R206: Close question'
+      description: 'Close the given question. Access: OWN, ADM'
+      tags:
+        - 'M02: Posts'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '302':
+          description: 'Redirect after closing the question.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful close. Redirect to question page.'
+                  value: '/post/${id}'
+  /post/${id}/vote:
+    get:
+      operationId: R207
+      summary: "R207: Get a post's score"
+      description: 'Get the score of a post. Access: PUB'
+      tags: 
+        - 'M02: Posts'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: 'Ok.'
+    put:
+      operationId: R208
+      summary: 'R208: Vote on post'
+      description: 'Votes on a post. Access: USR'
+      tags: 
+        - 'M02: Posts'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                value:
+                  type: integer
+                  minimum: -1
+                  maximum: 1
+              required:
+                - value
+      responses:
+        '200':
+          description: 'Ok.'
+        '500':
+          description: 'Internal server error.'
+    delete:
+      operationId: R209
+      summary: 'R209: Vote deletion action'
+      description: 'Deletes a vote on a post. Access: OWN'
+      tags:
+        - 'M02: Posts'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: 'Ok.'
+        '500':
+          description: 'Internal server error.'
+  /post/${id}/edit:
+    get:
+      operationId: R210
+      summary: "R210: Post edit form"
+      description: 'Provide post editing form. Access: OWN'
+      tags: 
+        - 'M02: Posts'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: 'Ok.'
+    patch:
+      operationId: R211
+      summary: 'R211: Post edit action'
+      description: 'Process the post editing form. Access: OWN'
+      tags: 
+        - 'M02: Posts'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                body:
+                  type: string
+                tags:
+                  type: string
+      responses:
+        "302":
+          description: "Redirect after processing the post editing information."
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description:
+                    "Successful post editing. Redirect to post's page."
+                  value: "/post/${id}"
+                302Error:
+                  description: "Failed authentication. Redirect to post editing form."
+                  value: "/post/${id}/edit"
   /api/answers/${id}:
     get:
-      operationId: R301
-      summary: 'R301: View a question'
-      description: 'Searches for a given question and returns the results as JSON. Access: PUB'
+      operationId: R212
+      summary: 'R212: View a question API'
+      description: 'Searches for a given answer and returns the results as JSON. Access: PUB'
       tags: 
-        - 'M02: Questions'
+        - 'M02: Posts'
       parameters:
         - in: path
           name: id
@@ -284,11 +585,11 @@ paths:
           description: 'Not found.'
   /api/comments/${id}:
     get:
-      operationId: R302
-      summary: 'R302: View a question'
+      operationId: R213
+      summary: 'R213: View a comment API'
       description: 'Searches for a given comment and returns the results as JSON. Access: PUB'
-      tags: 
-        - 'M02: Questions'
+      tags:
+        - 'M02: Posts'
       parameters:
         - in: path
           name: id
@@ -326,11 +627,11 @@ paths:
 
   /users/{id}:
     get:
-      operationId: R401
-      summary: "R401: View a user's profile"
+      operationId: R301
+      summary: "R301: View a user's profile"
       description: "Show the public information of a user's profile. Access: PUB"
       tags:
-        - "M04: Other user's profiles"
+        - "M03: Other user's profiles"
       parameters:
         - in: path
           name: id
@@ -342,13 +643,40 @@ paths:
           description: 'Ok.'
         '404':
           description: 'Not found.'
+  /users/{id}/ban:
+    post:
+      operationId: R302
+      summary: "R302: Ban a user"
+      description: "Ban a user from the website. Access: ADM"
+      tags:
+        - "M03: Other user's profiles"
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '302':
+          description: 'Redirect after processing the ban.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful user ban. Redirect to administration page.'
+                  value: '/administration'
+                302Failure:
+                  description: 'Failed user ban. Redirect to administration page.'
+                  value: '/administration'
   /api/users/${id}:
     get:
-      operationId: R402
-      summary: 'R402: View a question'
+      operationId: R303
+      summary: 'R303: View a user API'
       description: 'Searches for a given user and returns the results as JSON. Access: PUB'
       tags: 
-        - "M04: Other user's profiles"
+        - "M03: Other user's profiles"
       parameters:
         - in: path
           name: id
@@ -389,11 +717,11 @@ paths:
 
   /administration:
     get:
-      operationId: R501
-      summary: "R501: View own administration page"
-      description: 'Retreive pending topic proposal and pending user reports forms.'
+      operationId: R401
+      summary: "R401: View administration page"
+      description: 'Retrieve pending topic proposal and user reports forms. Access: ADM'
       tags:
-        - 'M05: User Administration and Static pages'
+        - 'M04: Administration and static pages'
       responses:
         '200':
           description: 'Ok.'
@@ -401,11 +729,11 @@ paths:
           description: 'Unauthorized (not signed-in or admin).'
   /api/news:
     get:
-      operationId: R502
-      summary: "R502: Retreive news"
+      operationId: R402
+      summary: "R402: Retreive news API"
       description: "Show the website's news. Access: PUB."
       tags:
-        - 'M05: User Administration and Static pages'
+        - 'M04: Administration and static pages'
       responses:
         '200':
           description: Success
@@ -438,11 +766,11 @@ paths:
         '404':
           description: 'Not found.'
     post:
-      operationId: R503
-      summary: 'R503: Submit a news section'
+      operationId: R403
+      summary: 'R403: Submit a news section API'
       description: 'Insert a news section into the website. Access: ADM'
       tags:
-        - 'M05: User Administration and Static pages'
+        - 'M04: Administration and static pages'
       requestBody:
         required: true
         content:

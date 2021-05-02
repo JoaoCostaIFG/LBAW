@@ -361,6 +361,7 @@ AS $$
             FROM post JOIN vote ON (post.id = vote.id_post)
             WHERE id = post_id);
 
+
     -- update the question score
     UPDATE post
     SET score = val
@@ -614,7 +615,7 @@ DROP TRIGGER IF EXISTS update_score ON vote CASCADE;
 CREATE TRIGGER update_score
 AFTER DELETE OR INSERT OR UPDATE
 ON vote
-EXECUTE FUNCTION on_score_change();
+FOR EACH ROW EXECUTE FUNCTION on_score_change();
 
 -- Search user
 

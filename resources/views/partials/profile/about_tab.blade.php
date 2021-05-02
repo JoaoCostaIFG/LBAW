@@ -1,10 +1,12 @@
 <!-- BEGIN ABOUT TAB -->
 <div id="profile" class="tab-pane fade show active">
-  <div class="container-fluid themed-container text-left">
-    <h5 class="m-0 p-1">About</h5>
+  <div class="container themed-container text-left p-0">
+    <h5 class="m-0 fw-bold">About</h5>
   </div>
-  <p class="p-4">
-    {{ $user->about }}
-  </p>
+  <div class="container-md p-0 border border-dark" style="height: 200px;">
+    <p class="p-1">
+      {{ $user->about }}
+    </p>
+  </div>
 </div>
 <!-- END ABOUT TAB -->

@@ -58,11 +58,6 @@ Route::post('register', 'Auth\RegisterController@register');
 
 // TODO remove
 Route::get('/test', function() {
-  $user = User::find(1);
-  echo $user->getAnswerParticipation()->get();
-  echo "<br>";
-  echo $user->getQuestionParticipation()->get();
-  echo "<br>";
-  echo $user->getTopicParticipation()->get();
-  echo "<br>";
+  $post = Post::find(1);
+  echo $post->score;
 });
