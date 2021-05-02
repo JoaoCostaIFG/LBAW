@@ -7,6 +7,7 @@ use App\Models\Achievement;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
+
 class UserController extends Controller
 {
     public function show($id){
@@ -24,6 +25,20 @@ class UserController extends Controller
         }
 
         return redirect()->route('profile', [Auth::id()]);
+    }
+
+    public function showApi()
+    {
+        if (!Auth::check()) {
+          return response()->json([
+              'message' => 'Unauthorized (not signed-in).'
+          ], 401);
+        }
+
+        return response()->json([
+            'post' => Auth::user()
+        ], 200);
+
     }
 
     public function delete()
