@@ -7,20 +7,19 @@
     <!-- BEGIN TABS -->
     <nav class="mt-2">
       <ul class="nav nav-tabs justify-content-center">
-        <li class="nav-item">
-          <a href="#profile" class="nav-link active" data-toggle="tab">
+        <li class="nav-item text-center" style="width: 33.33%">
+          <a href="#profile" class="nav-link active fw-bold" data-toggle="tab">
             About
           </a>
         </li>
-        <li class="nav-item">
-          <a href="#activity" class="nav-link" data-toggle="tab">
+        <li class="nav-item text-center" style="width: 33.33%">
+          <a href="#activity" class="nav-link fw-bold" data-toggle="tab">
             Activity
           </a>
         </li>
-        <li class="nav-item">
-          <a href="#achievements" class="nav-link" data-toggle="tab">
+        <li class="nav-item text-center" style="width: 33.33%">
+          <a href="#achievements" class="nav-link fw-bold" data-toggle="tab">
             Achievements
-            <span class="badge bg-light text-dark rounded-pill">{{ count($user->achievements) }}</span>
           </a>
         </li>
       </ul>
@@ -34,7 +33,7 @@
       <span class="d-block text-center fs-5"><b>{{ $user->name }}</b></span>
       <span class="d-block text-center">{{ $user->username }}</span>
     </div>
-    <div class="row user-engagement-count">
+    <div class="row user-engagement-count mb-1">
       <div class="col-4 themed-grid-col text-center">
         <h4 class="m-0 p-0">{{ count($user->answers) }}</h4>
         <p class="m-0 p-0">Answers</p>
@@ -59,28 +58,49 @@
       @endif
 
       <!-- BEGIN ACTIVITY TAB -->
-      <div id="activity" class="tab-pane fade">
-        <!-- Top Topics -->
-        <div class="container-fluid themed-container text-left">
-          <h5 class="m-0 p-1">Top Topics</h5>
+      <div id="activity" class="tab-pane fade gap-2 container">
+
+        <div class="row">
+          <!-- Top Topics -->
+          <div class="col-lg">
+            <div class="container themed-container p-0 text-left">
+              <h5 class="m-0 fw-bold">Top Topics</h5>
+            </div>
+            @if (count($user->getTopicParticipation()->get()) == 0)
+              <div class="text-center mb-3">
+                <span class="text-center">-- This user has no activity --</span>
+              </div>
+            @else      
+              @foreach ($user->getTopicParticipation()->get() as $topic)
+                @include('partials.profile.top_topic_card', ['topic_questions' =>
+                $user->getQuestionParticipation()->get()->keyBy('topic_name'),
+                'topic_answers' => $user->getAnswerParticipation()->get()->keyBy('topic_name')])
+              @endforeach
+            @endif
+          </div>
+          <!-- Top Questions -->
+          <div class = "col-lg">
+            <div class="container themed-container p-0 text-left">
+              <h5 class="m-0 fw-bold">Top Questions</h5>
+            </div>
+            @if (count($user->questions) == 0)
+            <div class="text-center">
+              <span class="text-center">-- This user has no questions --</span>
+            </div>
+            @else 
+              <div class="container p-0">
+                @each('partials.question_card', $user->questions, 'question')
+              </div>           
+            @endif
+          </div>
         </div>
-        @foreach ($user->getTopicParticipation()->get() as $topic)
-          @include('partials.profile.top_topic_card', ['topic_questions' =>
-          $user->getQuestionParticipation()->get()->keyBy('topic_name'),
-          'topic_answers' => $user->getAnswerParticipation()->get()->keyBy('topic_name')])
-        @endforeach
-        <!-- Top Questions -->
-        <div class="container-fluid themed-container text-left">
-          <h5 class="m-0 p-1">Top Questions</h5>
-        </div>
-        @each('partials.profile.top_post_card', $user->questions, 'question')
       </div>
       <!-- END ACTIVITY TAB -->
 
       <!-- BEGIN ACHIEVEMENTS TAB -->
       <div id="achievements" class="tab-pane fade">
-        <div class="container-fluid themed-container text-left">
-          <h5 class="m-0 p-1">Achievements</h5>
+        <div class="container themed-container text-left p-0">
+          <h5 class="m-0 fw-bold">Achievements</h5>
         </div>
         <!-- Progress bar -->
         @php
@@ -89,7 +109,7 @@
         @endphp
         <div class="p-2 m-auto" >
           <div class="container d-flex justify-content-between p-0">
-            <span>Progress</span>
+            <span><i class="bi bi-award-fill"></i> Progress</span>
             <span>{{ count($user->achievements) }}/{{ count($achievements) }} Achieved</span>
           </div>
           <span class="p-0 progress m-auto" data-bs-toggle="popover" data-bs-trigger="hover focus"
