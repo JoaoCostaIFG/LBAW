@@ -14,6 +14,7 @@
 
 use \App\Models\User;
 use \App\Models\Post;
+use \App\Models\Comment;
 Route::view('/', 'pages.index');
 // Pages
 Route::view('/home', 'pages.index')->name('home');
@@ -31,6 +32,8 @@ Route::get('cards', 'CardController@list');
 Route::get('cards/{id}', 'CardController@show');
 
 // API
+Route::get('/api/questions', 'SearchResultsController@searchApi');
+Route::get('/api/user', 'UserController@showApi');
 Route::post('api/comments', 'CommentController@create');
 Route::patch('api/comments/{id}', 'CommentController@update');
 Route::put('api/{id}/vote/', 'VoteController@create');
@@ -58,6 +61,6 @@ Route::post('register', 'Auth\RegisterController@register');
 
 // TODO remove
 Route::get('/test', function() {
-  $post = Post::find(1);
-  echo $post->score;
+  $comment= Comment::where('id', '!=', 4);
+  echo $comment->with('post')->get();
 });

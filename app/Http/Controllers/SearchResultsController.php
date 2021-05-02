@@ -26,4 +26,9 @@ class SearchResultsController extends Controller
         return view("pages.search_results", ['questions' => $questions,
          'users' => $users, 'search' => $search_data]);
     }
+
+    public function searchApi(Request $request){
+        //$validatedData = $request->validate([
+        // TODO
+    }
 }

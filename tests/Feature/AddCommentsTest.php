@@ -7,7 +7,7 @@ use Tests\TestCase;
 
 class AddCommentsTest extends TestCase
 {
-    public function testBasicTest()
+    public function testBasic()
     {
         $response = $this->actingAs(User::find(1))->post('/ajax/comment', ['answer_id' => 3, 'body' => 'asdasd']);
 
