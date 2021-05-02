@@ -12,7 +12,8 @@ class UserController extends Controller
     public function show($id){
         $user = User::find($id);
         $achievements = Achievement::all();
-        return view("pages.profile", ['user' => $user, 'achievements' => $achievements]);
+        
+        return view("pages.profile", ['user' => $user, 'achievements' => $achievements ]);
     }
 
     public function showOwn()

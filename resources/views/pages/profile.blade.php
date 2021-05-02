@@ -61,7 +61,10 @@
       <div class="container-fluid themed-container text-left">
         <h5 class="m-0 p-1">Top Topics</h5>
       </div>
-      @include('partials.profile.top_topic_card')
+      @foreach ($user->getTopicParticipation()->get() as $topic)
+        @include('partials.profile.top_topic_card', ['topic_questions' => $user->getQuestionParticipation()->get()->keyBy('topic_name'),
+        'topic_answers' => $user->getAnswerParticipation()->get()->keyBy('topic_name')])
+      @endforeach
       <div class="container-fluid themed-container text-left">
         <h5 class="m-0 p-1">Top Posts</h5>
       </div>

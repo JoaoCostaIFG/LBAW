@@ -99,20 +99,20 @@ class User extends Authenticatable {
     }
 
     public function getQuestionParticipation() {
-        $questions_topic = Topic::selectRaw('topic.id as topic_id, post.id as post_id, post.score as score')
+        $questions_topic = Topic::selectRaw('topic.name as topic_name, post.id as post_id, post.score as score')
             ->join('topic_question', 'topic.id', '=', 'topic_question.id_topic')
             ->join('question', 'question.id', '=', 'topic_question.id_question')
             ->join('post', 'post.id', '=', 'question.id')
             ->join('user', 'user.id', '=', 'post.id_owner')
             ->where('user.id', '=', $this->id);
        return DB::table(DB::raw("({$questions_topic->toSql()}) as sub"))->mergeBindings($questions_topic->getQuery())
-            ->selectRaw('topic_id, count(post_id) as cnt, sum(score) as score')
-            ->groupBy('topic_id')
+            ->selectRaw('topic_name, count(post_id) as cnt, sum(score) as score')
+            ->groupBy('topic_name')
             ->orderBy('cnt', 'desc');
     }
 
     public function getAnswerParticipation() {
-        $answer_topic = Topic::selectRaw('topic.id as topic_id, post.id as post_id, post.score as score')
+        $answer_topic = Topic::selectRaw('topic.name as topic_name, post.id as post_id, post.score as score')
             ->join('topic_question', 'topic.id', '=', 'topic_question.id_topic')
             ->join('question', 'question.id', '=', 'topic_question.id_question')
             ->join('answer_question', 'question.id', '=', 'answer_question.id_question')
@@ -122,8 +122,8 @@ class User extends Authenticatable {
             ->where('user.id', '=', $this->id);
 
        return DB::table(DB::raw("({$answer_topic->toSql()}) as sub"))->mergeBindings($answer_topic->getQuery())
-            ->selectRaw('topic_id, count(post_id) as cnt, sum(score) as score')
-            ->groupBy('topic_id')
+            ->selectRaw('topic_name, count(post_id) as cnt, sum(score) as score')
+            ->groupBy('topic_name')
             ->orderBy('cnt', 'desc');
     }
 
@@ -131,16 +131,13 @@ class User extends Authenticatable {
     {
         $answers = $this->getAnswerParticipation();
         $questions = $this->getQuestionParticipation();
-
-
         
         $subq = $answers;
         $subq->unionAll($questions);
 
         return DB::table(DB::raw("({$subq->toSql()}) as sub"))->mergeBindings($subq)
-            ->selectRaw('topic_id, sum(cnt) as cnt, sum(score) as score')
-            ->groupBy('topic_id')
+            ->selectRaw('topic_name, sum(cnt) as cnt, sum(score) as score')
+            ->groupBy('topic_name')
             ->orderBy('cnt', 'desc');
     }
-
 }
