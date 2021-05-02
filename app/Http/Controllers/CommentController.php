@@ -49,10 +49,10 @@ class CommentController extends Controller
             } else {
                 DB::select("CALL create_comment(?, ?, ?, ?, ?)", [Auth::id(), $request->body, date("Y-m-d"), null, $request->answer_id]);
             }
-            return Comment::latest('id')->first();
+            return Comment::latest('id')->limit(1);
         });
 
-        return $comment;
+        return $comment->with('post')->get()[0];
     }
 
     public function update(Request $request)

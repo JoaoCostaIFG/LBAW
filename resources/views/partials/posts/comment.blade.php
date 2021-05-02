@@ -9,7 +9,7 @@
     @endif
     <p id="comment-{{$comment->post->id}}" class="col-7">{{ $comment->post->body }}</p>
     @auth
-        @if (Auth::id() == $comment->post->owner->id)
+        @if (Auth::id() == $comment->post->owner->id || Auth::user()->hasRole('moderator'))
             <button class="btn btn-secondary col-1 dropdown-toggle" data-bs-toggle="dropdown" id="commentEditDropdownLink" aria-expanded="false" >
                 {{-- <p class="bi-caret-down" ><p> --}}
                 <i class="bi bi-pencil-square"></i>
