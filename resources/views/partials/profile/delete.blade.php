@@ -1,4 +1,4 @@
-<div class="row justify-content-md-center">
+<div class="row p-3 justify-content-md-center">
     <button class="btn btn-danger col-2" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal"
         aria-controls="deleteModal" aria-expanded="false" aria-label="Open delete account box">
         Delete Account
