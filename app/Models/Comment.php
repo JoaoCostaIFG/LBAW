@@ -13,11 +13,11 @@ class Comment extends Model
     // Don't add create and update timestamps in database.
     public $timestamps = false;
 
-    public function getQuestionIdAttribute() {
+    public function parentQuestion() {
         if ($this->question()->exists())
-            return $this->question->id;
+            return $this->question();
         else // if ($this->answer()->exists())
-            return $this->answer->question->id;
+            return $this->answer->question();
     }
 
     public function post()

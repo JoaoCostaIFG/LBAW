@@ -296,10 +296,12 @@ CREATE TABLE notification_achievement(
   id_achievement INTEGER NOT NULL,
   CONSTRAINT fk_notification
     FOREIGN KEY(id)
-      REFERENCES notification(id),
+      REFERENCES notification(id)
+      ON DELETE CASCADE,
   CONSTRAINT fk_achievement
     FOREIGN KEY(id_achievement)
       REFERENCES achievement(id)
+      ON DELETE CASCADE
 );
 
 -- R21
@@ -308,10 +310,12 @@ CREATE TABLE notification_post(
   id_post INTEGER NOT NULL,
   CONSTRAINT fk_notification
     FOREIGN KEY(id)
-      REFERENCES notification(id),
+      REFERENCES notification(id)
+      ON DELETE CASCADE,
   CONSTRAINT fk_post
     FOREIGN KEY(id_post)
       REFERENCES post(id)
+      ON DELETE CASCADE
 );
 
 
@@ -356,6 +360,7 @@ AS $$
     val := (SELECT sum(value)
             FROM post JOIN vote ON (post.id = vote.id_post)
             WHERE id = post_id);
+
 
     -- update the question score
     UPDATE post
@@ -610,7 +615,7 @@ DROP TRIGGER IF EXISTS update_score ON vote CASCADE;
 CREATE TRIGGER update_score
 AFTER DELETE OR INSERT OR UPDATE
 ON vote
-EXECUTE FUNCTION on_score_change();
+FOR EACH ROW EXECUTE FUNCTION on_score_change();
 
 -- Search user
 
@@ -690,7 +695,7 @@ EXECUTE PROCEDURE post_generalization();
 DROP RULE IF EXISTS remove_user ON "user" CASCADE;
 CREATE RULE remove_user
 AS ON DELETE TO "user"
-DO INSTEAD
+DO INSTEAD(
     UPDATE "user"
     SET
       name = 'Deleted User',
@@ -702,6 +707,9 @@ DO INSTEAD
       picture = NULL,
       reputation = NULL
     WHERE id = Old.id;
+    DELETE FROM "achieved" WHERE id_user = Old.id;
+    DELETE FROM "notification" WHERE id = Old.id;
+);
 
 ---- Achievements
 
@@ -950,6 +958,8 @@ CALL create_comment(14, 'Exactly, the repo is also under an MIT License, which r
 CALL create_question(15, 'How do you set, clear, and toggle a bit?', '2019-08-22', 'How do you set, clear, and toggle a single bit?', 0, true);
 CALL create_answer(16, 'Use the bitwise OR operator (|) to set a bit.', '2020-09-20', 15);
 CALL create_comment(17, 'You are very dumb haha','2020-09-20', 15, NULL);
+CALL create_question(1, 'How do you post a question', '2019-08-22', 'is it here?', 0, false);
+CALL create_answer(1, 'Someone delete this please', '2021-02-21', 18);
 
 UPDATE question SET accepted_answer = 3 WHERE id = 1;
 UPDATE question SET accepted_answer = 10 WHERE id = 9;
@@ -991,6 +1001,9 @@ INSERT INTO topic_question (id_topic, id_question) VALUES (3, 9);
 INSERT INTO topic_question (id_topic, id_question) VALUES (2, 12);
 INSERT INTO topic_question (id_topic, id_question) VALUES (1, 15);
 INSERT INTO topic_question (id_topic, id_question) VALUES (4, 15);
+INSERT INTO topic_question (id_topic, id_question) VALUES (1, 18);
+INSERT INTO topic_question (id_topic, id_question) VALUES (2, 18);
+INSERT INTO topic_question (id_topic, id_question) VALUES (6, 18);
 
 -- R18
 INSERT INTO report (id_post, reporter, "date", reason, state, reviewer) VALUES

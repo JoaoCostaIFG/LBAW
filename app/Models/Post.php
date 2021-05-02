@@ -16,6 +16,10 @@ class Post extends Model
     // Don't add create and update timestamps in database.
     public $timestamps = false;
 
+    protected $fillable = [
+        'body'
+    ];
+
     public function getChildAttribute()
     {
         if (empty($this->child)) {
@@ -23,8 +27,10 @@ class Post extends Model
                 $this->child = $this->question();
             else if ($this->answer()->exists())
                 $this->child = $this->answer();
-            else // if ($this->comment()->exists()) -> Not needed
+            else if ($this->comment()->exists()) // -> Not needed
                 $this->child = $this->comment();
+            else
+                return $this->child->get()[0];
         }
 
         return $this->child->get()[0];
@@ -34,8 +40,10 @@ class Post extends Model
         return $this->getChildAttribute()->getTable();
     }
 
-    public function getQuestionIdAttribute() {
-        return $this->getChildAttribute()->questionId;
+    public function parentQuestion() {
+        if ($this->getTypeAttribute() == "question")
+            return $this->question();
+        return $this->getChildAttribute()->parentQuestion();
     }
 
     /**

@@ -11,10 +11,6 @@ class Question extends Model
     protected $table = "question";
     public $timestamps = false;
 
-    public function getQuestionIdAttribute() {
-        return $this->id;
-    }
-
     public function post()
     {
         return $this->belongsTo(Post::class, 'id');

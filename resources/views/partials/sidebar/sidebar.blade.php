@@ -45,13 +45,13 @@
             <i class="bi bi-bell"></i>
           </button>
         </h4>
-      </div>
+    </div>
       <ul class="list-group">
           @include('partials.sidebar.sidebar_link', ['href' => "/profile/" . Auth::id(), 'icon' => "bi-person-circle", 'text' =>  "My Profile"])
           @include('partials.sidebar.sidebar_link', ['href' => "/ask_question", 'icon' => "bi-plus-circle", 'text' =>  "Ask Question"]) {{-- TODO --}}
       </ul>
 
-      <div class="row justify-content-evenly sidebar-buttons">
+    <div class="row justify-content-evenly sidebar-buttons">
         <a class="btn btn-danger col-4" href="/logout">Logout</a>
     </div>
     @endauth

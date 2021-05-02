@@ -18,7 +18,7 @@
         <p class="lead my-3">So we built this for you</p>
         <p class="lead mb-0">
           <a class="btn btn-secondary" href="#find-out-more" role="button">Find out more</a>
-          <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#signupModal" aria-controls="signupModal" aria-expanded="false" aria-label="Signup">Join now</button>
+          <a class="btn btn-primary" href="/register" role="button">Join now</a>
         </p>
       </div>
     </div>
@@ -33,7 +33,7 @@
       <div class="container p-4 p-md-5 mb-4">
         <h1 class="display-4 fst-italic">Read the latest news about us</h1>
         <p class="lead my-3">Stay up-to-date on everything that is going on with the site</p>
-        <a class="btn btn-primary" href="/pages/news.php" role="button">News</a>
+        <a class="btn btn-primary" href="/news" role="button">News</a>
       </div>
     </div>
     <!-- END CAROUSEL ITEM -->

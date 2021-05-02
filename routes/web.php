@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Question;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,16 +12,18 @@ use App\Models\Question;
 */
 // Home
 
+use \App\Models\User;
 use \App\Models\Post;
+use \App\Models\Comment;
 Route::view('/', 'pages.index');
 // Pages
-Route::view('/home', 'pages.index');
+Route::view('/home', 'pages.index')->name('home');
 Route::view('/about', 'pages.about');
 Route::get('/search', 'SearchResultsController@search');
 Route::get('/news', 'NewsController@show');
 Route::get('/leaderboard', 'LeaderboardController@show');
 Route::get('/question/{id}', 'QuestionController@show');
-Route::get('/profile/{id}', 'ProfileController@show');
+Route::get('/profile/{id}', 'UserController@show')->name('profile');
 Route::get('administration', 'AdministrationController@show')->middleware('role:moderator');
 Route::view('ask_question', 'pages.ask_question')->middleware('auth');
 
@@ -31,11 +32,25 @@ Route::get('cards', 'CardController@list');
 Route::get('cards/{id}', 'CardController@show');
 
 // API
-Route::put('api/cards', 'CardController@create');
-Route::delete('api/cards/{card_id}', 'CardController@delete');
-Route::put('api/cards/{card_id}/', 'ItemController@create');
-Route::post('api/item/{id}', 'ItemController@update');
-Route::delete('api/item/{id}', 'ItemController@delete');
+Route::get('/api/questions', 'SearchResultsController@searchApi');
+Route::get('/api/user', 'UserController@showApi');
+Route::post('api/comments', 'CommentController@create');
+Route::patch('api/comments/{id}', 'CommentController@update');
+Route::put('api/{id}/vote/', 'VoteController@create');
+Route::delete('api/{id}/vote/', 'VoteController@delete');
+
+// Route::put('api/cards', 'CardController@create');
+// Route::delete('api/cards/{card_id}', 'CardController@delete');
+// Route::put('api/cards/{card_id}/', 'ItemController@create');
+// Route::post('api/item/{id}', 'ItemController@update');
+// Route::delete('api/item/{id}', 'ItemController@delete');
+
+//Ajax
+Route::post('ajax/comment', 'AjaxController@add_comment');
+
+// User
+Route::delete('user', 'UserController@delete')->name('user');
+Route::get('user', 'UserController@showOwn');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -46,8 +61,6 @@ Route::post('register', 'Auth\RegisterController@register');
 
 // TODO remove
 Route::get('/test', function() {
-  $user = Post::find(6);
-  echo('?');
-  echo($user->questionId);
-  echo('?');
+  $comment= Comment::where('id', '!=', 4);
+  echo $comment->with('post')->get();
 });

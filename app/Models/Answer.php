@@ -13,8 +13,8 @@ class Answer extends Model
     // Don't add create and update timestamps in database.
     public $timestamps = false;
 
-    public function getQuestionIdAttribute() {
-            return $this->question->id;
+    public function parentQuestion() {
+            return $this->question();
     }
 
     public function post()

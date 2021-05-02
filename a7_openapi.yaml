@@ -63,7 +63,7 @@ paths:
     post:
       operationId: R103
       summary: 'R103: Logout action'
-      description: 'Logout the current authenticated used. Access: USR, ADM'
+      description: 'Logout the current authenticated used. Access: USR'
       tags:
         - 'M01: Authentication and individual profile'
       responses:
@@ -188,13 +188,50 @@ paths:
                 302Failure:
                   description: 'Failed user deletion. Redirect to user profile page.'
                   value: '/user'
+    patch:
+      operationId: R108
+      summary: "R108: Edit user's profile"
+      description: 'Processes the new user profile information. Access: OWN'
+      tags:
+        - 'M01: Authentication and individual profile'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                username:
+                  type: string
+                password:
+                  type: string
+                  format: password
+                repeat_password:
+                  type: string
+                  format: password
+      responses:
+        '302':
+          description: 'Redirect after processing the updated user profile information.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful profile editing. Redirect to user profile.'
+                  value: '/user'
+                302Failure:
+                  description: 'Failed profile editing. Redirect to profile editing page.'
+                  value: '/user'
 
   /api/questions:
     get:
       operationId: R201
       summary: 'R201: Search questions API'
       description: 'Searches for questions and returns the results as JSON. Access: PUB'
-      tags: 
+      tags:
         - 'M02: Posts'
       parameters:
         - in: query
@@ -287,6 +324,8 @@ paths:
                   type: string
                 bounty:
                   type: integer
+                tags:
+                  type: string
               required:
                 - title
                 - body
@@ -309,7 +348,7 @@ paths:
       operationId: R204
       summary: 'R204: Answer submission form.'
       description: 'Posts an answer to a question. Access: USR'
-      tags: 
+      tags:
         - 'M02: Posts'
       parameters:
         - in: path
@@ -324,7 +363,7 @@ paths:
       operationId: R205
       summary: 'R205: Answer submission action.'
       description: 'Processes the new question answer form submission. Access: USR'
-      tags: 
+      tags:
         - 'M02: Posts'
       parameters:
         - in: path
@@ -357,12 +396,36 @@ paths:
                 302Failure:
                   description: 'Failed question answer posting. Redirect to question answer posting form.'
                   value: '/question/${id}/answer'
+  /question/${id}/close:
+    post:
+      operationId: R206
+      summary: 'R206: Close question'
+      description: 'Close the given question. Access: OWN, ADM'
+      tags:
+        - 'M02: Posts'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '302':
+          description: 'Redirect after closing the question.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful close. Redirect to question page.'
+                  value: '/post/${id}'
   /post/${id}/vote:
     get:
-      operationId: R206
-      summary: "R206: Get a post's score."
+      operationId: R207
+      summary: "R207: Get a post's score"
       description: 'Get the score of a post. Access: PUB'
-      tags: 
+      tags:
         - 'M02: Posts'
       parameters:
         - in: path
@@ -374,10 +437,10 @@ paths:
         '200':
           description: 'Ok.'
     put:
-      operationId: R207
-      summary: 'R207: Vote on post.'
+      operationId: R208
+      summary: 'R208: Vote on post'
       description: 'Votes on a post. Access: USR'
-      tags: 
+      tags:
         - 'M02: Posts'
       parameters:
         - in: path
@@ -404,8 +467,8 @@ paths:
         '500':
           description: 'Internal server error.'
     delete:
-      operationId: R208
-      summary: 'R208: Vote deletion action'
+      operationId: R209
+      summary: 'R209: Vote deletion action'
       description: 'Deletes a vote on a post. Access: OWN'
       tags:
         - 'M02: Posts'
@@ -420,12 +483,68 @@ paths:
           description: 'Ok.'
         '500':
           description: 'Internal server error.'
+  /post/${id}/edit:
+    get:
+      operationId: R210
+      summary: "R210: Post edit form"
+      description: 'Provide post editing form. Access: OWN'
+      tags:
+        - 'M02: Posts'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: 'Ok.'
+    patch:
+      operationId: R211
+      summary: 'R211: Post edit action'
+      description: 'Process the post editing form. Access: OWN'
+      tags:
+        - 'M02: Posts'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                body:
+                  type: string
+                tags:
+                  type: string
+      responses:
+        "302":
+          description: "Redirect after processing the post editing information."
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description:
+                    "Successful post editing. Redirect to post's page."
+                  value: "/post/${id}"
+                302Error:
+                  description: "Failed authentication. Redirect to post editing form."
+                  value: "/post/${id}/edit"
   /api/answers/${id}:
     get:
-      operationId: R209
-      summary: 'R209: View a question API'
+      operationId: R212
+      summary: 'R212: View a question API'
       description: 'Searches for a given answer and returns the results as JSON. Access: PUB'
-      tags: 
+      tags:
         - 'M02: Posts'
       parameters:
         - in: path
@@ -466,8 +585,8 @@ paths:
           description: 'Not found.'
   /api/comments/${id}:
     get:
-      operationId: R210
-      summary: 'R210: View a comment API'
+      operationId: R213
+      summary: 'R213: View a comment API'
       description: 'Searches for a given comment and returns the results as JSON. Access: PUB'
       tags:
         - 'M02: Posts'
@@ -524,12 +643,39 @@ paths:
           description: 'Ok.'
         '404':
           description: 'Not found.'
+  /users/{id}/ban:
+    post:
+      operationId: R302
+      summary: "R302: Ban a user"
+      description: "Ban a user from the website. Access: ADM"
+      tags:
+        - "M03: Other user's profiles"
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '302':
+          description: 'Redirect after processing the ban.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful user ban. Redirect to administration page.'
+                  value: '/administration'
+                302Failure:
+                  description: 'Failed user ban. Redirect to administration page.'
+                  value: '/administration'
   /api/users/${id}:
     get:
-      operationId: R302
-      summary: 'R302: View a user API'
+      operationId: R303
+      summary: 'R303: View a user API'
       description: 'Searches for a given user and returns the results as JSON. Access: PUB'
-      tags: 
+      tags:
         - "M03: Other user's profiles"
       parameters:
         - in: path
@@ -572,8 +718,8 @@ paths:
   /administration:
     get:
       operationId: R401
-      summary: "R401: View own administration page"
-      description: 'Retreive pending topic proposal and pending user reports forms.'
+      summary: "R401: View administration page"
+      description: 'Retrieve pending topic proposal and user reports forms. Access: ADM'
       tags:
         - 'M04: Administration and static pages'
       responses:

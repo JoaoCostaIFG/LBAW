@@ -1,5 +1,5 @@
 <!-- Question Card -->
-<div class="d-flex flex-sm-row flex-column-reverse justify-content-start align-items-center gap-3 w-100 border p-3">
+<div class="d-flex flex-sm-row flex-column-reverse justify-content-start align-items-center gap-3  border p-3 mt-1 mb-1">
   <div class="d-flex flex-sm-column flex-row justify-content-start align-items-center gap-1 ">
     <!-- Number Votes -->
     <div class="d-flex flex-sm-column flex-row justify-content-center align-items-center gap-1">
@@ -7,7 +7,7 @@
       <span>Votes</span>
       <span class="d-sm-none"><i class="bi bi-arrow-down-up"></i></span>
     </div>
-    <!-- TODO Number Answers -->
+    <!-- Number Answers -->
     <div class="d-flex  flex-sm-column flex-row justify-content-center align-items-center gap-1">
       <span class="fs-4"> {{ count($question->answers) }} </span>
       <span>Answers</span>
@@ -39,14 +39,20 @@
         <div class="d-flex flex-row flex-md-column justify-content-center align-items-start">
           <!-- Owner Username -->
           <span class="d-md-none">by&nbsp;</span>
-          <a href="/profile/{{ $question->post->owner->id }}">
-            {{ $question->post->owner->username }}
-          </a>
-          <!-- Owner Reputation -->
-          <span class="d-none d-md-block">
-            {{ $question->post->owner->reputation }}
-            <i class="bi bi-award"></i>
-          </span>
+          @if (is_null($question->post->owner->username))
+            <span class="d-none d-md-block">
+              Deleted User
+            </span>
+          @else
+            <a href="/profile/{{ $question->post->owner->id }}">
+              {{ $question->post->owner->username }}
+            </a>
+            <!-- Owner Reputation -->
+            <span class="d-none d-md-block">
+              {{ $question->post->owner->reputation }}
+              <i class="bi bi-award"></i>
+            </span>
+          @endif
         </div>
       </div>
     </div>

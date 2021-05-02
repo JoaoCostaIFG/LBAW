@@ -6,8 +6,8 @@
 
 <div class="container">
   <h2 class="page-title">Leaderboard</h2>
-  <div class="container-fluid row justify-content-center mt-4">
-
+  <hr>
+  <div class="container row justify-content-center mt-4">
     <!-- Users Leaderboard -->
     <div class="col-auto">
       <table class="table table-dark table-striped table-bordered align-middle">

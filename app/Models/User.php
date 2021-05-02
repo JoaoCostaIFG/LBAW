@@ -20,26 +20,18 @@ class User extends Authenticatable {
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'search', 'picture'
     ];
 
     protected $fillable = [
         'username', 'password', 'email'
     ];
 
-    public function hasRole($role) {
-        if (DB::table('administrator')->where('id', $this->id)->exists() && ($role === 'administrator' || $role === 'moderator')) {
-            return true;
-        }
-        if (DB::table('moderator')->where('id', $this->id)->exists() && $role === 'moderator') {
-            return true;
-        }
-        return false;
-    }
+    // Relations
 
     public function posts()
     {
-        return $this->hasMany(Post::class, 'id');
+        return $this->hasMany(Post::class, 'id_owner', 'id');
     }
 
     public function questions()
@@ -69,6 +61,13 @@ class User extends Authenticatable {
         );
     }
 
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class, 'id', 'id');
+    }
+
+    // Search functions
+
     public function scopeSearch($query, $search)
     {
         if (!$search) {
@@ -79,8 +78,66 @@ class User extends Authenticatable {
             orderByRaw('ts_rank(search, plainto_tsquery(?)) DESC', [$search]);
     }
 
-    public function notifications()
+    public function hasRole($role) {
+        if (DB::table('administrator')->where('id', $this->id)->exists() && ($role === 'administrator' || $role === 'moderator')) {
+            return true;
+        }
+        if (DB::table('moderator')->where('id', $this->id)->exists() && $role === 'moderator') {
+            return true;
+        }
+        return false;
+    }
+
+    public function getVote($post) {
+        $vote = Vote::join('user', 'user.id', '=', 'vote.id_user')
+            ->join('post', 'vote.id_post', '=', 'post.id')
+            ->where('user.id', '=', $this->id)
+            ->where('post.id', '=', $post->id);
+        if ($vote->exists())
+            return $vote->get()[0];
+        return false;
+    }
+
+    public function getQuestionParticipation() {
+        $questions_topic = Topic::selectRaw('topic.name as topic_name, post.id as post_id, post.score as score')
+            ->join('topic_question', 'topic.id', '=', 'topic_question.id_topic')
+            ->join('question', 'question.id', '=', 'topic_question.id_question')
+            ->join('post', 'post.id', '=', 'question.id')
+            ->join('user', 'user.id', '=', 'post.id_owner')
+            ->where('user.id', '=', $this->id);
+       return DB::table(DB::raw("({$questions_topic->toSql()}) as sub"))->mergeBindings($questions_topic->getQuery())
+            ->selectRaw('topic_name, count(post_id) as cnt, sum(score) as score')
+            ->groupBy('topic_name')
+            ->orderBy('cnt', 'desc');
+    }
+
+    public function getAnswerParticipation() {
+        $answer_topic = Topic::selectRaw('topic.name as topic_name, post.id as post_id, post.score as score')
+            ->join('topic_question', 'topic.id', '=', 'topic_question.id_topic')
+            ->join('question', 'question.id', '=', 'topic_question.id_question')
+            ->join('answer_question', 'question.id', '=', 'answer_question.id_question')
+            ->join('answer', 'answer.id', '=', 'answer_question.id_answer')
+            ->join('post', 'post.id', '=', 'answer.id')
+            ->join('user', 'user.id', '=', 'post.id_owner')
+            ->where('user.id', '=', $this->id);
+
+       return DB::table(DB::raw("({$answer_topic->toSql()}) as sub"))->mergeBindings($answer_topic->getQuery())
+            ->selectRaw('topic_name, count(post_id) as cnt, sum(score) as score')
+            ->groupBy('topic_name')
+            ->orderBy('cnt', 'desc');
+    }
+
+    public function getTopicParticipation()
     {
-        return $this->hasMany(Notification::class, 'id', 'id');
+        $answers = $this->getAnswerParticipation();
+        $questions = $this->getQuestionParticipation();
+        
+        $subq = $answers;
+        $subq->unionAll($questions);
+
+        return DB::table(DB::raw("({$subq->toSql()}) as sub"))->mergeBindings($subq)
+            ->selectRaw('topic_name, sum(cnt) as cnt, sum(score) as score')
+            ->groupBy('topic_name')
+            ->orderBy('cnt', 'desc');
     }
 }
