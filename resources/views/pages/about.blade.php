@@ -28,28 +28,28 @@
   <div class="container text-center">
     <div class="row">
       <div class="col-12 col-sm-6 col-lg-3">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="{{ asset('images/user.png') }}" role="img" aria-label="Placeholder: 140x140" focusable="false"><title>Placeholder</title></img>
 
         <h3>Ana Barros</h3>
         <p>Main developer/designer</p>
         <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
       </div><!-- /.col -->
       <div class="col-12 col-sm-6 col-lg-3">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="{{ asset('images/user.png') }}" role="img" aria-label="Placeholder: 140x140" focusable="false"><title>Placeholder</title></img>
 
         <h3>João Costa</h3>
         <p>Main developer/designer</p>
         <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
       </div><!-- /.col -->
       <div class="col-12 col-sm-6 col-lg-3">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="{{ asset('images/user.png') }}" role="img" aria-label="Placeholder: 140x140" focusable="false"><title>Placeholder</title></img>
 
         <h3>João Lucas</h3>
         <p>Main developer/designer</p>
         <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
       </div><!-- /.col -->
       <div class="col-12 col-sm-6 col-lg-3">
-        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="{{ asset('images/fontao.png') }}" role="img" aria-label="Placeholder: 140x140" focusable="false"><title>Placeholder</title></img>
+        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="{{ asset('images/user.png') }}" role="img" aria-label="Placeholder: 140x140" focusable="false"><title>Placeholder</title></img>
 
         <h3>Ricardo Fontão</h3>
         <p>Main developer/designer</p>

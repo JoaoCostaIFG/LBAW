@@ -8,5 +8,10 @@
       {{ $user->about }}
     </p>
   </div>
+  <!-- about tab -->
+  @if (Auth::check() && Auth::id() == $user->id)
+    @include('partials.profile.delete')
+    <!-- about tab -->
+  @endif
 </div>
 <!-- END ABOUT TAB -->
