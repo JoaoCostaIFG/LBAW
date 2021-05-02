@@ -32,6 +32,7 @@ Route::get('cards/{id}', 'CardController@show');
 
 // API
 Route::post('api/comments', 'CommentController@create');
+Route::patch('api/comments/{id}', 'CommentController@update');
 Route::put('api/{id}/vote/', 'VoteController@create');
 Route::delete('api/{id}/vote/', 'VoteController@delete');
 
@@ -42,7 +43,7 @@ Route::delete('api/{id}/vote/', 'VoteController@delete');
 // Route::delete('api/item/{id}', 'ItemController@delete');
 
 //Ajax
-Route::post('ajax/comment', 'AjaxController@comment');
+Route::post('ajax/comment', 'AjaxController@add_comment');
 
 // User
 Route::delete('user', 'UserController@delete')->name('user');

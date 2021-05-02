@@ -16,6 +16,10 @@ class Post extends Model
     // Don't add create and update timestamps in database.
     public $timestamps = false;
 
+    protected $fillable = [
+        'body'
+    ];
+
     public function getChildAttribute()
     {
         if (empty($this->child)) {

@@ -1,7 +1,7 @@
 @if (is_null($post->owner->username))
   <div class="row p-sm-3 p-0">
       <img src="{{ asset('images/user.png') }}" class="center p-2 p-sm-3" alt="">
-      <span class="d-block text-center">Deleted User</spawn>
+      <span class="d-block text-center">Deleted User</span>
   </div>
 @else
   @include('partials.posts.vote', ['post' => $post])

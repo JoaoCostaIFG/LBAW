@@ -12,7 +12,7 @@
                     <h2>Your Comment</h2>
                     <textarea class="form-control" id="Textarea{{$post->id}}" rows="7"></textarea>
                     <label class="visually-hidden" for="Textarea{{$post->id}}">Add comment</label>
-                    <a class="btn btn-primary" onclick="addAnswer({{$answer_id ?? 'null'}}, {{$question_id ?? 'null'}})">Post Comment</a>
+                    <a class="btn btn-primary" onclick="addComment({{$answer_id ?? 'null'}}, {{$question_id ?? 'null'}})">Post Comment</a>
                 </form>
             </div>
             <script src="/js/add_comment.js"></script>
