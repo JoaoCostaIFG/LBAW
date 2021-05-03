@@ -10,11 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Home
-
 use \App\Models\User;
 use \App\Models\Post;
 use \App\Models\Comment;
+
 Route::view('/', 'pages.index');
 // Pages
 Route::view('/home', 'pages.index')->name('home');
@@ -38,12 +37,6 @@ Route::post('api/comments', 'CommentController@create');
 Route::patch('api/comments/{id}', 'CommentController@update');
 Route::put('api/{id}/vote/', 'VoteController@create');
 Route::delete('api/{id}/vote/', 'VoteController@delete');
-
-// Route::put('api/cards', 'CardController@create');
-// Route::delete('api/cards/{card_id}', 'CardController@delete');
-// Route::put('api/cards/{card_id}/', 'ItemController@create');
-// Route::post('api/item/{id}', 'ItemController@update');
-// Route::delete('api/item/{id}', 'ItemController@delete');
 
 //Ajax
 Route::post('ajax/comment', 'AjaxController@add_comment');

@@ -27,6 +27,7 @@ class UserController extends Controller
         return redirect()->route('profile', [Auth::id()]);
     }
 
+    // TODO pass this to policy
     public function showApi()
     {
         if (!Auth::check()) {
