@@ -34,13 +34,14 @@ CREATE TYPE report_state AS ENUM ('pending', 'approved', 'rejected');
 CREATE TABLE "user"(
   id SERIAL PRIMARY KEY,
   name TEXT,
-  username TEXT UNIQUE,
+  username TEXT UNIQUE NOT NULL,
   search TSVECTOR,
   password TEXT,
-  email TEXT UNIQUE,
+  email TEXT UNIQUE NOT NULL,
   about TEXT,
   picture TEXT,
-  reputation INTEGER DEFAULT 0
+  reputation INTEGER NOT NULL DEFAULT 0,
+  isdeleted boolean NOT NULL DEFAULT false
 );
 
 -- R02
@@ -698,14 +699,14 @@ AS ON DELETE TO "user"
 DO INSTEAD(
     UPDATE "user"
     SET
-      name = 'Deleted User',
-      username = NULL,
-      search = '',
+      name = 'Deleted User' || Old.id,
+      username = 'DeletedUser' || Old.id,
+      search = to_tsvector(''),
       password = NULL,
-      email = NULL,
+      email = 'deleteduser' || Old.id || '@segmentationfault.com',
       about = NULL,
       picture = NULL,
-      reputation = NULL
+      reputation = 0
     WHERE id = Old.id;
     DELETE FROM "achieved" WHERE id_user = Old.id;
     DELETE FROM "notification" WHERE id = Old.id;
