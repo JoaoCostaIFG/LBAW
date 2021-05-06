@@ -6,7 +6,7 @@
 @endif
 m-1 p-1 bg-dark" style="max-width: 20em;">
   <div class="col-3 text-start ps-2">
-    <img src="{{asset('images/trophy.jpg')}}" class="rounded achievement-logo" width="100%" alt="trophy-logo">
+    <span class="achievement-logo rounded"></span>
   </div>
   <div class="col-9 col-xs-7 align-middle text-start text-wrap lh-sm">
     <h6 class="text-start mt-3 mb-0"><b>{{ $achievement->title }}</b></h6>
