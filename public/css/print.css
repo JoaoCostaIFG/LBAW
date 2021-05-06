@@ -1,0 +1,33 @@
+/* BEGIN NAVBAR */
+body {
+    padding-top: 0 !important;
+}
+
+.navbar {
+    position: initial !important;
+}
+/* END NAVBAR */
+
+/* BEGIN FEATURETTE */
+.featurette-img {
+    -webkit-print-color-adjust: exact !important; /* Chrome, Safari */
+    color-adjust: exact !important; /* Firefox*/
+}
+
+/* change color of featurette images from white to black for print */
+#share_img {
+    background-image: url("/images/share.svg") !important;
+}
+
+#help_img {
+    background-image: url("/images/help.svg") !important;
+}
+
+#be_img {
+    background-image: url("/images/be.svg") !important;
+}
+/* END FEATURETTE */
+
+#go-up-button {
+    display: none;
+}

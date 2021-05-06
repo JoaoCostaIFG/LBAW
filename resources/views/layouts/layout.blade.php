@@ -20,11 +20,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js" integrity="sha512-VvWznBcyBJK71YKEKDMpZ0pCVxjNuKwApp4zLF3ul+CiflQi6aIJR+aZCP/qWsoFBA28avL5T5HA+RE+zrGQYg==" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/tagsinput.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('css/tagsinput.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('css/print.css') }}" media="print" type="text/css" />
   </head>
   <body>
     <header>
