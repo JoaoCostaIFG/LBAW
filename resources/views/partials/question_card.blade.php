@@ -1,6 +1,6 @@
 <!-- Question Card -->
-<div class="d-flex flex-sm-row flex-column-reverse justify-content-start align-items-center gap-3  border p-3 mt-1 mb-1">
-  <div class="d-flex flex-sm-column flex-row justify-content-start align-items-center gap-1 ">
+<div class="d-flex flex-sm-row flex-column-reverse justify-content-start align-items-center border p-3  mb-3 rounded gap-3">
+  <div class="d-flex flex-sm-column flex-row justify-content-start align-items-center gap-1">
     <!-- Number Votes -->
     <div class="d-flex flex-sm-column flex-row justify-content-center align-items-center gap-1">
       <span class="fs-4">{{ $question->post->score }}</span>
@@ -29,7 +29,7 @@
         @endforeach
       </div>
       <!-- Question Date -->
-      <div class="d-flex flex-row gap-2 align-items-center">
+      <div class="d-flex flex-row gap-3 align-items-center">
         <span class="align-self-end">
           Posted {{ (new DateTime($question->post->date))->diff(new DateTime('NOW'))->days }} days ago
         </span>

@@ -13,18 +13,38 @@ class SearchResultsController extends Controller
         //$validatedData = $request->validate([
             //'search' => 'required'
         //]);
-
+        
         $search_data = $request->input('search');
+
+        // No search data
         if ($search_data == "") {
-            return view("pages.search_results", ['questions' => Question::all(),
-             'users' => User::all()]);
+            
+            $questions = Question::join('post', "question.id", '=', "post.id");
+            $users = User::select('*');
+        }
+        else{ // Search data
+            $questions = Question::search($search_data);
+            $users = User::search($search_data);
         }
 
-        $questions = Question::search($search_data)->get();
-        $users = User::search($search_data)->get();
+        // Sort by
+        if(isset($_GET['q'])){ 
+            if($_GET['q']=="most_recent")
+                $questions->orderBy('date', 'DESC');
+            else if($_GET['q']=='oldest')
+                $questions->orderBy('date', 'ASC');
+            else if($_GET['q']=='best_score')
+                $questions->orderBy('score', 'DESC');
+            else if($_GET['q']=='worst_score')
+                $questions->orderBy('score', 'ASC');
+            else if($_GET['q']=='most_points')
+                $users->orderBy('reputation', 'DESC');
+            else if($_GET['q']=='least_points')
+                $users->orderBy('reputation', 'ASC');
+        }
 
-        return view("pages.search_results", ['questions' => $questions,
-         'users' => $users, 'search' => $search_data]);
+        return view("pages.search_results", ['questions' => $questions->get(),
+         'users' => $users->get(), 'search' => $search_data]);
     }
 
     public function searchApi(Request $request){
