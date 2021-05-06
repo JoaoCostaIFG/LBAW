@@ -38,7 +38,7 @@
   </head>
   <body>
     <header>
-      <a id="go-to-content" href="#content">Jump to the page's content</a>
+      <a id="go-to-content" href="#content"></a>
       <!-- Header -->
       <nav class="navbar fixed-top navbar-expand bg-dark navbar-dark">
         <div class="container d-flex justify-content-between">
