@@ -2,7 +2,7 @@
 <div class=" border col-md d-flex flex-row justify-content-between">
   <div class=" p-3 d-flex flex-row gap-2">
     <!-- TODO: Add user image-->
-    <img class="rounded-2 fit-cover" src="{{ asset('images/user.png') }}" alt="User Picture" width="70px" height="70px">
+    <img class="rounded-2 fit-cover" src="{{ asset('images/user.jpg') }}" alt="User Picture" width="70px" height="70px">
     <div class="d-flex flex-column justify-content-center align-items-start">
       <!-- Name -->
       <span class="fs-5">

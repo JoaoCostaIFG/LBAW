@@ -28,28 +28,28 @@
   <div class="container text-center">
     <div class="row">
       <div class="col-12 col-sm-6 col-lg-3">
-        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="{{ asset('images/user.png') }}" role="img" aria-label="Placeholder: 140x140" focusable="false"><title>Placeholder</title></img>
+        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="{{ asset('images/user.jpg') }}" role="img" aria-label="Placeholder: 140x140" focusable="false"><title>Placeholder</title></img>
 
         <h3>Ana Barros</h3>
         <p>Main developer/designer</p>
         <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
       </div><!-- /.col -->
       <div class="col-12 col-sm-6 col-lg-3">
-        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="{{ asset('images/user.png') }}" role="img" aria-label="Placeholder: 140x140" focusable="false"><title>Placeholder</title></img>
+        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="{{ asset('images/user.jpg') }}" role="img" aria-label="Placeholder: 140x140" focusable="false"><title>Placeholder</title></img>
 
         <h3>João Costa</h3>
         <p>Main developer/designer</p>
         <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
       </div><!-- /.col -->
       <div class="col-12 col-sm-6 col-lg-3">
-        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="{{ asset('images/user.png') }}" role="img" aria-label="Placeholder: 140x140" focusable="false"><title>Placeholder</title></img>
+        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="{{ asset('images/user.jpg') }}" role="img" aria-label="Placeholder: 140x140" focusable="false"><title>Placeholder</title></img>
 
         <h3>João Lucas</h3>
         <p>Main developer/designer</p>
         <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
       </div><!-- /.col -->
       <div class="col-12 col-sm-6 col-lg-3">
-        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="{{ asset('images/user.png') }}" role="img" aria-label="Placeholder: 140x140" focusable="false"><title>Placeholder</title></img>
+        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="{{ asset('images/user.jpg') }}" role="img" aria-label="Placeholder: 140x140" focusable="false"><title>Placeholder</title></img>
 
         <h3>Ricardo Fontão</h3>
         <p>Main developer/designer</p>

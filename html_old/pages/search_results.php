@@ -78,7 +78,7 @@ drawHeader($title);
               <span class="align-self-end">Posted 3 days ago</span>
               <!-- Author User Info -->
               <!-- User Profile Pic  -->
-              <img class="d-none d-md-block rounded-2 fit-cover" src="../static/images/user.png" alt="User Picture" width="40px" height="40px">
+              <img class="d-none d-md-block rounded-2 fit-cover" src="../static/images/user.jpg" alt="User Picture" width="40px" height="40px">
               <div class="d-flex flex-row flex-md-column justify-content-center align-items-start">
                 <!-- Username -->
                 <span class="d-md-none">by&nbsp;</span>
@@ -125,7 +125,7 @@ drawHeader($title);
               <span class="align-self-end">Posted 4 days ago</span>
               <!-- Author User Info -->
               <!-- User Profile Pic  -->
-              <img class="d-none d-md-block rounded-2 fit-cover" src="../static/images/user.png" alt="User Picture" width="40px" height="40px">
+              <img class="d-none d-md-block rounded-2 fit-cover" src="../static/images/user.jpg" alt="User Picture" width="40px" height="40px">
               <div class="d-flex flex-row flex-md-column justify-content-center align-items-start">
                 <!-- Username -->
                 <span class="d-md-none">by&nbsp;</span>
@@ -145,7 +145,7 @@ drawHeader($title);
         <!-- User Card -->
         <div class=" border col-md d-flex flex-row justify-content-between">
           <div class=" p-3 d-flex flex-row gap-2">
-            <img class="rounded-2 fit-cover" src="../static/images/user.png" alt="User Picture" width="70px" height="70px">
+            <img class="rounded-2 fit-cover" src="../static/images/user.jpg" alt="User Picture" width="70px" height="70px">
             <div class="d-flex flex-column justify-content-center align-items-start">
               <!-- Username -->
               <span class="fs-5">Smart Guy</span>
@@ -162,7 +162,7 @@ drawHeader($title);
         <!-- User Card -->
         <div class=" border col-md d-flex flex-row justify-content-between">
           <div class=" p-3 d-flex flex-row gap-2">
-            <img class="rounded-2 fit-cover" src="../static/images/user.png" alt="User Picture" width="70px" height="70px">
+            <img class="rounded-2 fit-cover" src="../static/images/user.jpg" alt="User Picture" width="70px" height="70px">
             <div class="d-flex flex-column justify-content-center align-items-start">
               <!-- Username -->
               <span class="fs-5">Get a log</span>
@@ -182,7 +182,7 @@ drawHeader($title);
         <!-- User Card -->
         <div class=" border col-md d-flex flex-row justify-content-between">
           <div class=" p-3 d-flex flex-row gap-2">
-            <img class="rounded-2 fit-cover" src="../static/images/user.png" alt="User Picture" width="70px" height="70px">
+            <img class="rounded-2 fit-cover" src="../static/images/user.jpg" alt="User Picture" width="70px" height="70px">
             <div class="d-flex flex-column justify-content-center align-items-start">
               <!-- Username -->
               <span class="fs-5">Bazinga</span>
@@ -199,7 +199,7 @@ drawHeader($title);
         <!-- User Card -->
         <div class=" border col-md d-flex flex-row justify-content-between">
           <div class=" p-3 d-flex flex-row gap-2">
-            <img class="rounded-2 fit-cover" src="../static/images/user.png" alt="User Picture" width="70px" height="70px">
+            <img class="rounded-2 fit-cover" src="../static/images/user.jpg" alt="User Picture" width="70px" height="70px">
             <div class="d-flex flex-column justify-content-center align-items-start">
               <!-- Username -->
               <span class="fs-5">Minecraft Site</span>

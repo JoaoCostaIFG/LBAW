@@ -35,7 +35,7 @@
         </span>
         <!-- Author User Info -->
         <!-- User Profile Pic  -->
-        <img class="d-none d-md-block rounded-2 fit-cover" src="{{ asset('images/user.png') }}" alt="User Picture" width="40px" height="40px">
+        <img class="d-none d-md-block rounded-2 fit-cover" src="{{ asset('images/user.jpg') }}" alt="User Picture" width="40px" height="40px">
         <div class="d-flex flex-row flex-md-column justify-content-center align-items-start">
           <!-- Owner Username -->
           <span class="d-md-none">by&nbsp;</span>

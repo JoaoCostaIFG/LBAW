@@ -28,7 +28,7 @@
 
     <!-- Profile -->
     <div class="container p-2 text-center">
-      <img src="{{ asset('/images/user.png') }}" id="profile-picture" class="img-thumbnail rounded"
+      <img src="{{ asset('/images/user.jpg') }}" id="profile-picture" class="img-thumbnail rounded"
         alt="Profile picture">
       <span class="d-block text-center fs-5"><b>{{ $user->name }}</b></span>
       <span class="d-block text-center">{{ $user->username }}</span>
