@@ -24,11 +24,10 @@ Route::get('/leaderboard', 'LeaderboardController@show');
 Route::get('/question/{id}', 'QuestionController@show');
 Route::get('/profile/{id}', 'UserController@show')->name('profile');
 Route::get('administration', 'AdministrationController@show')->middleware('role:moderator');
-Route::view('ask_question', 'pages.ask_question')->middleware('auth');
 
-// Cards
-Route::get('cards', 'CardController@list');
-Route::get('cards/{id}', 'CardController@show');
+// Posts
+Route::post('/user/ask', 'QuestionController@store')->name('ask');
+Route::get('/user/ask', 'QuestionController@create')->middleware('auth');
 
 // API
 Route::get('/api/questions', 'SearchResultsController@searchApi');
@@ -46,7 +45,7 @@ Route::delete('user', 'UserController@delete')->name('user');
 Route::get('user', 'UserController@showOwn');
 
 // Authentication
-Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login'); // TODO
 Route::post('login', 'Auth\LoginController@login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');

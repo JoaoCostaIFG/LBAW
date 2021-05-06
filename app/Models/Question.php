@@ -4,12 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Question extends Model
 {
     use HasFactory;
     protected $table = "question";
     public $timestamps = false;
+
+    public static function create($data) {
+        // OwnerUser INT, Body TEXT, DatePost DATE, Title TEXT, Bounty INT, Closed BOOLEAN
+        DB::beginTransaction();
+        DB::select("CALL create_question(?, ?, ?, ?, ?, ?)", 
+            [$data['owner'], $data['body'], date("Y-m-d"), $data['title'], $data['bounty'], "false"]);
+        $question = Question::latest('id')->limit(1);
+        DB::commit();
+        return $question->get()[0];
+    }
 
     public function post()
     {

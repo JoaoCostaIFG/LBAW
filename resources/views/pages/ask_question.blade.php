@@ -3,28 +3,35 @@
 @section('title', 'Ask Question')
 
 @section('content')
+
 <main class="container p-3">
 <h2><b>Add Question</b></h2>
 <hr class="mt-3">
-<form action="">
+<form class="auth-form" method="POST" action="{{ route('ask') }}">
+  @csrf
   <div class="container py-1">
     <div class="col-auto input-group">
-      <label for="question-title" class="form-label"><b>Question Title</b><span class="text-danger"> *</span></label>
+      <label for="title" class="form-label"><b>Question Title</b><span class="text-danger"> *</span></label>
       <div class="input-group has-validation">
-        <input type="text" class="form-control" id="question-title" placeholder="Enter question title... (ex: How to sort an array in c?)" required>
+        <input type="text" name="title" class="form-control {{ $errors->has('title') ? 'is-invalid' : ''}}"
+          value="{{ old('title') }}" id="title" placeholder="Enter question title... (ex: How to sort an array in c?)" required>
+        @if ($errors->has('title'))
         <div class="invalid-feedback">
-          Question title is required.
+            {{ $errors->first('title') }}
         </div>
+        @endif
       </div>
     </div>
 
     <div class="col-auto input-group py-2">
-      <label for="question-details" class="form-label"><b>Question details</b><span class="text-danger"> *</span></label>
+      <label for="question-body" class="form-label"><b>Question details</b><span class="text-danger"> *</span></label>
       <div class="input-group has-validation">
-        <textarea class="form-control" id="question-details" placeholder="Enter question details..." rows=10 required></textarea>
+        <textarea class="form-control {{ $errors->has('body') ? 'is-invalid' : ''}}" id="body" name="body" placeholder="Enter question details..." rows=10>{{ old('body') }}</textarea>
+        @if ($errors->has('body'))
         <div class="invalid-feedback">
-          Question details is required.
+          {{ $errors->first('body') }}
         </div>
+        @endif
       </div>
     </div>
   </div>
@@ -35,8 +42,8 @@
         <span class="card-title"><b>Bounty</b></span>
         <hr class="my-1">
         <div class="text-center my-1">
-          <label for="bountyRange" class="form-labelr" id="bountyRangeValue">0</label>
-          <input type="range" class="form-range" value="0" min="0" max="100" step="1" id="bountyRange" onmousemove="document.getElementById('bountyRangeValue').innerText = document.getElementById('bountyRange').value">
+          <label for="bounty" class="form-labelr" id="bountyValue">{{ old('bounty', 0) }}</label>
+          <input type="range" name="bounty" class="form-range" value="{{ old('bounty', 0) }}" min="0" max="100" step="1" id="bounty" onmousemove="document.getElementById('bountyValue').innerText = document.getElementById('bounty').value">
         </div>
       </div>
     </div>
@@ -45,18 +52,22 @@
         <span class="card-title"><b>Topics</b></span>
         <hr class="my-1">
         <div class="mt-3 has-validation">
-          <input type="text" class="form-control" rows=2 id="topics" placeholder="Enter topic tags..." data-role="tagsinput" required>
+          <input type="text" name="topics" value="{{ old('topics') }}" class="form-control {{ $errors->has('topics') ? 'is-invalid' : ''}}" rows=2 id="topics" placeholder="Enter topic tags..." required>
+          @if ($errors->has('topics'))
           <div class="invalid-feedback">
-              At least one tag is required.
+            {{ $errors->first('topics') }}
           </div>
+          @endif
         </div>
       </div>
     </div>
   </div>
 
-  <div class="col-auto text-end">
-    <button type="submit" class="btn btn-success mx-2">Submit Question</button>
-    <button type="button" class="btn btn-danger">Cancel</button>
+
+  <div class="text-center">
+    <div class="d-inline-flex">
+      <button type="submit" class="btn btn-success mx-2">Submit Question</button>
+    </div>
   </div>
 </form>
 <script src="form-validation.js"></script>
