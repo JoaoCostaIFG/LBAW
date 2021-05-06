@@ -6,7 +6,21 @@ body {
 .navbar {
     position: initial !important;
 }
+
+#searchModal-toggler {
+    display: none !important;
+}
+
+#navbarSeachForm {
+    display: none !important;
+}
 /* END NAVBAR */
+
+/* BEGIN SIDEBAR */
+#sidebar {
+    display: none !important;
+}
+/* END SIDEBAR */
 
 /* BEGIN FEATURETTE */
 .featurette-img {
@@ -29,5 +43,9 @@ body {
 /* END FEATURETTE */
 
 #go-up-button {
-    display: none;
+    display: none !important;
+}
+
+.accordion-button {
+    color: white !important;
 }

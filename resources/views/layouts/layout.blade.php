@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title')</title>
+    <title>@yield('title') - SegmentationFault</title>
     <!-- Bootstrap (must come before all other stylesheets) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" /> -->
@@ -19,14 +19,24 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+    <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('css/profile.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('css/print.css') }}" media="print" type="text/css" />
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content="@yield('title') - SegmentationFault" />
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:image" content="{{ asset('image/logo/default.png') }}" />
+    <meta property="og:type" content="@yield('pageType')" />
+    <meta property="og:description" content="Assembling a community-driven database of knowledge by asking and answering questions." />
+    <meta property="og:locale" content="{{ app()->getLocale() }}" />
   </head>
   <body>
     <header>
+      <a id="go-to-content" href="#content"></a>
       <!-- Header -->
       <nav class="navbar fixed-top navbar-expand bg-dark navbar-dark">
         <div class="container d-flex justify-content-between">

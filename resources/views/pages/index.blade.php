@@ -1,6 +1,7 @@
 @extends('layouts.layout')
 
 @section('title', 'Homepage')
+@section('pageType', 'website')
     
 @section('content')
 <!-- START CAROUSEL -->
