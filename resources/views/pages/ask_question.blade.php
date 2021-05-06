@@ -1,6 +1,7 @@
 @extends('layouts.layout')
 
 @section('title', 'Ask Question')
+@section('pageType', 'website')
 
 @section('content')
 <main class="container p-3">

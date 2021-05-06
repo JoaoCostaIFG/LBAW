@@ -1,6 +1,7 @@
 @extends('layouts.layout')
 
 @section('title', 'Search Results')
+@section('pageType', 'website')
 
 @section('content')
 
