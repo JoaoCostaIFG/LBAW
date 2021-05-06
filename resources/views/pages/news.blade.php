@@ -1,6 +1,7 @@
 @extends('layouts.layout')
 
 @section('title', 'News')
+@section('pageType', 'article')
 
 @section('content')
 <div class="container">

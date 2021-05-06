@@ -1,6 +1,7 @@
 @extends('layouts.layout')
 
 @section('title', 'Administration')
+@section('pageType', 'website')
 
 @section('content')
     <div class="container">

@@ -1,6 +1,7 @@
 @extends('layouts.layout')
 
 @section('title', 'About')
+@section('pageType', 'website')
     
 @section('content')
 <div class="container">
@@ -19,7 +20,7 @@
       recognize you for the worth of your achievements and community contributions.</p>
     </div>
     <div class="col-12 col-md-6 col-lg-3">
-      <img alt="First wireflow mockup of the website." src="{{ asset('images/about.png') }}" width="100%">
+      <img src="{{ asset('images/about.jpg') }}" alt="First wireflow mockup of the website." width="100%">
     </div>
   </div>
 

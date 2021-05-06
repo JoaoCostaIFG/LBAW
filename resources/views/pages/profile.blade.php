@@ -1,6 +1,7 @@
 @extends('layouts.layout')
 
 @section('title', 'Profile')
+@section('pageType', 'website')
 
 @section('content')
   <div class="container">
@@ -28,8 +29,7 @@
 
     <!-- Profile -->
     <div class="container p-2 text-center">
-      <img src="{{ asset('/images/user.jpg') }}" id="profile-picture" class="img-thumbnail rounded"
-        alt="Profile picture">
+      <img src="{{ asset('/images/user.jpg') }}" id="profile-picture" class="img-thumbnail rounded" alt="User profile picture">
       <span class="d-block text-center fs-5"><b>{{ $user->name }}</b></span>
       <span class="d-block text-center">{{ $user->username }}</span>
     </div>
