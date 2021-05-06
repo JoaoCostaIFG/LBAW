@@ -89,6 +89,26 @@ body {
 .featurette {
   align-items: center;
 }
+
+.featurette-img {
+  display: inline-block;
+  width: 104px;
+  height: 104px;
+  box-sizing: border-box;
+  vertical-align: middle;
+}
+
+#share_img {
+  background: url("/images/share_dark.svg") no-repeat;
+}
+
+#help_img {
+  background: url("/images/help_dark.svg") no-repeat;
+}
+
+#be_img {
+  background: url("/images/be_dark.svg") no-repeat;
+}
 /* END FEATURETTE */
 
 /* BEGIN SEARCH RESULTS */
