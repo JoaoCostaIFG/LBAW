@@ -38,7 +38,7 @@
   </head>
   <body>
     <header>
-      <a id="go-to-content" href="#content"></a>
+      <a id="go-to-content" href="#content">Jump to the page's content</a>
       <!-- Header -->
       <nav class="navbar fixed-top navbar-expand bg-dark navbar-dark">
         <div class="container d-flex justify-content-between">
@@ -75,7 +75,7 @@
             <form action="{{ url('search') }}">
               <!-- button is not needed -->
               <!-- <button class="btn btn-outline-success" type="submit"><i class="bi-search"></i></button> -->
-              <input class="form-control" type="search" name="search" value="{{$search} ?? ''}" placeholder="Search" aria-label="Search">
+              <input class="form-control" type="search" name="search" value="{{$search ?? ''}}" placeholder="Search" aria-label="Search">
             </form>
           </div>
         </div>
