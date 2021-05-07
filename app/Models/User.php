@@ -75,7 +75,7 @@ class User extends Authenticatable {
         }
 
         return $query->
-            selectRaw('* ts_rank(search, plainto_tsquery(?))', [$search])->
+            selectRaw('*, ts_rank(search, plainto_tsquery(?)) as rank_user', [$search])->
             whereRaw('search @@ to_tsquery(?)', [$search]);
     }
 
