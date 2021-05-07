@@ -5,7 +5,12 @@
 
 @section('content')
 
-
+@php
+    if(isset($_GET['search']))
+      $search = "&search=".$_GET['search'];
+    else 
+      $search = "";
+@endphp
 
   <!-- Page Top -->
   <div class="container">
@@ -35,10 +40,10 @@
                 <span class="d-none d-sm-block">Sort by</span>
                 <i class="bi bi-filter-right"></i></a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/search?q=most_recent#questions">Most Recent</a></li>
-                <li><a class="dropdown-item" href="/search?q=oldest#questions">Oldest</a></li>
-                <li><a class="dropdown-item" href="/search?q=best_score#questions">Best Score</a></li>
-                <li><a class="dropdown-item" href="/search?q=worst_score#questions">Worst score</a></li>
+                <li><a class="dropdown-item" href="/search?sortBy=most_recent{{ $search }}#questions">Most Recent</a></li>
+                <li><a class="dropdown-item" href="/search?sortBy=oldest{{ $search }}#questions">Oldest</a></li>
+                <li><a class="dropdown-item" href="/search?sortBy=best_score{{ $search }}#questions">Best Score</a></li>
+                <li><a class="dropdown-item" href="/search?sortBy=worst_score{{ $search }}#questions">Worst score</a></li>
                 <li><a class="dropdown-item" href="/search">-- No order --</a></li>
               </ul>
             </li>
@@ -61,8 +66,8 @@
                 <span class="d-none d-sm-block">Sort by</span>
                 <i class="bi bi-filter-right"></i></a>
               <ul class="dropdown-menu">
-                <li class=><a class="dropdown-item" href="/search?q=most_points#users">Most Points</a></li>
-                <li><a class="dropdown-item" href="/search?q=least_points#users">Least Points</a></li>
+                <li class=><a class="dropdown-item" href="/search?sortBy=most_points{{ $search }}#users">Most Points</a></li>
+                <li><a class="dropdown-item" href="/search?sortBy=least_point{{ $search }}s#users">Least Points</a></li>
                 <li><a class="dropdown-item" href="/search">-- No order --</a></li>
               </ul>
             </li>

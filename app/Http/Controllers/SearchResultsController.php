@@ -28,18 +28,18 @@ class SearchResultsController extends Controller
         }
 
         // Sort by
-        if(isset($_GET['q'])){ 
-            if($_GET['q']=="most_recent")
+        if(isset($_GET['sortBy'])){ 
+            if($_GET['sortBy']=="most_recent")
                 $questions->orderBy('date', 'DESC');
-            else if($_GET['q']=='oldest')
+            else if($_GET['sortBy']=='oldest')
                 $questions->orderBy('date', 'ASC');
-            else if($_GET['q']=='best_score')
+            else if($_GET['sortBy']=='best_score')
                 $questions->orderBy('score', 'DESC');
-            else if($_GET['q']=='worst_score')
+            else if($_GET['sortBy']=='worst_score')
                 $questions->orderBy('score', 'ASC');
-            else if($_GET['q']=='most_points')
+            else if($_GET['sortBy']=='most_points')
                 $users->orderBy('reputation', 'DESC');
-            else if($_GET['q']=='least_points')
+            else if($_GET['sortBy']=='least_points')
                 $users->orderBy('reputation', 'ASC');
         }
 
