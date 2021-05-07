@@ -53,6 +53,8 @@ Route::post('register', 'Auth\RegisterController@register');
 
 // TODO remove
 Route::get('/test', function() {
-  $comment= Comment::where('id', '!=', 4);
-  echo $comment->with('post')->get();
+
+    echo Auth::user()->notifications;
+//   $comment= Comment::where('id', '!=', 4);
+//   echo $comment->with('post')->get();
 });

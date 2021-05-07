@@ -63,7 +63,7 @@ class User extends Authenticatable {
 
     public function notifications()
     {
-        return $this->hasMany(Notification::class, 'id', 'id');
+        return $this->hasMany(Notification::class, 'recipient', 'id');
     }
 
     // Search functions
@@ -131,7 +131,7 @@ class User extends Authenticatable {
     {
         $answers = $this->getAnswerParticipation();
         $questions = $this->getQuestionParticipation();
-        
+
         $subq = $answers;
         $subq->unionAll($questions);
 
