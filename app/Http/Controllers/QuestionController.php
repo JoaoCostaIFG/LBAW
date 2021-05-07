@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AnswerQuestion;
 use App\Models\Question;
 use App\Models\Topic;
 use Illuminate\Http\Request;
@@ -55,13 +56,21 @@ class QuestionController extends Controller
     public function close($id, Request $request)
     {
         $validation = Validator::make($request->all(), [
-            'id_answer' => 'required|unique:answer,id',
+            'id_answer' => 'nullable|exists:answer,id',
         ]);
 
         if ($validation->fails())
             return back()->withErrors($validation)->withInput($request->all());
+
         $question = Question::find($id);
-        $question->close($request['id_answer']);
+        $data = $request->all();
+        $question->closed = true;
+        if (isset($data['id_answer'])) {
+            $question->accepted_answer = $data['id_answer'];
+        }
+        $question->save();
+
+
         return redirect()->intended('/question/' . $question->id);
         
     }

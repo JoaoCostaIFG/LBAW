@@ -29,7 +29,7 @@ Route::get('administration', 'AdministrationController@show')->middleware('role:
 // Posts
 Route::post('/user/ask', 'QuestionController@store')->name('ask');
 Route::get('/user/ask', 'QuestionController@create')->middleware('auth');
-Route::get('/question/{id}/close', 'QuestionController@close')->middleware('auth');
+Route::post('/question/{id}/close', 'QuestionController@close')->middleware('auth');
 
 // API
 Route::get('/api/questions', 'SearchResultsController@searchApi');
