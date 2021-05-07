@@ -42,6 +42,11 @@ class SearchResultsController extends Controller
             else if($_GET['sortBy']=='least_points')
                 $users->orderBy('reputation', 'ASC');
         }
+        else if ($search_data != ""){
+            return $users->get();
+            $questions->orderBy('rank_question', 'DESC');;
+            $users->orderBy('rank_user', 'DESC');
+        }
 
         return view("pages.search_results", ['questions' => $questions->get(),
          'users' => $users->get(), 'search' => $search_data]);

@@ -29,6 +29,7 @@ Route::get('administration', 'AdministrationController@show')->middleware('role:
 // Posts
 Route::post('/user/ask', 'QuestionController@store')->name('ask');
 Route::get('/user/ask', 'QuestionController@create')->middleware('auth');
+Route::get('/question/{id}/close', 'QuestionController@close')->middleware('auth');
 
 // API
 Route::get('/api/questions', 'SearchResultsController@searchApi');
@@ -54,7 +55,7 @@ Route::post('register', 'Auth\RegisterController@register');
 
 // TODO remove
 Route::get('/test', function() {
-  $questions = Question::search("python")->orderBy('bounty', 'DESC')->get();
+  $questions = Question::search("python")->orderBy('date', 'ASC')->get();
   foreach($questions as $q) {
     echo($q);
     echo "<br>";

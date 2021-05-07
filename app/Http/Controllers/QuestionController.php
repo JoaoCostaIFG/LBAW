@@ -51,4 +51,18 @@ class QuestionController extends Controller
         $question = Question::create($data);
         return redirect()->intended('/question/' . $question->id);
     }
+
+    public function close($id, Request $request)
+    {
+        $validation = Validator::make($request->all(), [
+            'id_answer' => 'required|unique:answer,id',
+        ]);
+
+        if ($validation->fails())
+            return back()->withErrors($validation)->withInput($request->all());
+        $question = Question::find($id);
+        $question->close($request['id_answer']);
+        return redirect()->intended('/question/' . $question->id);
+        
+    }
 }
