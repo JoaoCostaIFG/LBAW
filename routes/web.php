@@ -11,6 +11,7 @@
 |
 */
 use \App\Models\User;
+use \App\Models\Question;
 use \App\Models\Post;
 use \App\Models\Comment;
 
@@ -53,6 +54,9 @@ Route::post('register', 'Auth\RegisterController@register');
 
 // TODO remove
 Route::get('/test', function() {
-  $comment= Comment::where('id', '!=', 4);
-  echo $comment->with('post')->get();
+  $questions = Question::search("python")->orderBy('bounty', 'DESC')->get();
+  foreach($questions as $q) {
+    echo($q);
+    echo "<br>";
+  }
 });

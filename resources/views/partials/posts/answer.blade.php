@@ -7,14 +7,17 @@
         </p>
     </div>
 
-    <div class="row">
+    <div class="row row-cols-auto align-items-end justify-content-end">
         @auth
             @if (Auth::id() == $answer->question->post->owner->id && is_null($answer->question->accepted_answer))
-                <button type="button" class="btn btn-success col-sm-2 offset-sm-7 col-4 offset-5 my-2">Mark accepted</button>
+                <form class="auth-form" method="POST" action="{{ url('/question/' . $answer->question->id . '/close') }}">
+                    {{ csrf_field() }}
+                    <button type="submit" class="btn btn-sm btn-success col">Mark accepted</button>
+                </form>
             @endif
         @endauth
-        <button type="button" class="btn btn-danger col-sm-2 offset-sm-7 col-4 offset-5 my-2">Report</button>
-        <p class="text-muted col-3 text-center m-0 align-self-center">Posted {{ (new DateTime($answer->post->date))->diff(new DateTime('NOW'))->days }} day ago</p>
+        <button type="button" class="btn btn-sm btn-danger ms-1 col">Report</button>
+        <p class="text-muted col text-center m-0">Posted {{ (new DateTime($answer->post->date))->diff(new DateTime('NOW'))->days }} day ago</p>
     </div>
 
     @include('partials.posts.comment_block', ['post' => $answer, 'answer_id' => $answer->id])
