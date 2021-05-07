@@ -25,6 +25,7 @@ Route::get('/leaderboard', 'LeaderboardController@show');
 Route::get('/question/{id}', 'QuestionController@show');
 Route::get('/profile/{id}', 'UserController@show')->name('profile');
 Route::get('administration', 'AdministrationController@show')->middleware('role:moderator');
+Route::view('/edit_account', 'pages.edit_account');
 
 // Posts
 Route::post('/user/ask', 'QuestionController@store')->name('ask');
