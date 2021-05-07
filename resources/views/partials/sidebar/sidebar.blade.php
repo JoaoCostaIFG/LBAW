@@ -15,7 +15,7 @@
         @include('partials.sidebar.sidebar_link', ['href' => "/about", 'icon' => "bi-info-circle", 'text' =>  "About", 'is_selected' => $title === "About"])
         @auth
             @if(Auth::user()->hasRole('moderator'))
-                @include('partials.sidebar.sidebar_link', ['href' => "/administration", 'icon' => "bi-clipboard-data", 'text' =>  "Administration", 'is_selected' => $title === "About"])
+                @include('partials.sidebar.sidebar_link', ['href' => "/administration", 'icon' => "bi-clipboard-data", 'text' =>  "Administration", 'is_selected' => $title === "Administration"])
             @endif
         @endauth
 
