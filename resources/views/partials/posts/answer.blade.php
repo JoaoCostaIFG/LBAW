@@ -38,5 +38,5 @@
     </div>
 @if ($answer->question->accepted_answer == $answer->id)
 </section>
-<hr class ="mt-3">
 @endif
+<hr class ="mt-3">
