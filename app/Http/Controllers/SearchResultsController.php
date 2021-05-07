@@ -43,7 +43,6 @@ class SearchResultsController extends Controller
                 $users->orderBy('reputation', 'ASC');
         }
         else if ($search_data != ""){
-            return $users->get();
             $questions->orderBy('rank_question', 'DESC');;
             $users->orderBy('rank_user', 'DESC');
         }
