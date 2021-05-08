@@ -19,10 +19,10 @@
       <strong class="me-auto">{{ $notification->title }}</strong>
       <small>{{ $interval }}</small>
       {{-- Button to delete notifications--}}
-      <form method="POST" class="col-md text-center" action="">
-        {{ csrf_field() }}
-        {{ method_field('DELETE') }}
-        <input type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close">
+      <form method="POST" class="col-md text-center" action="{{url("api/notifications/" . $notification->id)}}">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
       </form>
     </div>
     <div class="toast-body">

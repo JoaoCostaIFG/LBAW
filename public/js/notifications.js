@@ -5,7 +5,7 @@ const toastBtn = document.querySelector("#notifications-btn");
 // Select notifications
 let notifications = document.querySelectorAll('.toast');
 let toastsInstances = []; // Toasts instances
-let active = false; 
+let active = false;
 
 // Fill toasts instances array
 notifications.forEach(function (toastNode) {
@@ -30,4 +30,11 @@ if (toastBtn != null) {
       });
     }
   });
+}
+
+if (element.addEventListener) {
+    element.addEventListener("submit", function(evt) {
+        evt.preventDefault();
+        window.history.back();
+    }, true);
 }
