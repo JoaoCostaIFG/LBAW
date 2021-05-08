@@ -17,6 +17,7 @@ class AuthServiceProvider extends ServiceProvider
         Question::class => QuestionPolicy::class,
         Comment::class => CommentPolicy::class,
         Notification::class => NotificationPolicy::class,
+        Answer::class => AnswerPolicy::class,
     ];
 
     /**

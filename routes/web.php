@@ -31,6 +31,7 @@ Route::view('/edit_account', 'pages.edit_account');
 Route::post('/user/ask', 'QuestionController@store')->name('ask');
 Route::get('/user/ask', 'QuestionController@create')->middleware('auth');
 Route::post('/question/{id}/close', 'QuestionController@close')->middleware('auth');
+Route::put('/question/{id}/answer', 'AnswerController@create')->middleware('auth');
 
 // API
 Route::get('/api/questions', 'SearchResultsController@searchApi');
