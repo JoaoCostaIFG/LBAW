@@ -53,11 +53,11 @@
       @include('partials.profile.about_tab')
 
       <!-- BEGIN ACTIVITY TAB -->
-      <div id="activity" class="tab-pane fade gap-2 container">
+      <div id="activity" class="tab-pane fade container">
 
         <div class="row">
           <!-- Top Topics -->
-          <div class="col-lg">
+          <div class="col-lg p-1">
             <div class="container themed-container p-0 text-left">
               <h5 class="m-0 fw-bold">Top Topics</h5>
             </div>
@@ -74,7 +74,7 @@
             @endif
           </div>
           <!-- Top Questions -->
-          <div class = "col-lg">
+          <div class = "col-lg p-1">
             <div class="container themed-container p-0 text-left">
               <h5 class="m-0 fw-bold">Top Questions</h5>
             </div>

@@ -1,5 +1,5 @@
 <!-- Question Card -->
-<div class="d-flex flex-sm-row flex-column-reverse justify-content-start align-items-center border p-3  mb-3 rounded gap-3">
+<div class="d-flex flex-sm-row flex-column-reverse justify-content-start align-items-center border p-3 rounded gap-3 mb-2">
   <div class="d-flex flex-sm-column flex-row justify-content-start align-items-center gap-1">
     <!-- Number Votes -->
     <div class="d-flex flex-sm-column flex-row justify-content-center align-items-center gap-1">

@@ -11,6 +11,7 @@
 |
 */
 use \App\Models\User;
+use \App\Models\Question;
 use \App\Models\Post;
 use \App\Models\Comment;
 
@@ -24,10 +25,12 @@ Route::get('/leaderboard', 'LeaderboardController@show');
 Route::get('/question/{id}', 'QuestionController@show');
 Route::get('/profile/{id}', 'UserController@show')->name('profile');
 Route::get('administration', 'AdministrationController@show')->middleware('role:moderator');
+Route::view('/edit_account', 'pages.edit_account');
 
 // Posts
 Route::post('/user/ask', 'QuestionController@store')->name('ask');
 Route::get('/user/ask', 'QuestionController@create')->middleware('auth');
+Route::post('/question/{id}/close', 'QuestionController@close')->middleware('auth');
 
 // API
 Route::get('/api/questions', 'SearchResultsController@searchApi');
@@ -53,8 +56,9 @@ Route::post('register', 'Auth\RegisterController@register');
 
 // TODO remove
 Route::get('/test', function() {
-
-    echo Auth::user()->notifications;
-//   $comment= Comment::where('id', '!=', 4);
-//   echo $comment->with('post')->get();
+  $questions = Question::search("python")->orderBy('date', 'ASC')->get();
+  foreach($questions as $q) {
+    echo($q);
+    echo "<br>";
+  }
 });
