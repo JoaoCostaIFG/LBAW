@@ -31,6 +31,7 @@ Route::view('/edit_account', 'pages.edit_account');
 Route::post('/user/ask', 'QuestionController@store')->name('ask');
 Route::get('/user/ask', 'QuestionController@create')->middleware('auth');
 Route::post('/question/{id}/close', 'QuestionController@close')->middleware('auth');
+Route::put('/question/{id}/answer', 'AnswerController@create');
 
 // API
 Route::get('/api/questions', 'SearchResultsController@searchApi');
@@ -39,6 +40,7 @@ Route::post('api/comments', 'CommentController@create');
 Route::patch('api/comments/{id}', 'CommentController@update');
 Route::put('api/{id}/vote/', 'VoteController@create');
 Route::delete('api/{id}/vote/', 'VoteController@delete');
+Route::delete('/api/notifications/{id}', 'NotificationController@delete');
 
 //Ajax
 Route::post('ajax/comment', 'AjaxController@add_comment');
