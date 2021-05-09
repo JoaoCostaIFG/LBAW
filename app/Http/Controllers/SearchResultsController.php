@@ -47,8 +47,8 @@ class SearchResultsController extends Controller
             $users->orderBy('rank_user', 'DESC');
         }
 
-        return view("pages.search_results", ['questions' => $questions->get(),
-         'users' => $users->get(), 'search' => $search_data]);
+        return view("pages.search_results", ['questions' => $questions->paginate(5)->withQueryString(),
+         'users' => $users->paginate(16)->withQueryString(), 'search' => $search_data]);
     }
 
     public function searchApi(Request $request){

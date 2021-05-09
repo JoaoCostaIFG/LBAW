@@ -47,7 +47,7 @@
       <!-- Questions Tab -->
       <div class="tab-pane fade show active" id="questions">
         <div class="d-flex flex-row align-items-center justify-content-between my-2">
-          <h6 class="m-0 d-none d-md-block pt-2 pb-2" id="questions">{{ count($questions) }} result(s)</h6>
+          <h6 class="m-0 d-none d-md-block pt-2 pb-2" id="questions">{{ $questions->total() }} result(s)</h6>
           <div class="d-flex flex-row gap-4">
             <!-- Filter -->
             <form method="GET" class="d-flex flex-row justify-content-center gap-2">
@@ -55,8 +55,8 @@
               <div class="input-group d-flex flex-row justify-content-center align-items-center gap-2">
                 <label for="start-date" class="form-label m-0"><b>From:</b></label>
                 <input type="date" name="start_date"
-                  class="form-control {{ $errors->has('start_date') ? 'is-invalid' : '' }}"  
-                  value="" id="start_date" placeholder="mm/dd/yyyy">
+                  class="form-control {{ $errors->has('start_date') ? 'is-invalid' : '' }}" value="" id="start_date"
+                  placeholder="mm/dd/yyyy">
                 <!-- Error -->
                 @if ($errors->has('start_date'))
                   <div class="invalid-feedback">
@@ -88,16 +88,12 @@
                   <span class="d-none d-sm-block">Sort by</span>
                   <i class="bi bi-filter-right"></i></a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item"
-                      href="/search?sortBy=most_recent{{ $search_url }}#questions">Most
+                  <li><a class="dropdown-item" href="/search?sortBy=most_recent{{ $search_url }}#questions">Most
                       Recent</a></li>
-                  <li><a class="dropdown-item"
-                      href="/search?sortBy=oldest{{ $search_url }}#questions">Oldest</a></li>
-                  <li><a class="dropdown-item"
-                      href="/search?sortBy=best_score{{ $search_url }}#questions">Best
+                  <li><a class="dropdown-item" href="/search?sortBy=oldest{{ $search_url }}#questions">Oldest</a></li>
+                  <li><a class="dropdown-item" href="/search?sortBy=best_score{{ $search_url }}#questions">Best
                       Score</a></li>
-                  <li><a class="dropdown-item"
-                      href="/search?sortBy=worst_score{{ $search_url }}#questions">Worst
+                  <li><a class="dropdown-item" href="/search?sortBy=worst_score{{ $search_url }}#questions">Worst
                       score</a></li>
                   <li><a class="dropdown-item" href="/search?sortBy=None{{ $search_url }}">-- No
                       order --</a></li>
@@ -109,12 +105,15 @@
         @foreach ($questions as $question)
           @include('partials.question_card')
         @endforeach
-
+        <!-- Pagination -->
+        <div class="d-flex justify-content-end">
+          {{ $questions->links() }}
+        </div>
       </div>
       <!-- Users -->
       <div class="tab-pane fade" id="users">
         <div class="d-flex flex-row align-items-center justify-content-between">
-          <h6 class="m-0 d-none d-md-block py-2" id="users">{{ count($users) }} result(s)</h6>
+          <h6 class="m-0 d-none d-md-block py-2" id="users">{{ $users->total() }} result(s)</h6>
           <!-- Sort by-->
           <ul class="nav nav-pills">
             <li class="nav-item dropdown">
@@ -142,27 +141,30 @@
             </div>
           @endfor
         </div>
+        <!-- Pagination -->
+        <div class="d-flex justify-content-end">
+          {{ $users->links() }}
+        </div>
       </div>
     </div>
   </div>
 
   <script src="/js/tabs.js"></script>
   <script src="/js/sort_dropdown.js"></script>
-  
+
   <script>
     'use strict'
 
-    function filter(){
+    function filter() {
       let start_date = new Date(document.querySelector("#start_date").value);
       let end_date = new Date(document.querySelector("#end_date").value);
       let question_cards = document.querySelectorAll(".question_card");
 
       question_cards.forEach(question => {
         let date = new Date(question.querySelectorAll(".date")[0].getAttribute("data-date"));
-        if(date < start_date || date > end_date){
+        if (date < start_date || date > end_date) {
           question.setAttribute('style', 'display:none !important');
-        }
-        else question.removeAttribute('style');
+        } else question.removeAttribute('style');
       });
       return false;
     }
