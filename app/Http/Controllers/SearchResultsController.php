@@ -47,6 +47,18 @@ class SearchResultsController extends Controller
             $users->orderBy('rank_user', 'DESC');
         }
 
+        //Date
+        $request->validate([
+            'start_date' => 'nullable|date',
+            'end_date' => 'nullable|date',
+        ]);
+        if(isset($_GET['start_date']) && $_GET['start_date'] != ""){
+            $questions->where('date', '>', $_GET['start_date']); 
+        }
+        if(isset($_GET['end_date']) && $_GET['end_date'] != ""){
+            $questions->where('date', '<', $_GET['end_date']); 
+        }
+
         return view("pages.search_results", ['questions' => $questions->paginate(5)->withQueryString(),
          'users' => $users->paginate(16)->withQueryString(), 'search' => $search_data]);
     }

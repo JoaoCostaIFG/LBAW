@@ -47,60 +47,49 @@
       <!-- Questions Tab -->
       <div class="tab-pane fade show active" id="questions">
         <div class="d-flex flex-row align-items-center justify-content-between my-2">
-          <h6 class="m-0 d-none d-md-block pt-2 pb-2" id="questions">{{ $questions->total() }} result(s)</h6>
-          <div class="d-flex flex-row gap-4">
-            <!-- Filter -->
-            <form method="GET" class="d-flex flex-row justify-content-center gap-2">
-              <!-- From: -->
-              <div class="input-group d-flex flex-row justify-content-center align-items-center gap-2">
-                <label for="start-date" class="form-label m-0"><b>From:</b></label>
-                <input type="date" name="start_date"
-                  class="form-control {{ $errors->has('start_date') ? 'is-invalid' : '' }}" value="" id="start_date"
-                  placeholder="mm/dd/yyyy">
-                <!-- Error -->
-                @if ($errors->has('start_date'))
-                  <div class="invalid-feedback">
-                    {{ $errors->first('start_date') }}
-                  </div>
-                @endif
+          <h6 class="m-0 d-none d-md-block pt-2 pb-2" id="questions">Showing {{ $questions->count() }} out of
+            {{ $questions->total() }} result(s)</h6>
+          <!-- Filter -->
+          <form method="GET" class="d-flex flex-row justify-content-center gap-2">
+            <!-- From: -->
+            <div class="input-group d-flex flex-row justify-content-center align-items-center gap-2">
+              <label for="start-date" class="form-label m-0"><b>From:</b></label>
+              <input type="date" name="start_date"
+                class="form-control {{ $errors->has('start_date') ? 'is-invalid' : '' }}" value="" id="start_date"
+                placeholder="mm/dd/yyyy">
+              @if ($errors->has('start_date'))
+                <div class="invalid-feedback">
+                  {{ $errors->first('start_date') }}
+                </div>
+              @endif
+            </div>
+            <!-- To: -->
+            <div class="input-group d-flex flex-row justify-content-center align-items-center gap-2">
+              <label for="end-date" class="form-label m-0"><b>To:</b></label>
+              <input type="date" name="end_date" class="form-control {{ $errors->has('end_date') ? 'is-invalid' : '' }}"
+                value="" id="end_date" placeholder="mm/dd/yyyy">
+              @if ($errors->has('end_date'))
+                <div class="invalid-feedback">
+                  {{ $errors->first('end_date') }}
+                </div>
+              @endif
+            </div>
+            <!-- Sort By -->
+            <select class="form-select" aria-label="Sort by" name="sortBy">
+              <option value="">Sort By: ---</option>
+              <option value="most_recent">Sort By: Most Recent</option>
+              <option value="oldest">Sort By: Oldest</option>
+              <option value="best_score">Sort By: Best Score</option>
+              <option value="worst_score">Sort By: Worst Score</option>
+            </select>
+            @if ($errors->has('sortBy'))
+              <div class="invalid-feedback">
+                {{ $errors->first('sortBy') }}
               </div>
-              <!-- To: -->
-              <div class="input-group d-flex flex-row justify-content-center align-items-center gap-2">
-                <label for="end-date" class="form-label m-0"><b>To:</b></label>
-                <input type="date" name="end_date"
-                  class="form-control {{ $errors->has('end_date') ? 'is-invalid' : '' }}" value="" id="end_date"
-                  placeholder="mm/dd/yyyy">
-                <!-- Error -->
-                @if ($errors->has('end_date'))
-                  <div class="invalid-feedback">
-                    {{ $errors->first('end_date') }}
-                  </div>
-                @endif
-              </div>
-              <!-- Filter Button -->
-              <button onclick="return filter()" type="submit" class="btn btn-success">Filter</button>
-            </form>
-            <!-- Sort by-->
-            <ul class="nav nav-pills my-2">
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle p-0 d-flex flex-row align-items-center" data-bs-toggle="dropdown"
-                  href="#" role="button">
-                  <span class="d-none d-sm-block">Sort by</span>
-                  <i class="bi bi-filter-right"></i></a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="/search?sortBy=most_recent{{ $search_url }}#questions">Most
-                      Recent</a></li>
-                  <li><a class="dropdown-item" href="/search?sortBy=oldest{{ $search_url }}#questions">Oldest</a></li>
-                  <li><a class="dropdown-item" href="/search?sortBy=best_score{{ $search_url }}#questions">Best
-                      Score</a></li>
-                  <li><a class="dropdown-item" href="/search?sortBy=worst_score{{ $search_url }}#questions">Worst
-                      score</a></li>
-                  <li><a class="dropdown-item" href="/search?sortBy=None{{ $search_url }}">-- No
-                      order --</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
+            @endif
+            <!-- Filter Button -->
+            <button onclick="" type="submit" class="btn btn-success">Apply</button>
+          </form>
         </div>
         @foreach ($questions as $question)
           @include('partials.question_card')
@@ -113,7 +102,8 @@
       <!-- Users -->
       <div class="tab-pane fade" id="users">
         <div class="d-flex flex-row align-items-center justify-content-between">
-          <h6 class="m-0 d-none d-md-block py-2" id="users">{{ $users->total() }} result(s)</h6>
+          <h6 class="m-0 d-none d-md-block pt-2 pb-2" id="questions">Showing {{ $users->count() }} out of
+            {{ $users->total() }} result(s)</h6>
           <!-- Sort by-->
           <ul class="nav nav-pills">
             <li class="nav-item dropdown">
@@ -150,24 +140,4 @@
   </div>
 
   <script src="/js/tabs.js"></script>
-  <script src="/js/sort_dropdown.js"></script>
-
-  <script>
-    'use strict'
-
-    function filter() {
-      let start_date = new Date(document.querySelector("#start_date").value);
-      let end_date = new Date(document.querySelector("#end_date").value);
-      let question_cards = document.querySelectorAll(".question_card");
-
-      question_cards.forEach(question => {
-        let date = new Date(question.querySelectorAll(".date")[0].getAttribute("data-date"));
-        if (date < start_date || date > end_date) {
-          question.setAttribute('style', 'display:none !important');
-        } else question.removeAttribute('style');
-      });
-      return false;
-    }
-
-  </script>
 @stop
