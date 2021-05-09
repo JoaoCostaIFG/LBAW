@@ -37,20 +37,12 @@ let notification_forms = document.querySelectorAll(".notification-form");
 notification_forms.forEach(notification_form => {
     if (notification_form.addEventListener) {
         notification_form.addEventListener("submit", function (evt) {
-            console.log("Hello");
             evt.preventDefault();
 
             let xhttp = new XMLHttpRequest();
             xhttp.open("delete", "/api/notifications/" + notification_form.getAttribute('id').split("-")[1], true);
-            xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhttp.setRequestHeader("X-CSRF-TOKEN", document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
-            xhttp.send(
-                encodeForAjax({
-                    csrf: document
-                        .querySelector("meta[name='csrf-token']")
-                        .getAttribute("content"),
-                })
-            );
+            xhttp.send();
         }, true);
     }
 });
