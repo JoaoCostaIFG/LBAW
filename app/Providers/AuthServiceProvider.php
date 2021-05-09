@@ -3,6 +3,10 @@
 namespace App\Providers;
 
 use App\Policies\QuestionPolicy;
+use App\Policies\CommentPolicy;
+use App\Policies\NotificationPolicy;
+use App\Policies\AnswerPolicy;
+
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 

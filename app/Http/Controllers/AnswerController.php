@@ -20,26 +20,29 @@ class AnswerController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'question_id' => 'required',
-            'body' => 'required|string',
+            'body' => 'required|string|min:1',
         ]);
     }
 
     public function create(Request $request)
     {
+
         $this->authorize('create', Answer::class);
 
         $validation = $this->validator($request->all());
         if ($validation->fails()) {
-            return null;
+            return back()->withErrors($validation);
         }
+
 
         // create_answer(OwnerUser INT, Body TEXT, DatePost DATE, IdQuestion INT)
         // $answer = DB::transaction(function () use ($request) {
-            DB::select("CALL create_answer(?, ?, ?, ?, ?)", [Auth::id(), $request->body, date("Y-m-d"), null, $request->question_id]);
+            DB::select("CALL create_answer(?, ?, ?, ?)", [Auth::id(), $request->body, date("Y-m-d"), $request->id]);
             // return Answer::latest('id')->limit(1);
         // });
 
-        return back();
+        echo Answer::latest('id')->first();
+
+        return redirect()->back();
     }
 }
