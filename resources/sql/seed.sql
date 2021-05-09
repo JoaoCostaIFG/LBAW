@@ -362,6 +362,9 @@ AS $$
             FROM post JOIN vote ON (post.id = vote.id_post)
             WHERE id = post_id);
 
+    IF val IS NULL THEN
+        val := 0;
+    END IF;
 
     -- update the question score
     UPDATE post
