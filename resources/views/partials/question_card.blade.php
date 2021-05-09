@@ -1,5 +1,5 @@
 <!-- Question Card -->
-<div class="d-flex flex-sm-row flex-column-reverse justify-content-start align-items-center border p-3 rounded gap-3 mb-2">
+<div class="question_card d-flex flex-sm-row flex-column-reverse justify-content-start align-items-center border p-3 rounded gap-3 mb-2">
   <div class="d-flex flex-sm-column flex-row justify-content-start align-items-center gap-1">
     <!-- Number Votes -->
     <div class="d-flex flex-sm-column flex-row justify-content-center align-items-center gap-1">
@@ -30,7 +30,7 @@
       </div>
       <!-- Question Date -->
       <div class="d-flex flex-row gap-3 align-items-center">
-        <span class="align-self-end">
+        <span class="date align-self-end" data-date={{$question->post->date}}>
           Posted {{ (new DateTime($question->post->date))->diff(new DateTime('NOW'))->days }} days ago
         </span>
         <!-- Author User Info -->
