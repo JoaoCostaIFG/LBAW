@@ -313,3 +313,18 @@ footer {
     z-index: 999;
 }
 /* END FOOTER */
+
+/* SELECT2 */
+.select2-results__options {
+    color: black;
+}
+
+ /* Tags non highlighted */
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #009670b4;
+}
+
+ /* Tags highlighted */
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover {
+    background-color: #00967070;
+}

@@ -48,12 +48,26 @@
         </div>
       </div>
     </div>
-    <div class="col-auto card p-1">
+    <div class="col-3 card p-1">
       <div class="card-body col-auto">
         <span class="card-title"><b>Topics</b></span>
         <hr class="my-1">
         <div class="mt-3 has-validation">
-          <input type="text" name="topics" value="{{ old('topics') }}" class="form-control {{ $errors->has('topics') ? 'is-invalid' : ''}}" rows=2 id="topics" placeholder="Enter topic tags..." required>
+          <select class="js-example-basic-single form-control {{ $errors->has('topics') ? 'is-invalid' : ''}}"
+             name="topics" value="{{ old('topics') }}" rows=2 id="topics" placeholder="Enter topic tags" multiple required>
+            <option value="AL">Alabama</option>
+            <option value="WY">Wyoming</option>
+            <option value="WY">Wyoming</option>
+            <option value="WY">Wyoming</option>
+            <option value="WY">Wyoming</option>
+            <option value="WY">Wyoming</option>
+          </select>
+          <script>
+            // In your Javascript (external .js resource or <script> tag)
+            $(document).ready(function() {
+              $('.js-example-basic-single').select2();
+            });
+          </script>
           @if ($errors->has('topics'))
           <div class="invalid-feedback">
             {{ $errors->first('topics') }}
