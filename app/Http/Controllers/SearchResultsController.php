@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Question;
 use App\Models\User;
+use App\Models\Topic;
 
 use Illuminate\Http\Request;
 
@@ -18,11 +19,15 @@ class SearchResultsController extends Controller
 
         // No search data
         if ($search_data == "") {
-            
             $questions = Question::join('post', "question.id", '=', "post.id");
             $users = User::select('*');
         }
         else{ // Search data
+            $topic = Topic::where('name', $search_data);
+            if ($topic->isEmpty()) {
+                dd("here");
+            }
+            dd($topic->get());
             $questions = Question::search($search_data);
             $users = User::search($search_data);
         }
