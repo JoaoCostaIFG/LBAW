@@ -50,17 +50,23 @@
       <div class="card-body">
         <span class="card-title"><b>Topics</b></span>
         <hr class="my-1">
-        <div class="has-validation mt-3">
-          <select class="js-example-basic-single form-control {{ $errors->has('topics') ? 'is-invalid' : ''}}"
-             name="topics[]" value="{{ old('topics') }}" rows=2 id="topics" placeholder="Enter topic tags" multiple required>
-             @foreach ($topics as $topic)
-              <option value="{{$topic}}">{{$topic}}</option>
-             @endforeach
+        <div class="mt-3 has-validation">
+          <select class="topic-list form-control {{ $errors->has('topics') ? 'is-invalid' : ''}}"
+             name="topics[]" value="" rows=2 id="topics" placeholder="Enter topic tags" multiple required>
+            @foreach ($topics as $topic)
+              @php
+                $selected = is_array(old('topics')) && in_array($topic, old('topics'));
+              @endphp
+              <option id="{{ $topic }}" {{ $selected ? 'selected="selected"' : ''}} value="{{$topic}}">
+                {{$topic}}
+              </option>
+            @endforeach
           </select>
           <script>
             // Load select2 values
             $(document).ready(function() {
-              $('.js-example-basic-single').select2();
+              $('.topic-list').select2();
+              $('.topic-list').select2("val", null); //a lil' bit more :)
             });
           </script>
           @if ($errors->has('topics'))
