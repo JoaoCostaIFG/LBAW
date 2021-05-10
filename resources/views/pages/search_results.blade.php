@@ -30,7 +30,7 @@
 
   <!-- Page Top -->
   <div class="container">
-    <h2 class="page-title"> Search Results </h2>
+    <h2 class="page-title">Search Results</h2>
     <div class="py-3 border-bottom pb-0">
       <!-- Tabs -->
       <ul class="nav nav-tabs">
@@ -46,13 +46,14 @@
     <div class="tab-content">
       <!-- Questions Tab -->
       <div class="tab-pane fade show active" id="questions">
-        <div class="d-flex flex-row align-items-center justify-content-between my-2">
-          <h6 class="m-0 d-none d-md-block pt-2 pb-2" id="questions">Showing {{ $questions->count() }} out of
-            {{ $questions->total() }} result(s)</h6>
+        <div class="row align-items-center justify-content-between my-2 py-1 gx-0">
+          <h6 id="questions" class="col-12 col-lg-3 m-0">
+            Showing {{ $questions->count() }} out of {{ $questions->total() }} result(s)
+          </h6>
           <!-- Filter -->
-          <form method="GET" class="d-flex flex-row justify-content-center gap-2">
+          <form id="search-filters-form" method="GET" class="col-12 col-lg-9 row gx-0 gap-1">
             <!-- From: -->
-            <div class="input-group d-flex flex-row justify-content-center align-items-center gap-2">
+            <div class="col-12 col-md-auto">
               <label for="start-date" class="form-label m-0"><b>From:</b></label>
               <input type="date" name="start_date"
                 class="form-control {{ $errors->has('start_date') ? 'is-invalid' : '' }}" value="" id="start_date"
@@ -64,7 +65,7 @@
               @endif
             </div>
             <!-- To: -->
-            <div class="input-group d-flex flex-row justify-content-center align-items-center gap-2">
+            <div class="col-12 col-md-auto">
               <label for="end-date" class="form-label m-0"><b>To:</b></label>
               <input type="date" name="end_date" class="form-control {{ $errors->has('end_date') ? 'is-invalid' : '' }}"
                 value="" id="end_date" placeholder="mm/dd/yyyy">
@@ -75,7 +76,7 @@
               @endif
             </div>
             <!-- Sort By -->
-            <select class="form-select" aria-label="Sort by" name="sortBy">
+            <select class="col-auto" aria-label="Sort by" name="sortBy">
               <option value="">Sort By: ---</option>
               <option value="most_recent">Sort By: Most Recent</option>
               <option value="oldest">Sort By: Oldest</option>
@@ -88,7 +89,7 @@
               </div>
             @endif
             <!-- Filter Button -->
-            <button onclick="" type="submit" class="btn btn-success">Apply</button>
+            <button onclick="" type="submit" class="col-auto btn btn-success">Apply</button>
           </form>
         </div>
         @foreach ($questions as $question)
