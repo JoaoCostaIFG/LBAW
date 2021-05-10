@@ -39,7 +39,7 @@ class QuestionController extends Controller
 
     public function create()
     {
-        return view("pages.ask_question");
+        return view("pages.ask_question", ['topics' => Topic::all()->pluck('name')]);
     }
 
     public function store(Request $request)
