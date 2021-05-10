@@ -55,7 +55,7 @@ class SearchResultsController extends Controller
         } else { // Search data
             $topic = Topic::where('name', $search_data)->get();
             if (!$topic->isEmpty()) {
-                dd($topic[0]->name);
+                return redirect('/search/tag/' . $search_data);
             }
             $questions = Question::search($search_data);
             $users = User::search($search_data);
@@ -90,7 +90,8 @@ class SearchResultsController extends Controller
         });
 
         return view("pages.search_results", [
-            'questions' => $questions->paginate(5)->withQueryString(), 'search' => $tag
+            'questions' => $questions->paginate(5)->withQueryString(), 'search' => $tag,
+            'tag' => $tag
         ]);
     }
 
