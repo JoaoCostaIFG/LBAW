@@ -17,16 +17,21 @@ class QuestionController extends Controller
             'title' => 'required|string|min: 5|max:255|unique:question,title',
             'body' => 'string|max:4095',
             'bounty' => 'required|integer|between:0,100',
-            'topics' => ['string',
-                function($attr, $str, $fail) {
-                    $arr = explode(" ", $str);
+            'topics' => ['array' ,'min:1',
+                function($attr, $arr, $fail) {
                     $errs = "";
-                    foreach ($arr as $topic) {
-                    if (Topic::where('name', $topic)->doesntExist())
-                        $errs .= " " . $topic;
+                    if (is_array($arr)) {
+                        foreach ($arr as $topic) {
+                            if (!is_string($topic)) {
+                                $fail('Invalid topic type (not string)');
+                            }
+                            else if (Topic::where('name', $topic)->doesntExist()) {
+                                $errs .= " " . $topic;
+                            }
+                        }
+                        if ($errs != "")
+                            $fail("Invalid topic(s)" . $errs);
                     }
-                    if ($errs != "")
-                        $fail("Invalid topic(s)" . $errs);
                 }]
         ]);
     }

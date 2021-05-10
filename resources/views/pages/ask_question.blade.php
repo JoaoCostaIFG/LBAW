@@ -54,13 +54,13 @@
         <hr class="my-1">
         <div class="mt-3 has-validation">
           <select class="js-example-basic-single form-control {{ $errors->has('topics') ? 'is-invalid' : ''}}"
-             name="topics" value="{{ old('topics') }}" rows=2 id="topics" placeholder="Enter topic tags" multiple required>
+             name="topics[]" value="{{ old('topics') }}" rows=2 id="topics" placeholder="Enter topic tags" multiple required>
              @foreach ($topics as $topic)
               <option value="{{$topic}}">{{$topic}}</option>
              @endforeach
           </select>
           <script>
-            // In your Javascript (external .js resource or <script> tag)
+            // Load select2 values
             $(document).ready(function() {
               $('.js-example-basic-single').select2();
             });
