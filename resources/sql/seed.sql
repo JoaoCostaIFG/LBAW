@@ -347,6 +347,7 @@ RETURNS TRIGGER
 AS $$
   DECLARE
     val integer;
+    val2 integer;
     post_id integer;
     owner_id integer;
   BEGIN
@@ -358,15 +359,13 @@ AS $$
       post_id := NEW.id_post;
     END IF;
 
+    -- update the question score
     val := (SELECT sum(value)
             FROM post JOIN vote ON (post.id = vote.id_post)
             WHERE id = post_id);
-
     IF val IS NULL THEN
-        val := 0;
+      val := 0;
     END IF;
-
-    -- update the question score
     UPDATE post
     SET score = val
     WHERE id = post_id;
@@ -375,14 +374,48 @@ AS $$
     owner_id := (SELECT id_owner
                   FROM post
                   WHERE id = post_id);
-
-    val := (SELECT count(*)
+    -- score obtaining by votes on the user's posts
+    val := (SELECT sum(score)
             FROM post
             JOIN "user" ON (post.id_owner = "user".id)
             WHERE "user".id = owner_id);
+    IF val IS NULL THEN
+      val := 0;
+    END IF;
+    -- score obtained by achievements (each is worth 10 reputation)
+    val2 := (SELECT count(*)
+              FROM "user"
+              JOIN achieved ON (achieved.id_user = "user".id)
+              JOIN achievement ON (achieved.id_achievement = achievement.id)
+              WHERE "user".id = owner_id) * 10;
+    UPDATE "user" as u
+    SET reputation = val + val2
+    WHERE owner_id = u.id;
+
+    RETURN NULL; -- result is ignored since this is an AFTER trigger
+  END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION on_achievement_change()
+RETURNS TRIGGER
+AS $$
+  DECLARE
+    val_delta integer;
+    owner_id integer;
+  BEGIN
+    IF (TG_OP = 'DELETE') THEN
+      owner_id := OLD.id_user;
+      val_delta = -10;
+    ELSIF (TG_OP = 'UPDATE') THEN
+      owner_id := NEW.id_user;
+      val_delta = 0;
+    ELSIF (TG_OP = 'INSERT') THEN
+      owner_id := NEW.id_user;
+      val_delta = 10;
+    END IF;
 
     UPDATE "user" as u
-    SET reputation = val
+    SET reputation = u.reputation + val_delta
     WHERE owner_id = u.id;
 
     RETURN NULL; -- result is ignored since this is an AFTER trigger
@@ -614,36 +647,42 @@ LANGUAGE plpgsql;
 -- TRIGGERS
 
 -- Update score
-
-DROP TRIGGER IF EXISTS update_score ON vote CASCADE;
-CREATE TRIGGER update_score
-AFTER DELETE OR INSERT OR UPDATE
-ON vote
-FOR EACH ROW EXECUTE FUNCTION on_score_change();
+-- on vote
+DROP TRIGGER IF EXISTS update_score_vote ON vote CASCADE;
+CREATE TRIGGER update_score_vote
+AFTER DELETE OR INSERT OR UPDATE ON vote
+FOR EACH ROW
+EXECUTE FUNCTION on_score_change();
+-- on achievement
+DROP TRIGGER IF EXISTS update_score_achievement ON vote CASCADE;
+CREATE TRIGGER update_score_achievement
+AFTER DELETE OR INSERT OR UPDATE ON achieved
+FOR EACH ROW
+EXECUTE FUNCTION on_achievement_change();
 
 -- Search user
 
 DROP TRIGGER IF EXISTS user_search_update_trigger ON "user" CASCADE;
 CREATE TRIGGER user_search_update_trigger
-BEFORE INSERT OR UPDATE
-ON "user"
-FOR EACH ROW EXECUTE FUNCTION user_search_update();
+BEFORE INSERT OR UPDATE ON "user"
+FOR EACH ROW
+EXECUTE FUNCTION user_search_update();
 
 -- Search question
 
 DROP TRIGGER IF EXISTS question_search_update_trigger ON question CASCADE;
 CREATE TRIGGER question_search_update_trigger
-BEFORE INSERT OR UPDATE
-ON question
-FOR EACH ROW EXECUTE FUNCTION question_search_update();
+BEFORE INSERT OR UPDATE ON question
+FOR EACH ROW
+EXECUTE FUNCTION question_search_update();
 
 -- Search topic
 
 DROP TRIGGER IF EXISTS topic_search_update_trigger ON topic CASCADE;
 CREATE TRIGGER topic_search_update_trigger
-BEFORE INSERT OR UPDATE
-ON topic
-FOR EACH ROW EXECUTE FUNCTION topic_search_update();
+BEFORE INSERT OR UPDATE ON topic
+FOR EACH ROW
+EXECUTE FUNCTION topic_search_update();
 
 -- Reopen question
 
@@ -653,7 +692,7 @@ BEFORE UPDATE ON question
 FOR EACH ROW
 EXECUTE PROCEDURE reopen_question();
 
--- Vote on its own post
+-- Can't vote on their own post
 
 DROP TRIGGER IF EXISTS vote_trigger ON vote CASCADE;
 CREATE TRIGGER vote_trigger

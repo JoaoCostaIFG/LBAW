@@ -44,7 +44,7 @@
       </div>
       <div class="col-4 themed-grid-col text-center">
         <h4 class="m-0 p-0">{{ $user->reputation }}</h4>
-        <p class="m-0 p-0">Score</p>
+        <p class="m-0 p-0">Reputation</p>
       </div>
     </div>
 
