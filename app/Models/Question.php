@@ -57,7 +57,6 @@ class Question extends Model
     }
 
     // search brought to you by https://matthewdaly.co.uk/blog/2017/12/02/full-text-search-with-laravel-and-postgresql/
-    // TODO add topic search here
     public function scopeSearch($query, $search)
     {
         if (!$search) {

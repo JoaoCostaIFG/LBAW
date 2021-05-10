@@ -19,7 +19,6 @@ Route::view('/', 'pages.index');
 // Pages
 Route::view('/home', 'pages.index')->name('home');
 Route::view('/about', 'pages.about');
-Route::get('/search', 'SearchResultsController@search');
 Route::get('/news', 'NewsController@show');
 Route::get('/leaderboard', 'LeaderboardController@show');
 Route::get('/question/{id}', 'QuestionController@show');
@@ -32,9 +31,11 @@ Route::post('/user/ask', 'QuestionController@store')->name('ask');
 Route::get('/user/ask', 'QuestionController@create')->middleware('auth');
 Route::post('/question/{id}/close', 'QuestionController@close')->middleware('auth');
 Route::put('/question/{id}/answer', 'AnswerController@create');
+Route::get('/search', 'SearchResultsController@search');
+Route::get('/search/tag/{name}', 'SearchResultsController@searchTag');
 
 // API
-Route::get('/api/questions', 'SearchResultsController@searchApi');
+Route::get('/api/questions', 'SearchResultsController@searchApi'); // TODO
 Route::get('/api/user', 'UserController@showApi');
 Route::post('api/comments', 'CommentController@create');
 Route::patch('api/comments/{id}', 'CommentController@update');
