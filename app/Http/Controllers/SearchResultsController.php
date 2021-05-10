@@ -23,11 +23,10 @@ class SearchResultsController extends Controller
             $users = User::select('*');
         }
         else{ // Search data
-            $topic = Topic::where('name', $search_data);
-            if ($topic->isEmpty()) {
-                dd("here");
+            $topic = Topic::where('name', $search_data)->get();
+            if (!$topic->isEmpty()) {
+                dd($topic[0]->name);
             }
-            dd($topic->get());
             $questions = Question::search($search_data);
             $users = User::search($search_data);
         }
