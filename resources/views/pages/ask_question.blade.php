@@ -38,7 +38,7 @@
   </div>
 
   <div class="container-fluid row input-group justify-content-center py-2 my-3">
-    <div class="col-md-2 card p-1">
+    <div class="col-2 col-lg-3 card p-1">
       <div class="card-body col-auto">
         <span class="card-title"><b>Bounty</b></span>
         <hr class="my-1">
@@ -48,8 +48,8 @@
         </div>
       </div>
     </div>
-    <div class="col-3 card p-1">
-      <div class="card-body col-auto">
+    <div class="col-3 col-md-4 col-lg-6 card p-1">
+      <div class="card-body">
         <span class="card-title"><b>Topics</b></span>
         <hr class="my-1">
         <div class="mt-3 has-validation">
