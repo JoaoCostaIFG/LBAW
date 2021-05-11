@@ -13,7 +13,18 @@
       {{ $user->name }}'s profile
     @endif
   </h2>
-    <a href="/user/edit"> <button type="button" class="btn btn-secondary mt-3"> Edit <i class="bi bi-pencil-square"></i></button></a>
+    @if (Auth::check())
+      @if (Auth::id() == request()->id)
+        <a href="/user/edit"> <button type="button" class="btn btn-secondary mt-3"> Edit <i class="bi bi-pencil-square"></i></button></a>
+      @elseif (Auth::user()->hasRole('administrator'))
+        <a href=>
+          <form method="POST" action="{{ route('ban_user', ['id' => request()->id ]) }}">
+            @csrf
+            <button type="submit" class="btn btn-danger btn-secondary mt-3"> Ban <i class="bi bi-trash"></i></i></button>
+          </form>
+        </a>
+      @endif
+    @endif
 </div>
 <hr>
 <nav class="mt-2">

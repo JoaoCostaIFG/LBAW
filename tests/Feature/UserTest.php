@@ -12,5 +12,10 @@ class UserTest extends TestCase
         $response = $this->actingAs(User::find(1))->get('/api/user');
         $response->assertStatus(200);
     }
+
+    public function testBanUser() {
+        $response = $this->actingAs(User::find(2))->post('/users/1/ban');
+        $response->assertStatus(302);
+    }
 }
 

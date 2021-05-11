@@ -78,6 +78,7 @@ class UserController extends Controller
 
     }
 
+
     protected function validator(Request $request){
         $validation = Validator::make($request->all(), [
             'email' => 'nullable|string|email|max:255|unique:user',
@@ -89,11 +90,13 @@ class UserController extends Controller
             'about' => 'nullable|string|max:500',
         ]);
 
-
-
         return $validation;
     }
 
+    public function ban($id) {
+        DB::delete('DELETE FROM "user" where id = ?', [$id]);
+        return redirect()->route('profile', [$id]);
+    }
 
 }
 
