@@ -5,6 +5,14 @@
 
 @section('content')
 <!-- BEGIN TABS -->
+<h2 class="page-title">
+  @if (Auth::id() == request()->id)
+    Your Profile
+  @else
+    {{ $user->name }}'s profile
+  @endif
+</h2>
+<hr>
 <nav class="mt-2">
   <ul class="nav nav-tabs justify-content-center">
     <li class="nav-item profile-tab">
