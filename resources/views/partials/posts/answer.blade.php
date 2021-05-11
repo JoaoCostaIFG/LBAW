@@ -29,7 +29,7 @@
                     @endif
                 @endauth
                 <button type="button" class="btn btn-sm btn-danger ms-1 col">Report</button>
-                <p class="text-muted col text-center m-0">Posted {{ (new DateTime($answer->post->date))->diff(new DateTime('NOW'))->days }} day ago</p>
+                <p class="text-muted col text-center m-0">Posted {{ (new \Carbon\Carbon($answer->post->date))->diffForHumans() }}</p>
             </div>
         </div>
 

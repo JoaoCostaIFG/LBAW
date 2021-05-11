@@ -31,7 +31,7 @@
       <!-- Question Date -->
       <div class="d-flex flex-row gap-3 align-items-center">
         <span class="date align-self-end" data-date={{$question->post->date}}>
-          Posted {{ (new DateTime($question->post->date))->diff(new DateTime('NOW'))->days }} days ago
+          Posted {{(new \Carbon\Carbon($question->post->date))->diffForHumans()}}
         </span>
         <!-- Author User Info -->
         <!-- User Profile Pic  -->

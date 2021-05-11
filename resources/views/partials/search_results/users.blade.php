@@ -11,7 +11,7 @@
                     <i class="bi bi-filter-right"></i></a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="/search?sortBy=most_points{{ $search_url }}#users">Most Points</a></li>
-                    <li><a class="dropdown-item" href="/search?sortBy=least_point{{ $search_url }}s#users">Least Points</a></li>
+                    <li><a class="dropdown-item" href="/search?sortBy=least_points{{ $search_url }}#users">Least Points</a></li>
                     <li><a class="dropdown-item" href="/search">-- No order --</a></li>
                 </ul>
             </li>
