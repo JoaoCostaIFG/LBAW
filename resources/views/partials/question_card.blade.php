@@ -1,5 +1,6 @@
 <!-- Question Card -->
-<div class="question_card d-flex flex-sm-row flex-column-reverse justify-content-start align-items-center border p-3 rounded gap-3 mb-2">
+<div class="question_card d-flex flex-sm-row flex-column-reverse justify-content-start align-items-center border
+ {{ $question->closed ? 'border-success' : '' }} p-3 rounded gap-3 mb-2">
   <div class="d-flex flex-sm-column flex-row justify-content-start align-items-center gap-1">
     <!-- Number Votes -->
     <div class="d-flex flex-sm-column flex-row justify-content-center align-items-center gap-1">
@@ -15,12 +16,18 @@
     </div>
   </div>
   <div class="d-flex flex-column justify-content-start align-items-start w-100">
-    <section>
-      <!-- Question Title -->
-      <h4><a class="fs-5 fw-bold" href="/question/{{ $question->id }}">{{ $question->title }}</a></h4>
-      <!-- Question body -->
-      <p class="d-none d-md-block">{{ $question->post->body }}</p>
-    </section>
+    <div class="d-flex w-100">
+      <section>
+        <!-- Question Title -->
+        <h4><a class="fs-5 fw-bold" href="/question/{{ $question->id }}">{{ $question->title }}</a></h4>
+        <!-- Question body -->
+        <p class="d-none d-md-block">{{ $question->post->body }}</p>
+      </section>
+      <!-- Mark if question is answered -->
+      @if ($question->closed)
+        <i class="bi bi-check2 text-success text-end fs-1 ms-auto"></i>
+      @endif
+    </div>
     <div class="w-100 gap-1 d-flex flex-row align-items-center justify-content-between align-self-start">
       <!-- Question Topics -->
       <div class="d-none d-sm-block d-grid gap-1 mt-0">
