@@ -1,7 +1,4 @@
-<button class="btn btn-danger m-0" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal"
-  aria-controls="deleteModal" aria-expanded="false" aria-label="Open delete account box">
-  Delete Account
-</button>
+
 
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
