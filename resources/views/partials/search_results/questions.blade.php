@@ -12,11 +12,11 @@
                 <input type="date" name="start_date"
                     class="form-control {{ $errors->has('start_date') ? 'is-invalid' : '' }}" value="" id="start_date"
                     placeholder="mm/dd/yyyy">
-                @if ($errors->has('start_date'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('start_date') }}
-                    </div>
-                @endif
+@if ($errors->has('start_date'))
+                <div class="invalid-feedback">
+                    {{ $errors->first('start_date') }}
+                </div>
+@endif
             </div>
             <!-- To: -->
             <div class="col-12 col-md-auto">
@@ -24,11 +24,11 @@
                 <input type="date" name="end_date"
                     class="form-control {{ $errors->has('end_date') ? 'is-invalid' : '' }}" value="" id="end_date"
                     placeholder="mm/dd/yyyy">
-                @if ($errors->has('end_date'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('end_date') }}
-                    </div>
-                @endif
+@if ($errors->has('end_date'))
+                <div class="invalid-feedback">
+                    {{ $errors->first('end_date') }}
+                </div>
+@endif
             </div>
             <!-- Sort By -->
             <select class="col-auto" aria-label="Sort by" name="sortBy">
@@ -38,18 +38,18 @@
                 <option value="best_score">Sort By: Best Score</option>
                 <option value="worst_score">Sort By: Worst Score</option>
             </select>
-            @if ($errors->has('sortBy'))
-                <div class="invalid-feedback">
-                    {{ $errors->first('sortBy') }}
-                </div>
-            @endif
+@if ($errors->has('sortBy'))
+              <div class="invalid-feedback">
+                  {{ $errors->first('sortBy') }}
+              </div>
+@endif
             <!-- Filter Button -->
             <button onclick="" type="submit" class="col-auto btn btn-success">Apply</button>
         </form>
     </div>
-    @foreach ($questions as $question)
-        @include('partials.question_card')
-    @endforeach
+@foreach ($questions as $question)
+    @include('partials.question_card')
+@endforeach
     <!-- Pagination -->
     <div class="d-flex justify-content-end">
         {{ $questions->links() }}
