@@ -50,7 +50,9 @@
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="navbar-brand">
-              <a href="{{ url('home') }}">Segmentation <b>fault</b></a>
+              <a id="brand-logo" href="{{ url('home') }}">
+                <span id="brand">Segmentation <b>fault</b></span>
+              </a>
               <i class="bi bi-cpu"></i>
               @yield('title')
             </div>
