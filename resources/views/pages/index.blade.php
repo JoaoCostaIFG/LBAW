@@ -61,7 +61,7 @@
         <p class="lead">You'll get the help you need and leave behind content that'll help others that have the same problem as you.</p>
       </div>
       <div class="col-12 col-sm-4 col-md-2 text-center text-sm-end">
-        <span id="share_img" class="featurette-img mx-auto"><span/>
+        <span id="share_img" class="featurette-img mx-auto"></span>
       </div>
     </div>
 
@@ -73,7 +73,7 @@
         <p class="lead">Every answer can make the difference.</p>
       </div>
       <div class="col-12 col-sm-4 col-md-2 text-center text-sm-end text-md-start order-md-1">
-        <span id="help_img" class="featurette-img mx-auto"><span/>
+        <span id="help_img" class="featurette-img mx-auto"></span>
       </div>
     </div>
 
@@ -85,7 +85,7 @@
         <p class="lead">The more good answers you give, the more standing you get. People will see you as a valuable and helpful member of the community.</p>
       </div>
       <div class="col-12 col-sm-4 col-md-2 text-center text-sm-end">
-        <span id="be_img" class="featurette-img mx-auto"><span/>
+        <span id="be_img" class="featurette-img mx-auto"></span>
       </div>
     </div>
 

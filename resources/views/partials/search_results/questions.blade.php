@@ -1,17 +1,15 @@
 <!-- Questions Tab -->
 <div class="tab-pane fade show active" id="questions">
     <div class="row align-items-center justify-content-between my-2 py-1 gx-0">
-        <h6 id="questions" class="col-12 col-lg-3 m-0">
+        <h6 id="questions-page-subtitle" class="col-12 col-lg-3 m-0">
             Showing {{ $questions->count() }} out of {{ $questions->total() }} result(s)
         </h6>
         <!-- Filter -->
         <form id="search-filters-form" method="GET" class="col-12 col-lg-9 row gx-0 gap-1">
             <!-- From: -->
             <div class="col-12 col-md-auto">
-                <label for="start-date" class="form-label m-0"><b>From:</b></label>
-                <input type="date" name="start_date"
-                    class="form-control {{ $errors->has('start_date') ? 'is-invalid' : '' }}" value="" id="start_date"
-                    placeholder="mm/dd/yyyy">
+                <label for="start_date" class="form-label m-0"><b>From:</b></label>
+                <input id="start_date" type="date" name="start_date" class="form-control {{ $errors->has('start_date') ? 'is-invalid' : '' }}" value="">
 @if ($errors->has('start_date'))
                 <div class="invalid-feedback">
                     {{ $errors->first('start_date') }}
@@ -20,10 +18,8 @@
             </div>
             <!-- To: -->
             <div class="col-12 col-md-auto">
-                <label for="end-date" class="form-label m-0"><b>To:</b></label>
-                <input type="date" name="end_date"
-                    class="form-control {{ $errors->has('end_date') ? 'is-invalid' : '' }}" value="" id="end_date"
-                    placeholder="mm/dd/yyyy">
+                <label for="end_date" class="form-label m-0"><b>To:</b></label>
+                <input id="end_date" type="date" name="end_date" class="form-control {{ $errors->has('end_date') ? 'is-invalid' : '' }}" value="">
 @if ($errors->has('end_date'))
                 <div class="invalid-feedback">
                     {{ $errors->first('end_date') }}

@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'Search Results')
+@section('title', 'Search')
 @section('pageType', 'website')
 
 @section('content')

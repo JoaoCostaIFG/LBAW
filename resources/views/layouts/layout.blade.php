@@ -66,7 +66,7 @@
     </header>
 
     <!-- BEGIN SEARCH MODAL -->
-    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModal" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <!-- bg-dark -->
@@ -99,9 +99,9 @@
     <footer class="container">
       <br>
       <hr>
-      <div class="row">
-        <p class="col-8 text-muted">&#169; 2021 Segmentation Fault, Inc.</p>
-        <a class="col-4 text-end" href="#">go to top</a>
+      <div class="row justify-content-between">
+        <p class="col-auto text-muted">&#169; 2021 Segmentation Fault, Inc.</p>
+        <a class="col-auto text-end" href="#">go to top</a>
       </div>
     </footer>
 

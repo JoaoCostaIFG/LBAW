@@ -24,10 +24,10 @@
     <!-- auth -->
     @guest
         <div class="row justify-content-evenly sidebar-buttons">
-        <a class="btn btn-info col-4" href="/login" type="button" aria-expanded="false" aria-label="Open login box">
+        <a class="btn btn-info col-4" href="/login" role="button" aria-label="Go to login page">
           Log in
         </a>
-        <a class="btn btn-primary col-4" href="/register" type="button" aria-controls="loginModal" aria-expanded="false" aria-label="Open signup box">
+        <a class="btn btn-primary col-4" href="/register" role="button" aria-label="Go to register page">
           Sign up
         </a>
       </div>
@@ -56,14 +56,14 @@
 
 </nav>
 
-<script defer>
-    document.querySelector("#sidebar-toggler").addEventListener("click", function() {
-        let sidebar = document.querySelector("#sidebar");
-        if (sidebar.classList.contains("active"))
-        sidebar.classList.remove("active");
-        else
-        sidebar.classList.add("active");
-    })
+<script>
+  document.querySelector("#sidebar-toggler").addEventListener("click", function() {
+    let sidebar = document.querySelector("#sidebar");
+    if (sidebar.classList.contains("active"))
+      sidebar.classList.remove("active");
+    else
+      sidebar.classList.add("active");
+  })
 </script>
 
 <!-- Notifications -->
