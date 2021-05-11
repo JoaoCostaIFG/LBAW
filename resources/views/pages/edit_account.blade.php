@@ -132,6 +132,9 @@
             @endif
           </div>
         </div>
+        @if ($errors->has('name'))
+          <div class="invalid-feedback d-block">{{ $errors->first('name') }}</div>
+        @endif
         <!-- About -->
         <div class="input-group mb-2">
           <label for="about" class="form-label"><b>About</b></label>

@@ -15,7 +15,7 @@
         <div class="input-group has-validation">
           <input id="username" type="text" class="form-control" name="username" placeholder="Enter your username..." value="{{ old('username') }}" required autofocus>
           @if ($errors->has('username'))
-            <span class="invalid-feedback">
+            <span class="invalid-feedback d-block">
               {{ $errors->first('username') }}
             </span>
           @endif
@@ -27,7 +27,7 @@
         <div class="input-group has-validation">
           <input id="password" type="password" class="form-control" name="password" placeholder="Enter password..." required>
           @if ($errors->has('password'))
-            <span class="invalid-feedback">
+            <span class="invalid-feedback d-block">
               {{ $errors->first('password') }}
             </span>
           @endif
