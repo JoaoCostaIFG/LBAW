@@ -1,7 +1,8 @@
-
-<div class="d-flex border border-dark p-3 mt-3">
-    <div class="col-10">
-    <h2 class="featurette-heading">{{$news->title}}<span class="text-muted">{{$news->subtitle}}</span></h2>
-    <p class="lead">{{$news->body}}</p>
-    </div>
-</div>
+<article class="row gx-0 border border-dark p-3 mt-3">
+  <h3 class="featurette-heading col-12">
+    {{$news->title}}<span class="text-muted">{{$news->subtitle}}</span>
+  </h3>
+  <p class="lead col-12">
+    {{$news->body}}
+  </p>
+</article>

@@ -4,9 +4,7 @@
 @section('pageType', 'website')
 
 @section('content')
-
-<main class="container p-3">
-<h2><b>Add Question</b></h2>
+<h2 class="page-title">Add Question</h2>
 <hr class="mt-3">
 <form class="auth-form" method="POST" action="{{ route('ask') }}">
   @csrf
@@ -87,5 +85,4 @@
   </div>
 </form>
 <script src="form-validation.js"></script>
-</main>
 @stop
