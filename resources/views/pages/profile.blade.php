@@ -4,6 +4,14 @@
 @section('pageType', 'website')
 
 @section('content')
+  <h2 class="page-title">
+    @if (Auth::id() == request()->id)
+      Your Profile
+    @else
+      {{ $user->name }}'s profile
+    @endif
+  </h2>
+  <hr>
   <div class="container">
     <!-- BEGIN TABS -->
     <nav class="mt-2">

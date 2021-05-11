@@ -1026,7 +1026,7 @@ UPDATE "user" SET reputation = 100 WHERE id = 12;
 
 -- CREATE OR REPLACE PROCEDURE create_question(OwnerUser INT, Body TEXT, DatePost DATE, Title TEXT, Bounty INT, Closed BOOLEAN)
 -- CREATE OR REPLACE PROCEDURE create_answer(OwnerUser INT, Body TEXT, DatePost DATE, IdQuestion INT)
--- CREATE OR REPLACE PROCEDURE create_comment(OwnerUser INT, Body TEXT, DatePost DATE, IdQuestion INT, IdAnswer INT)
+-- CREATE OR REPLACE PROCEDUR/CRE create_comment(OwnerUser INT, Body TEXT, DatePost DATE, IdQuestion INT, IdAnswer INT)
 CALL create_question(1, 'If Python does not have a ternary conditional operator, is it possible to simulate one using other language constructs?', '2008-12-17', 'Does Python have a ternary conditional operator?', 0, true);
 CALL create_comment(2, 'In the Python 3.0 official documentation referenced in a comment above, this is referred to as "conditional_expressions" and is very cryptically defined. That documentation doesn''t even include the term "ternary", so you would be hard-pressed to find it via Google unless you knew exactly what to look for. The version 2 documentation is somewhat more helpful and includes a link to "PEP 308", which includes a lot of interesting historical context related to this question.', '2013-01-10', 1, NULL);
 CALL create_answer(3, '<expression 2> if <condition> else <expression 1>', '2010-05-27', 1);
