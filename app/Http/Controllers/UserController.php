@@ -88,7 +88,6 @@ class UserController extends Controller
         
         $user->save();
         return redirect()->intended('/user');
-
     }
 
     protected function validator(Request $request, User $user){
@@ -109,8 +108,13 @@ class UserController extends Controller
             'username' => 'nullable|string|max:255|unique:user',
             'password' => 'nullable|string|min:6|confirmed',
             'password_confirmation' => 'nullable|required_with:password',
-            'name' => 'nullable|string|max:255',
             'about' => 'nullable|string|max:500',
+            'name' => ['nullable' , 'string', 'max:255',
+                function($attr, $name, $fail) {
+                    if (str_starts_with($name, 'Deleted User'))
+                        $fail('Name cannot start with \'Deleted User\'');
+                }
+            ]
         ]);
 
         return $validation;
