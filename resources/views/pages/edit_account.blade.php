@@ -4,7 +4,6 @@
 @section('pageType', 'website')
 
 @section('content')
-
   <!--Delete Account button-->
   @include('partials.profile.delete')
   <h2 class="page-title">Edit account</h2>
@@ -21,7 +20,7 @@
         <img src="{{ asset('/images/user.jpg') }}" id="profile-picture" class="img-thumbnail rounded w-75 h-auto"
           alt="User profile picture" />
         <!-- Upload image input-->
-        <div class="input-group" style="max-width: 300px">
+        <div class="input-group w-75">
           <input id="upload" type="file" onchange="readURL(this);" class="form-control" />
         </div>
         <!--Apply Changes button-->
@@ -112,7 +111,7 @@
           <div class="input-group has-validation">
             <input type="text" name="first-name"
               class="form-control {{ $errors->has('first-name') ? 'is-invalid' : '' }}" value="" id="first-name"
-              placeholder="{{ $user->name }}" />
+              placeholder="{{ $user->getFirstNameAttribute() }}" />
             <!-- Error -->
             @if ($errors->has('first-name'))
               <div class="invalid-feedback">{{ $errors->first('first-name') }}</div>
@@ -125,7 +124,7 @@
           <div class="input-group has-validation">
             <input type="text" name="last-name"
               class="form-control {{ $errors->has('last-name') ? 'is-invalid' : '' }}" value="" id="last-name"
-              placeholder="TODO" />
+              placeholder="{{ $user->getLastNameAttribute() }}" />
             <!-- Error -->
             @if ($errors->has('last-name'))
               <div class="invalid-feedback">{{ $errors->first('last-name') }}</div>
