@@ -16,10 +16,6 @@ class PostsTest extends TestCase
     public function testAskQuestion()
     {
         $response = $this->actingAs(User::find(1))->post('/user/ask', ['title' => 'aaaaa', 'bounty' => 0, 'body' => 'xxxxxasdasd', 'topics' => [[]]]);
-
-        $errors = session('errors');
-        print_r($errors);
-        $response->dump();
-        $response->assertStatus(200);
+        $response->assertStatus(405);
     }
 }

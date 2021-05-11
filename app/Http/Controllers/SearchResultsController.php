@@ -27,7 +27,7 @@ class SearchResultsController extends Controller
                 $users->orderBy('reputation', 'DESC');
             else if ($sortBy == 'least_points')
                 $users->orderBy('reputation', 'ASC');
-        } else if ($request->input('search') != "") {
+        } else if ($request->input('q') != "") {
             $questions->orderBy('rank_question', 'DESC');
             $users->orderBy('rank_user', 'DESC');
         }
@@ -47,7 +47,7 @@ class SearchResultsController extends Controller
         //'search' => 'required'
         //]);
 
-        $search_data = $request->input('search');
+        $search_data = $request->input('q');
 
         // No search data
         if ($search_data == "") {
@@ -75,7 +75,7 @@ class SearchResultsController extends Controller
 
         return view("pages.search_results", [
             'questions' => $questions->paginate(5)->withQueryString(),
-            'users' => $users->paginate(16)->withQueryString(), 'search' => $search_data
+            'users' => $users->paginate(16)->withQueryString(), 'q' => $search_data
         ]);
     }
 
@@ -89,7 +89,7 @@ class SearchResultsController extends Controller
         });
 
         return view("pages.search_results", [
-            'questions' => $questions->paginate(5)->withQueryString(), 'search' => $tag,
+            'questions' => $questions->paginate(5)->withQueryString(), 'q' => $tag,
             'tag' => $tag
         ]);
     }

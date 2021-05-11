@@ -24,7 +24,6 @@ Route::get('/leaderboard', 'LeaderboardController@show');
 Route::get('/question/{id}', 'QuestionController@show');
 Route::get('/profile/{id}', 'UserController@show')->name('profile');
 Route::get('administration', 'AdministrationController@show')->middleware('role:moderator');
-Route::view('/edit_account', 'pages.edit_account');
 
 // Posts
 Route::post('/ask', 'QuestionController@store')->name('ask');
@@ -49,6 +48,9 @@ Route::post('ajax/comment', 'AjaxController@add_comment');
 // User
 Route::delete('user', 'UserController@delete')->name('user');
 Route::get('user', 'UserController@showOwn');
+Route::get('user/edit', 'UserController@edit')->middleware('auth');
+Route::patch('user', 'UserController@update')->name('update_user');
+Route::post('users/{id}/ban', 'UserController@ban')->middleware('role:administrator')->name('ban_user');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login'); // TODO
@@ -59,10 +61,11 @@ Route::post('register', 'Auth\RegisterController@register');
 
 // TODO remove
 Route::get('/test', function() {
-  // $questions = Question::search("tjerrom0")->get();
-  $topics = Question::find(20)->topics;
-  foreach($topics as $q) {
-    echo($q->name);
-    echo "<br>";
-  }
+  $a = User::find(2);
+  dd([$a->name, $a->firstName, $a->lastName]);
+});
+
+Route::fallback(function(){ // TODO Custom 404 page here
+  return response()->json([
+      'message' => 'Page Not Found. If error persists, contact perafontao@pitasso.com'], 404);
 });

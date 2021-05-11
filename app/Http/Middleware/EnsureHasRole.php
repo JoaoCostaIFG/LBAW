@@ -18,7 +18,7 @@ class EnsureHasRole
     public function handle($request, Closure $next, $role)
     {
         if(!Auth::check()) {
-            return redirect('/');
+            return redirect('login')->with('error', 'You aren\'t logged in');
         }
 
         if (!$request->user()->hasRole($role)) {
