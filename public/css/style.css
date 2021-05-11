@@ -354,6 +354,11 @@ footer {
 }
 /* END TAG LIST */
 
+.profile-tab {
+  width: 33.33%;
+  text-align: center;
+}
+
 /* BEGIN MISC */
 .full-width {
   width: 100%;

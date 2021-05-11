@@ -7,17 +7,17 @@
 <!-- BEGIN TABS -->
 <nav class="mt-2">
   <ul class="nav nav-tabs justify-content-center">
-    <li class="nav-item text-center" style="width: 33.33%">
+    <li class="nav-item profile-tab">
       <a href="#profile" class="nav-link active fw-bold" data-toggle="tab">
         About
       </a>
     </li>
-    <li class="nav-item text-center" style="width: 33.33%">
+    <li class="nav-item profile-tab">
       <a href="#activity" class="nav-link fw-bold" data-toggle="tab">
         Activity
       </a>
     </li>
-    <li class="nav-item text-center" style="width: 33.33%">
+    <li class="nav-item profile-tab">
       <a href="#achievements" class="nav-link fw-bold" data-toggle="tab">
         Achievements
       </a>
@@ -69,10 +69,8 @@
           <span class="text-center">-- This user has no activity --</span>
         </div>
         @else @foreach ($user->getTopicParticipation()->get() as $topic)
-        @include('partials.profile.top_topic_card', ['topic_questions' =>
-        $user->getQuestionParticipation()->get()->keyBy('topic_name'),
-        'topic_answers' =>
-        $user->getAnswerParticipation()->get()->keyBy('topic_name')])
+        @include('partials.profile.top_topic_card', ['topic_questions' => $user->getQuestionParticipation()->get()->keyBy('topic_name'),
+          'topic_answers' => $user->getAnswerParticipation()->get()->keyBy('topic_name')])
         @endforeach @endif
       </div>
       <!-- Top Questions -->
@@ -116,7 +114,7 @@
         data-bs-trigger="hover focus"
         data-bs-content="{{ $percentage }}% completed achievements"
       >
-        <div
+        <span
           class="progress-bar p-0 m-0"
           role="progressbar"
           style="width: {{ $percentage }}%;"
@@ -125,7 +123,7 @@
           aria-valuemax="100"
         >
           {{ $percentage }}%
-        </div>
+        </span>
       </span>
     </div>
     <div class="container d-flex flex-wrap justify-content-center mt-3">

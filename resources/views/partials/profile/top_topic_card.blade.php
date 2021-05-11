@@ -30,8 +30,8 @@ if ($num_posts != 0) {
       </div>
       <span class="p-0 progress ms-auto" data-bs-toggle="popover" data-bs-trigger="hover focus"
         data-bs-content="{{ $percentage }}% of your participations are tagged as {{ $topic->topic_name }}">
-        <div class="progress-bar p-0 m-0" role="progressbar" style="width: {{ $percentage }}%;" aria-valuenow="25"
-          aria-valuemin="0" aria-valuemax="100">{{ $percentage }}%</div>
+        <span class="progress-bar p-0 m-0" role="progressbar" style="width: {{ $percentage }}%;" aria-valuenow="25"
+          aria-valuemin="0" aria-valuemax="100">{{ $percentage }}%</span>
       </span>
     </div>
     <div class="col-auto row text-center">
