@@ -101,11 +101,11 @@ class UserController extends Controller
         else
             $lname = $user->lastName;
 
-        $request['name'] = $fname . ' ' . $lname;
+        $request['name'] = $fname . " " . $lname;
 
         $validation = Validator::make($request->all(), [
             'email' => 'nullable|string|email|max:255|unique:user',
-            'username' => ['nullable', 'string', 'max:255', 'unique:user', 
+            'username' => ['nullable', 'string', 'max:32', 'unique:user', 
                 function($attr, $name, $fail) {
                     if (str_starts_with($name, 'Deleted User'))
                         $fail('Name cannot start with \'Deleted User\'');
@@ -113,8 +113,8 @@ class UserController extends Controller
             ],
             'password' => 'nullable|string|min:6|confirmed|required_with:password_confirmation',
             'password_confirmation' => 'nullable|required_with:password',
-            'about' => 'nullable|string|max:500',
-            'name' => 'nullable|string|max:255'
+            'about' => 'nullable|string|max:256',
+            'name' => 'nullable|string|max:60'
         ]);
 
         return $validation;

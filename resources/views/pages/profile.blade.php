@@ -56,8 +56,8 @@
     class="img-thumbnail rounded"
     alt="User profile picture"
   />
-  <span class="d-block text-center fs-5"><b>{{ $user->name }}</b></span>
-  <span class="d-block text-center">{{ $user->username }}</span>
+  <p class="text-center fs-5 m-0 text-wrap text-break"><b>{{ $user->name }}</b></p>
+  <p class="text-center m-0 text-wrap text-truncate">{{ $user->username }}</p>
 </div>
 <div class="row user-engagement-count mb-1">
   <div class="col-4 themed-grid-col text-center">

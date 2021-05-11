@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.layout', ['notInlineContainer' => true])
 
 @section('title', 'Login')
 

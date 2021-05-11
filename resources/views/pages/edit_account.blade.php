@@ -4,7 +4,6 @@
 @section('pageType', 'website')
 
 @section('content')
-
   <!--Delete Account button-->
   @include('partials.profile.delete')
   <h2 class="page-title">Edit account</h2>
@@ -21,7 +20,7 @@
         <img src="{{ asset('/images/user.jpg') }}" id="profile-picture" class="img-thumbnail rounded w-75 h-auto"
           alt="User profile picture" />
         <!-- Upload image input-->
-        <div class="input-group" style="max-width: 300px">
+        <div class="input-group w-75">
           <input id="upload" type="file" onchange="readURL(this);" class="form-control" />
         </div>
         <!--Apply Changes button-->
