@@ -112,7 +112,7 @@
           <div class="input-group has-validation">
             <input type="text" name="first-name"
               class="form-control {{ $errors->has('first-name') ? 'is-invalid' : '' }}" value="" id="first-name"
-              placeholder="{{ $user->name }}" />
+              placeholder="{{ $user->firstName }}" />
             <!-- Error -->
             @if ($errors->has('first-name'))
               <div class="invalid-feedback">{{ $errors->first('first-name') }}</div>
@@ -125,7 +125,7 @@
           <div class="input-group has-validation">
             <input type="text" name="last-name"
               class="form-control {{ $errors->has('last-name') ? 'is-invalid' : '' }}" value="" id="last-name"
-              placeholder="TODO" />
+              placeholder="{{ $user->lastName }}" />
             <!-- Error -->
             @if ($errors->has('last-name'))
               <div class="invalid-feedback">{{ $errors->first('last-name') }}</div>

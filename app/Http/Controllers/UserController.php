@@ -101,7 +101,7 @@ class UserController extends Controller
         else
             $lname = $user->lastName;
 
-        $request['name'] = $fname . $lname;
+        $request['name'] = $fname . ' ' . $lname;
 
         $validation = Validator::make($request->all(), [
             'email' => 'nullable|string|email|max:255|unique:user',
