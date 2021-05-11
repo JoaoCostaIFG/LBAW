@@ -8,7 +8,7 @@
         <p class="text-break">{{ $question->post->body }}</p>
     </div>
     <div class="row m-0 p-0 ">
-        <p class="text-muted text-end">Posted {{ (new DateTime($question->post->date))->diff(new DateTime('NOW'))->days }} days ago</p>
+        <p class="text-muted text-end">Posted {{ (new \Carbon\Carbon($question->post->date))->diffForHumans() }}</p>
     </div>
 
     <!-- Comments -->

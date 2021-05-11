@@ -1,16 +1,4 @@
 @php
-    // https://stackoverflow.com/questions/40436983/days-hours-and-miniutes-remaining-in-php
-    // $time_diff = (new DateTime($notification->date))->diff(new DateTime('NOW'));
-    // $interval = $time_diff->format('%d Days %h Hours');
-    // $interval = preg_replace('/(^0| 0) (Days)/', '', $interval);
-
-    $time_diff = (new DateTime('2018-05-05'))->diff(new DateTime('NOW'));
-    $interval = "";
-    if($time_diff->days) {
-        $interval .= $time_diff->days . " days ";
-    }
-    $interval .= $time_diff->h . " hours ago";
-
     $notification_url = "";
     if($notification->notification_achievement) {
         $notification_url = "/profile/" . Auth::id() . "#achievements";
@@ -27,7 +15,7 @@
     <div class="toast-header">
       <i class="bi bi-exclamation-circle-fill p-1"></i>
       <strong class="me-auto">{{ $notification->title }}</strong>
-      <small>{{ $interval }}</small>
+      <small>{{ (new \Carbon\Carbon($notification->date))->diffForHumans() }}</small>
       {{-- Button to delete notifications--}}
       <form method="POST" id="notification-{{$notification->id}}" class="col-md text-center notification-form" action="{{url("api/notifications/" . $notification->id)}}">
         @csrf
