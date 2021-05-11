@@ -4,6 +4,9 @@
 @section('pageType', 'website')
 
 @section('content')
+
+<!--Delete Account button-->
+@include('partials.profile.delete')
 <h2 class="page-title">Edit account</h2>
 <hr />
 <!--Form-->
@@ -41,8 +44,6 @@
     <div class="container p-2">
       <div class="d-flex flex-row justify-content-between">
         <h3>Settings</h3>
-        <!--Delete Account button-->
-        @include('partials.profile.delete')
       </div>
       <div class="row">
         <div class="col-sm">

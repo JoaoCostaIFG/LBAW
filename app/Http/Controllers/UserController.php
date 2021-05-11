@@ -65,7 +65,7 @@ class UserController extends Controller
     }
 
     public function update(){
-        return "a";
+        dd(response());
         return redirect()->intended('user');
     }
 }
