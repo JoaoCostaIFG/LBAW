@@ -5,14 +5,14 @@
 
 @section('content')
 
-<!--Delete Account button-->
-@include('partials.profile.delete')
-<h2 class="page-title">Edit account</h2>
-<hr />
-<!--Form-->
-<form class="row gx-0" method="POST" action="{{ route('update_user') }}">
-  @csrf
-  @method('PATCH')
+  <!--Delete Account button-->
+  @include('partials.profile.delete')
+  <h2 class="page-title">Edit account</h2>
+  <hr />
+  <!--Form-->
+  <form class="row gx-0" method="POST" action="{{ route('update_user') }}">
+    @csrf
+    @method('PATCH')
 
     <div id="right-col" class="col-md-4 p-2">
       <!-- User picture -->
@@ -89,13 +89,13 @@
             <div class="input-group mb-2">
               <label for="password" class="form-label"><b>Confirm Password</b></label>
               <div class="input-group has-validation">
-                <input type="password" name="password-confirmation"
-                  class="form-control {{ $errors->has('password-confirmation') ? 'is-invalid' : '' }}" value=""
-                  id="password-confirmation" placeholder="Enter password confirmation..." />
+                <input type="password" name="password_confirmation"
+                  class="form-control {{ $errors->has('password_confirmation') ? 'is-invalid' : '' }}" value=""
+                  id="password_confirmation" placeholder="Enter password confirmation..." />
                 <!-- Error -->
-                @if ($errors->has('password-confirmation'))
+                @if ($errors->has('password_confirmation'))
                   <div class="invalid-feedback">
-                    {{ $errors->first('password-confirmation') }}
+                    {{ $errors->first('password_confirmation') }}
                   </div>
                 @endif
               </div>

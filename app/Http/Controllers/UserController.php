@@ -7,6 +7,7 @@ use App\Models\Achievement;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 
 class UserController extends Controller
@@ -66,7 +67,33 @@ class UserController extends Controller
     }
 
     public function update(Request $request){
-        dd($request);
+        $user = User::find(Auth::id());
+
+        $validation = $this->validator($request);
+        if ($validation->fails())
+            return back()->withErrors($validation)->withInput($request->all());
+
+
+        return "a";
+
     }
+
+    protected function validator(Request $request){
+        $validation = Validator::make($request->all(), [
+            'email' => 'nullable|string|email|max:255|unique:user',
+            'username' => 'nullable|string|max:255|unique:user',
+            'password' => 'nullable|string|min:6|confirmed',
+            'password_confirmation' => 'nullable|required_with:password',
+            'first-name' => 'nullable|string',
+            'last-name' => 'nullable|string',
+            'about' => 'nullable|string|max:500',
+        ]);
+
+
+
+        return $validation;
+    }
+
+
 }
 
