@@ -18,7 +18,7 @@ class SearchResultsController extends Controller
                 $questions->orderBy('date', 'DESC');
             else if ($sortBy == 'oldest')
                 $questions->orderBy('date', 'ASC');
-            else if ($sortBy = ' best_score')
+            else if ($sortBy == 'best_score')
                 $questions->orderBy('score', 'DESC');
             else if ($sortBy == 'worst_score')
                 $questions->orderBy('score', 'ASC');
