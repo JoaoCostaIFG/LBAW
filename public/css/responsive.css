@@ -27,8 +27,8 @@
     /* END SEACH */
 
     /* BEGIN NAVBAR */
-    .navbar .navbar-brand {
-        font-size: min(1.25rem, 4vw) !important;
+    #brand {
+        width: 30px !important;
     }
     /* END NAVBAR */
 
