@@ -1,6 +1,6 @@
 <!-- Question Card -->
-<div class="d-flex flex-sm-row flex-column-reverse justify-content-start align-items-center gap-3  border p-3 mt-1 mb-1">
-  <div class="d-flex flex-sm-column flex-row justify-content-start align-items-center gap-1 ">
+<div class="question_card d-flex flex-sm-row flex-column-reverse justify-content-start align-items-center border p-3 rounded gap-3 mb-2">
+  <div class="d-flex flex-sm-column flex-row justify-content-start align-items-center gap-1">
     <!-- Number Votes -->
     <div class="d-flex flex-sm-column flex-row justify-content-center align-items-center gap-1">
       <span class="fs-4">{{ $question->post->score }}</span>
@@ -25,12 +25,12 @@
       <!-- Question Topics -->
       <div class="d-none d-sm-block d-grid gap-1 mt-0">
         @foreach ($question->topics as $topic)
-          <a class="badge bg-primary text-decoration-none">{{ $topic->name }}</a>
+          <a class="badge bg-primary text-decoration-none" href="/search/tag/{{$topic->name}}">{{ $topic->name }}</a>
         @endforeach
       </div>
       <!-- Question Date -->
-      <div class="d-flex flex-row gap-2 align-items-center">
-        <span class="align-self-end">
+      <div class="d-flex flex-row gap-3 align-items-center">
+        <span class="date align-self-end" data-date={{$question->post->date}}>
           Posted {{ (new DateTime($question->post->date))->diff(new DateTime('NOW'))->days }} days ago
         </span>
         <!-- Author User Info -->

@@ -11,21 +11,20 @@
     <title>@yield('title') - SegmentationFault</title>
     <!-- Bootstrap (must come before all other stylesheets) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
-    <!-- using themed bootstrap -->
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" /> -->
+    <!-- using themed bootstrap -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" integrity="sha512-xmGTNt20S0t62wHLmQec2DauG9T+owP9e6VU8GigI0anN7OXLip9i7IwEhelasml2osdxX71XcYm6BQunTQeQg==" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js" integrity="sha384-lpyLfhYuitXl2zRZ5Bn2fqnhNAKOAaM/0Kr9laMspuaMiZfGmfwRNFh8HlMy49eQ" crossorigin="anonymous"></script>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js" integrity="sha512-VvWznBcyBJK71YKEKDMpZ0pCVxjNuKwApp4zLF3ul+CiflQi6aIJR+aZCP/qWsoFBA28avL5T5HA+RE+zrGQYg==" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('css/profile.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css" />
-    <link rel="stylesheet" href="{{ asset('css/tagsinput.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('css/print.css') }}" media="print" type="text/css" />
 
     <!-- OpenGraph -->
@@ -75,7 +74,7 @@
             <form action="{{ url('search') }}">
               <!-- button is not needed -->
               <!-- <button class="btn btn-outline-success" type="submit"><i class="bi-search"></i></button> -->
-              <input class="form-control" type="search" name="search" value="{{$search} ?? ''}" placeholder="Search" aria-label="Search">
+              <input class="form-control" type="search" name="search" value="{{$search ?? ''}}" placeholder="Search" aria-label="Search">
             </form>
           </div>
         </div>

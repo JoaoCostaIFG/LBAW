@@ -10,8 +10,6 @@ class UserTest extends TestCase
     public function testGetBasicLoggedProfile()
     {
         $response = $this->actingAs(User::find(1))->get('/api/user');
-
-        $response->dump();
         $response->assertStatus(200);
     }
 }

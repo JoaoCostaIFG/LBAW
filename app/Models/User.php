@@ -63,7 +63,7 @@ class User extends Authenticatable {
 
     public function notifications()
     {
-        return $this->hasMany(Notification::class, 'id', 'id');
+        return $this->hasMany(Notification::class, 'recipient', 'id');
     }
 
     // Search functions
@@ -74,8 +74,9 @@ class User extends Authenticatable {
             return $query;
         }
 
-        return $query->whereRaw('search @@ to_tsquery(?)', [$search])->
-            orderByRaw('ts_rank(search, plainto_tsquery(?)) DESC', [$search]);
+        return $query->
+            selectRaw('*, ts_rank(search, plainto_tsquery(?)) as rank_user', [$search])->
+            whereRaw('search @@ to_tsquery(?)', [$search]);
     }
 
     public function hasRole($role) {
@@ -131,7 +132,7 @@ class User extends Authenticatable {
     {
         $answers = $this->getAnswerParticipation();
         $questions = $this->getQuestionParticipation();
-        
+
         $subq = $answers;
         $subq->unionAll($questions);
 

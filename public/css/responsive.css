@@ -1,51 +1,84 @@
+/* large (>= 992px) */
+/* smaller than large */
+@media (max-width: 992px) {
+    #search-filters-form {
+        margin-top: 1em;
+        justify-content: flex-start;
+    }
+}
+/* larger than large */
+@media (min-width: 992px) {
+    #search-filters-form {
+        justify-content: flex-end;
+    }
+}
+
 /* medium (>= 768px) */
 /* smaller than medium */
 @media (max-width: 767px) {
-  /* BEGIN SEARCH */
-  #searchModal-toggler {
-    display: flex !important;
-  }
+    /* BEGIN SEARCH */
+    #searchModal-toggler {
+        display: flex !important;
+    }
 
-  #navbarSeachForm {
-    display: none !important;
-  }
-  /* END SEACH */
+    #navbarSeachForm {
+        display: none !important;
+    }
+    /* END SEACH */
 
-  /* BEGIN NAVBAR */
-  .navbar .navbar-brand {
-    font-size: min(1.25rem, 4vw) !important;
-  }
-  /* END NAVBAR */
+    /* BEGIN NAVBAR */
+    .navbar .navbar-brand {
+        font-size: min(1.25rem, 4vw) !important;
+    }
+    /* END NAVBAR */
+
+    #topic-input {
+        margin-top: 1em;
+    }
+
+    #search-filters-form div {
+      display: initial !important;
+    }
 }
-/* medium and bigger */
+/* larger than medium  */
 @media (min-width: 768px) {
-  /* BEGIN SEARCH */
-  #searchModal-toggler {
-    display: none !important;
-  }
-  /* END SEACH */
-}
-/* small and smaller */
-@media (max-width: 576px) {
-  .auth-form-container {
-    border-radius: 0 !important;
-  }
+    /* BEGIN SEARCH */
+    #searchModal-toggler {
+        display: none !important;
+    }
+    /* END SEACH */
+
+    #search-filters-form div {
+        display: flex !important;
+        justify-content: center;
+        align-items: center !important;
+        gap: 0.5rem !important;
+    }
 }
 
+/* smaller than small */
+@media (max-width: 575px) {
+    .auth-form-container {
+        border-radius: 0 !important;
+    }
+}
+/* larger than small */
+@media (min-width: 576px) {
+}
 
 /* BEGIN FEATURETTE */
 .featurette-divider {
-  /* Space out the Bootstrap <hr> more
+    /* Space out the Bootstrap <hr> more
     less <hr> spacing in smaller screens */
-  margin: min(5rem, 5vw) 0 !important; 
+    margin: min(5rem, 5vw) 0 !important;
 }
 /* END FEATURETTE */
 
 /* BEGIN NOTIFICATIONS */
-@media(min-width:25em) {
-  #toast-container {
-    transform: translateX(-25em);
-    left: 100% !important;
-  }
+@media (min-width: 25em) {
+    #toast-container {
+        transform: translateX(-25em);
+        left: 100% !important;
+    }
 }
 /* END NOTIFICATIONS */

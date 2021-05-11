@@ -18,7 +18,7 @@ class QuestionPolicy
      * @param  \App\Models\User  $user
      * @return mixed
      */
-    public function create(User $user)
+    public function create()
     {
         return Auth::check(); // Anyone can create a question
     }

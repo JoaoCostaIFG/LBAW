@@ -5,60 +5,53 @@
 
 @section('content')
 
-<!-- Page Top -->
-<div class="container">
-  <h2 class="page-title"> Search Results </h2>
-  <div class="py-3 border-bottom pb-0">
-    <div class="d-flex flex-row align-items-center justify-content-between">
-      <!-- TODO: Number of Results -->
+  @php
+  if (isset($_GET['search'])) {
+      $search_url = '&search=' . $_GET['search'];
+  } else {
+      $search_url = '';
+  }
+  if (isset($_GET['sortBy'])) {
+      $sort_url = '&sortBy=' . $_GET['sortBy'];
+  } else {
+      $sort_url = '';
+  }
+  if (isset($_GET['start_date'])) {
+      $start_date_url = '&start_date=' . $_GET['start_date'];
+  } else {
+      $start_date_url = '';
+  }
+  if (isset($_GET['end_date'])) {
+      $end_date_url = '&end_date=' . $_GET['end_date'];
+  } else {
+      $end_date_url = '';
+  }
+  @endphp
+
+  <!-- Page Top -->
+  <div class="container">
+    <h2 class="page-title">Search Results{{ isset($tag) ? ' - ' . $tag : '' }}</h2>
+    <div class="py-3 border-bottom pb-0">
       <!-- Tabs -->
       <ul class="nav nav-tabs">
         <li class="nav-item">
           <a href="#questions" class="nav-link active" data-toggle="tab">Questions</a>
         </li>
-        <li class="nav-item">
-          <a href="#users" class="nav-link" data-toggle="tab">Users</a>
-        </li>
+        @if (isset($users))
+          <li class="nav-item">
+            <a href="#users" class="nav-link" data-toggle="tab">Users</a>
+          </li>
+        @endif
       </ul>
-      <!-- Sort by-->
-      <ul class="nav nav-pills">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle p-0 d-flex flex-row align-items-center" data-bs-toggle="dropdown" href="#" role="button">
-            <span class="d-none d-sm-block">Sort by</span>
-            <i class="bi bi-filter-right"></i></a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Date</a></li>
-            <li><a class="dropdown-item" href="#">Votes</a></li>
-            <li><a class="dropdown-item" href="#">Popularity</a></li>
-          </ul>
-        </li>
-      </ul>
+    </div>
+
+    <div class="tab-content">
+        @include('partials.search_results.questions', ['questions' => $questions, 'search_url' => $search_url])
+        @if (isset($users))
+          @include('partials.search_results.users', ['users' => $users, 'search_url' => $search_url])
+        @endif
     </div>
   </div>
 
-  <div class="tab-content">
-    <!-- Questions Tab -->
-    <div class="tab-pane fade show active" id="questions">
-      <h6 class="m-0 d-none d-md-block pt-2 pb-2" id="questions">{{ count($questions) }} result(s)</h6>
-      @foreach ($questions as $question)
-        @include('partials.question_card')
-      @endforeach
-
-    </div>
-    <!-- Users -->
-    <div class="tab-pane fade" id="users">
-      <h6 class="m-0 d-none d-md-block pt-2 pb-2" id="users">{{ count($users) }} result(s)</h6>
-      @for ($i = 0; $i < count($users); $i+=2)
-        <div class="row p-2 gap-2">
-          @include('partials.search_results.user_card', ['user' => $users[$i]])
-          @if (isset($users[$i + 1]))
-            @include('partials.search_results.user_card', ['user' => $users[$i + 1]])
-          @endif
-        </div>
-      @endfor
-    </div>
-  </div>
-</div>
-
-<script src="/js/tabs.js"></script>
+  <script src="/js/tabs.js"></script>
 @stop
