@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Achievement;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 
 class UserController extends Controller
@@ -64,9 +65,8 @@ class UserController extends Controller
         return view("pages.edit_account", ['user' => Auth::user()]);
     }
 
-    public function update(){
-        dd(response());
-        return redirect()->intended('user');
+    public function update(Request $request){
+        dd($request);
     }
 }
 
