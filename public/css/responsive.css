@@ -37,7 +37,11 @@
     }
 
     #search-filters-form div {
-      display: initial !important;
+        display: initial !important;
+    }
+
+    #right-col {
+        border: none;
     }
 }
 /* larger than medium  */
@@ -53,6 +57,10 @@
         justify-content: center;
         align-items: center !important;
         gap: 0.5rem !important;
+    }
+
+    #right-col {
+        border-right: 1px solid #dee2e6;
     }
 }
 
