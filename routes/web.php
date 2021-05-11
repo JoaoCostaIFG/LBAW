@@ -24,7 +24,6 @@ Route::get('/leaderboard', 'LeaderboardController@show');
 Route::get('/question/{id}', 'QuestionController@show');
 Route::get('/profile/{id}', 'UserController@show')->name('profile');
 Route::get('administration', 'AdministrationController@show')->middleware('role:moderator');
-Route::view('/edit_account', 'pages.edit_account');
 
 // Posts
 Route::post('/user/ask', 'QuestionController@store')->name('ask');
@@ -49,6 +48,8 @@ Route::post('ajax/comment', 'AjaxController@add_comment');
 // User
 Route::delete('user', 'UserController@delete')->name('user');
 Route::get('user', 'UserController@showOwn');
+Route::get('user/edit', 'UserController@edit')->middleware('auth');
+Route::patch('user', 'UserController@update')->name('update_user');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login'); // TODO

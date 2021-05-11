@@ -58,7 +58,7 @@
             </button>
           </div>
           <form id="navbarSeachForm" class="d-flex" action="{{ url('search') }}">
-            <input class="form-control me-2" name="search" value="{{$search ?? ''}}" type="search" placeholder="Search" aria-label="Search">
+            <input class="form-control me-2" name="q" value="{{$q ?? ''}}" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit"><i class="bi-search"></i></button>
           </form>
         </div> <!-- .container .d-flex -->
@@ -74,7 +74,7 @@
             <form action="{{ url('search') }}">
               <!-- button is not needed -->
               <!-- <button class="btn btn-outline-success" type="submit"><i class="bi-search"></i></button> -->
-              <input class="form-control" type="search" name="search" value="{{$search ?? ''}}" placeholder="Search" aria-label="Search">
+              <input class="form-control" type="search" name="q" value="{{$q ?? ''}}" placeholder="Search" aria-label="Search">
             </form>
           </div>
         </div>

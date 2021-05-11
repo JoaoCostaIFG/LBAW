@@ -5,13 +5,16 @@
 
 @section('content')
 <!-- BEGIN TABS -->
-<h2 class="page-title">
-  @if (Auth::id() == request()->id)
-    Your Profile
-  @else
-    {{ $user->name }}'s profile
-  @endif
-</h2>
+<div class="d-flex flex-row align-items-center justify-content-between">
+  <h2 class="page-title mb-0">
+    @if (Auth::id() == request()->id)
+      Your Profile
+    @else
+      {{ $user->name }}'s profile
+    @endif
+  </h2>
+    <a href="/user/edit"> <button type="button" class="btn btn-secondary mt-3"> Edit <i class="bi bi-pencil-square"></i></button></a>
+</div>
 <hr>
 <nav class="mt-2">
   <ul class="nav nav-tabs justify-content-center">

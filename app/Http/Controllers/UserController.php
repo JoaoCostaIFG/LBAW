@@ -54,5 +54,19 @@ class UserController extends Controller
         Auth::logout();
         return redirect()->intended('register');
     }
+
+    public function edit(){
+        if (!Auth::check()) {
+            return back()->withErrors([
+                'user' => 'You are not logged in']);
+        }
+  
+        return view("pages.edit_account", ['user' => Auth::user()]);
+    }
+
+    public function update(){
+        return "a";
+        return redirect()->intended('user');
+    }
 }
 
