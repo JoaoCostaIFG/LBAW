@@ -69,34 +69,51 @@ class UserController extends Controller
     public function update(Request $request){
         $user = User::find(Auth::id());
 
-        $validation = $this->validator($request);
+        $validation = $this->validator($request, $user);
         if ($validation->fails())
-            return back()->withErrors($validation)->withInput($request->all());
+            return back()->withErrors($validation)->withInput($request->except('password', 'password_confirmation'));
 
-
-        return "a";
+        // Update
+        $data = $request->all();
+        if(isset($data['email']))
+            $user->email = $data['email'];
+        if(isset($data['username']))
+            $user->username = $data['username'];
+        if(isset($data['password']))
+            $user->password = bcrypt($data['password']);
+        if(isset($data['name']))
+            $user->name = $data['name'];
+        if(isset($data['about']))
+            $user->about = $data['about'];
+        
+        $user->save();
+        return redirect()->intended('/user');
 
     }
 
+    protected function validator(Request $request, User $user){
+        if($request->input('first-name') != null)
+            $fname = $request->input('first-name');
+        else
+            $fname = $user->firstName;
 
-    protected function validator(Request $request){
+        if($request->input('last-name') != null)
+            $lname = $request->input('last-name');
+        else
+            $lname = $user->lastName;
+
+        $request['name'] = $fname . $lname;
+
         $validation = Validator::make($request->all(), [
             'email' => 'nullable|string|email|max:255|unique:user',
             'username' => 'nullable|string|max:255|unique:user',
             'password' => 'nullable|string|min:6|confirmed',
             'password_confirmation' => 'nullable|required_with:password',
-            'first-name' => 'nullable|string',
-            'last-name' => 'nullable|string',
+            'name' => 'nullable|string|max:255',
             'about' => 'nullable|string|max:500',
         ]);
 
         return $validation;
     }
-
-    public function ban($id) {
-        DB::delete('DELETE FROM "user" where id = ?', [$id]);
-        return redirect()->route('profile', [$id]);
-    }
-
 }
 
