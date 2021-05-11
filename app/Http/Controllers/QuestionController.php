@@ -16,11 +16,11 @@ class QuestionController extends Controller
         return Validator::make($data, [
             'title' => 'required|string|min:5|max:255|unique:question,title',
             'body' => 'string|max:4095',
-            'bounty' => ['required', 'integer', 'min:0',
+            'bounty' => ['required', 'integer', 'min:0', 'max:500',
                 function($attr, $bounty, $fail) {
                     $rep = Auth::user()->reputation;
                     if ($bounty > $rep)
-                        $fail('Bounty cannot excede your reputation (' . $rep);
+                        $fail('Bounty cannot excede your reputation (' . $rep . ')');
                 }
             ],
             'topics' => ['array' ,'min:1',

@@ -40,7 +40,12 @@
         <hr class="my-1">
         <div class="text-center mt-1">
           <label for="bounty" class="form-labelr" id="bountyValue">{{ old('bounty', 0) }}</label>
-          <input type="range" name="bounty" class="form-range" value="{{ old('bounty', 0) }}" min="0" max="100" step="1" id="bounty" onmousemove="document.getElementById('bountyValue').innerText = document.getElementById('bounty').value">
+          <input type="range" name="bounty" class="form-range {{ $errors->has('bounty') ? 'is-invalid' : ''}}" value="{{ old('bounty', 0) }}" min="0" max="500" step="1" id="bounty" onmousemove="document.getElementById('bountyValue').innerText = document.getElementById('bounty').value">
+          @if ($errors->has('bounty'))
+          <div class="invalid-feedback">
+            {{ $errors->first('bounty') }}
+          </div>
+          @endif
         </div>
       </div>
     </div>
