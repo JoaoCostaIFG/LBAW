@@ -1,8 +1,8 @@
 <!-- Users -->
 <div class="tab-pane fade" id="users">
   <div class="d-flex flex-column flex-md-row justify-content-between my-2 py-1">
-    <h6 class="my-2 py-1" id="questions">Showing {{ $users->count() }} out of {{ $users->total() }} result(s)</h6>
-    <!-- Filter -->
+    <h6 class="my-2 py-1" id="users-title">Showing {{ $users->count() }} out of {{ $users->total() }} result(s)</h6>
+    <!-- Sort by-->
     <form id="search-filters-form" method="GET" class="d-flex flex-row m-0 gap-1">
       <!-- Sort By -->
       <select class="col-auto" aria-label="Sort by" name="sortBy">

@@ -17,7 +17,7 @@
   <div class="d-flex flex-column justify-content-start align-items-start w-100">
     <section>
       <!-- Question Title -->
-      <a class="fs-5 fw-bold" href="/question/{{ $question->id }}">{{ $question->title }}</a>
+      <h4><a class="fs-5 fw-bold" href="/question/{{ $question->id }}">{{ $question->title }}</a></h4>
       <!-- Question body -->
       <p class="d-none d-md-block">{{ $question->post->body }}</p>
     </section>
@@ -31,11 +31,11 @@
       <!-- Question Date -->
       <div class="d-flex flex-row gap-3 align-items-center">
         <span class="date align-self-end" data-date={{$question->post->date}}>
-          Posted {{ (new DateTime($question->post->date))->diff(new DateTime('NOW'))->days }} days ago
+          Posted {{(new \Carbon\Carbon($question->post->date))->diffForHumans()}}
         </span>
         <!-- Author User Info -->
         <!-- User Profile Pic  -->
-        <img class="d-none d-md-block rounded-2 fit-cover" src="{{ asset('images/user.jpg') }}" alt="User profile picture" width="40px" height="40px">
+        <img class="d-none d-md-block rounded-2 fit-cover" src="{{ asset('images/user.jpg') }}" alt="User profile picture" width="40" height="40">
         <div class="d-flex flex-row flex-md-column justify-content-center align-items-start">
           <!-- Owner Username -->
           <span class="d-md-none">by&nbsp;</span>

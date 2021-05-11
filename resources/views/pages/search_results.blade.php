@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'Search Results')
+@section('title', 'Search')
 @section('pageType', 'website')
 
 @section('content')
@@ -23,10 +23,10 @@
     </div>
 
     <div class="tab-content">
-        @include('partials.search_results.questions', ['questions' => $questions])
-        @if (isset($users))
-          @include('partials.search_results.users', ['users' => $users])
-        @endif
+      @include('partials.search_results.questions', ['questions' => $questions])
+      @if (isset($users))
+        @include('partials.search_results.users', ['users' => $users])
+      @endif
     </div>
   </div>
 
