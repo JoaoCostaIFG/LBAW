@@ -60,10 +60,6 @@ Route::post('register', 'Auth\RegisterController@register');
 
 // TODO remove
 Route::get('/test', function() {
-  // $questions = Question::search("tjerrom0")->get();
-  $topics = Question::find(20)->topics;
-  foreach($topics as $q) {
-    echo($q->name);
-    echo "<br>";
-  }
+  $a = User::find(2);
+  dd([$a->name, $a->firstName, $a->lastName]);
 });

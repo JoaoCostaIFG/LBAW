@@ -27,8 +27,18 @@ class User extends Authenticatable {
         'username', 'password', 'email'
     ];
 
-    // Relations
+    public function getFirstNameAttribute() {
+        return explode(' ', $this->name)[0];
+    }
 
+    public function getLastNameAttribute() {
+        $split = explode(' ', $this->name, 2);
+        if (count($split) == 1)
+            return "";
+        return $split[1];
+    }
+
+    // Relations
     public function posts()
     {
         return $this->hasMany(Post::class, 'id_owner', 'id');

@@ -4,14 +4,15 @@
 @section('pageType', 'website')
 
 @section('content')
-  <h2 class="page-title">Edit account</h2>
-  <hr />
-  <!-- Delete Form -->
-  @include('partials.profile.delete')
-  <!--Form-->
-  <form class="row gx-0" method="POST" action="{{ route('update_user') }}">
-    @csrf
-    @method('PATCH')
+
+<!--Delete Account button-->
+@include('partials.profile.delete')
+<h2 class="page-title">Edit account</h2>
+<hr />
+<!--Form-->
+<form class="row gx-0" method="POST" action="{{ route('update_user') }}">
+  @csrf
+  @method('PATCH')
 
     <div id="right-col" class="col-md-4 p-2">
       <!-- User picture -->
