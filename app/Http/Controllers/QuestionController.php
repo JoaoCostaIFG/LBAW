@@ -14,9 +14,15 @@ class QuestionController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'title' => 'required|string|min: 5|max:255|unique:question,title',
+            'title' => 'required|string|min:5|max:255|unique:question,title',
             'body' => 'string|max:4095',
-            'bounty' => 'required|integer|between:0,100',
+            'bounty' => ['required', 'integer', 'min:0',
+                function($attr, $bounty, $fail) {
+                    $rep = Auth::user()->reputation;
+                    if ($bounty > $rep)
+                        $fail('Bounty cannot excede your reputation (' . $rep);
+                }
+            ],
             'topics' => ['array' ,'min:1',
                 function($attr, $arr, $fail) {
                     $errs = "";
@@ -32,7 +38,8 @@ class QuestionController extends Controller
                         if ($errs != "")
                             $fail("Invalid topic(s)" . $errs);
                     }
-                }]
+                }
+            ]
         ]);
     }
 

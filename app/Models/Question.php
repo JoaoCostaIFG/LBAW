@@ -17,9 +17,13 @@ class Question extends Model
         DB::beginTransaction();
         DB::select("CALL create_question(?, ?, ?, ?, ?, ?)", 
             [$data['owner'], $data['body'], date("Y-m-d"), $data['title'], $data['bounty'], "false"]);
-        $question = Question::latest('id')->limit(1);
+        $question = Question::latest('id')->limit(1)->get()[0];
+        foreach($data['topics'] as $t_name) {
+            $t = Topic::where('name', $t_name)->get()[0];
+            DB::insert('INSERT INTO topic_question(id_question, id_topic) VALUES(?, ?)', [$question->id, $t->id]);
+        }
         DB::commit();
-        return $question->get()[0];
+        return $question;
     }
 
     public function post()
@@ -64,7 +68,7 @@ class Question extends Model
         }
 
         return $query->
-            selectRaw('*, ts_rank("question".search, plainto_tsquery(?)) as rank_question, ts_rank("user".search, plainto_tsquery(?)) as rank_user', [$search, $search])->
+            selectRaw('question.*, post.*, ts_rank("question".search, plainto_tsquery(?)) as rank_question, ts_rank("user".search, plainto_tsquery(?)) as rank_user', [$search, $search])->
             join('post', 'post.id', '=', 'question.id')->
             join('user', 'user.id', '=', 'post.id_owner')->
             whereRaw('"question".search @@ to_tsquery(?) OR "user".search @@ to_tsquery(?)', [$search, $search]);

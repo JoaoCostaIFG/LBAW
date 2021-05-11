@@ -396,6 +396,27 @@ AS $$
   END;
 $$ LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION on_accepting_answer()
+RETURNS TRIGGER
+AS $$
+  DECLARE
+    val_delta integer;
+    answer_owner_id integer;
+  BEGIN
+  	val_delta := NEW.bounty;
+    IF val_delta IS NULL THEN
+      val_delta := 0;
+    END IF;
+   	answer_owner_id := (SELECT post.id_owner FROM post WHERE post.id = NEW.accepted_answer);
+
+    UPDATE "user" as u
+    SET reputation = u.reputation + val_delta
+    WHERE answer_owner_id = u.id;
+
+    RETURN NULL; -- result is ignored since this is an AFTER trigger
+  END;
+$$ LANGUAGE plpgsql;
+
 CREATE OR REPLACE FUNCTION on_achievement_change()
 RETURNS TRIGGER
 AS $$
@@ -653,6 +674,12 @@ CREATE TRIGGER update_score_vote
 AFTER DELETE OR INSERT OR UPDATE ON vote
 FOR EACH ROW
 EXECUTE FUNCTION on_score_change();
+-- on accepting answer
+DROP TRIGGER IF EXISTS update_accepting_answer ON question CASCADE;
+CREATE TRIGGER update_accepting_answer
+AFTER INSERT OR UPDATE OF accepted_answer ON question
+FOR EACH ROW
+EXECUTE FUNCTION on_accepting_answer();
 -- on achievement
 DROP TRIGGER IF EXISTS update_score_achievement ON vote CASCADE;
 CREATE TRIGGER update_score_achievement
@@ -808,11 +835,21 @@ LANGUAGE plpgsql
 AS
 $$
 DECLARE
+  rep integer;
+  inserted_id integer;
 BEGIN
-  INSERT INTO post(id_owner, body, "date") VALUES(OwnerUser, Body, DatePost);
+  rep := (SELECT "user".reputation FROM "user" WHERE id = OwnerUser);
+  IF rep < Bounty THEN
+    RAISE EXCEPTION 'User has smaller reputation (%) than the question bounty (%)', rep, Bounty;
+  END IF;
+
+  UPDATE "user" SET reputation = rep - Bounty WHERE id = OwnerUser;
+
+  INSERT INTO post(id_owner, body, "date") VALUES(OwnerUser, Body, DatePost)
+    RETURNING id INTO inserted_id;
   -- INSERT INTO question(id, accepted_answer, title, bounty, closed) SELECT(1, NULL, Title, Bounty, Closed);
   INSERT INTO question(id, accepted_answer, title, bounty, closed)
-  	VALUES (currval(pg_get_serial_sequence('post','id')), NULL, Title, Bounty, Closed);
+  	VALUES (inserted_id, NULL, Title, Bounty, Closed);
 END
 $$;
 
@@ -981,6 +1018,12 @@ INSERT INTO achievement(id, title, body) VALUES
   (5, 'Reached 500 reputation', 'You have reached 500 reputation! Thank you for your contribution'),
   (6, 'Reached 1000 reputation', 'You have reached 1000 reputation! Thank you for your contribution');
 
+UPDATE "user" SET reputation = 550 WHERE id = 1;
+UPDATE "user" SET reputation = 1050 WHERE id = 2;
+UPDATE "user" SET reputation = 150 WHERE id = 3;
+UPDATE "user" SET reputation = 700 WHERE id = 5;
+UPDATE "user" SET reputation = 100 WHERE id = 12;
+
 -- CREATE OR REPLACE PROCEDURE create_question(OwnerUser INT, Body TEXT, DatePost DATE, Title TEXT, Bounty INT, Closed BOOLEAN)
 -- CREATE OR REPLACE PROCEDURE create_answer(OwnerUser INT, Body TEXT, DatePost DATE, IdQuestion INT)
 -- CREATE OR REPLACE PROCEDURE create_comment(OwnerUser INT, Body TEXT, DatePost DATE, IdQuestion INT, IdAnswer INT)
@@ -988,7 +1031,7 @@ CALL create_question(1, 'If Python does not have a ternary conditional operator,
 CALL create_comment(2, 'In the Python 3.0 official documentation referenced in a comment above, this is referred to as "conditional_expressions" and is very cryptically defined. That documentation doesn''t even include the term "ternary", so you would be hard-pressed to find it via Google unless you knew exactly what to look for. The version 2 documentation is somewhat more helpful and includes a link to "PEP 308", which includes a lot of interesting historical context related to this question.', '2013-01-10', 1, NULL);
 CALL create_answer(3, '<expression 2> if <condition> else <expression 1>', '2010-05-27', 1);
 CALL create_comment(4, 'This one emphasizes the primary intent of the ternary operator: value selection. It also shows that more than one ternary can be chained together into a single expression.', '2010-10-04', NULL, 3);
-CALL create_question(5, 'What is the difference between a function decorated with @staticmethod and one decorated with @classmethod?', '2008-09-25', 'Difference between staticmethod and classmethod', 20, false);
+CALL create_question(5, 'What is the difference between a function decorated with @staticmethod and one decorated with @classmethod?', '2008-09-25', 'Difference between staticmethod and classmethod', 50, false);
 CALL create_comment(6, 'tl;dr >> when compared to normal methods, the static methods and class methods can also be accessed using the class but unlike class methods, static methods are immutable via inheritance.', '2018-07-11', 5, NULL);
 CALL create_answer(7, 'Basically @classmethod makes a method whose first argument is the class it''s called from (rather than the class instance), @staticmethod does not have any implicit arguments.','2008-09-25', 5);
 CALL create_answer(8, '@classmethod : can be used to create a shared global access to all the instances created of that class..... like updating a record by multiple users.... I particulary found it use ful when creating singletons as well..:)\n@static method: has nothing to do with the class or instance being associated with ...but for readability can use static method', '2017-09-20', 5);
@@ -1007,10 +1050,6 @@ CALL create_answer(1, 'Someone delete this please', '2021-02-21', 18);
 UPDATE question SET accepted_answer = 3 WHERE id = 1;
 UPDATE question SET accepted_answer = 10 WHERE id = 9;
 UPDATE question SET accepted_answer = 16 WHERE id = 15;
-
-UPDATE "user" SET reputation = 550 WHERE id = 1;
-UPDATE "user" SET reputation = 1050 WHERE id = 2;
-UPDATE "user" SET reputation = 150 WHERE id = 3;
 
 -- R14
 INSERT INTO vote(id_post, id_user, value) VALUES
