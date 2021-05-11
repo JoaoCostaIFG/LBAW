@@ -7,7 +7,16 @@
 
   <!-- Page Top -->
   <div class="container">
-    <h2 class="page-title">Search Results{{ isset($tag) ? ' - ' . $tag : '' }}</h2>
+    <!-- Title -->
+    <h2 class="page-title">Search results
+      @if (isset($tag)) 
+          for "{{$tag}}"
+      @else
+        @if(@isset($q))
+          for "{{$q}}"
+        @endif
+      @endif
+    </h2>
     <div class="py-3 border-bottom pb-0">
       <!-- Tabs -->
       <ul class="nav nav-tabs" role="navigation">
