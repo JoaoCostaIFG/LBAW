@@ -10,7 +10,7 @@
     <h2 class="page-title">Search Results{{ isset($tag) ? ' - ' . $tag : '' }}</h2>
     <div class="py-3 border-bottom pb-0">
       <!-- Tabs -->
-      <ul class="nav nav-tabs">
+      <ul class="nav nav-tabs" role="navigation">
         <li class="nav-item">
           <a href="#questions" class="nav-link active" data-toggle="tab">Questions</a>
         </li>
@@ -29,6 +29,5 @@
       @endif
     </div>
   </div>
-
   <script src="/js/tabs.js"></script>
 @stop

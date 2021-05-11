@@ -1,14 +1,14 @@
 /* large (>= 992px) */
 /* smaller than large */
 @media (max-width: 992px) {
-    #search-filters-form {
+    .search-filters-form {
         margin-top: 1em;
         justify-content: flex-start;
     }
 }
 /* larger than large */
 @media (min-width: 992px) {
-    #search-filters-form {
+    .search-filters-form {
         justify-content: flex-end;
     }
 }
@@ -36,7 +36,7 @@
         margin-top: 1em;
     }
 
-    #search-filters-form div {
+    .search-filters-form div {
         display: initial !important;
     }
 
@@ -52,7 +52,7 @@
     }
     /* END SEACH */
 
-    #search-filters-form div {
+    .search-filters-form div {
         display: flex !important;
         justify-content: center;
         align-items: center !important;
