@@ -26,7 +26,7 @@ if ($num_posts != 0) {
   <div class="row themed-grid-col text-start m-0 p-0">
     <div class="container col">
       <div class="col-1 p-0 mt-2 mb-2 text-left">
-        <a class="badge bg-primary text-decoration-none">{{ $topic->topic_name }}</a>
+        <a class="badge bg-primary text-decoration-none" href="/search/tag/{{ $topic->topic_name }}">{{ $topic->topic_name }}</a>
       </div>
       <span class="p-0 progress ms-auto" data-bs-toggle="popover" data-bs-trigger="hover focus"
         data-bs-content="{{ $percentage }}% of your participations are tagged as {{ $topic->topic_name }}">
