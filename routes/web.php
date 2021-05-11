@@ -61,8 +61,8 @@ Route::post('register', 'Auth\RegisterController@register');
 
 // TODO remove
 Route::get('/test', function() {
-  $a = User::find(2);
-  dd([$a->name, $a->firstName, $a->lastName]);
+  $a = Question::search("python array");
+  dd($a->get());
 });
 
 Route::fallback(function() {

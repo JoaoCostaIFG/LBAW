@@ -67,10 +67,11 @@ class Question extends Model
             return $query;
         }
 
+        $search = "'" . $search . "'";
         return $query->
             selectRaw('question.*, post.*, ts_rank("question".search, plainto_tsquery(?)) as rank_question, ts_rank("user".search, plainto_tsquery(?)) as rank_user', [$search, $search])->
             join('post', 'post.id', '=', 'question.id')->
             join('user', 'user.id', '=', 'post.id_owner')->
-            whereRaw('"question".search @@ to_tsquery(?) OR "user".search @@ to_tsquery(?)', [$search, $search]);
+            whereRaw('"question".search @@ plainto_tsquery(?) OR "user".search @@ plainto_tsquery(?)', [$search, $search]);
     }
 }
