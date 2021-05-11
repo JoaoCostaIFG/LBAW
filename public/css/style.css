@@ -27,6 +27,21 @@ body {
     left: 50%;
     transform: translateX(-50%);
 }
+
+#brand-logo {
+    display: inline-block;
+    box-sizing: content-box;
+}
+
+#brand {
+    display: inline-block;
+    width: 175px;
+    background-image: url("../images/logo/vector/logo.svg");
+    background-repeat: no-repeat;
+    background-size: 175px auto;
+    background-position: 0px 2px;
+    text-indent: -9999px;
+}
 /* END HEADER */
 
 /* BEGIN AUTH */
@@ -113,7 +128,7 @@ body {
 }
 
 #share_img {
-    background: url("/images/share_dark.svg") no-repeat;
+    background: url("../images/share_dark.svg") no-repeat;
 }
 
 #help_img {
@@ -352,35 +367,35 @@ footer {
 
 /* BEGIN MISC */
 .full-width {
-  width: 100%;
+    width: 100%;
 }
 
 #skip-nav {
-  color: white;
-  background-color: var(--bs-green);
-  border-radius: 25px;
-  padding: 0.5em;
-  text-decoration: none;
-  font-weight: bold;
+    color: white;
+    background-color: var(--bs-green);
+    border-radius: 25px;
+    padding: 0.5em;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 .screenreader-text {
-  /* see: http://web-accessibility.carnegiemuseums.org/code/skip-link/ */
-  position: absolute;
-  right: 1%;
-  top: -100px;
-  width: 1px;
-  height: 1px;
+    /* see: http://web-accessibility.carnegiemuseums.org/code/skip-link/ */
+    position: absolute;
+    right: 1%;
+    top: -100px;
+    width: 1px;
+    height: 1px;
 
-  transition: top 0.3s;
+    transition: top 0.3s;
 }
 .screenreader-text:focus {
-  display: inline-block;
-  position: fixed;
-  z-index: 1031;
-  top: 3.8rem;
-  height: auto;
-  width: auto;
-  margin: auto;
+    display: inline-block;
+    position: fixed;
+    z-index: 1031;
+    top: 3.8rem;
+    height: auto;
+    width: auto;
+    margin: auto;
 }
 /* END MISC */

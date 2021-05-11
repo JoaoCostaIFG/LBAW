@@ -83,32 +83,34 @@
     <div class="row">
       <!-- Top Topics -->
       <div class="col-lg p-1">
-        <div class="container themed-container p-0 text-left">
+        <div class="container themed-container">
           <h5 class="m-0 fw-bold">Top Topics</h5>
         </div>
-        @if (count($user->getTopicParticipation()->get()) == 0)
+@if (count($user->getTopicParticipation()->get()) == 0)
         <div class="text-center mb-3">
-          <span class="text-center">-- This user has no activity --</span>
+          <span>-- This user has no activity --</span>
         </div>
-        @else @foreach ($user->getTopicParticipation()->get() as $topic)
-        @include('partials.profile.top_topic_card', ['topic_questions' => $user->getQuestionParticipation()->get()->keyBy('topic_name'),
+@else
+  @foreach ($user->getTopicParticipation()->get() as $topic)
+    @include('partials.profile.top_topic_card', ['topic_questions' => $user->getQuestionParticipation()->get()->keyBy('topic_name'),
           'topic_answers' => $user->getAnswerParticipation()->get()->keyBy('topic_name')])
-        @endforeach @endif
+  @endforeach
+@endif
       </div>
       <!-- Top Questions -->
       <div class="col-lg p-1">
-        <div class="container themed-container p-0 text-left">
+        <div class="container themed-container">
           <h5 class="m-0 fw-bold">Top Questions</h5>
         </div>
-        @if (count($user->questions) == 0)
+@if (count($user->questions) == 0)
         <div class="text-center">
-          <span class="text-center">-- This user has no questions --</span>
+          <span>-- This user has no questions --</span>
         </div>
-        @else
+@else
         <div class="container p-0">
           @each('partials.question_card', $user->questions, 'question')
         </div>
-        @endif
+@endif
       </div>
     </div>
   </div>
@@ -116,7 +118,7 @@
 
   <!-- BEGIN ACHIEVEMENTS TAB -->
   <div id="achievements" class="tab-pane fade">
-    <div class="container themed-container text-left p-0">
+    <div class="container themed-container">
       <h5 class="m-0 fw-bold">Achievements</h5>
     </div>
     <!-- Progress bar -->
