@@ -48,9 +48,10 @@ class LoginController extends Controller
         $credentials = $request->all('username', 'password');
 
         if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+            if ($request->has('previous_url'))
+                return redirect()->intended($request->get('previous_url'));
 
-            return redirect()->intended('about');
+            return redirect()->intended('/');
         }
 
         return back()->withErrors([

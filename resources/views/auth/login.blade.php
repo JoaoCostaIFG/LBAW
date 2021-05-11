@@ -8,6 +8,7 @@
     <span class="lead fs-3 fw-bold">Welcome back</span>
     <form class="auth-form" method="POST" action="{{ route('login') }}">
       {{ csrf_field() }}
+      <input type="hidden" name="previous_url" value="{{ Request::get('previous_url') ?? URL::previous() }}">
       <!-- Username -->
       <div class="input-group mb-3">
         <label for="username" class="form-label"><i class="bi bi-person-fill"></i> <b>Username</b> <span class="text-danger">*</span></label>

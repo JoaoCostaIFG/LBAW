@@ -50,6 +50,7 @@ Route::delete('user', 'UserController@delete')->name('user');
 Route::get('user', 'UserController@showOwn');
 Route::get('user/edit', 'UserController@edit')->middleware('auth');
 Route::patch('user', 'UserController@update')->name('update_user');
+Route::post('users/{id}/ban', 'UserController@ban')->middleware('role:administrator')->name('ban_user');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login'); // TODO
@@ -62,4 +63,9 @@ Route::post('register', 'Auth\RegisterController@register');
 Route::get('/test', function() {
   $a = User::find(2);
   dd([$a->name, $a->firstName, $a->lastName]);
+});
+
+Route::fallback(function(){ // TODO Custom 404 page here
+  return response()->json([
+      'message' => 'Page Not Found. If error persists, contact perafontao@pitasso.com'], 404);
 });

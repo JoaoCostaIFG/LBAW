@@ -68,5 +68,10 @@ class UserController extends Controller
     public function update(Request $request){
         dd($request);
     }
+
+    public function ban($id) {
+        DB::delete('DELETE FROM "user" where id = ?', [$id]);
+        return redirect()->route('profile', [$id]);
+    }
 }
 
