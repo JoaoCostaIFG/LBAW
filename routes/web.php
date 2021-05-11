@@ -65,7 +65,7 @@ Route::get('/test', function() {
   dd([$a->name, $a->firstName, $a->lastName]);
 });
 
-Route::fallback(function(){ // TODO Custom 404 page here
-  return response()->json([
-      'message' => 'Page Not Found. If error persists, contact perafontao@pitasso.com'], 404);
+Route::fallback(function() {
+  /** This will check for the 404 view page unders /resources/views/errors/404 route */
+  return view('errors.404');
 });
