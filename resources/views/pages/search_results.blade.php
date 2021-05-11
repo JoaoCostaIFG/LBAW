@@ -1,32 +1,9 @@
 @extends('layouts.layout')
 
-@section('title', 'Search Results')
+@section('title', 'Search')
 @section('pageType', 'website')
 
 @section('content')
-
-  @php
-  if (isset($_GET['search'])) {
-      $search_url = '&search=' . $_GET['search'];
-  } else {
-      $search_url = '';
-  }
-  if (isset($_GET['sortBy'])) {
-      $sort_url = '&sortBy=' . $_GET['sortBy'];
-  } else {
-      $sort_url = '';
-  }
-  if (isset($_GET['start_date'])) {
-      $start_date_url = '&start_date=' . $_GET['start_date'];
-  } else {
-      $start_date_url = '';
-  }
-  if (isset($_GET['end_date'])) {
-      $end_date_url = '&end_date=' . $_GET['end_date'];
-  } else {
-      $end_date_url = '';
-  }
-  @endphp
 
   <!-- Page Top -->
   <div class="container">
@@ -46,10 +23,10 @@
     </div>
 
     <div class="tab-content">
-        @include('partials.search_results.questions', ['questions' => $questions, 'search_url' => $search_url])
-        @if (isset($users))
-          @include('partials.search_results.users', ['users' => $users, 'search_url' => $search_url])
-        @endif
+      @include('partials.search_results.questions', ['questions' => $questions])
+      @if (isset($users))
+        @include('partials.search_results.users', ['users' => $users])
+      @endif
     </div>
   </div>
 

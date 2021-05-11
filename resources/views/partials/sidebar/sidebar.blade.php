@@ -7,17 +7,15 @@
       <h4>Pages</h4>
     </div>
     <ul class="list-group">
-        @include('partials.sidebar.sidebar_link', ['href' => "/home", 'icon' => "bi-house-door", 'text' =>  "Home"])
-        @include('partials.sidebar.sidebar_link', ['href' => "/search#questions", 'icon' => "bi-question-circle", 'text' =>  "Questions"])
-        @include('partials.sidebar.sidebar_link', ['href' => "/news", 'icon' => "bi-newspaper", 'text' =>  "News"])
-        @include('partials.sidebar.sidebar_link', ['href' => "/search#users", 'icon' => "bi-person", 'text' =>  "Users"])
-        @include('partials.sidebar.sidebar_link', ['href' => "/leaderboard", 'icon' => "bi-trophy", 'text' =>  "Leaderboard"])
-        @include('partials.sidebar.sidebar_link', ['href' => "/about", 'icon' => "bi-info-circle", 'text' =>  "About"])
+        @include('partials.sidebar.sidebar_link', ['href' => "/home", 'icon' => "bi-house-door", 'text' =>  "Home", 'is_selected' => $title === "Homepage"])
+        @include('partials.sidebar.sidebar_link', ['href' => "/search#questions", 'icon' => "bi-question-circle", 'text' =>  "Questions", 'is_selected' => $title === "Question"])
+        @include('partials.sidebar.sidebar_link', ['href' => "/news", 'icon' => "bi-newspaper", 'text' =>  "News", 'is_selected' => $title === "News"])
+        @include('partials.sidebar.sidebar_link', ['href' => "/search#users", 'icon' => "bi-person", 'text' =>  "Users", 'is_selected' => $title === "Profile"])
+        @include('partials.sidebar.sidebar_link', ['href' => "/leaderboard", 'icon' => "bi-trophy", 'text' =>  "Leaderboard", 'is_selected' => $title === "Leaderboard"])
+        @include('partials.sidebar.sidebar_link', ['href' => "/about", 'icon' => "bi-info-circle", 'text' =>  "About", 'is_selected' => $title === "About"])
         @auth
             @if(Auth::user()->hasRole('moderator'))
-            {{-- @auth --}}
-                @include('partials.sidebar.sidebar_link', ['href' => "/administration", 'icon' => "bi-clipboard-data", 'text' =>  "Administration"])
-            {{-- @endauth --}}
+                @include('partials.sidebar.sidebar_link', ['href' => "/administration", 'icon' => "bi-clipboard-data", 'text' =>  "Administration", 'is_selected' => $title === "Administration"])
             @endif
         @endauth
 
@@ -26,10 +24,10 @@
     <!-- auth -->
     @guest
         <div class="row justify-content-evenly sidebar-buttons">
-        <a class="btn btn-info col-4" href="/login" type="button" aria-expanded="false" aria-label="Open login box">
+        <a class="btn btn-info col-4" href="/login" role="button" aria-label="Go to login page">
           Log in
         </a>
-        <a class="btn btn-primary col-4" href="/register" type="button" aria-controls="loginModal" aria-expanded="false" aria-label="Open signup box">
+        <a class="btn btn-primary col-4" href="/register" role="button" aria-label="Go to register page">
           Sign up
         </a>
       </div>
@@ -47,8 +45,8 @@
         </h4>
     </div>
       <ul class="list-group">
-          @include('partials.sidebar.sidebar_link', ['href' => "/profile/" . Auth::id(), 'icon' => "bi-person-circle", 'text' =>  "My Profile"])
-          @include('partials.sidebar.sidebar_link', ['href' => "/user/ask", 'icon' => "bi-plus-circle", 'text' =>  "Ask Question"]) {{-- TODO --}}
+          @include('partials.sidebar.sidebar_link', ['href' => "/profile/" . Auth::id(), 'icon' => "bi-person-circle", 'text' =>  "My Profile", 'is_selected' => $title === "Profile"])
+          @include('partials.sidebar.sidebar_link', ['href' => "/ask_question", 'icon' => "bi-plus-circle", 'text' =>  "Ask Question", 'is_selected' => $title === "Ask Question"]) {{-- TODO --}}
       </ul>
 
     <div class="row justify-content-evenly sidebar-buttons">
@@ -58,14 +56,14 @@
 
 </nav>
 
-<script defer>
-    document.querySelector("#sidebar-toggler").addEventListener("click", function() {
-        let sidebar = document.querySelector("#sidebar");
-        if (sidebar.classList.contains("active"))
-        sidebar.classList.remove("active");
-        else
-        sidebar.classList.add("active");
-    })
+<script>
+  document.querySelector("#sidebar-toggler").addEventListener("click", function() {
+    let sidebar = document.querySelector("#sidebar");
+    if (sidebar.classList.contains("active"))
+      sidebar.classList.remove("active");
+    else
+      sidebar.classList.add("active");
+  })
 </script>
 
 <!-- Notifications -->

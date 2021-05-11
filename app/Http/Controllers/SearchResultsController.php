@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Topic;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SearchResultsController extends Controller
 {
@@ -18,7 +19,7 @@ class SearchResultsController extends Controller
                 $questions->orderBy('date', 'DESC');
             else if ($sortBy == 'oldest')
                 $questions->orderBy('date', 'ASC');
-            else if ($sortBy = ' best_score')
+            else if ($sortBy == 'best_score')
                 $questions->orderBy('score', 'DESC');
             else if ($sortBy == 'worst_score')
                 $questions->orderBy('score', 'ASC');
@@ -33,11 +34,11 @@ class SearchResultsController extends Controller
 
         $start_date = $request->input('start_date');
         if (isset($start_date))
-            $questions->where('date', '>', $_GET['start_date']);
+            $questions->where('date', '>', $start_date);
 
-        $end_date = $request->input('start_date');
+        $end_date = $request->input('end_date');
         if (isset($end_date))
-            $questions->where('date', '<', $_GET['end_date']);
+            $questions->where('date', '<', $end_date);
     }
 
     public function search(Request $request)
@@ -61,18 +62,16 @@ class SearchResultsController extends Controller
             $users = User::search($search_data);
         }
 
+        // Validate dates
+        $validation = Validator::make($request->all(), [
+            'start_date' => 'nullable|date',
+            'end_date' => 'nullable|date',
+        ]);
+
+        if ($validation->fails())
+            return back()->withErrors($validation)->withInput($request->all());
+
         $this->filterUsersAndQuestions($request, $users, $questions);
-        //Date TODO
-        // $request->validate([
-        //     'start_date' => 'nullable|date',
-        //     'end_date' => 'nullable|date',
-        // ]); // tou triste :( @nachos
-        // if (isset($_GET['start_date']) && $_GET['start_date'] != "") {
-        //     $questions->where('date', '>', $_GET['start_date']);
-        // }
-        // if (isset($_GET['end_date']) && $_GET['end_date'] != "") {
-        //     $questions->where('date', '<', $_GET['end_date']);
-        // }
 
         return view("pages.search_results", [
             'questions' => $questions->paginate(5)->withQueryString(),
