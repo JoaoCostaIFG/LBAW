@@ -5,7 +5,7 @@
       Showing {{ $questions->count() }} out of {{ $questions->total() }} result(s)
     </h6>
     <!-- Filter -->
-    <form method="GET" class="col-12 col-lg-9 row gx-0 gap-1">
+    <form class="search-filters-form col-12 col-lg-9 row gx-0 gap-1" method="GET">
       <!-- From: -->
       <div class="col-12 col-md-auto">
         <label for="start_date" class="form-label m-0"><b>From:</b></label>

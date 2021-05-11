@@ -26,8 +26,8 @@ Route::get('/profile/{id}', 'UserController@show')->name('profile');
 Route::get('administration', 'AdministrationController@show')->middleware('role:moderator');
 
 // Posts
-Route::post('/user/ask', 'QuestionController@store')->name('ask');
-Route::get('/user/ask', 'QuestionController@create')->middleware('auth');
+Route::post('/ask', 'QuestionController@store')->name('ask');
+Route::get('/ask', 'QuestionController@create')->middleware('auth');
 Route::post('/question/{id}/close', 'QuestionController@close')->middleware('auth');
 Route::put('/question/{id}/answer', 'AnswerController@create');
 Route::get('/search', 'SearchResultsController@search');

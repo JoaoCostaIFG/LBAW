@@ -1,9 +1,11 @@
 <!-- Users -->
 <div class="tab-pane fade" id="users">
-  <div class="d-flex flex-column flex-md-row justify-content-between my-2 py-1">
-    <h6 class="my-2 py-1" id="users-title">Showing {{ $users->count() }} out of {{ $users->total() }} result(s)</h6>
+  <div class="row align-items-center justify-content-between my-2 py-1 gx-0">
+    <h6 id="users-page-subtitle" class="col-12 col-lg-3 m-0">
+      Showing {{ $users->count() }} out of {{ $users->total() }} result(s)
+    </h6>
     <!-- Sort by-->
-    <form method="GET" class="d-flex flex-row m-0 gap-1">
+    <form class="search-filters-form col-12 col-lg-9 row gx-0 gap-1" method="GET">
       <!-- Sort By -->
       <select class="col-auto" aria-label="Sort by" name="sortBy">
         <option value="">Sort By: ---</option>

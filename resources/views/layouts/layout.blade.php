@@ -36,8 +36,12 @@
     <meta property="og:locale" content="{{ app()->getLocale() }}" />
   </head>
   <body>
+    <!-- skip link -->
+    <a id="skip-nav" class="screenreader-text" href="#main-content">
+      Skip navigation and sidebar
+    </a>
+
     <header>
-      <a id="go-to-content" href="#content"></a>
       <!-- Header -->
       <nav class="navbar fixed-top navbar-expand bg-dark navbar-dark">
         <div class="container d-flex justify-content-between">
@@ -86,7 +90,7 @@
     @include('partials.sidebar.sidebar', ['title' => app()->view->getSections()['title']])
 
     <main>
-      <section id="content" {{ isset($notInlineContainer) ? '' : 'class=container' }}>
+      <section id="main-content" {{ isset($notInlineContainer) ? '' : 'class=container' }}>
         @yield('content')
       </section>
     </main>
@@ -98,7 +102,7 @@
       <hr>
       <div class="row justify-content-between">
         <p class="col-auto text-muted">&#169; 2021 Segmentation Fault, Inc.</p>
-        <a class="col-auto text-end" href="#">go to top</a>
+        <a class="col-auto text-end" href="#">Go to the top</a>
       </div>
     </footer>
     <!-- Bootstrap + Popper -->

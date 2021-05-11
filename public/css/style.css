@@ -280,10 +280,6 @@ body {
 /* END SIDEBAR */
 
 /* BEGIN NAVTABS */
-#go-to-content {
-    display: hidden;
-}
-
 .nav-link.active {
     background-color: #3498db !important;
     border-color: #3498db !important;
@@ -354,13 +350,37 @@ footer {
 }
 /* END TAG LIST */
 
-.profile-tab {
-  width: 33.33%;
-  text-align: center;
-}
-
 /* BEGIN MISC */
 .full-width {
   width: 100%;
+}
+
+#skip-nav {
+  color: white;
+  background-color: var(--bs-green);
+  border-radius: 25px;
+  padding: 0.5em;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.screenreader-text {
+  /* see: http://web-accessibility.carnegiemuseums.org/code/skip-link/ */
+  position: absolute;
+  right: 1%;
+  top: -100px;
+  width: 1px;
+  height: 1px;
+
+  transition: top 0.3s;
+}
+.screenreader-text:focus {
+  display: inline-block;
+  position: fixed;
+  z-index: 1031;
+  top: 3.8rem;
+  height: auto;
+  width: auto;
+  margin: auto;
 }
 /* END MISC */

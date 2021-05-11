@@ -5,8 +5,9 @@ var tabs = [].slice.call(document.querySelectorAll('.nav-tabs li a'));
 
 if (location.hash != "") // If hash is set
   setTabFromHash();
-else // Hash not set
-  updateTabAndHash(tabs[0]);
+/* IMP uncomment the following 2 lines to enable scroll on page reach */
+// else // Hash not set
+// updateTabAndHash(tabs[0]);
 
 // Add click event listener for tabs
 tabs.forEach(function (tab) {
