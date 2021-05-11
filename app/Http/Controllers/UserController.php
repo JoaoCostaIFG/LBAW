@@ -73,7 +73,6 @@ class UserController extends Controller
         if ($validation->fails())
             return back()->withErrors($validation)->withInput($request->all());
 
-
         return "a";
 
     }
@@ -85,9 +84,13 @@ class UserController extends Controller
             'username' => 'nullable|string|max:255|unique:user',
             'password' => 'nullable|string|min:6|confirmed',
             'password_confirmation' => 'nullable|required_with:password',
-            'first-name' => 'nullable|string',
-            'last-name' => 'nullable|string',
             'about' => 'nullable|string|max:500',
+            'name' => ['nullable' , 'string', 
+                function($attr, $name, $fail) {
+                    if (str_starts_with($name, 'Deleted User'))
+                        $fail('Name cannot start with \'Deleted User\'');
+                }
+            ]
         ]);
 
         return $validation;

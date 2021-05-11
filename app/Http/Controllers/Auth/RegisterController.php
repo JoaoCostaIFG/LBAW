@@ -50,7 +50,12 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'username' => 'required|string|max:255|unique:user',
+            'username' => ['required', 'string', 'max:255', 'unique:user', 
+                function($attr, $name, $fail) {
+                    if (str_starts_with($name, 'Deleted User'))
+                        $fail('Name cannot start with \'Deleted User\'');
+                }
+            ],
             'email' => 'required|string|email|max:255|unique:user',
             'password' => 'required|string|min:6|confirmed',
         ]);
