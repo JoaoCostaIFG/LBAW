@@ -1,11 +1,6 @@
 <hr>
 
-<!--
-<div class="accepted-answer-container">
-  <div class="container row accepted-answer">
--->
-
-<div class="row gx-0">
+<div class="row gx-0 p-2 {{ $answer->question->accepted_answer == $answer->id ? 'accepted-answer' : '' }}">
   <div class="col-3 col-md-2 col-lg-1 align-content-between pe-1 mb-1">
     @include('partials.posts.user_card', ['post' => $answer->post,
       'accepted' => ($answer->question->accepted_answer == $answer->id),

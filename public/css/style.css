@@ -159,38 +159,6 @@ body {
 .comment p {
     margin: 0;
 }
-
-.accepted-answer-container {
-    padding: 0.15rem 0.15rem 0.2rem 0.2rem;
-
-    /* background color */
-    background: rgb(113, 3, 130);
-    background: -moz-linear-gradient(
-        212deg,
-        rgba(64, 130, 3, 0.6) 0%,
-        rgb(1, 48, 32, 0.6) 100%
-    );
-    background: -webkit-linear-gradient(
-        212deg,
-        rgba(64, 130, 3, 0.6) 0%,
-        rgba(1, 48, 32, 0.6) 100%
-    );
-    background: linear-gradient(
-        212deg,
-        rgba(64, 130, 3, 0.6) 0%,
-        rgba(1, 48, 32, 0.6) 100%
-    );
-    filter: progid:DXImageTransform.Microuoft.gradient(startColorstr="#710382",endColorstr="#010230",GradientType=1);
-}
-
-.accepted-answer {
-    margin: auto auto;
-    padding: 2em;
-
-    /* box shadow */
-    /* background color */
-    background: #2b302b;
-}
 /* END SEARCH RESULTS */
 
 /* BEGIN SIDEBAR */
@@ -381,7 +349,7 @@ footer {
 
 .screenreader-text {
     /* see: http://web-accessibility.carnegiemuseums.org/code/skip-link/ */
-    position: absolute;
+    position: fixed;
     right: 1%;
     top: -100px;
     width: 1px;
@@ -391,7 +359,6 @@ footer {
 }
 .screenreader-text:focus {
     display: inline-block;
-    position: fixed;
     z-index: 1031;
     top: 3.8rem;
     height: auto;
@@ -418,4 +385,9 @@ footer {
 }
 .accept-answer-btn:hover {
     color: var(--bs-green);
+}
+
+.accepted-answer {
+    border: 1px solid var(--green);
+    background-color: #212926;
 }

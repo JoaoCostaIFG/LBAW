@@ -1,7 +1,7 @@
 <h2 class="page-title">{{ $question->title }}</h2>
 <hr>
 
-<div class="row gx-0">
+<div class="row gx-0 p-2">
   <div class="col-3 col-md-2 col-lg-1 align-content-between mb-1">
     @include('partials.posts.user_card', ['post' => $question->post], ['question' => $question])
   </div>
