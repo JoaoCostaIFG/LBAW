@@ -9,7 +9,7 @@
   <h2 class="page-title">Edit account</h2>
   <hr />
   <!--Form-->
-  <form class="row gx-0" method="POST" action="{{ route('update_user') }}">
+  <form class="row gx-0" method="POST" action="{{ route('update_user') }}" enctype="multipart/form-data">
     @csrf
     @method('PATCH')
 
@@ -17,11 +17,17 @@
       <!-- User picture -->
       <h3>Profile Picture</h3>
       <div class="d-flex flex-column gap-3 align-items-center justify-content-start h-100 mt-4">
-        <img src="{{ asset('/images/user.jpg') }}" id="profile-picture" class="img-thumbnail rounded w-75 h-auto"
-          alt="User profile picture" />
+        <img src="{{ asset('storage/'.$user->picture) }}" id="profile-picture" class="img-thumbnail rounded w-75 h-auto"
+          alt="User profile picture" />          
         <!-- Upload image input-->
         <div class="input-group w-75">
-          <input id="upload" type="file" onchange="readURL(this);" class="form-control" />
+          <label for="avatarInput" class="form-lable">Avatar Upload:
+            <input id="avatarInput" type="file" class="form-control" name="avatar" />
+          </label>
+          <!-- Error -->
+          @if ($errors->has('avatar'))
+            <div class="invalid-feedback d-block">{{ $errors->first('avatar') }}</div>
+          @endif
         </div>
         <!--Apply Changes button-->
         <button type="submit" class="btn btn-success" type="button">Apply Changes</button>

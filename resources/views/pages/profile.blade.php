@@ -4,6 +4,12 @@
 @section('pageType', 'website')
 
 @section('content')
+<!-- Status Message -->
+@if (session('status'))
+<div class="alert alert-success mt-2">
+  {{ session('status') }}
+</div>
+@endif
 <!-- BEGIN TABS -->
 <div class="d-flex flex-row align-items-center justify-content-between">
   <h2 class="page-title mb-0">
@@ -51,7 +57,7 @@
 <!-- Profile -->
 <div class="container p-2 text-center">
   <img
-    src="{{ asset('/images/user.jpg') }}"
+    src="{{ asset('storage/'.$user->picture) }}"
     id="profile-picture"
     class="img-thumbnail rounded"
     alt="User profile picture"
