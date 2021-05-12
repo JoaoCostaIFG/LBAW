@@ -8,12 +8,12 @@
   <div class="col-9 col-md-10 col-lg-11 row align-content-between mb-1 ms-1 border-start border-dark">
     <p class="col-12 text-break">{{ $question->post->body }}</p>
 @auth
-  <div class="col-12 d-flex justify-content-end align-items-center gap-1">
-    <button class="btn btn-sm btn-outline-danger" type="button">Report</button>
-    <span class="text-muted">Posted {{ (new \Carbon\Carbon($question->post->date))->diffForHumans() }}</span>
-  </div>
+    <div class="col-12 d-flex justify-content-end align-items-center gap-1">
+      <button class="btn btn-sm btn-outline-danger" type="button">Report</button>
+      <span class="text-muted">Posted {{ (new \Carbon\Carbon($question->post->date))->diffForHumans() }}</span>
+    </div>
 @else
-  <span class="col-12 text-muted text-end">Posted {{ (new \Carbon\Carbon($question->post->date))->diffForHumans() }}</span>
+    <span class="col-12 text-muted text-end">Posted {{ (new \Carbon\Carbon($question->post->date))->diffForHumans() }}</span>
 @endauth
   </div>
   <!-- question comments -->

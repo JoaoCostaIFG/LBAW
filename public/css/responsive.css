@@ -43,6 +43,10 @@
     #right-col {
         border: none;
     }
+
+    .comment {
+      margin-left: 0 !important;
+    }
 }
 /* larger than medium  */
 @media (min-width: 768px) {

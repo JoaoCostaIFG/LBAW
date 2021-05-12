@@ -13,7 +13,7 @@ if ($vote)
       $down_text = '-fill';
 
 @endphp
-<span class="row fs-4 justify-content-center text-center">
+<span class="row justify-content-center text-center {{ $size ?? 'fs-4' }}">
   <span class="col-12">
     <button id="btn-upvote-{{$post->id}}" @if($can_vote) onclick="updateVote({{$post->id}}, true)" @endif
      class="btn p-0 bi bi-caret-up{{$up_text}} {{ $can_vote ? 'text-success cursor-na vote-up-btn' : ''}}"

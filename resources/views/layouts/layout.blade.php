@@ -92,7 +92,7 @@
     @include('partials.sidebar.sidebar', ['title' => app()->view->getSections()['title']])
 
     <main>
-      <section id="main-content" {{ isset($notInlineContainer) ? '' : 'class=container' }}>
+      <section id="main-content" {{ isset($notInlineContainer) ? '' : 'class=container-md' }}>
         @yield('content')
       </section>
     </main>
