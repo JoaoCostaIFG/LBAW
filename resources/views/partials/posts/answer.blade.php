@@ -1,39 +1,27 @@
-@if ($answer->question->accepted_answer == $answer->id)
+<hr>
+
+<!--
 <div class="accepted-answer-container">
   <div class="container row accepted-answer">
-@else
-  <div class="container row py-2">
-@endif
-    <div class="col col-md-2 col-3 align-self-center border-end border-dark">
-      @include('partials.posts.user_card', ['post' => $answer->post])
-    </div>
-    <div class="col col-md-10 col-9">
-      <p class="text-break">{{ $answer->post->body }}</p>
-    </div>
+-->
 
-    <div class="container row">
-      <div class="col-2 text-center">
-        @if ($answer->question->accepted_answer == $answer->id)
-          <i class="bi bi-check2 text-success fs-1"></i>
-        @endif
-      </div>
-      <div class="row col row-cols-auto align-items-end justify-content-end">
-        @auth
-          @if (Auth::id() == $answer->question->post->owner->id && is_null($answer->question->accepted_answer))
-            <form class="auth-form" method="POST" action="{{ url('/question/' . $answer->question->id . '/close') }}">
-              {{ csrf_field() }}
-              <input type="hidden" id="id_answer" name="id_answer" value="{{ $answer->id }}">
-              <button type="submit" class="btn btn-sm btn-success col">Mark accepted</button>
-            </form>
-          @endif
-        @endauth
-        <button type="button" class="btn btn-sm btn-danger ms-1 col">Report</button>
-        <p class="text-muted col text-center m-0">Posted {{ (new \Carbon\Carbon($answer->post->date))->diffForHumans() }}</p>
-      </div>
-    </div>
-    @include('partials.posts.comment_block', ['post' => $answer, 'answer_id' => $answer->id])
+<div class="row gx-0">
+  <div class="col-3 col-md-2 col-lg-1 align-content-between pe-1 mb-1">
+    @include('partials.posts.user_card', ['post' => $answer->post,
+      'accepted' => ($answer->question->accepted_answer == $answer->id),
+      'answer' => $answer])
   </div>
-@if ($answer->question->accepted_answer == $answer->id)
+  <div class="col-9 col-md-10 col-lg-11 row align-content-between mb-1 ms-1 border-start border-dark">
+    <p class="text-break">{{ $answer->post->body }}</p>
+@auth
+  <div class="col-12 d-flex justify-content-end align-items-center gap-1">
+    <button class="btn btn-sm btn-outline-danger" type="button">Report</button>
+    <span class="text-muted">Posted {{ (new \Carbon\Carbon($answer->post->date))->diffForHumans() }}</span>
+  </div>
+@else
+  <span class="col-12 text-muted text-end">Posted {{ (new \Carbon\Carbon($answer->post->date))->diffForHumans() }}</span>
+@endauth
+  </div>
+  <!-- answer comments -->
+  @include('partials.posts.comment_block', ['post' => $answer, 'answer_id' => $answer->id])
 </div>
-@endif
-<hr class ="mt-3">

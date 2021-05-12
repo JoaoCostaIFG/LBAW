@@ -4,11 +4,11 @@
 @section('pageType', 'article')
 
 @section('content')
-<div class="container">
-    @include('partials.posts.question')
-    <hr>
-    @each('partials.posts.answer', $question->answers, 'answer')
-</div>
+
+<!-- questions -->
+@include('partials.posts.question')
+<!-- answers -->
+@each('partials.posts.answer', $question->answers, 'answer')
 
 <hr>
 <div class="container">
@@ -21,7 +21,7 @@
     <button type="submit" class="btn btn-primary">Submit answer</button>
 
     @if ($errors->has('body'))
-        <span class="text-danger">Your answer can't be empty</span>
+      <span class="text-danger">Your answer can't be empty</span>
     @endif
   </form>
 </div>

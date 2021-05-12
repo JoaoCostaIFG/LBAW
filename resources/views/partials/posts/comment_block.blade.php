@@ -1,8 +1,7 @@
-<div class="container">
-
+<div class="col-9 offset-3 col-md-10 offset-md-2 col-lg-11 offset-lg-1">
     @each('partials.posts.comment', $post->comments, 'comment')
     @auth
-        <div class="row" id="end-comment-{{$post->id}}">
+        <div id="end-comment-{{$post->id}}" class="row">
             <a class="text-center dropdown-toggle" data-bs-toggle="dropdown"
             id="commentDropdownLink" aria-expanded="false">
                 Add comment
