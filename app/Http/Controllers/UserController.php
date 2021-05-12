@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Validator;
 class UserController extends Controller
 {
     public function show($id){
-        $user = User::find($id);
+        $user = User::findOrFail($id);
+
         $achievements = Achievement::all();
         
         return view("pages.profile", ['user' => $user, 'achievements' => $achievements ]);
@@ -67,14 +68,14 @@ class UserController extends Controller
     }
 
     public function update(Request $request){
-        $user = User::find(Auth::id());
+        $user = Auth::user();
 
         $validation = $this->validator($request, $user);
         if ($validation->fails())
             return back()->withErrors($validation)->withInput($request->except('password', 'password_confirmation'));
 
         // Update
-        $data = $request->all();
+        $data = $request->all();        
         if(isset($data['email']))
             $user->email = $data['email'];
         if(isset($data['username']))
@@ -85,9 +86,13 @@ class UserController extends Controller
             $user->name = $data['name'];
         if(isset($data['about']))
             $user->about = $data['about'];
+        if(isset($data['avatar'])){            
+            $path = $request->file('avatar')->store('avatars', 'public');
+            $user->picture = $path;
+        }
         
         $user->save();
-        return redirect()->intended('/user');
+        return redirect('/profile/'.$user->id)->with('status','Profile updated successfully!');
     }
 
     protected function validator(Request $request, User $user){
@@ -114,7 +119,8 @@ class UserController extends Controller
             'password' => 'nullable|string|min:6|confirmed|required_with:password_confirmation',
             'password_confirmation' => 'nullable|required_with:password',
             'about' => 'nullable|string|max:256',
-            'name' => 'nullable|string|max:60'
+            'name' => 'nullable|string|max:60',
+            'avatar' => 'nullable|image'
         ]);
 
         return $validation;

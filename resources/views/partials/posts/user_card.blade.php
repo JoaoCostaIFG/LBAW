@@ -1,6 +1,6 @@
 @if (is_null($post->owner->username))
   <div class="row p-sm-3 p-0">
-      <img src="{{ asset('images/user.jpg') }}" class="center p-2 p-sm-3" alt="User profile picture">
+      <img src="{{ asset('storage/'.$user->picture) }}" class="center p-2 p-sm-3" alt="User profile picture">
       <span class="d-block text-center">Deleted User</span>
   </div>
 @else
