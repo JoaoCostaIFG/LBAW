@@ -42,7 +42,7 @@
         </span>
         <!-- Author User Info -->
         <!-- User Profile Pic  -->
-        <img class="d-none d-md-block rounded-2 fit-cover" src="{{ asset('images/user.jpg') }}" alt="User profile picture" width="40" height="40">
+        <img class="d-none d-md-block rounded-2 fit-cover" src="{{ asset('storage/'.$question->post->owner->picture) }}" alt="User profile picture" width="40" height="40">
         <div class="d-flex flex-row flex-md-column justify-content-center align-items-start">
           <!-- Owner Username -->
           <span class="d-md-none">by&nbsp;</span>
