@@ -67,7 +67,6 @@ function removeVote(post_id) {
 }
 
 function updateVote(post_id, is_upvote) {
-    removeError();
     let score = document.getElementById("score-" + post_id);
     let upvote = document.getElementById("btn-upvote-" + post_id);
     let downvote = document.getElementById("btn-downvote-" + post_id);
@@ -104,13 +103,6 @@ function updateVote(post_id, is_upvote) {
         changeScore(score, -1);
       }
     }
-}
-
-function removeError() {
-  let commentError = document.getElementById("comment-error");
-  if (commentError) {
-      commentError.remove();
-  }
 }
 
 function encodeForAjax(data) {
