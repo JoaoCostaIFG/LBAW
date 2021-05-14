@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS notification_post CASCADE;
 
 
 -- DOMAINS
-CREATE DOMAIN Today AS DATE DEFAULT CURRENT_DATE;
+CREATE DOMAIN Today AS TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
 CREATE TYPE report_state AS ENUM ('pending', 'approved', 'rejected');
 
 
@@ -64,7 +64,7 @@ CREATE TABLE administrator(
 CREATE TABLE ban(
   id_user INTEGER PRIMARY KEY,
   id_admin INTEGER NOT NULL,
-  "date" Today NOT NULL CHECK ("date" <= CURRENT_DATE), -- bans can't have happened in the future
+  "date" Today NOT NULL CHECK ("date" <= CURRENT_TIMESTAMP), -- bans can't have happened in the future
   reason TEXT,
   CONSTRAINT fk_user
     FOREIGN KEY(id_user)
@@ -81,7 +81,7 @@ CREATE TABLE news(
   title TEXT NOT NULL,
   subtitle TEXT,
   body TEXT,
-  "date" Today NOT NULL CHECK ("date" <= CURRENT_DATE), -- news can't be posted in the future
+  "date" Today NOT NULL CHECK ("date" <= CURRENT_TIMESTAMP), -- news can't be posted in the future
   CONSTRAINT fk_author
     FOREIGN KEY(author)
       REFERENCES administrator(id)
@@ -93,7 +93,7 @@ CREATE TABLE topic_proposal(
   id_user INTEGER NOT NULL,
   id_admin INTEGER,
   topic_name TEXT NOT NULL,
-  "date" Today NOT NULL CHECK ("date" <= CURRENT_DATE), -- proposals can't have happened in the future
+  "date" Today NOT NULL CHECK ("date" <= CURRENT_TIMESTAMP), -- proposals can't have happened in the future
   reason TEXT,
   accepted boolean NOT NULL DEFAULT false,
   CONSTRAINT fk_user
@@ -115,7 +115,7 @@ CREATE TABLE achievement(
 CREATE TABLE achieved(
   id_user INTEGER,
   id_achievement INTEGER,
-  "date" Today NOT NULL CHECK ("date" <= CURRENT_DATE), -- achievements can't be acquired in the future
+  "date" Today NOT NULL CHECK ("date" <= CURRENT_TIMESTAMP), -- achievements can't be acquired in the future
   PRIMARY KEY (id_user, id_achievement),
   CONSTRAINT fk_user
     FOREIGN KEY(id_user)
@@ -131,7 +131,7 @@ CREATE TABLE post(
   id_owner INTEGER NOT NULL,
   body TEXT NOT NULL,
   score INTEGER NOT NULL DEFAULT 0,
-  "date" Today NOT NULL CHECK ("date" <= CURRENT_DATE), -- posts can't be made in the future
+  "date" Today NOT NULL CHECK ("date" <= CURRENT_TIMESTAMP), -- posts can't be made in the future
   CONSTRAINT fk_owner
     FOREIGN KEY(id_owner)
       REFERENCES "user"(id)
@@ -263,7 +263,7 @@ CREATE TABLE topic_question(
 CREATE TABLE report(
   id_post INTEGER,
   reporter INTEGER,
-  "date" Today NOT NULL CHECK ("date" <= CURRENT_DATE), -- reports can't be made in the future
+  "date" Today NOT NULL CHECK ("date" <= CURRENT_TIMESTAMP), -- reports can't be made in the future
   reason TEXT,
   PRIMARY KEY(id_post, reporter),
   "state" report_state,
@@ -282,7 +282,7 @@ CREATE TABLE report(
 -- R19
 CREATE TABLE notification(
   id SERIAL PRIMARY KEY,
-  "date" Today NOT NULL CHECK ("date" <= CURRENT_DATE), -- can't be notified in the future
+  "date" Today NOT NULL CHECK ("date" <= CURRENT_TIMESTAMP), -- can't be notified in the future
   title TEXT NOT NULL,
   body TEXT,
   recipient INTEGER,
@@ -826,7 +826,7 @@ CREATE OR REPLACE PROCEDURE create_question
 (
   OwnerUser INT,
   Body TEXT,
-  DatePost DATE,
+  DatePost TIMESTAMP,
   Title TEXT,
   Bounty INT,
   Closed BOOLEAN
@@ -857,7 +857,7 @@ CREATE OR REPLACE PROCEDURE create_comment
 (
   OwnerUser INT,
   Body TEXT,
-  DatePost DATE,
+  DatePost TIMESTAMP,
   IdQuestion INT,
   IdAnswer INT
 )
@@ -876,7 +876,7 @@ CREATE OR REPLACE PROCEDURE create_answer
 (
   OwnerUser INT,
   Body TEXT,
-  DatePost DATE,
+  DatePost TIMESTAMP,
   IdQuestion INT
 )
 LANGUAGE plpgsql
@@ -1027,25 +1027,25 @@ UPDATE "user" SET reputation = 100 WHERE id = 12;
 -- CREATE OR REPLACE PROCEDURE create_question(OwnerUser INT, Body TEXT, DatePost DATE, Title TEXT, Bounty INT, Closed BOOLEAN)
 -- CREATE OR REPLACE PROCEDURE create_answer(OwnerUser INT, Body TEXT, DatePost DATE, IdQuestion INT)
 -- CREATE OR REPLACE PROCEDURE create_comment(OwnerUser INT, Body TEXT, DatePost DATE, IdQuestion INT, IdAnswer INT)
-CALL create_question(1, 'If Python does not have a ternary conditional operator, is it possible to simulate one using other language constructs?', '2008-12-17', 'Does Python have a ternary conditional operator?', 0, true);
-CALL create_comment(2, 'In the Python 3.0 official documentation referenced in a comment above, this is referred to as "conditional_expressions" and is very cryptically defined. That documentation doesn''t even include the term "ternary", so you would be hard-pressed to find it via Google unless you knew exactly what to look for. The version 2 documentation is somewhat more helpful and includes a link to "PEP 308", which includes a lot of interesting historical context related to this question.', '2013-01-10', 1, NULL);
-CALL create_answer(3, '<expression 2> if <condition> else <expression 1>', '2010-05-27', 1);
-CALL create_comment(4, 'This one emphasizes the primary intent of the ternary operator: value selection. It also shows that more than one ternary can be chained together into a single expression.', '2010-10-04', NULL, 3);
-CALL create_question(5, 'What is the difference between a function decorated with @staticmethod and one decorated with @classmethod?', '2008-09-25', 'Difference between staticmethod and classmethod', 50, false);
-CALL create_comment(6, 'tl;dr >> when compared to normal methods, the static methods and class methods can also be accessed using the class but unlike class methods, static methods are immutable via inheritance.', '2018-07-11', 5, NULL);
-CALL create_answer(7, 'Basically @classmethod makes a method whose first argument is the class it''s called from (rather than the class instance), @staticmethod does not have any implicit arguments.','2008-09-25', 5);
-CALL create_answer(8, '@classmethod : can be used to create a shared global access to all the instances created of that class..... like updating a record by multiple users.... I particulary found it use ful when creating singletons as well..:)\n@static method: has nothing to do with the class or instance being associated with ...but for readability can use static method', '2017-09-20', 5);
-CALL create_question(9, 'If Python does not have a ternary conditional operator, is it possible to simulate one using other language constructs?', '2008-12-17', 'How can I remove a specific item from an array?', 0, true);
-CALL create_answer(10, 'Find the index of the array element you want to remove using indexOf, and then remove that index with splice.', '2011-04-23', 9);
-CALL create_comment(11, 'Serious question: why doesn''t JavaScript allow the simple and intuitive method of removing an element at an index? A simple, elegant, myArray.remove(index); seems to be the best solution and is implemented in many other languages (a lot of them older than JavaScript.)', '2020-09-10', NULL, 10);
-CALL create_question(12, 'I have an array of numbers and I''m using the .push() method to add elements to it.\nIs there a simple way to remove a specific element from an array?\nI''m looking for the equivalent of something like:\narray.remove(number);\nI have to use core JavaScript. Frameworks are not allowed.', '2011-04-23', 'How to use non-packaged Python code from GitHub?', 30, false);
-CALL create_answer(13, 'That repository doesn''t seem to be properly packaged for library use at all. I''d recommend forking it, making the changes you need to make it usable (moving the files into a package, adding a setup.py) and then using that as a git+https:// style requirement.', '2021-03-28', 12);
-CALL create_comment(14, 'Exactly, the repo is also under an MIT License, which really even allows keeping the source files in the project directly.', '2021-03-28', 12, NULL);
-CALL create_question(15, 'How do you set, clear, and toggle a bit?', '2019-08-22', 'How do you set, clear, and toggle a single bit?', 0, true);
-CALL create_answer(16, 'Use the bitwise OR operator (|) to set a bit.', '2020-09-20', 15);
-CALL create_comment(17, 'You are very dumb haha','2020-09-20', 15, NULL);
-CALL create_question(1, 'How do you post a question', '2019-08-22', 'is it here?', 0, false);
-CALL create_answer(1, 'Someone delete this please', '2021-02-21', 18);
+CALL create_question(1, 'If Python does not have a ternary conditional operator, is it possible to simulate one using other language constructs?', TIMESTAMP '2008-12-17 00:00:00', 'Does Python have a ternary conditional operator?', 0, true);
+CALL create_comment(2, 'In the Python 3.0 official documentation referenced in a comment above, this is referred to as "conditional_expressions" and is very cryptically defined. That documentation doesn''t even include the term "ternary", so you would be hard-pressed to find it via Google unless you knew exactly what to look for. The version 2 documentation is somewhat more helpful and includes a link to "PEP 308", which includes a lot of interesting historical context related to this question.', TIMESTAMP '2013-01-10 00:00:00', 1, NULL);
+CALL create_answer(3, '<expression 2> if <condition> else <expression 1>', TIMESTAMP '2010-05-27 00:00:00', 1);
+CALL create_comment(4, 'This one emphasizes the primary intent of the ternary operator: value selection. It also shows that more than one ternary can be chained together into a single expression.', TIMESTAMP '2010-10-04 00:00:00', NULL, 3);
+CALL create_question(5, 'What is the difference between a function decorated with @staticmethod and one decorated with @classmethod?', TIMESTAMP '2008-09-25 00:00:00', 'Difference between staticmethod and classmethod', 50, false);
+CALL create_comment(6, 'tl;dr >> when compared to normal methods, the static methods and class methods can also be accessed using the class but unlike class methods, static methods are immutable via inheritance.', TIMESTAMP '2018-07-11 00:00:00', 5, NULL);
+CALL create_answer(7, 'Basically @classmethod makes a method whose first argument is the class it''s called from (rather than the class instance), @staticmethod does not have any implicit arguments.',TIMESTAMP '2008-09-25 00:00:00', 5);
+CALL create_answer(8, '@classmethod : can be used to create a shared global access to all the instances created of that class..... like updating a record by multiple users.... I particulary found it use ful when creating singletons as well..:)\n@static method: has nothing to do with the class or instance being associated with ...but for readability can use static method', TIMESTAMP '2017-09-20 00:00:00', 5);
+CALL create_question(9, 'If Python does not have a ternary conditional operator, is it possible to simulate one using other language constructs?', '2008-12-17 00:00:00', 'How can I remove a specific item from an array?', 0, true);
+CALL create_answer(10, 'Find the index of the array element you want to remove using indexOf, and then remove that index with splice.', TIMESTAMP '2011-04-23 00:00:00', 9);
+CALL create_comment(11, 'Serious question: why doesn''t JavaScript allow the simple and intuitive method of removing an element at an index? A simple, elegant, myArray.remove(index); seems to be the best solution and is implemented in many other languages (a lot of them older than JavaScript.)', TIMESTAMP '2020-09-10 00:00:00', NULL, 10);
+CALL create_question(12, 'I have an array of numbers and I''m using the .push() method to add elements to it.\nIs there a simple way to remove a specific element from an array?\nI''m looking for the equivalent of something like:\narray.remove(number);\nI have to use core JavaScript. Frameworks are not allowed.', TIMESTAMP '2011-04-23 00:00:00', 'How to use non-packaged Python code from GitHub?', 30, false);
+CALL create_answer(13, 'That repository doesn''t seem to be properly packaged for library use at all. I''d recommend forking it, making the changes you need to make it usable (moving the files into a package, adding a setup.py) and then using that as a git+https:// style requirement.', TIMESTAMP '2021-03-28 00:00:00', 12);
+CALL create_comment(14, 'Exactly, the repo is also under an MIT License, which really even allows keeping the source files in the project directly.', TIMESTAMP '2021-03-28 00:00:00', 12, NULL);
+CALL create_question(15, 'How do you set, clear, and toggle a bit?', TIMESTAMP '2019-08-22 00:00:00', 'How do you set, clear, and toggle a single bit?', 0, true);
+CALL create_answer(16, 'Use the bitwise OR operator (|) to set a bit.', TIMESTAMP '2020-09-20 00:00:00', 15);
+CALL create_comment(17, 'You are very dumb haha',TIMESTAMP '2020-09-20 00:00:00', 15, NULL);
+CALL create_question(1, 'How do you post a question', TIMESTAMP '2019-08-22 00:00:00', 'is it here?', 0, false);
+CALL create_answer(1, 'Someone delete this please', TIMESTAMP '2021-02-21 00:00:00', 18);
 
 UPDATE question SET accepted_answer = 3 WHERE id = 1;
 UPDATE question SET accepted_answer = 10 WHERE id = 9;

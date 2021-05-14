@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Answer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,7 +38,7 @@ class AnswerController extends Controller
 
         // create_answer(OwnerUser INT, Body TEXT, DatePost DATE, IdQuestion INT)
         // $answer = DB::transaction(function () use ($request) {
-            DB::select("CALL create_answer(?, ?, ?, ?)", [Auth::id(), $request->body, date("Y-m-d"), $request->id]);
+            DB::select("CALL create_answer(?, ?, ?, ?)", [Auth::id(), $request->body, Carbon::now(), $request->id]);
             // return Answer::latest('id')->limit(1);
         // });
 

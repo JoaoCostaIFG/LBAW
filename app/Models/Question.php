@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -15,8 +16,8 @@ class Question extends Model
     public static function create($data) {
         // OwnerUser INT, Body TEXT, DatePost DATE, Title TEXT, Bounty INT, Closed BOOLEAN
         DB::beginTransaction();
-        DB::select("CALL create_question(?, ?, ?, ?, ?, ?)", 
-            [$data['owner'], $data['body'], date("Y-m-d"), $data['title'], $data['bounty'], "false"]);
+        DB::select("CALL create_question(?, ?, ?, ?, ?, ?)",
+            [$data['owner'], $data['body'], Carbon::now(), $data['title'], $data['bounty'], "false"]);
         $question = Question::latest('id')->limit(1)->get()[0];
         foreach($data['topics'] as $t_name) {
             $t = Topic::where('name', $t_name)->get()[0];
