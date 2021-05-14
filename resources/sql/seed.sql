@@ -606,6 +606,11 @@ AS $$
       IF (NOT EXISTS (SELECT * FROM achieved WHERE id_user = New.id AND id_achievement = 3)) THEN
         INSERT INTO achieved(id_user, id_achievement) VALUES (New.id, 3);
       END IF;
+
+      -- Give moderator priveliges
+      IF (NOT EXISTS (SELECT * FROM moderator WHERE id = NEW.id)) THEN
+        INSERT INTO moderator(id) VALUES(NEW.id);
+      END IF;
     END IF;
     IF (NEW.reputation >= 200) THEN
       IF (NOT EXISTS (SELECT * FROM achieved WHERE id_user = New.id AND id_achievement = 4)) THEN
