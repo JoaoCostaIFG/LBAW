@@ -37,7 +37,7 @@
     <div class="sidebar-subheader">
         <h4>
         {{-- TODO --}}
-          <img src="{{ Auth::user()->picture }}" class="rounded" width="32" alt="User profile picture">
+          <img src="{{ asset('storage/'. Auth::user()->picture) }}" class="rounded" width="32" alt="User profile picture">
           {{ Auth::user()->username }}
           <button type="button" class="btn btn-dark" id="notifications-btn">
             <i class="bi bi-bell"></i>
