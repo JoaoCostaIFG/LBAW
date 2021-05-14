@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 
 class UserController extends Controller
@@ -86,7 +87,10 @@ class UserController extends Controller
             $user->name = $data['name'];
         if(isset($data['about']))
             $user->about = $data['about'];
-        if(isset($data['avatar'])){            
+        if(isset($data['avatar'])){
+            if($user->picture != "default.jpg"){ // Delete old picture
+                Storage::delete('public/'.$user->picture);
+            }
             $path = $request->file('avatar')->store('avatars', 'public');
             $user->picture = $path;
         }

@@ -24,7 +24,7 @@ class User extends Authenticatable {
     ];
 
     protected $fillable = [
-        'username', 'password', 'email'
+        'username', 'password', 'email', 'picture'
     ];
 
     public function getFirstNameAttribute() {
