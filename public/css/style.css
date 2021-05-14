@@ -8,6 +8,10 @@
     --light: #42474a;
 }
 
+@font-face {
+  font-display: swap;
+}
+
 /* BEGIN HEADER */
 body {
     line-height: 1.4;
