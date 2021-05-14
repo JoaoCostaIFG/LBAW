@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="Assembling a community-driven database of knowledge by asking and answering questions.">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -59,7 +60,7 @@
           </div> <!-- .d-flex -->
           <!-- search -->
           <div id="searchModal-toggler">
-            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#searchModal">
+            <button type="button" class="btn btn-outline-success" aria-label="Open search form" data-bs-toggle="modal" data-bs-target="#searchModal">
               <i class="bi-search"></i>
             </button>
           </div>
@@ -99,7 +100,7 @@
 
     <!-- Footer -->
     <footer class="container">
-      <a class="btn btn-secondary" id="go-up-button" href="#" role="button"><i class="bi bi-arrow-up"></i></a>
+      <a class="btn btn-secondary" id="go-up-button" href="#" role="button" aria-label="Go to the top of the page"><i class="bi bi-arrow-up"></i></a>
       <br>
       <hr>
       <div class="row justify-content-between">
