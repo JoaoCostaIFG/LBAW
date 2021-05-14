@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -45,9 +46,9 @@ class CommentController extends Controller
         // create_comment(OwnerUser INT, Body TEXT, DatePost DATE, IdQuestion INT, IdAnswer INT)
         $comment = DB::transaction(function () use ($request){
             if($request->has('question_id')){
-                DB::select("CALL create_comment(?, ?, ?, ?, ?)", [Auth::id(), $request->body, date("Y-m-d"), $request->question_id, null]);
+                DB::select("CALL create_comment(?, ?, ?, ?, ?)", [Auth::id(), $request->body, Carbon::now(), $request->question_id, null]);
             } else {
-                DB::select("CALL create_comment(?, ?, ?, ?, ?)", [Auth::id(), $request->body, date("Y-m-d"), null, $request->answer_id]);
+                DB::select("CALL create_comment(?, ?, ?, ?, ?)", [Auth::id(), $request->body, Carbon::now(), null, $request->answer_id]);
             }
             return Comment::latest('id')->limit(1);
         });
