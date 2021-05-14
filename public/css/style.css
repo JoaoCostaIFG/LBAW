@@ -9,7 +9,7 @@
 }
 
 @font-face {
-  font-display: swap;
+    font-display: swap;
 }
 
 /* BEGIN HEADER */
@@ -275,6 +275,7 @@ body {
 
 /* BEGIN NOTIFICATIONS */
 #toast-container {
+    z-index: 1000;
     position: fixed;
     bottom: 0;
     right: 0;
