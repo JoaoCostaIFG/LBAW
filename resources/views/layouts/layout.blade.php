@@ -66,7 +66,7 @@
           </div>
           <form id="navbarSeachForm" class="d-flex" action="{{ url('search') }}">
             <input class="form-control me-2" name="q" value="{{$q ?? ''}}" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit"><i class="bi-search"></i></button>
+            <button class="btn btn-outline-success" type="submit" aria-label="Search"><i class="bi-search"></i></button>
           </form>
         </div> <!-- .container .d-flex -->
       </nav>
