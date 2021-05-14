@@ -69,3 +69,7 @@ Route::fallback(function() {
   /** This will check for the 404 view page unders /resources/views/errors/404 route */
   return view('errors.404');
 });
+
+Route::get('/linkstorage', function () {
+  Artisan::call('storage:link');
+});
