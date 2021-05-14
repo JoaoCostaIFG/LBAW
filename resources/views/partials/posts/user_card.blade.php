@@ -4,8 +4,10 @@
     <span class="d-block text-center">Deleted User</span>
   </div>
 @else
-  @include('partials.posts.vote', ['post' => $post])
   <div class="row justify-content-center align-items-between text-center">
+    <div class="col-12">
+      @include('partials.posts.vote', ['post' => $post])
+    </div>
 @if (isset($accepted))
   @if ($accepted)
     <i class="col-12 bi bi-check2 text-success fs-1"></i>

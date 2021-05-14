@@ -23,11 +23,11 @@
 
     <!-- auth -->
     @guest
-        <div class="row justify-content-evenly sidebar-buttons">
-        <a class="btn btn-info col-4" href="/login" role="button" aria-label="Go to login page">
+      <div class="row justify-content-evenly sidebar-buttons">
+        <a class="btn btn-info col-auto" href="/login" role="button" aria-label="Go to login page">
           Log in
         </a>
-        <a class="btn btn-primary col-4" href="/register" role="button" aria-label="Go to register page">
+        <a class="btn btn-primary col-auto" href="/register" role="button" aria-label="Go to register page">
           Sign up
         </a>
       </div>
