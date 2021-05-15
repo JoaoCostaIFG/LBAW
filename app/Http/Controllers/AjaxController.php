@@ -24,4 +24,10 @@ class AjaxController extends Controller
         }
         return view('partials.posts.comment', ['comment' => $comment]);
     }
+
+    public function accept_edit_proposal(Request $request)
+    {
+        $proposal_controller = new EditProposalController();
+        $proposal_controller->update($request);        
+    }
 }

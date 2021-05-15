@@ -22,6 +22,11 @@ class EditProposal extends Model
         return $this->hasOne(Post::class, 'id', 'id_post');
     }
 
+    public function id_moderator()
+    {
+        return $this->hasOne(Moderator::class, 'id', 'id_moderator');
+    }
+
     public function scopePending($query) {
         return $query->whereNull('id_moderator');
     }

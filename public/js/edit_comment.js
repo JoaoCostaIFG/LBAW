@@ -3,12 +3,10 @@
 function editComment(comment_id) {
 
     let new_value = document.getElementById("Textarea-edit-" + comment_id).value;
-    console.log(new_value);
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4) {
             let comment = document.getElementById("comment-" + comment_id);
-            console.log(comment);
             if (this.status == 200) {
                 comment.textContent = new_value;
             } else {

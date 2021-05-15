@@ -44,6 +44,7 @@ Route::delete('/api/notifications/{id}', 'NotificationController@delete');
 
 //Ajax
 Route::post('ajax/comment', 'AjaxController@add_comment');
+Route::post('ajax/proposal', 'AjaxController@accept_edit_proposal');
 
 // User
 Route::delete('user', 'UserController@delete')->name('user');

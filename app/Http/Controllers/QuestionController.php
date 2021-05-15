@@ -45,7 +45,7 @@ class QuestionController extends Controller
 
     public function show($id)
     {
-        $question = Question::find($id);
+        $question = Question::findOrFail($id);
         return view("pages.question_page", ['question' => $question]);
     }
 
