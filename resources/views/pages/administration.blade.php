@@ -102,4 +102,6 @@
     </div>
   </div>
 </div>
+
+<script src="js/proposal.js"></script>
 @stop

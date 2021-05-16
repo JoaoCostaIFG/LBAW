@@ -17,6 +17,11 @@ class TopicProposal extends Model
         return $this->hasOne(User::class, 'id', 'id_user');
     }
 
+    public function id_admin()
+    {
+        return $this->hasOne(User::class, 'id', 'id_admin');
+    }
+
     public function scopePending($query) {
         return $query->whereNull('id_admin');
     }

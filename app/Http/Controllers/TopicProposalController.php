@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\EditProposal;
-use App\Models\Post;
+use App\Models\TopicProposal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
-class EditProposalController extends Controller
+class TopicProposalController extends Controller
 {
     public function update(Request $request)
     {
@@ -22,16 +21,15 @@ class EditProposalController extends Controller
         $this->authorize('update', $user);
 
         // Update proposal
-        $proposal = EditProposal::find($request->proposal_id);
+        $proposal = TopicProposal::find($request->proposal_id);
         $proposal->accepted = $request->accepted;
-        $proposal->id_moderator = $user->id;
+        $proposal->id_admin = $user->id;
         $proposal->save();
 
-        // Update Post if proposal was accepted
+        // Create Topic if proposal was accepted
         if($request->accepted){ 
-            $post = Post::find($proposal->id_post);
-            $post->body = $proposal->body;
-            $post->save();
+            $topic_controller = new TopicController();
+            $topic_controller->create($proposal->topic_name);        
         }
 
         return true;
