@@ -19,10 +19,10 @@ if ($notification->notification_achievement) {
     <form method="POST" id="notification-{{$notification->id}}" class="d-flex notification-form" action="{{url("api/notifications/" . $notification->id)}}">
         @csrf
         @method('DELETE')
-        <button type="button" class="btn-close p-0 me-1" data-bs-dismiss="toast" aria-label="Close"></button>
+        <button type="button" class="btn-close p-0 me-1" data-bs-dismiss="toast" aria-label="Dismiss notication"></button>
     </form> 
   </div>
-  <div class="toast-body text-break px-1">
+  <div class="toast-body text-break">
     <a href="{{ url($notification_url) }}">
       {{ $notification->body }}
       @if ($notification->notification_achievement)

@@ -68,7 +68,7 @@
 
 <!-- Notifications -->
 @auth
-    <div class="container-fluid p-3" id="toast-container" style="z-index: 5;">
+    <div class="container-fluid p-3" id="toast-container">
         @each('partials.sidebar.notification', Auth::user()->notifications, 'notification')
     </div>
     <script src="/js/notifications.js"></script>
