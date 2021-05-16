@@ -40,6 +40,7 @@ class EditProposalController extends Controller
     protected function validator(Request $request){
         $validation = Validator::make($request->all(), [
             'accepted' => 'required|boolean',
+            'proposal_id' => 'exists:edit_proposal,id'
         ]);
 
         return $validation;

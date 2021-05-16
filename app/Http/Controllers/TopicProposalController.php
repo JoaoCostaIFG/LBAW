@@ -38,6 +38,7 @@ class TopicProposalController extends Controller
     protected function validator(Request $request){
         $validation = Validator::make($request->all(), [
             'accepted' => 'required|boolean',
+            'proposal_id' => 'exists:topic_proposal,id'
         ]);
 
         return $validation;
