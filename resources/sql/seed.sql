@@ -1069,8 +1069,8 @@ INSERT INTO vote(id_post, id_user, value) VALUES
 
 -- R15
 INSERT INTO edit_proposal(id_post, id_user, id_moderator, body, accepted) VALUES
-  (3, 5, NULL, '<expression 2> if <condition> else <expression 1>', false),
-  (2, 2, 32, 'padoru estás disponivel para dar', false);
+  (3, 5, NULL, '<expression 1> if <condition> else <expression 2>', false),
+  (2, 2, NULL, 'Example Proposal', false);
 
 
 -- R16
