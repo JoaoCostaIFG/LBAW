@@ -28,9 +28,12 @@
       <div
         class="accordion-body d-flex bg-dark flex-wrap justify-content-center"
       >
-        @foreach ($topic_proposals as $topic_proposal)
-        @include('partials.administration.topic_proposal', ['user' =>
-        $topic_proposal->user]) @endforeach
+        @forelse ($topic_proposals as $topic_proposal)
+          @include('partials.administration.topic_proposal', ['user' =>
+          $topic_proposal->user])
+        @empty
+          <p class="m-0"> No pending topic proposals.</p> 
+        @endforelse
       </div>
     </div>
   </div>
@@ -58,8 +61,11 @@
       <div
         class="accordion-body d-flex bg-dark flex-wrap justify-content-center"
       >
-        @foreach ($reports as $report)
-        @include('partials.administration.user_reports') @endforeach
+        @forelse ($reports as $report)
+          @include('partials.administration.user_reports') 
+        @empty
+          <p class="m-0"> No pending reports.</p>
+        @endforelse
       </div>
     </div>
   </div>
@@ -87,8 +93,11 @@
       <div
         class="accordion-body d-flex bg-dark flex-wrap justify-content-center"
       >
-        @foreach ($edit_proposals as $edit_proposal)
-        @include('partials.administration.edit_proposal') @endforeach
+        @forelse ($edit_proposals as $edit_proposal)
+          @include('partials.administration.edit_proposal') 
+        @empty
+          <p class="m-0"> No pending edit proposals.</p>
+        @endforelse
       </div>
     </div>
   </div>

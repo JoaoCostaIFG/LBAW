@@ -3,7 +3,7 @@ $user = $edit_proposal->user;
 $post = $edit_proposal->post;
 $question_url = "question/" . $post->parentQuestion->id;
 ?>
-<div class="container-fluid border rounded m-3 m-sm-1 p-1" style="max-width: 35em;">
+<div class="container-fluid border rounded m-3 m-sm-1 p-1" id="edit-proposal-{{$edit_proposal->id}}" style="max-width: 35em;">
   <div class="row align-items-center p-3">
       <div class="col-12 col-sm-5 align-middle text-center mb-3 mb-sm-0">
           <img src="{{ asset('storage/'.$user->picture) }}" class="rounded img-fluid align-middle" width="120" alt="User profile picture">
@@ -26,7 +26,7 @@ $question_url = "question/" . $post->parentQuestion->id;
                     <i class="bi bi-check2"></i>
                 </button>
                 <button type="button" class="reject-edit btn btn-sm btn-danger mb-1" data-bs-toggle="button"
-                    autocomplete="off" onclick="acceptEdit({{$post->id}}, 0)">
+                    autocomplete="off" onclick="acceptEdit({{$edit_proposal->id}}, 0)">
                     <i class="bi bi-x"></i>
                 </button>
             </span>
