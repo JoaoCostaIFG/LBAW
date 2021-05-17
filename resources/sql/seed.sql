@@ -173,7 +173,8 @@ CREATE TABLE answer_question(
   PRIMARY KEY(id_answer, id_question),
   CONSTRAINT fk_answer
     FOREIGN KEY(id_answer)
-      REFERENCES answer(id),
+      REFERENCES answer(id)
+        ON DELETE CASCADE,
   CONSTRAINT fk_question
     FOREIGN KEY(id_question)
       REFERENCES question(id)
@@ -206,6 +207,7 @@ CREATE TABLE comment(
   CONSTRAINT fk_answer
     FOREIGN KEY(id_answer)
       REFERENCES answer(id)
+        ON DELETE CASCADE
 );
 
 -- R14
@@ -679,6 +681,25 @@ $$
 LANGUAGE plpgsql;
 
 
+CREATE OR REPLACE FUNCTION delete_post() RETURNS TRIGGER
+AS $$
+  BEGIN
+    DELETE FROM post WHERE id = OLD.id;
+    RETURN NEW;
+  END
+$$
+LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION delete_answer() RETURNS TRIGGER
+AS $$
+  BEGIN
+    DELETE FROM answer WHERE id = OLD.id_answer;
+    RETURN NEW;
+  END
+$$
+LANGUAGE plpgsql;
+
+
 -- TRIGGERS
 
 -- Update score
@@ -775,6 +796,34 @@ CREATE TRIGGER post_comment_generalization_trigger
 BEFORE INSERT OR UPDATE ON comment
 FOR EACH ROW
 EXECUTE PROCEDURE post_generalization();
+
+
+-- DELETE POSTS IF A QUESTION, QUESTION OR COMMENT IS DELETED
+DROP TRIGGER IF EXISTS delete_post_trigger ON comment CASCADE;
+CREATE TRIGGER delete_post_trigger
+AFTER DELETE ON comment
+FOR EACH ROW
+EXECUTE PROCEDURE delete_post();
+
+DROP TRIGGER IF EXISTS delete_post_trigger ON answer CASCADE;
+CREATE TRIGGER delete_post_trigger
+AFTER DELETE ON answer
+FOR EACH ROW
+EXECUTE PROCEDURE delete_post();
+
+DROP TRIGGER IF EXISTS delete_post_trigger ON question CASCADE;
+CREATE TRIGGER delete_post_trigger
+AFTER DELETE ON question
+FOR EACH ROW
+EXECUTE PROCEDURE delete_post();
+
+-- DELETE QUESTION WHEN ANSWER_QUESTION IS DELETED
+DROP TRIGGER IF EXISTS delete_answer_trigger ON answer_question CASCADE;
+CREATE TRIGGER delete_answer_trigger
+AFTER DELETE ON answer_question
+FOR EACH ROW
+EXECUTE PROCEDURE delete_answer();
+
 
 DROP RULE IF EXISTS remove_user ON "user" CASCADE;
 CREATE RULE remove_user

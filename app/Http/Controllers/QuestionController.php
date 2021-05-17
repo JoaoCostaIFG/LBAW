@@ -90,7 +90,7 @@ class QuestionController extends Controller
         $question->save();
 
 
-        return redirect()->intended('/question/' . $question->id);        
+        return redirect()->intended('/question/' . $question->id);
     }
 
     public function delete($id){
@@ -104,8 +104,8 @@ class QuestionController extends Controller
         $question = Question::findOrFail($id);
 
         $this->authorize('delete', $question);
-        $question->post->delete();
+        $question->delete();
 
-        return redirect()->intended('/search/');  
+        return redirect()->intended('/search/');
     }
 }
