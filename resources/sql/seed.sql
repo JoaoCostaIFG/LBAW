@@ -143,6 +143,7 @@ CREATE TABLE answer(
   CONSTRAINT fk_post
     FOREIGN KEY(id)
       REFERENCES post(id)
+        ON DELETE CASCADE
 );
 
 -- R11
@@ -158,7 +159,8 @@ CREATE TABLE question(
   closed boolean NOT NULL DEFAULT false,
   CONSTRAINT fk_post
     FOREIGN KEY(id)
-      REFERENCES post(id),
+      REFERENCES post(id)
+        ON DELETE CASCADE,
   CONSTRAINT fk_answer
     FOREIGN KEY(accepted_answer)
       REFERENCES answer(id)
@@ -175,6 +177,7 @@ CREATE TABLE answer_question(
   CONSTRAINT fk_question
     FOREIGN KEY(id_question)
       REFERENCES question(id)
+        ON DELETE CASCADE
 );
 
 -- R13
@@ -194,10 +197,12 @@ CREATE TABLE comment(
   ),
   CONSTRAINT fk_post
     FOREIGN KEY(id)
-      REFERENCES post(id),
+      REFERENCES post(id)
+        ON DELETE CASCADE,
   CONSTRAINT fk_question
     FOREIGN KEY(id_question)
-      REFERENCES question(id),
+      REFERENCES question(id)
+        ON DELETE CASCADE,
   CONSTRAINT fk_answer
     FOREIGN KEY(id_answer)
       REFERENCES answer(id)
@@ -214,7 +219,8 @@ CREATE TABLE vote(
   PRIMARY KEY (id_post, id_user),
   CONSTRAINT fk_post
     FOREIGN KEY(id_post)
-      REFERENCES post(id),
+      REFERENCES post(id)
+        ON DELETE CASCADE,
   CONSTRAINT fk_user
     FOREIGN KEY(id_user)
       REFERENCES "user"(id)
@@ -230,7 +236,8 @@ CREATE TABLE edit_proposal(
   accepted boolean NOT NULL DEFAULT false,
   CONSTRAINT fk_post
     FOREIGN KEY(id_post)
-      REFERENCES post(id),
+      REFERENCES post(id)
+        ON DELETE CASCADE,
   CONSTRAINT fk_user
     FOREIGN KEY(id_user)
       REFERENCES "user"(id),
@@ -257,6 +264,7 @@ CREATE TABLE topic_question(
   CONSTRAINT fk_question
     FOREIGN KEY(id_question)
       REFERENCES question(id)
+        ON DELETE CASCADE
 );
 
 -- R18
@@ -270,7 +278,8 @@ CREATE TABLE report(
   reviewer INTEGER,
   CONSTRAINT fk_post
     FOREIGN KEY(id_post)
-      REFERENCES post(id),
+      REFERENCES post(id)
+        ON DELETE CASCADE,
   CONSTRAINT fk_reporter
     FOREIGN KEY(reporter)
       REFERENCES "user"(id),

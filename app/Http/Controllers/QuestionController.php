@@ -90,7 +90,22 @@ class QuestionController extends Controller
         $question->save();
 
 
-        return redirect()->intended('/question/' . $question->id);
-        
+        return redirect()->intended('/question/' . $question->id);        
+    }
+
+    public function delete($id){
+        $validation = Validator::make(['id' => $id], [
+            'id' => 'required|exists:question,id',
+        ]);
+
+        if ($validation->fails())
+            return back()->withErrors($validation)->withInput($request->all());
+
+        $question = Question::findOrFail($id);
+
+        $this->authorize('delete', $question);
+        $question->post->delete();
+
+        return redirect()->intended('/search/');  
     }
 }

@@ -44,6 +44,6 @@ class QuestionPolicy
      */
     public function delete(User $user, Question $question)
     {
-        return ($user->id == $question->post->id_owner) || $user->hasRole('administrator');
+        return ($user->id == $question->post->id_owner) || $user->hasRole('moderator');
     }
 }

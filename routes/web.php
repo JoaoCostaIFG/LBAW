@@ -32,6 +32,7 @@ Route::post('/question/{id}/close', 'QuestionController@close')->middleware('aut
 Route::put('/question/{id}/answer', 'AnswerController@create');
 Route::get('/search', 'SearchResultsController@search');
 Route::get('/search/tag/{name}', 'SearchResultsController@searchTag');
+Route::post('/question/{id}/delete', 'QuestionController@delete')->middleware('auth');
 
 // API
 Route::get('/api/questions', 'SearchResultsController@searchApi'); // TODO

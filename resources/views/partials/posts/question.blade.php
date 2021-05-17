@@ -32,7 +32,12 @@
             </li>
             @endif
             <!-- Mark as delete --> 
-            <li><a class="dropdown-item" href="#">Delete</a></li>
+            <li>
+              <form method="POST" action="{{ url('/question/' . $question->id . '/delete') }}"  enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <button class="dropdown-item" type="submit">Delete</button>
+              </form>
+            </li>
           </ul>
         </li>
       </ul>
