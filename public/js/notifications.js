@@ -2,6 +2,7 @@
 
 // Select notifications button
 const toastBtn = document.querySelector("#notifications-btn");
+const toastContainer = document.querySelector("#toast-container");
 // Select notifications
 let notifications = document.querySelectorAll('.toast');
 let toastsInstances = []; // Toasts instances
@@ -22,11 +23,13 @@ if (toastBtn != null) {
             active = false;
             toastsInstances.forEach(function (toast) {
                 toast.hide();
+                toastContainer.style.bot = "-999px";
             });
         } else {
             active = true;
             toastsInstances.forEach(function (toast) {
                 toast.show();
+                toastContainer.style.bot = "0";
             });
         }
     });
