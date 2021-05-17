@@ -16,6 +16,7 @@ notifications.forEach(function (toastNode) {
     toastsInstances.push(toast);
 });
 
+
 // Hide / Show notifications on button click
 if (toastBtn != null) {
     toastBtn.addEventListener("click", () => {
@@ -23,14 +24,14 @@ if (toastBtn != null) {
             active = false;
             toastsInstances.forEach(function (toast) {
                 toast.hide();
-                toastContainer.style.bot = "-999px";
             });
+            toastContainer.style.bottom = "-999px";
         } else {
             active = true;
             toastsInstances.forEach(function (toast) {
                 toast.show();
-                toastContainer.style.bot = "0";
             });
+            toastContainer.style.bottom = "0";
         }
     });
 }
