@@ -12,7 +12,7 @@
   @if ($accepted)
     <i class="col-12 bi bi-check2 text-success fs-1"></i>
   @else
-    @auth @if (Auth::id() == $answer->question->post->owner->id && is_null($answer->question->accepted_answer))
+    @auth @if (Auth::id() == $answer->question->post->owner->id && !$answer->question->closed))
     <form class="col-12" method="POST" action="{{ url('/question/' . $answer->question->id . '/close') }}">
       {{ csrf_field() }}
       <input type="hidden" id="id_answer" name="id_answer" value="{{ $answer->id }}">
