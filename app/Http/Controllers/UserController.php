@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Storage;
 class UserController extends Controller
 {
     public function show($id){
+        $validation = Validator::make(['id' => $id], [
+            'id' => 'required|integer|exists:user,id',
+        ]);
+
+        if ($validation->fails())
+            return abort(404);
+
         $user = User::findOrFail($id);
 
         $achievements = Achievement::all();

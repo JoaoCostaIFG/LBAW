@@ -1,4 +1,4 @@
-<div class="container-fluid border rounded m-3 m-sm-1 p-1" id="topic-proposal-{{$topic_proposal->id}}" style="max-width: 35em;">
+<div class="container-fluid border rounded m-3 m-sm-1 p-1 d-flex align-items-center justify-content-center" id="topic-proposal-{{$topic_proposal->id}}" style="max-width: 35em;">
     <div class="row align-items-center p-3">
         <div class="col-12 col-sm-5 align-middle text-center mb-3 mb-sm-0">
             <img src="{{ asset('storage/'.$user->picture) }}" class="rounded img-fluid align-middle" width="120" alt="User profile picture">
@@ -13,7 +13,7 @@
 
             <div class="row align-items-center">
                 <b class="col fs-5">Accept new topic?</b>
-                <span class="col-5 col-sm-4 text-end">
+                <span class="col-6 col-sm-5 text-end">
                     <button type="button" class="btn btn-sm btn-success mb-1" data-bs-toggle="button"
                         autocomplete="off" onclick="processProposal({{$topic_proposal->id}}, 1, 'topic')">
                         <i class="bi bi-check2"></i>

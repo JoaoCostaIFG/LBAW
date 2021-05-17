@@ -39,12 +39,16 @@ function encodeForAjax(data) {
 
 function positiveFeedback(card, accepted) {
   // Create new element
-  let feedback_msg = document.createElement("p");
-  feedback_msg.classList.add("m-1");
-  if (accepted)
+  let feedback_msg = document.createElement("span");
+  card.classList.add("alert");
+  if (accepted){
+    card.classList.add("alert-success");
     feedback_msg.appendChild(document.createTextNode("Proposal Accepted!"));
-  else
+  }
+  else{
+    card.classList.add("alert-danger");
     feedback_msg.appendChild(document.createTextNode("Proposal Rejected!"));
+  }
   // Replace
   card.replaceChild(feedback_msg, card.childNodes[1]);
 }

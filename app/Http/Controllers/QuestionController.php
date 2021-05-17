@@ -45,6 +45,13 @@ class QuestionController extends Controller
 
     public function show($id)
     {
+        $validation = Validator::make(['id' => $id], [
+            'id' => 'required|integer|exists:question,id',
+        ]);
+
+        if ($validation->fails())
+            return abort(404);
+
         $question = Question::findOrFail($id);
         return view("pages.question_page", ['question' => $question]);
     }
