@@ -277,7 +277,7 @@ body {
 #toast-container {
     z-index: 1000;
     position: fixed;
-    bottom: 0;
+    bottom: -999px;
     right: 0;
 }
 /* END NOTIFICATIONS */
