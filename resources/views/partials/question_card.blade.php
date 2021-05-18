@@ -33,10 +33,6 @@
       <div class="col-7 col-md-6 col-lg-7 col-xl-8 d-none d-sm-block d-grid gap-1 p-0">
         @foreach ($question->topics as $topic)
           <a class="badge bg-primary text-decoration-none" href="/search/tag/{{$topic->name}}">{{ $topic->name }}</a>
-          <a class="badge bg-primary text-decoration-none" href="/search/tag/{{$topic->name}}">{{ $topic->name }}</a>
-          <a class="badge bg-primary text-decoration-none" href="/search/tag/{{$topic->name}}">{{ $topic->name }}</a>
-          <a class="badge bg-primary text-decoration-none" href="/search/tag/{{$topic->name}}">{{ $topic->name }}</a>
-          <a class="badge bg-primary text-decoration-none" href="/search/tag/{{$topic->name}}">{{ $topic->name }}</a>
         @endforeach
       </div>
       <!-- Question Date -->
