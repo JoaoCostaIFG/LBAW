@@ -57,7 +57,7 @@
         </ul>
       @endauth
     @endif
-    <p class="col-12 text-break">{{ $question->post->body }}</p>
+    <p class="col-12 text-break">{!! nl2br(e($question->post->body)) !!}</p>
   </div>
 
   @auth

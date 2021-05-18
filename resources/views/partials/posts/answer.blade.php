@@ -7,7 +7,7 @@
       'answer' => $answer])
   </div>
   <div class="col-9 col-md-10 col-lg-11 row align-content-between mb-1 ms-1 border-start border-dark">
-    <p class="text-break">{{ $answer->post->body }}</p>
+    <p class="text-break">{!! nl2br(e($answer->post->body)) !!} </p>
 @auth
   <div class="col-12 d-flex justify-content-end align-items-center gap-1">
     <button class="btn btn-sm btn-outline-danger" type="button">Report</button>
