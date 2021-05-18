@@ -276,7 +276,7 @@ CREATE TABLE report(
   "date" Today NOT NULL CHECK ("date" <= CURRENT_TIMESTAMP), -- reports can't be made in the future
   reason TEXT,
   PRIMARY KEY(id_post, reporter),
-  "state" report_state,
+  "state" report_state DEFAULT 'pending',
   reviewer INTEGER,
   CONSTRAINT fk_post
     FOREIGN KEY(id_post)

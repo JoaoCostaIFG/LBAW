@@ -54,6 +54,7 @@ Route::get('user', 'UserController@showOwn');
 Route::get('user/edit', 'UserController@edit')->middleware('auth');
 Route::patch('user', 'UserController@update')->name('update_user');
 Route::post('users/{id}/ban', 'UserController@ban')->middleware('role:administrator')->name('ban_user');
+Route::post('/user/{post_id}/report', 'UserController@report')->middleware('auth');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login'); // TODO
