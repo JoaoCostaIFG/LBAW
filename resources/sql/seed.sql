@@ -860,7 +860,8 @@ DO INSTEAD(
       email = 'deleteduser' || Old.id || '@segmentationfault.com',
       about = NULL,
       picture = NULL,
-      reputation = 0
+      reputation = 0,
+      isdeleted = true
     WHERE id = Old.id;
     DELETE FROM "achieved" WHERE id_user = Old.id;
     DELETE FROM "notification" WHERE id = Old.id;
