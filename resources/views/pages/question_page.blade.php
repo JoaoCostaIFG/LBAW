@@ -8,6 +8,8 @@
 
 @section('content')
 
+<!-- Report Modal -->
+@include('partials.posts.report')
 <!-- questions -->
 @include('partials.posts.question')
 <!-- answers -->
@@ -33,5 +35,4 @@
     </form>
   </div>
 @endauth
-
 @stop
