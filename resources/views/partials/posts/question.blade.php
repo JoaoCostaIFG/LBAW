@@ -33,6 +33,14 @@
       <div id="question-options" class="col-auto justify-content-center">
         <!--Check if is moderator-->
         <ul class="col-12 nav nav-pills">
+          <form method="POST" id="bountySlider" class="me-1 align-items-center justify-content-end gap-1" action="{{ url('/question/' . $question->id . '/add_bounty')}}" enctype="multipart/form-data">
+            <button class="btn btn-sm btn-info" type="submit">Add Bounty</button>
+            <label for="bounty" class="form-label m-0" id="bountyValue"><b>Bounty</b> 0</label>
+            <input class="form-range w-25" type="range" name="bounty" value="0"
+            min="{{$question->body}}" max="{{ min(500, Auth::user()->reputation) }}" step="1" id="bounty"
+              onmousemove="document.getElementById('bountyValue').innerHTML = '<b>Bounty</b> ' + document.getElementById('bounty').value">
+          </form>
+
           <li class="nav-item dropdown ms-auto">
             <button class="btn btn-sm btn-secondary" data-bs-toggle="dropdown">
               <i class="bi bi-three-dots-vertical"></i>
@@ -60,6 +68,16 @@
               @endif 
               <li>
                 <a class="dropdown-item" href="{{ route('question.edit', ['id' => $question->id]) }}">Edit Question</a>
+              </li>
+              <li>
+                @auth
+                  @if($question->bounty == 0)
+                    <script src="{{ asset('js/add_bounty.js') }}" defer></script>
+                    <button class="dropdown-item" type="" onClick="toggleAddBounty()">
+                      Add Bounty
+                    </button>
+                  @endif
+                @endauth
               </li>
             </ul>
           </li>

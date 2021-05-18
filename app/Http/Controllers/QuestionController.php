@@ -118,6 +118,7 @@ class QuestionController extends Controller
         DB::transaction(function () use ($question, $data) {
             if (isset($data["bounty"]))
                 Auth::user()->reputation = Auth::user()->reputation - $data["bounty"];
+            Auth::user()->save();
             $question->update($data);
             $question->post->update(["body" => $data["body"]]);
         });
