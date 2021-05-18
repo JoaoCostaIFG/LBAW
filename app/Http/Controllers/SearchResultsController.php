@@ -74,8 +74,9 @@ class SearchResultsController extends Controller
         $this->filterUsersAndQuestions($request, $users, $questions);
 
         return view("pages.search_results", [
-            'questions' => $questions->paginate(5)->withQueryString(),
-            'users' => $users->paginate(16)->withQueryString(), 'q' => $search_data
+            'questions' => $questions->paginate(5)->withQueryString()->fragment('questions'),
+            'users' => $users->paginate(16)->withQueryString()->fragment('users'), 
+            'q' => $search_data
         ]);
     }
 
