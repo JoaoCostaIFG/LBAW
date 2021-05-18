@@ -21,11 +21,12 @@ Route::view('/home', 'pages.index')->name('home');
 Route::view('/about', 'pages.about');
 Route::get('/news', 'NewsController@show');
 Route::get('/leaderboard', 'LeaderboardController@show');
-Route::get('/question/{id}', 'QuestionController@show');
 Route::get('/profile/{id}', 'UserController@show')->name('profile');
 Route::get('administration', 'AdministrationController@show')->middleware('role:moderator');
 
 // Posts
+Route::get('/question/{id}', 'QuestionController@showWithId');
+Route::get('/question/{id}/{title}', 'QuestionController@show')->name('question');
 Route::post('/ask', 'QuestionController@store')->name('ask');
 Route::get('/ask', 'QuestionController@create')->middleware('auth');
 Route::post('/question/{id}/close', 'QuestionController@close')->middleware('auth');
