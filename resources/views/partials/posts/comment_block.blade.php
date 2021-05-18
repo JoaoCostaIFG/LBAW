@@ -9,7 +9,7 @@
       <div class="col-12 dropdown-menu" >
         <form class="container">
           <h4>Your Comment</h4>
-          <textarea class="form-control" id="Textarea{{$post->id}}" rows="7"></textarea>
+          <textarea id="Textarea{{$post->id}}" class="form-control"></textarea>
           <label class="visually-hidden" for="Textarea{{$post->id}}">Add comment</label>
           <br>
           <div class="text-end">

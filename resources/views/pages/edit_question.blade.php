@@ -25,7 +25,7 @@
   <div class="input-group mt-2">
     <label for="question-body" class="form-label"><b>Question details</b><span class="text-danger"> *</span></label>
     <div class="input-group has-validation">
-      <textarea class="form-control {{ $errors->has('body') ? 'is-invalid' : ''}}" id="body" name="body" placeholder="Enter question details..." rows=10>{{ old('body') ?? $question->post->body }}</textarea>
+      <textarea class="form-control {{ $errors->has('body') ? 'is-invalid' : ''}}" id="body" name="body" placeholder="Enter question details...">{{ old('body') ?? $question->post->body }}</textarea>
       @if ($errors->has('body'))
       <div class="invalid-feedback">
         {{ $errors->first('body') }}
@@ -55,7 +55,7 @@
         <span class="card-title"><b>Topics</b></span>
         <hr class="my-1">
         <div class="mt-3 has-validation">
-          <select class="topic-list form-control {{ $errors->has('topics') ? 'is-invalid' : ''}}"
+          <select class="no-resize-ta topic-list form-control {{ $errors->has('topics') ? 'is-invalid' : ''}}"
              name="topics[]" value="" rows=2 id="topics" placeholder="Enter topic tags" multiple required>
             @foreach ($topics as $topic)
               @php
