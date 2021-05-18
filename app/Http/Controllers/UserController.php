@@ -15,18 +15,17 @@ use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-    public function show($id){
-        $validation = Validator::make(['id' => $id], [
-            'id' => 'required|integer|exists:user,id',
+    public function show($username) {
+        $validation = Validator::make(['username' => $username], [
+            'username' => 'required|exists:user,username',
         ]);
 
         if ($validation->fails())
             return abort(404);
 
-        $user = User::findOrFail($id);
+        $user = User::where('username', $username)->get()[0];
 
         $achievements = Achievement::all();
-        
         return view("pages.profile", ['user' => $user, 'achievements' => $achievements ]);
     }
 
@@ -66,6 +65,12 @@ class UserController extends Controller
 
         Auth::logout();
         return redirect()->intended('register');
+    }
+
+    public function ban($username) {
+        $id = User::where('username', $username)->get()[0]->id;
+        DB::delete('DELETE FROM "user" where username = ?', [$username]);
+        return redirect()->route('profile', ['DeletedUser' . $id]);
     }
 
     public function edit(){

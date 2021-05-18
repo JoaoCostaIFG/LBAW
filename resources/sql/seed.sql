@@ -699,6 +699,15 @@ AS $$
 $$
 LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION delete_notification() RETURNS TRIGGER
+AS $$
+  BEGIN
+    DELETE FROM notification WHERE id = OLD.id;
+    RETURN NEW;
+  END
+$$
+LANGUAGE plpgsql;
+
 
 -- TRIGGERS
 
@@ -823,6 +832,19 @@ CREATE TRIGGER delete_answer_trigger
 AFTER DELETE ON answer_question
 FOR EACH ROW
 EXECUTE PROCEDURE delete_answer();
+
+--DELETE NOTICATION WHEN A CHILD NOTIFICATION IS REMOVED
+DROP TRIGGER IF EXISTS delete_notification_trigger ON notification_achievement CASCADE;
+CREATE TRIGGER delete_notification_trigger
+AFTER DELETE ON notification_achievement
+FOR EACH ROW
+EXECUTE PROCEDURE delete_notification();
+
+DROP TRIGGER IF EXISTS delete_notification_trigger ON notification_post CASCADE;
+CREATE TRIGGER delete_notification_trigger
+AFTER DELETE ON notification_post
+FOR EACH ROW
+EXECUTE PROCEDURE delete_notification();
 
 
 DROP RULE IF EXISTS remove_user ON "user" CASCADE;

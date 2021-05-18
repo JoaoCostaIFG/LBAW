@@ -3,7 +3,7 @@
     {{ $place }}
   </th>
   <td class="text-center">
-    <a class="fw-bold" href="/profile/{{ $user->id }}">
+    <a class="fw-bold" href="/profile/{{ $user->username }}">
       {{ $user->username }}
     </a>
   </td>

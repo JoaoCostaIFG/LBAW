@@ -51,7 +51,7 @@
               Deleted User
             </span>
           @else
-            <a href="/profile/{{ $question->post->owner->id }}">
+            <a href="/profile/{{ $question->post->owner->username }}">
               {{ $question->post->owner->username }}
             </a>
             <!-- Owner Reputation -->
