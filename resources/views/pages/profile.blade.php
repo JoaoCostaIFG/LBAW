@@ -57,7 +57,7 @@
 <!-- Profile -->
 <div class="container p-2 text-center">
   <img
-    src="{{ asset('storage/'.$user->picture) }}"
+    src="{{ asset('storage/' . $user->getPfp()) }}"
     id="profile-picture"
     class="img-thumbnail rounded"
     alt="User profile picture"

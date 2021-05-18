@@ -38,6 +38,12 @@ class User extends Authenticatable {
         return $split[1];
     }
 
+    public function getPfp() {
+        if (is_null($this->picture))
+          return "default.jpg";
+        return $this->picture;
+    }
+
     // Relations
     public function posts()
     {
