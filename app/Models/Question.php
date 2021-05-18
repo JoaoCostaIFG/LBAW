@@ -13,6 +13,10 @@ class Question extends Model
     protected $table = "question";
     public $timestamps = false;
 
+    protected $fillable = [
+        "title",
+    ];
+
     public static function create($data) {
         // OwnerUser INT, Body TEXT, DatePost DATE, Title TEXT, Bounty INT, Closed BOOLEAN
         DB::beginTransaction();

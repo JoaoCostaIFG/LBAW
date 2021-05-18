@@ -48,6 +48,10 @@
                   <button class="dropdown-item" type="submit">Delete</button>
                 </form>
               </li>
+
+              <li>
+                <a class="dropdown-item" href="{{route('question.edit', ['id' => $question->id])}}">Edit Question</button>
+              </li>
             </ul>
           </li>
         </ul>

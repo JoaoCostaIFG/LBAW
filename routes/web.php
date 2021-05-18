@@ -10,6 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+use App\Http\Controllers\QuestionController;
 use \App\Models\User;
 use \App\Models\Question;
 use \App\Models\Post;
@@ -33,6 +35,8 @@ Route::put('/question/{id}/answer', 'AnswerController@create');
 Route::get('/search', 'SearchResultsController@search');
 Route::get('/search/tag/{name}', 'SearchResultsController@searchTag');
 Route::post('/question/{id}/delete', 'QuestionController@delete')->middleware('auth');
+Route::get('/question/{id}/edit', 'QuestionController@showedit')->name('question.edit');
+Route::patch('/question/{id}/edit', 'QuestionController@update');
 
 // API
 Route::get('/api/questions', 'SearchResultsController@searchApi'); // TODO
