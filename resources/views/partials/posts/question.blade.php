@@ -74,9 +74,14 @@
                   </form>
                 </li>
               @endif 
-              <li>
-                <a class="dropdown-item" href="{{ route('question.edit', ['id' => $question->id]) }}">Edit Question</a>
-              </li>
+              @auth
+                @if ($question->post->owner->id == Auth::id() || Auth::user()->hasRole('moderator'))
+                  <li>
+                    {{Auth::id()}}
+                    <a class="dropdown-item" href="{{ route('question.edit', ['id' => $question->id]) }}">Edit Question</a>
+                  </li>
+                @endif
+              @endauth
               <li>
                 @auth
                   @if($question->bounty == 0)

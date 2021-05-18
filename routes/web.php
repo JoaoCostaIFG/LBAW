@@ -74,8 +74,8 @@ Route::post('register', 'Auth\RegisterController@register');
 
 // TODO remove
 Route::get('/test', function() {
-  $a = Question::search("python array");
-  dd($a->get());
+  $a = DB::select('select * from moderator');
+  dd($a);
 });
 
 Route::fallback(function() {
