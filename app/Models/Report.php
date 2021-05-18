@@ -14,7 +14,7 @@ class Report extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'reporter', 'id_post'
+        'reporter', 'id_post', 'reason'
     ];
 
     public function reporter()

@@ -59,7 +59,9 @@
           </ul>
         @endif
         <!-- report button -->
-        <button class="btn btn-sm btn-outline-danger" type="button">Report</button>
+        <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" 
+          data-bs-target="#reportModal" data-bs-user="{{$question->post->owner->username}}" data-bs-post="{{$question->post->id}}">Report</button>
+
       @endauth
     </div>
 
