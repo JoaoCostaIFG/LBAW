@@ -54,7 +54,6 @@ class QuestionController extends Controller
             return abort(404);
 
         $question = Question::findOrFail($id);
-        $title = str_replace(' ', '-', $title);
         $actual_title = preg_replace( "/[^A-Za-z0-9 ]/", '', $question->title);
         $actual_title = str_replace(' ', '-', $actual_title);
         if ($title != $actual_title)
