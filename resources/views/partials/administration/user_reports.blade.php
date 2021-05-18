@@ -3,7 +3,7 @@ $user = $report->post->owner;
 $question_url = 'question/' . $report->post->parentQuestion->id;
 $type = $report->post->type;
 ?>
-<div class="container-fluid border rounded m-3 m-sm-1 p-1" style="max-width: 35em;">
+<div class="container-fluid border rounded m-3 m-sm-1 p-1" style="max-width: 35em;" id="user-report-p{{$report->post->id}}r{{$report->reporter}}">
     <div class="row align-items-center p-3">
         <div class="col-12 col-sm-5 align-middle text-center mb-3 mb-sm-0">
             <img src="{{ asset('storage/'.$user->picture) }}" class="rounded img-fluid align-middle" width="120" alt="User profile picture">
@@ -27,11 +27,11 @@ $type = $report->post->type;
                 <b class="col fs-5">Ban User?</b>
                 <span class="col-5 col-sm-4 text-end">
                     <button type="button" class="btn btn-sm btn-success mb-1"
-                        data-bs-toggle="button" autocomplete="off">
+                        data-bs-toggle="button" autocomplete="off" onclick="processUserReport({{$report->post->id}}, {{$report->reporter}}, 1)">
                         <i class="bi bi-check2"></i>
                     </button>
                     <button type="button" class="btn btn-sm btn-danger mb-1" data-bs-toggle="button"
-                        autocomplete="off">
+                        autocomplete="off" onclick="processUserReport({{$report->post->id}}, {{$report->reporter}}, 0)">
                         <i class="bi bi-x"></i>
                     </button>
                 </span>

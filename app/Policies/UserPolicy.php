@@ -20,4 +20,9 @@ class UserPolicy
         // Authenticated users can report users
         return Auth::check() && $user->id !== $user_model->id;
     }
+
+    public function ban(User $user, User $user_model){
+        // Authenticated users can report users
+        return Auth::check() && $user->id !== $user_model->id && $user->hasRole('administrator');
+    }
 }

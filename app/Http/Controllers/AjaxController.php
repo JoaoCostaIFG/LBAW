@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Validator;
 
 class AjaxController extends Controller
 {
@@ -35,5 +36,11 @@ class AjaxController extends Controller
     {
         $proposal_controller = new TopicProposalController();
         $proposal_controller->update($request);       
+    }
+
+    public function proccess_user_report(Request $request)
+    {
+        $report_controller = new ReportController();
+        $report_controller->process($request); 
     }
 }
