@@ -18,4 +18,10 @@ class PostsTest extends TestCase
         $response = $this->actingAs(User::find(1))->post('/user/ask', ['title' => 'aaaaa', 'bounty' => 0, 'body' => 'xxxxxasdasd', 'topics' => [[]]]);
         $response->assertStatus(405);
     }
+
+    public function testAddBounty()
+    {
+        $response = $this->actingAs(User::find(9))->post('/question/18/addBounty', ['bounty' => 5]);
+        $response->assertStatus(302);
+    }
 }

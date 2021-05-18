@@ -20,9 +20,6 @@ class UserTest extends TestCase
 
     public function testRegisterUser() {
         $response = $this->post('/register', ['username' => 'Deleted User1', 'email' => 'aa@gmail.com', 'password' => '123456', 'password_confirmation' => '123456']);
-        $response->dump();
-        print_r(session('errors'));
         $response->assertStatus(302);
     }
 }
-

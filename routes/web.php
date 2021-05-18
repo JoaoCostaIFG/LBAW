@@ -26,17 +26,19 @@ Route::get('/leaderboard', 'LeaderboardController@show');
 Route::get('administration', 'AdministrationController@show')->middleware('role:moderator');
 
 // Posts
-Route::get('/question/{id}/edit', 'QuestionController@showedit')->name('question.edit');
-Route::patch('/question/{id}/edit', 'QuestionController@update');
-Route::get('/question/{id}', 'QuestionController@showWithId');
-Route::get('/question/{id}/{title}', 'QuestionController@show')->name('question');
-Route::post('/ask', 'QuestionController@store')->name('ask');
-Route::get('/ask', 'QuestionController@create')->middleware('auth');
-Route::post('/question/{id}/close', 'QuestionController@close')->middleware('auth');
 Route::put('/question/{id}/answer', 'AnswerController@create');
 Route::get('/search', 'SearchResultsController@search');
 Route::get('/search/tag/{name}', 'SearchResultsController@searchTag');
+// Questions
+Route::get('/question/{id}', 'QuestionController@showWithId');
+Route::get('/question/{id}/{title}', 'QuestionController@show')->name('question');
+Route::get('/question/{id}/edit', 'QuestionController@showedit')->name('question.edit');
+Route::patch('/question/{id}/edit', 'QuestionController@update');
 Route::post('/question/{id}/delete', 'QuestionController@delete')->middleware('auth');
+Route::post('/ask', 'QuestionController@store')->name('ask');
+Route::get('/ask', 'QuestionController@create')->middleware('auth');
+Route::post('/question/{id}/close', 'QuestionController@close')->middleware('auth');
+Route::post('/question/{id}/add_bounty', 'QuestionController@addBounty')->middleware('auth');
 
 // API
 Route::get('/api/questions', 'SearchResultsController@searchApi'); // TODO
@@ -82,5 +84,4 @@ Route::fallback(function() {
 });
 
 Route::get('/linkstorage', function () {
-  Artisan::call('storage:link');
 });

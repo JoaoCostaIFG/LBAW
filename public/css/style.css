@@ -422,6 +422,7 @@ footer {
 }
 
 #bountySlider {
+    background-color: #222;
     display: none;
 }
 /* END QUESTION PAGE */

@@ -188,4 +188,31 @@ class QuestionController extends Controller
 
         return redirect()->intended('/search/');
     }
+
+    public function addBounty($id, Request $request) {
+        $bounty = $request->input('bounty');
+        $validation = Validator::make(['id' => $id, 'bounty' => $bounty], [
+            'id' => 'required|exists:question,id',
+            'bounty' => 'required|integer|min:0|max:500'
+        ]);
+
+        if ($validation->fails())
+            return back()->withErrors($validation)->withInput($request->all());
+        $question = Question::find($id);
+        if ($question->closed)
+            return back()->withErrors(['id' => 'Cannot assign bounty to a question which is closed!'])
+                ->withInput($request->input());
+        if ($question->bounty != 0)
+            return back()->withErrors(['bounty' => 'Cannot assign bounty to a question which already has a bounty'])
+                ->withInput($request->input());
+        if ($bounty > Auth::user()->reputation)
+            return back()->withErrors(['bounty' => 'Your defined bounty cannot excede your reputation'])
+                ->withInput($request->input());
+
+        $question->bounty = $bounty;
+        Auth::user()->reputation = Auth::user()->reputation - $bounty;
+        Auth::user()->save();
+        $question->save();
+        return redirect()->intended('/question/' . $id);
+    }
 }
