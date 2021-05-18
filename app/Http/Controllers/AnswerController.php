@@ -37,12 +37,10 @@ class AnswerController extends Controller
 
 
         // create_answer(OwnerUser INT, Body TEXT, DatePost DATE, IdQuestion INT)
-        // $answer = DB::transaction(function () use ($request) {
+        DB::transaction(function () use ($request) {
             DB::select("CALL create_answer(?, ?, ?, ?)", [Auth::id(), $request->body, Carbon::now(), $request->id]);
-            // return Answer::latest('id')->limit(1);
-        // });
-
-        echo Answer::latest('id')->first();
+            return Answer::latest('id')->limit(1);
+        });
 
         return redirect()->back();
     }
