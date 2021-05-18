@@ -9,7 +9,6 @@
   <div class="col-10 col-sm-11 row justify-content-end mb-1 ms-1 pb-2 border-start border-dark">
     <!-- answer body -->
     <p class="col-12 text-break ps-0 pe-45">{!! nl2br(e($answer->post->body)) !!} </p>
-    
     <div class="offset-0 col-12 offset-sm-7 col-sm-5 offset-md-8 col-md-4 offset-lg-9 col-lg-3 offset-xxl-10 col-xxl-2 row gx-0 align-items-center gap-1 pt-1">
       <div class="col-12">
         <span class="text-muted">Posted {{ (new \Carbon\Carbon($answer->post->date))->diffForHumans() }}</span>

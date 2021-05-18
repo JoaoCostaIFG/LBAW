@@ -163,7 +163,7 @@ class UserController extends Controller
 
         // Check if report is already registered
         if (Report::where('reporter', '=', $user->id)->where('id_post', '=', $data['post_id'])->exists()){
-            return back()->with('fail','User report already registered.');
+            return back()->with('fail','Failed to report user: User report was already registered.');
         }
         
         // Authorize report creation
@@ -177,7 +177,7 @@ class UserController extends Controller
             'reason' => $data['reason']
         ]);
 
-        return back()->with('status','User reported successfully!');
+        return back()->with('status','Success: User reported successfully!');
     }
 }
 

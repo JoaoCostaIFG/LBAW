@@ -22,9 +22,7 @@
   @auth
     <!-- report button -->
     <div class="col-auto align-self-center">
-      <button type="button" class="report-btn btn btn-sm btn-outline-danger bi bi-flag"
-        data-bs-toggle="modal" data-bs-target="#reportModal" data-bs-user="{{$post->owner->username}}"
-        data-bs-post="{{$post->id}}" aria-label="report user"></button>
+      @include('partials.posts.report_button', ['post' => $post])
     </div>
   @endauth
 </div>
