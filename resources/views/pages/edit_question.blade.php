@@ -35,13 +35,16 @@
   </div>
 
   <div class="row input-group justify-content-center my-3 gx-0">
+    @if($question->bounty == 0)
     <div id="bounty-slider" class="col-12 col-md-4 col-lg-3 card p-1">
       <div class="card-body col-auto">
         <span class="card-title"><b>Bounty</b></span>
         <hr class="my-1">
         <div class="text-center mt-1">
           <label for="bounty" class="form-labelr" id="bountyValue">{{ old('bounty') ?? $question->bounty }}</label>
-          <input type="range" name="bounty" class="form-range {{ $errors->has('bounty') ? 'is-invalid' : ''}}" value="{{ old('bounty') ?? $question->bounty }}" min="0" max="500" step="1" id="bounty" onmousemove="document.getElementById('bountyValue').innerText = document.getElementById('bounty').value">
+          <input type="range" name="bounty" class="form-range {{ $errors->has('bounty') ? 'is-invalid' : ''}}" value="{{ old('bounty') ?? $question->bounty }}"
+           min="{{$question->body}}" max="{{ min(500, Auth::user()->reputation) }}" step="1" id="bounty"
+            onmousemove="document.getElementById('bountyValue').innerText = document.getElementById('bounty').value">
           @if ($errors->has('bounty'))
           <div class="invalid-feedback">
             {{ $errors->first('bounty') }}
@@ -50,6 +53,7 @@
         </div>
       </div>
     </div>
+    @endif
     {{-- <div id="topic-input" class="col-12 col-md-8 col-lg-6 card p-1">
       <div class="card-body">
         <span class="card-title"><b>Topics</b></span>

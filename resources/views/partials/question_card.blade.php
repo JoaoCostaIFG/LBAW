@@ -28,39 +28,43 @@
         <i class="bi bi-check2 text-success text-end fs-1 ms-auto"></i>
       @endif
     </div>
-    <div class="w-100 gap-1 d-flex flex-row align-items-center justify-content-between align-self-start">
+    <div class="w-100 row gx-0 justify-content-between align-items-center align-self-start">
       <!-- Question Topics -->
-      <div class="d-none d-sm-block d-grid gap-1 mt-0">
+      <div class="col-7 col-md-6 col-lg-7 col-xl-8 d-none d-sm-block d-grid gap-1 p-0">
         @foreach ($question->topics as $topic)
           <a class="badge bg-primary text-decoration-none" href="/search/tag/{{$topic->name}}">{{ $topic->name }}</a>
         @endforeach
       </div>
       <!-- Question Date -->
-      <div class="d-flex flex-row gap-3 align-items-center">
+      <div class="question-card-date col-8 col-md-6 col-lg-5 col-xl-4 d-none d-md-flex flex-row align-items-center p-0">
         <span class="date align-self-end" data-date={{$question->post->date}}>
           Posted {{(new \Carbon\Carbon($question->post->date))->diffForHumans()}}
         </span>
         <!-- Author User Info -->
         <!-- User Profile Pic  -->
-        <img class="d-none d-md-block rounded-2 fit-cover" src="{{ asset('storage/'.$question->post->owner->picture) }}" alt="User profile picture" width="40" height="40">
+        <img class="rounded-2 fit-cover" src="{{ asset('storage/'.$question->post->owner->getPfp()) }}"
+         alt="User profile picture" width="40" height="40">
         <div class="d-flex flex-row flex-md-column justify-content-center align-items-start">
           <!-- Owner Username -->
           <span class="d-md-none">by&nbsp;</span>
-          @if (is_null($question->post->owner->username))
-            <span class="d-none d-md-block">
-              Deleted User
-            </span>
-          @else
-            <a href="/profile/{{ $question->post->owner->username }}">
-              {{ $question->post->owner->username }}
-            </a>
-            <!-- Owner Reputation -->
-            <span class="d-none d-md-block">
-              {{ $question->post->owner->reputation }}
-              <i class="bi bi-award"></i>
-            </span>
-          @endif
+          <a href="/profile/{{ $question->post->owner->username }}">
+            {{ $question->post->owner->username }}
+          </a>
+          <!-- Owner Reputation -->
+          <span>
+            {{ $question->post->owner->reputation }}
+            <i class="bi bi-award"></i>
+          </span>
         </div>
+      </div>
+
+      <div class="question-card-date col-5 d-md-none d-flex flex-row align-items-center p-0">
+        <span class="date align-self-end" data-date={{$question->post->date}}>
+          Posted {{(new \Carbon\Carbon($question->post->date))->diffForHumans()}} by&nbsp;
+          <a href="/profile/{{ $question->post->owner->username }}">
+            {{ $question->post->owner->username }}
+          </a>
+        </span>
       </div>
     </div>
   </div>

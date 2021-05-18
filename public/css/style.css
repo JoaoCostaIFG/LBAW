@@ -420,4 +420,8 @@ footer {
     top: 0;
     right: 0;
 }
+
+#bountySlider {
+    display: none;
+}
 /* END QUESTION PAGE */

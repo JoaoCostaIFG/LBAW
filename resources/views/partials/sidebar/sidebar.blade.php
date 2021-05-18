@@ -68,5 +68,5 @@
     <div class="container-fluid p-3" id="toast-container">
         @each('partials.sidebar.notification', Auth::user()->notifications, 'notification')
     </div>
-    <script src="/js/notifications.js"></script>
+    <script src="/js/notifications.js" defer></script>
 @endauth
