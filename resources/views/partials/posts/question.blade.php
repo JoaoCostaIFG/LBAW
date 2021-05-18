@@ -24,9 +24,8 @@
     <div class="col-12 d-flex justify-content-start align-items-center gap-2">
       @auth
         <!-- report button -->
-        <button type="button" class="report-btn btn btn-sm btn-outline-danger bi bi-flag"
-          data-bs-toggle="modal" data-bs-target="#reportModal" data-bs-user="{{$question->post->owner->username}}"
-          data-bs-post="{{$question->post->id}}" aria-label="report user"></button>
+        <!-- report button -->
+        @include('partials.posts.report_button', ['post' => $question->post])
         <!-- Options -->
         @if (Auth::user()->hasRole('moderator'))
           <!--Check if is moderator-->

@@ -20,10 +20,8 @@
           <i class="bi bi-pencil-square"></i>
         </button>
 
-        <button type="button" class="report-btn btn btn-sm btn-outline-danger bi bi-flag"
-          data-bs-toggle="modal" data-bs-target="#reportModal" data-bs-user="{{$comment->post->owner->username}}"
-          data-bs-post="{{$comment->post->id}}" aria-label="report user">
-        </button>
+        <!-- report button -->
+        @include('partials.posts.report_button', ['post' => $comment->post])
 
         <div class="dropdown-menu"> <!-- aria-labelledby="commentEditDropdownLink" -->
           <form class="container">
