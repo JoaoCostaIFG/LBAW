@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Report;
+use App\Models\Post;
 use App\Models\Achievement;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -13,18 +15,17 @@ use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-    public function show($id){
-        $validation = Validator::make(['id' => $id], [
-            'id' => 'required|integer|exists:user,id',
+    public function show($username) {
+        $validation = Validator::make(['username' => $username], [
+            'username' => 'required|exists:user,username',
         ]);
 
         if ($validation->fails())
             return abort(404);
 
-        $user = User::findOrFail($id);
+        $user = User::where('username', $username)->get()[0];
 
         $achievements = Achievement::all();
-        
         return view("pages.profile", ['user' => $user, 'achievements' => $achievements ]);
     }
 
@@ -66,9 +67,10 @@ class UserController extends Controller
         return redirect()->intended('register');
     }
 
-    public function ban($id) {
-        DB::delete('DELETE FROM "user" where id = ?', [$id]);
-        return redirect()->route('profile', [$id]);
+    public function ban($username) {
+        $id = User::where('username', $username)->get()[0]->id;
+        DB::delete('DELETE FROM "user" where username = ?', [$username]);
+        return redirect()->route('profile', ['DeletedUser' . $id]);
     }
 
     public function edit(){
@@ -140,6 +142,41 @@ class UserController extends Controller
         ]);
 
         return $validation;
+    }
+
+    public function report($post_id){
+        // Check user is authenticated
+        if (!Auth::check()) {
+            return back()->withErrors([
+                'user' => 'You are not logged in']);
+        }
+        $user = Auth::user();
+        
+        // Validation
+        $validation = Validator::make(['post_id' => $post_id], [
+            'post_id' => 'required|integer|exists:post,id'
+        ]);
+
+        if ($validation->fails())
+            return back()->withErrors($validation);
+
+        // Check if report is already registered
+        if (Report::where('reporter', '=', $user->id)->where('id_post', '=', $post_id)->exists()){
+            return back()->with('fail','User reported already registered.');
+        }
+
+        $post = Post::find($post_id);
+        $user_to_report = User::find($post->owner->id);
+
+        // Authorize report creation
+        $this->authorize('report', $user_to_report);
+
+        Report::create([
+            'post_id' => $post->id,
+            'user_id' => $user->id
+        ]);
+
+        return back()->with('status','User reported successfully!');
     }
 }
 

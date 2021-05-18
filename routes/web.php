@@ -10,6 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+use App\Http\Controllers\QuestionController;
 use \App\Models\User;
 use \App\Models\Question;
 use \App\Models\Post;
@@ -21,11 +23,13 @@ Route::view('/home', 'pages.index')->name('home');
 Route::view('/about', 'pages.about');
 Route::get('/news', 'NewsController@show');
 Route::get('/leaderboard', 'LeaderboardController@show');
-Route::get('/question/{id}', 'QuestionController@show');
-Route::get('/profile/{id}', 'UserController@show')->name('profile');
 Route::get('administration', 'AdministrationController@show')->middleware('role:moderator');
 
 // Posts
+Route::get('/question/{id}/edit', 'QuestionController@showedit')->name('question.edit');
+Route::patch('/question/{id}/edit', 'QuestionController@update');
+Route::get('/question/{id}', 'QuestionController@showWithId');
+Route::get('/question/{id}/{title}', 'QuestionController@show')->name('question');
 Route::post('/ask', 'QuestionController@store')->name('ask');
 Route::get('/ask', 'QuestionController@create')->middleware('auth');
 Route::post('/question/{id}/close', 'QuestionController@close')->middleware('auth');
@@ -49,11 +53,14 @@ Route::post('ajax/edit_proposal', 'AjaxController@proccess_edit_proposal');
 Route::post('ajax/topic_proposal', 'AjaxController@proccess_topic_proposal');
 
 // User
+Route::get('/profile/{username}', 'UserController@show')->name('profile');
 Route::delete('user', 'UserController@delete')->name('user');
 Route::get('user', 'UserController@showOwn');
 Route::get('user/edit', 'UserController@edit')->middleware('auth');
 Route::patch('user', 'UserController@update')->name('update_user');
-Route::post('users/{id}/ban', 'UserController@ban')->middleware('role:administrator')->name('ban_user');
+Route::post('users/{username}/ban', 'UserController@ban')->middleware('role:administrator')->name('ban_user');
+Route::post('/user/{post_id}/report', 'UserController@report')->middleware('auth');
+
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login'); // TODO

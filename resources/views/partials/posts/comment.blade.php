@@ -8,7 +8,7 @@
     <div class="col-12 d-flex gap-1 justify-content-end align-items-center text-break">
       <div class="text-muted">{{ (new \Carbon\Carbon($comment->post->date))->diffForHumans() }} by</div>
 @if (!is_null($comment->post->owner->username))
-      <a href="/profile/{{ $comment->post->owner->id }}">{{ $comment->post->owner->username }}</a>
+      <a href="/profile/{{ $comment->post->owner->username }}">{{ $comment->post->owner->username }}</a>
 @else
       Deleted User
 @endif

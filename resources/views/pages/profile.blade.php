@@ -24,7 +24,7 @@
         <a href="/user/edit"> <button type="button" class="btn btn-secondary mt-3"> Edit <i class="bi bi-pencil-square"></i></button></a>
       @elseif (Auth::user()->hasRole('administrator'))
         <a href=>
-          <form method="POST" action="{{ route('ban_user', ['id' => request()->id ]) }}">
+          <form method="POST" action="{{ route('ban_user', ['username' => request()->username ]) }}">
             @csrf
             <button type="submit" class="btn btn-danger btn-secondary mt-3"> Ban <i class="bi bi-trash"></i></i></button>
           </form>

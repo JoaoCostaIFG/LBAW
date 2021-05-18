@@ -8,7 +8,7 @@
   </div>
   <div class="col-10 col-sm-11 row justify-content-end mb-1 ms-1 pb-2 border-start border-dark">
     <!-- answer body -->
-    <p class="col-12 text-break">{{ $answer->post->body }}</p>
+    <p class="col-12 text-break">{!! nl2br(e($answer->post->body)) !!} </p>
     <div class="col-12 d-flex justify-content-start align-items-center gap-2">
       @auth
         <!-- Options -->
@@ -31,14 +31,19 @@
                 </li>
               </ul>
             </li>
+            {{-- TODO
+            <li>
+              <a class="dropdown-item" href="{{ route('answer.edit', ['id' => $answer->id]) }}">Edit Answer</a>
+            </li>
+            --}}
           </ul>
         @endif
-        <!-- delete button -->
+        <!-- report button -->
         <button class="btn btn-sm btn-outline-danger" type="button">Report</button>
       @endauth
     </div>
 
-    <div class="offset-0 col-12 offset-sm-7 col-sm-5 offset-md-8 col-md-4 offset-lg-9 col-lg-3 offset-xxl-10 col-xxl-2 row gx-0 align-items-center gap-1">
+    <div class="offset-0 col-12 offset-sm-7 col-sm-5 offset-md-8 col-md-4 offset-lg-9 col-lg-3 offset-xxl-10 col-xxl-2 row gx-0 align-items-center gap-1 pt-1">
       <div class="col-12">
         <span class="text-muted">Posted {{ (new \Carbon\Carbon($answer->post->date))->diffForHumans() }}</span>
       </div>
@@ -47,7 +52,7 @@
       </div>
       <div class="col-auto row gx-0">
           <div class="col-12">
-            <a class="text-break" href="/profile/{{$answer->post->owner->id}}">{{ $answer->post->owner->username }}</a>
+            <a class="text-break" href="/profile/{{$answer->post->owner->username}}">{{ $answer->post->owner->username }}</a>
           </div>
           <span class="col-12 text-break">{{ $answer->post->owner->reputation }} Points</span>
       </div>

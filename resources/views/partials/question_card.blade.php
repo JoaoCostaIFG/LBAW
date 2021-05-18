@@ -21,7 +21,7 @@
         <!-- Question Title -->
         <h4><a class="fs-5 fw-bold" href="/question/{{ $question->id }}">{{ $question->title }}</a></h4>
         <!-- Question body -->
-        <p class="d-none d-md-block">{{ $question->post->body }}</p>
+        <p class="d-none d-md-block">{!! mb_strimwidth(nl2br(e($question->post->body)), 0, 255, "...") !!}</p>
       </section>
       <!-- Mark if question is answered -->
       @if ($question->closed)
@@ -51,7 +51,7 @@
               Deleted User
             </span>
           @else
-            <a href="/profile/{{ $question->post->owner->id }}">
+            <a href="/profile/{{ $question->post->owner->username }}">
               {{ $question->post->owner->username }}
             </a>
             <!-- Owner Reputation -->

@@ -10,7 +10,8 @@ function editComment(comment_id) {
             if (this.status == 200) {
                 comment.textContent = new_value;
             } else {
-                comment.value = "Something went wrong editing this comment. Please try again.";
+                comment.textContent = "Something went wrong editing this comment. Please try again.";
+                comment.classList.add("text-danger");
             }
         }
     };
