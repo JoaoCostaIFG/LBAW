@@ -82,15 +82,15 @@ class QuestionController extends Controller
 
         $question = Question::find($request->id);
         $this->authorize("update", $question);
+        $max_budget = min(Auth::user()->reputation, 500);
 
         $validation = Validator::make($data, [
             'title' => 'required|string|min:5|max:255|unique:question,title,' . $question["id"],
             'body' => 'string|max:4095',
-            'bounty' => ['required', 'integer', 'min:0', 'max:500',
-                function($attr, $bounty, $fail) {
-                    $rep = Auth::user()->reputation;
-                    if ($bounty > $rep)
-                        $fail('Bounty cannot excede your reputation (' . $rep . ')');
+            'bounty' => ['integer', 'nullable', 'min:0', 'max:' . $max_budget,
+                function($attr, $bounty, $fail) use($question) {
+                    if ($question->bounty != 0)
+                        $fail('Cannot assign bounty to a question which already has a bounty');
                 }
             ],
             // 'topics' => ['array' ,'min:1',
@@ -116,6 +116,8 @@ class QuestionController extends Controller
             return back()->withErrors($validation)->withInput($request->all());
 
         DB::transaction(function () use ($question, $data) {
+            if (isset($data["bounty"]))
+                Auth::user()->reputation = Auth::user()->reputation - $data["bounty"];
             $question->update($data);
             $question->post->update(["body" => $data["body"]]);
         });

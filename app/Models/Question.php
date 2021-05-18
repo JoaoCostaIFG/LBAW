@@ -14,7 +14,7 @@ class Question extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        "title",
+        "title", "bounty",
     ];
 
     public static function create($data) {
