@@ -1,5 +1,8 @@
 @extends('layouts.layout')
 
+@if ($q)
+@section('titleTab', "Q: ".(($q)))
+@endif
 @section('title', 'Search')
 @section('pageType', 'website')
 
