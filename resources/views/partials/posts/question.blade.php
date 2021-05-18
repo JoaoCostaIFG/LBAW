@@ -30,14 +30,15 @@
 
     <!-- Options -->
     @auth
-      <div id="question-options" class="col-auto justify-content-center">
+      <div id="question-options" class="col-auto">
         <!--Check if is moderator-->
-        <ul class="col-12 nav nav-pills">
-          <form method="POST" id="bountySlider" class="me-1 align-items-center justify-content-end gap-1" action="{{ url('/question/' . $question->id . '/add_bounty')}}" enctype="multipart/form-data">
+        <ul class="nav nav-pills">
+          <form method="POST" id="bountySlider" class="border border-info bg-dark p-1 rounded-3"
+           action="{{ url('/question/' . $question->id . '/add_bounty')}}" enctype="multipart/form-data">
             <button class="btn btn-sm btn-info" type="submit">Add Bounty</button>
-            <label for="bounty" class="form-label m-0" id="bountyValue"><b>Bounty</b> 0</label>
-            <input class="form-range w-25" type="range" name="bounty" value="0"
-            min="{{$question->body}}" max="{{ min(500, Auth::user()->reputation) }}" step="1" id="bounty"
+            <label for="bounty" class="form-label" id="bountyValue"><b>Bounty</b> 0</label>
+            <input class="form-range" type="range" name="bounty" value="0"
+             min="{{$question->body}}" max="{{ min(500, Auth::user()->reputation) }}" step="1" id="bounty"
               onmousemove="document.getElementById('bountyValue').innerHTML = '<b>Bounty</b> ' + document.getElementById('bounty').value">
           </form>
 
