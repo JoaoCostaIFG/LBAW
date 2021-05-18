@@ -8,7 +8,7 @@ $type = $report->post->type;
         <div class="col-12 col-sm-5 align-middle text-center mb-3 mb-sm-0">
             <img src="{{ asset('storage/'.$user->picture) }}" class="rounded img-fluid align-middle" width="120" alt="User profile picture">
             <h5 class="fs-5">{{ $user->name }}</h5>
-            <h6 class="fs-7">{{ $user->username }}</h6>
+            <a class="text-break" href="/profile/{{$user->username}}">{{ $user->username }}</a>
         </div>
 
         <div class="col text-start align-middle">

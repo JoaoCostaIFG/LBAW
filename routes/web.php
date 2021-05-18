@@ -21,7 +21,6 @@ Route::view('/home', 'pages.index')->name('home');
 Route::view('/about', 'pages.about');
 Route::get('/news', 'NewsController@show');
 Route::get('/leaderboard', 'LeaderboardController@show');
-Route::get('/profile/{id}', 'UserController@show')->name('profile');
 Route::get('administration', 'AdministrationController@show')->middleware('role:moderator');
 
 // Posts
@@ -50,11 +49,12 @@ Route::post('ajax/edit_proposal', 'AjaxController@proccess_edit_proposal');
 Route::post('ajax/topic_proposal', 'AjaxController@proccess_topic_proposal');
 
 // User
+Route::get('/profile/{username}', 'UserController@show')->name('profile');
 Route::delete('user', 'UserController@delete')->name('user');
 Route::get('user', 'UserController@showOwn');
 Route::get('user/edit', 'UserController@edit')->middleware('auth');
 Route::patch('user', 'UserController@update')->name('update_user');
-Route::post('users/{id}/ban', 'UserController@ban')->middleware('role:administrator')->name('ban_user');
+Route::post('users/{username}/ban', 'UserController@ban')->middleware('role:administrator')->name('ban_user');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login'); // TODO
