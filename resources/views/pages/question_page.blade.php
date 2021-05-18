@@ -10,6 +10,20 @@
 
 <!-- Report Modal -->
 @include('partials.posts.report')
+
+<!-- Feedback Message -->
+@if (session('status'))
+<div class="alert alert-success mt-2">
+  {{ session('status') }}
+</div>
+@endif
+
+@if (session('fail'))
+<div class="alert alert-danger mt-2">
+  {{ session('fail') }}
+</div>
+@endif
+
 <!-- questions -->
 @include('partials.posts.question')
 <!-- answers -->
