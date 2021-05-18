@@ -21,6 +21,10 @@ textarea {
     resize: none;
 }
 
+.pe-45 {
+    padding-right: 2rem !important;
+}
+
 /* BEGIN HEADER */
 .navbar .navbar-brand a {
     color: inherit;
@@ -388,7 +392,7 @@ footer {
 }
 
 .report-btn:hover::before {
-  content: "\f3cb";
+    content: "\f3cb";
 }
 
 .accept-answer-btn {
@@ -405,5 +409,15 @@ footer {
     border: 1px solid var(--green);
     background-color: #212926;
     box-sizing: border-box;
+}
+
+#question-container {
+    position: relative;
+}
+
+#question-options {
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 /* END QUESTION PAGE */
