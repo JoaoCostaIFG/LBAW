@@ -42,7 +42,7 @@
         </div>
       @endif
       <!-- Search -->
-      <input type="hidden" name="q" value="{{$q}}">
+      <input type="hidden" name="q" value="{{ $q }}">
       <!-- Filter Button -->
       <button onclick="" type="submit" class="col-auto btn btn-success">Apply</button>
     </form>

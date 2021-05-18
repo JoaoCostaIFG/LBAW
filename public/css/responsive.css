@@ -47,6 +47,10 @@
     #right-col {
         border: none;
     }
+
+    .question-card-date {
+      gap: 0.25rem !important;
+    }
 }
 /* larger than medium  */
 @media (min-width: 768px) {
@@ -65,6 +69,10 @@
 
     #right-col {
         border-right: 1px solid #dee2e6;
+    }
+
+    .question-card-date {
+      gap: 1rem !important;
     }
 }
 

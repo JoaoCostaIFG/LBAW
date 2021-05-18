@@ -21,23 +21,7 @@
     <!-- question body -->
     <p class="col-12 text-break ps-0 pe-45">{!! nl2br(e($question->post->body)) !!}</p>
 
-    <div class="offset-0 col-12 offset-sm-7 col-sm-5 offset-md-8 col-md-4 offset-lg-9 col-lg-3 offset-xxl-10 col-xxl-2 row gx-0 align-items-center gap-1 pt-1">
-      <div class="col-12">
-        <span class="text-muted">Posted {{ (new \Carbon\Carbon($question->post->date))->diffForHumans() }}</span>
-      </div>
-      <div class="col-auto">
-        <img src="{{ asset('storage/'.$question->post->owner->picture) }}" alt="User profile picture" width=40 height=40>
-      </div>
-      <div class="col-auto row gx-0">
-          <div class="col-12">
-            <a class="text-break" href="/profile/{{$question->post->owner->username}}">{{ $question->post->owner->username }}</a>
-          </div>
-          <div class="col-12">
-            <span class="fs-5 text-break">{{ $question->post->owner->reputation }}</span>
-            <i class="bi bi-award"></i>
-          </div>
-      </div>
-    </div>
+    @include('partials.posts.user_card', ['post' => $question->post])
 
     <!-- Options -->
     @auth

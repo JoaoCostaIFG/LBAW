@@ -36,7 +36,7 @@
         @endforeach
       </div>
       <!-- Question Date -->
-      <div class="d-flex flex-row gap-3 align-items-center">
+      <div class="question-card-date d-flex flex-row align-items-center">
         <span class="date align-self-end" data-date={{$question->post->date}}>
           Posted {{(new \Carbon\Carbon($question->post->date))->diffForHumans()}}
         </span>
