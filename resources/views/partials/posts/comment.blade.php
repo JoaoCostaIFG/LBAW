@@ -13,11 +13,18 @@
       Deleted User
 @endif
 <!-- edit comment button and form -->
-@auth @if (Auth::id() == $comment->post->owner->id || Auth::user()->hasRole('moderator'))
+@auth
+  @if (Auth::id() == $comment->post->owner->id || Auth::user()->hasRole('moderator'))
       <div>
         <button class="btn btn-sm btn-secondary" data-bs-toggle="dropdown" aria-label="Edit comment" aria-expanded="false">
           <i class="bi bi-pencil-square"></i>
         </button>
+
+        <button type="button" class="report-btn btn btn-sm btn-outline-danger bi bi-flag"
+          data-bs-toggle="modal" data-bs-target="#reportModal" data-bs-user="{{$comment->post->owner->username}}"
+          data-bs-post="{{$comment->post->id}}" aria-label="report user">
+        </button>
+
         <div class="dropdown-menu"> <!-- aria-labelledby="commentEditDropdownLink" -->
           <form class="container">
             <textarea class="form-control" id="Textarea-edit-{{$comment->post->id}}">{{ $comment->post->body }}</textarea>
@@ -27,7 +34,8 @@
         </div>
       </div>
       <script src="/js/edit_comment.js"></script>
-@endif @endauth
+  @endif
+@endauth
     </div>
   </div>
 </div> <!-- .comment -->

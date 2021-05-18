@@ -10,6 +10,10 @@
     <!-- answer body -->
     <p class="col-12 text-break">{!! nl2br(e($answer->post->body)) !!} </p>
     <div class="col-12 d-flex justify-content-start align-items-center gap-2">
+        <!-- report button -->
+        <button type="button" class="report-btn btn btn-sm btn-outline-danger bi bi-flag"
+          data-bs-toggle="modal" data-bs-target="#reportModal" data-bs-user="{{$answer->post->owner->username}}"
+          data-bs-post="{{$answer->post->id}}" aria-label="report user"></button>
       @auth
         <!-- Options -->
         @if (Auth::user()->hasRole('moderator'))
@@ -38,8 +42,6 @@
             --}}
           </ul>
         @endif
-        <!-- report button -->
-        <button class="btn btn-sm btn-outline-danger" type="button">Report</button>
       @endauth
     </div>
 
