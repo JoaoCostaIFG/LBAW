@@ -1,4 +1,4 @@
-<div class="comment row gx-0 ms-1 py-2 pe-2 bg-dark border border-secondary">
+<div class="comment row gx-0 py-2 pe-2 bg-dark border border-secondary">
   <div class="col-2 col-sm-1">
     @include('partials.posts.vote', ['post' => $comment->post, 'size' => ''])
   </div>

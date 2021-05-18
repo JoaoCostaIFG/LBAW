@@ -34,15 +34,12 @@
     @endguest
 
     @auth
-    <div class="sidebar-subheader">
-        <h4>
-        {{-- TODO --}}
-          <img src="{{ asset('storage/'. Auth::user()->picture) }}" class="rounded" width="32" alt="User profile picture">
-          {{ Auth::user()->username }}
-          <button type="button" class="btn btn-dark" id="notifications-btn">
-            <i class="bi bi-bell"></i>
-          </button>
-        </h4>
+    <div class="sidebar-subheader d-flex align-items-center gap-1">
+        <img src="{{ asset('storage/'. Auth::user()->picture) }}" class="rounded" width="32" height="32" alt="User profile picture">
+        <h4 class="d-inline-block text-truncate">{{ Auth::user()->username }}</h4>
+        <button id="notifications-btn" class="btn btn-dark" type="button">
+          <i class="bi bi-bell"></i>
+        </button>
     </div>
       <ul class="list-group">
           @include('partials.sidebar.sidebar_link', ['href' => "/profile/" . Auth::id(), 'icon' => "bi-person-circle", 'text' =>  "My Profile", 'is_selected' => $title === "Profile"])

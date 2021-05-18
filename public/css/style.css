@@ -395,4 +395,5 @@ footer {
 .accepted-answer {
     border: 1px solid var(--green);
     background-color: #212926;
+    box-sizing: border-box;
 }

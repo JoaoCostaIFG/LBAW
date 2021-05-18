@@ -11,6 +11,10 @@
     .search-filters-form {
         justify-content: flex-end;
     }
+
+    .comment {
+      margin-left: 0.25rem !important;
+    }
 }
 
 /* medium (>= 768px) */
@@ -42,10 +46,6 @@
 
     #right-col {
         border: none;
-    }
-
-    .comment {
-        margin-left: 0 !important;
     }
 }
 /* larger than medium  */
