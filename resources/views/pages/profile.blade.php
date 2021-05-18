@@ -165,6 +165,7 @@
   <!-- END ACHIEVEMENTS TAB -->
 </div>
 <!-- END TAB CONTENTS -->
-<script src="/js/tabs.js"></script>
+
+<script src="/js/tabs.js" defer></script>
 
 @stop
