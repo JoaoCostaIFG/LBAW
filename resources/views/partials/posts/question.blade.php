@@ -1,11 +1,16 @@
 <div class="d-flex flex-row align-items-center justify-content-between mt-0">
   <div>
     <h2 class="page-title">{{ $question->title }}</h2>
+    <!-- Bounty -->
+    @if ($question->bounty > 0)
+      <span class="badge {{ $question->closed ? 'bg-error' : 'bg-success' }}">Bounty: {{ $question->bounty }}</span>
+    @endif
     <!-- Tags -->
     @foreach ($question->topics as $topic)
       <a class="badge bg-primary text-decoration-none" href="/search/tag/{{ $topic->name }}">{{ $topic->name }}</a>
     @endforeach
   </div>
+
   @if (is_null($question->accepted_answer) && $question->closed)
     <h2><span class="badge bg-success mb-1 mt-3">Duplicated</span></h2>
   @endif
