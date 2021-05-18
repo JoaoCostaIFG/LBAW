@@ -1,5 +1,38 @@
 'use strict'
 
+function processUserReport(post_id, reporter, accepted) {
+  let xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    // Get edit proposal card
+    let card = document.getElementById("user-report-p" + post_id + "r" + reporter);
+
+    // Success
+    if (this.readyState == 4) {
+      if (this.status == 200) {
+        positiveFeedback(card, accepted);
+      }
+      else { // Failed
+        negativeFeedback(card);
+      }
+    }
+  };
+
+  let request_data = encodeForAjax({
+    post_id: post_id,
+    reporter: reporter,
+    csrf: document
+      .querySelector("meta[name='csrf-token']")
+      .getAttribute("content"),
+    accepted: accepted,
+  });
+
+  xhttp.open("post", "ajax/user_report", true);
+  xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xhttp.setRequestHeader("X-CSRF-TOKEN", document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
+  xhttp.send(request_data);
+}
+
+
 function processProposal(proposal_id, accepted, proposal_type) {
   let xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
@@ -43,11 +76,11 @@ function positiveFeedback(card, accepted) {
   card.classList.add("alert");
   if (accepted){
     card.classList.add("alert-success");
-    feedback_msg.appendChild(document.createTextNode("Proposal Accepted!"));
+    feedback_msg.appendChild(document.createTextNode("Accepted!"));
   }
   else{
     card.classList.add("alert-danger");
-    feedback_msg.appendChild(document.createTextNode("Proposal Rejected!"));
+    feedback_msg.appendChild(document.createTextNode("Rejected!"));
   }
   // Replace
   card.replaceChild(feedback_msg, card.childNodes[1]);

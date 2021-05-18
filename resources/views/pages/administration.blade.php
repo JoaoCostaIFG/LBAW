@@ -103,5 +103,5 @@
   </div>
 </div>
 
-<script src="js/proposal.js"></script>
+<script src="js/administration.js"></script>
 @stop

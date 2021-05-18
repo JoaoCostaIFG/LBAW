@@ -143,41 +143,5 @@ class UserController extends Controller
 
         return $validation;
     }
-
-    public function report(Request $request){
-        // Check user is authenticated
-        if (!Auth::check()) {
-            return back()->withErrors([
-                'user' => 'You are not logged in']);
-        }
-        $user = Auth::user();
-        $data = $request->all();
-        
-        // Validation
-        $validation = Validator::make($data, [
-            'post_id' => 'required|integer|exists:post,id',
-            'reason' => 'nullable|string|max:100',
-        ]);
-        if ($validation->fails())
-            return back()->withErrors($validation);
-
-        // Check if report is already registered
-        if (Report::where('reporter', '=', $user->id)->where('id_post', '=', $data['post_id'])->exists()){
-            return back()->with('fail','Failed to report user: User report was already registered.');
-        }
-        
-        // Authorize report creation
-        $post = Post::find($data['post_id']);
-        $user_to_report = User::find($post->owner->id);
-        $this->authorize('report', $user_to_report);
-
-        Report::create([
-            'post_id' => $data['post_id'],
-            'user_id' => $user->id,
-            'reason' => $data['reason']
-        ]);
-
-        return back()->with('status','Success: User reported successfully!');
-    }
 }
 

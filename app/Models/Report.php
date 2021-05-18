@@ -22,6 +22,11 @@ class Report extends Model
         return $this->hasOne(User::class, 'id', 'reporter');
     }
 
+    public function reviewer()
+    {
+        return $this->hasOne(User::class, 'id', 'reviewer');
+    }
+
     public function post()
     {
         return $this->hasOne(Post::class, 'id', 'id_post');
