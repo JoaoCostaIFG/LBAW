@@ -8,6 +8,7 @@ use App\Models\Topic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
 
 class QuestionController extends Controller
@@ -44,16 +45,21 @@ class QuestionController extends Controller
         ]);
     }
 
-    public function show($id)
+    public function show($id, $title)
     {
         $validation = Validator::make(['id' => $id], [
             'id' => 'required|integer|exists:question,id',
         ]);
-
         if ($validation->fails())
             return abort(404);
 
         $question = Question::findOrFail($id);
+        $title = str_replace(' ', '-', $title);
+        $actual_title = preg_replace( "/[^A-Za-z0-9 ]/", '', $question->title);
+        $actual_title = str_replace(' ', '-', $actual_title);
+        if ($title != $actual_title)
+            return redirect()->route('question', ['id' => $id, 'title' => $actual_title]);
+
         return view("pages.question_page", ['question' => $question]);
     }
 
@@ -117,6 +123,17 @@ class QuestionController extends Controller
         return redirect()->intended('/question/' . $question->id);
     }
 
+    public function showWithId($id) {
+        $validation = Validator::make(['id' => $id], [
+            'id' => 'required|integer|exists:question,id',
+        ]);
+        if ($validation->fails())
+            return abort(404);
+
+        $question = Question::findOrFail($id);
+        return redirect()->route('question', ['id' => $id, 'title' => $question->title]);
+    }
+
     public function create()
     {
         return view("pages.ask_question", ['topics' => Topic::all()->pluck('name')]);
@@ -154,7 +171,7 @@ class QuestionController extends Controller
         return redirect()->intended('/question/' . $question->id);
     }
 
-    public function delete($id){
+    public function delete($id) {
         $validation = Validator::make(['id' => $id], [
             'id' => 'required|exists:question,id',
         ]);

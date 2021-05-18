@@ -23,7 +23,7 @@
   @endif
 @endif
     <img class="col-12" src="{{ asset('storage/'.$post->owner->picture) }}" alt="User profile picture">
-    <a class="col-auto text-break" href="/profile/{{$post->owner->id}}">{{ $post->owner->username }}</a>
+    <a class="col-auto text-break" href="/profile/{{$post->owner->username}}">{{ $post->owner->username }}</a>
     <span class="col-auto text-break">{{ $post->owner->reputation }} Points</span>
   </div>
 @endif

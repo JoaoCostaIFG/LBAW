@@ -45,7 +45,7 @@
         </h4>
     </div>
       <ul class="list-group">
-          @include('partials.sidebar.sidebar_link', ['href' => "/profile/" . Auth::id(), 'icon' => "bi-person-circle", 'text' =>  "My Profile", 'is_selected' => $title === "Profile"])
+          @include('partials.sidebar.sidebar_link', ['href' => "/profile/" . Auth::user()->username, 'icon' => "bi-person-circle", 'text' =>  "My Profile", 'is_selected' => $title === "Profile"])
           @include('partials.sidebar.sidebar_link', ['href' => "/ask", 'icon' => "bi-plus-circle", 'text' =>  "Ask Question", 'is_selected' => $title === "Ask Question"]) {{-- TODO --}}
       </ul>
 

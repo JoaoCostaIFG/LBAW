@@ -50,7 +50,7 @@
               </li>
 
               <li>
-                <a class="dropdown-item" href="{{route('question.edit', ['id' => $question->id])}}">Edit Question</button>
+                <a class="dropdown-item" href="{{ route('question.edit', ['id' => $question->id]) }}">Edit Question</a>
               </li>
             </ul>
           </li>

@@ -9,7 +9,7 @@
           {{ $user->name }}
       </span>
       <!-- Userame -->
-      <a href="/profile/{{ $user->id }}">
+      <a href="/profile/{{ $user->username }}">
           {{ $user->username }}
       </a>
     </div>
