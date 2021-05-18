@@ -1,28 +1,21 @@
-@if (is_null($post->owner->username))
-  <div class="row p-sm-3 p-0">
-    <img src="{{ asset('storage/'.$user->picture) }}" class="center p-2 p-sm-3" alt="User profile picture">
-    <span class="d-block text-center">Deleted User</span>
+<div class="offset-0 col-12 offset-sm-7 col-sm-5 offset-md-8 col-md-4 offset-lg-9 col-lg-3 offset-xxl-10 col-xxl-2 row gx-0 align-items-center pt-1">
+  <div class="col-12">
+    <span class="text-muted">Posted {{ (new \Carbon\Carbon($post->date))->diffForHumans() }}</span>
   </div>
-@else
-  <div class="row justify-content-center align-items-between text-center gx-0">
-    <div class="col-auto">
-      @include('partials.posts.vote', ['post' => $post])
+  <div class="col-12 d-flex align-items-center gap-2">
+    <a class="text-break" href="/profile/{{$post->owner->username}}">
+      <img class="rounded-2 fit-cover" src="{{ asset('storage/'.$post->owner->picture) }}"
+       alt="User profile picture" width=40 height=40>
+    </a>
+    <div class="row gx-0">
+        <div class="col-12">
+          <a class="text-break" href="/profile/{{$post->owner->username}}">{{ $post->owner->username }}</a>
+        </div>
+        <div class="col-12">
+          <span class="text-break">{{ $post->owner->reputation }}</span>
+          <i class="bi bi-award"></i>
+        </div>
     </div>
-
-@if (isset($accepted))
-  @if ($accepted)
-    <i class="col-auto bi bi-check2 text-success fs-1"></i>
-  @else
-    @auth @if (Auth::id() == $answer->question->post->owner->id && !$answer->question->closed))
-    <form class="col-auto" method="POST" action="{{ url('/question/' . $answer->question->id . '/close') }}">
-      {{ csrf_field() }}
-      <input type="hidden" id="id_answer" name="id_answer" value="{{ $answer->id }}">
-      <button class="btn accept-answer-btn bi bi-check2 fs-1" type="submit">
-      </button>
-    </form>
-    @endif @endauth
-  @endif
-@endif
   </div>
-@endif
+</div>
 
