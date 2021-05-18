@@ -66,6 +66,11 @@ class UserController extends Controller
         return redirect()->intended('register');
     }
 
+    public function ban($id) {
+        DB::delete('DELETE FROM "user" where id = ?', [$id]);
+        return redirect()->route('profile', [$id]);
+    }
+
     public function edit(){
         if (!Auth::check()) {
             return back()->withErrors([
