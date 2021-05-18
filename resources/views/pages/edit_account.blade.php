@@ -54,7 +54,7 @@
                   id="email" placeholder={{ $user->email }} />
                 <!-- Error -->
                 @if ($errors->has('email'))
-                  <div class="invalid-feedback">{{ $errors->first('email') }}</div>
+                  <div class="invalid-feedback d-block">{{ $errors->first('email') }}</div>
                 @endif
               </div>
             </div>
@@ -67,9 +67,7 @@
                   placeholder={{ $user->username }} />
                 <!-- Error -->
                 @if ($errors->has('username'))
-                  <div class="invalid-feedback">
-                    {{ $errors->first('username') }}
-                  </div>
+                  <div class="invalid-feedback d-block">{{ $errors->first('username') }}</div>
                 @endif
               </div>
             </div>
@@ -84,9 +82,7 @@
                   placeholder="Enter new password..." />
                 <!-- Error -->
                 @if ($errors->has('password'))
-                  <div class="invalid-feedback">
-                    {{ $errors->first('password') }}
-                  </div>
+                  <div class="invalid-feedback d-block">{{ $errors->first('password') }}</div>
                 @endif
               </div>
             </div>
@@ -99,9 +95,7 @@
                   id="password_confirmation" placeholder="Enter password confirmation..." />
                 <!-- Error -->
                 @if ($errors->has('password_confirmation'))
-                  <div class="invalid-feedback">
-                    {{ $errors->first('password_confirmation') }}
-                  </div>
+                  <div class="invalid-feedback d-block">{{ $errors->first('password_confirmation') }}</div>
                 @endif
               </div>
             </div>
@@ -120,7 +114,7 @@
               placeholder="{{ $user->firstName }}" />
             <!-- Error -->
             @if ($errors->has('first-name'))
-              <div class="invalid-feedback">{{ $errors->first('first-name') }}</div>
+              <div class="invalid-feedback d-block">{{ $errors->first('first-name') }}</div>
             @endif
           </div>
         </div>
@@ -133,7 +127,7 @@
               placeholder="{{ $user->lastName }}" />
             <!-- Error -->
             @if ($errors->has('last-name'))
-              <div class="invalid-feedback">{{ $errors->first('last-name') }}</div>
+              <div class="invalid-feedback d-block">{{ $errors->first('last-name') }}</div>
             @endif
           </div>
         </div>
@@ -148,7 +142,7 @@
               placeholder="{{ $user->about }}" maxlength="500"></textarea>
             <!-- Error -->
             @if ($errors->has('about'))
-              <div class="invalid-feedback">{{ $errors->first('about') }}</div>
+              <div class="invalid-feedback d-block">{{ $errors->first('about') }}</div>
             @endif
           </div>
         </div>
