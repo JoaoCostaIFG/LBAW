@@ -20,7 +20,7 @@
         </button>
         <div class="dropdown-menu"> <!-- aria-labelledby="commentEditDropdownLink" -->
           <form class="container">
-            <textarea class="form-control" id="Textarea-edit-{{$comment->post->id}}" rows="2">{{ $comment->post->body }}</textarea>
+            <textarea class="form-control" id="Textarea-edit-{{$comment->post->id}}">{{ $comment->post->body }}</textarea>
             <label class="visually-hidden" for="Textarea-edit-{{$comment->post->id}}">Edit comment</label>
             <a class="btn btn-primary" onclick="editComment({{$comment->post->id}})">Edit Comment</a>
           </form>

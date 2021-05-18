@@ -12,12 +12,16 @@
     font-display: swap;
 }
 
-/* BEGIN HEADER */
 body {
     line-height: 1.4;
     padding-top: var(--navbar-size);
 }
 
+textarea {
+    resize: none;
+}
+
+/* BEGIN HEADER */
 .navbar .navbar-brand a {
     color: inherit;
     text-decoration: inherit;

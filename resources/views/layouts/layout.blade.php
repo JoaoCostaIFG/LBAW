@@ -120,5 +120,6 @@
         return new bootstrap.Popover(popoverTriggerEl)
       })
     </script>
+    <script src="{{ asset('js/textarea_resize.js') }}" defer></script>
   </body>
 </html>
