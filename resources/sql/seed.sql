@@ -1029,7 +1029,6 @@ CREATE OR REPLACE PROCEDURE ban_user
 (
   idUser INT,
   idAdmin INT,
-  date TEXT,
   reason TEXT
 )
 LANGUAGE plpgsql
@@ -1038,7 +1037,7 @@ $$
 DECLARE
 BEGIN
   DELETE FROM "user" WHERE id=idUser;
-  INSERT INTO ban(id_user, id_admin, "date", reason) VALUES(idUser, idAdmin, date, reason);
+  INSERT INTO ban(id_user, id_admin, reason) VALUES(idUser, idAdmin, reason);
 END
 $$;
 

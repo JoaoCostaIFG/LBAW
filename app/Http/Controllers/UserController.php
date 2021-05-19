@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Report;
 use App\Models\Post;
@@ -67,10 +68,35 @@ class UserController extends Controller
         return redirect()->intended('register');
     }
 
-    public function ban($username) {
-        $id = User::where('username', $username)->get()[0]->id;
-        DB::delete('DELETE FROM "user" where username = ?', [$username]);
-        return redirect()->route('profile', ['DeletedUser' . $id]);
+    public function ban_procedure($data) {     
+        $admin = Auth::user();
+
+        $validation = Validator::make($data, [
+            'user_id' => 'required|integer|exists:user,id',
+            'reason' => 'nullable|string|max:100',
+        ]);
+        if (!$validation->fails())
+            DB::select("CALL ban_user(?, ?,  ?)",
+                [$data['user_id'], $admin->id, $data['reason']]);            
+           
+        return $validation;
+    }
+
+    public function ban(Request $request){  
+        if (!Auth::check()) {
+            return back()->withErrors([
+                'user' => 'You are not logged in']);
+        }
+
+        $data = $request->all();
+        $validation = $this->ban_procedure($data);
+
+        if($validation != null){
+            if($validation->fails())
+                return back()->withErrors($validation);
+        }
+
+        return redirect()->route('profile', ['DeletedUser' . $data['user_id']]);
     }
 
     public function edit(){

@@ -25,12 +25,11 @@
           Edit <i class="bi bi-pencil-square"></i>
         </a>
       @elseif (Auth::user()->hasRole('administrator') && !$user->isdeleted)
-        <form method="POST" action="{{ route('ban_user', ['username' => request()->username ]) }}">
-          @csrf
-          <button type="submit" class="btn btn-danger btn-secondary mt-3">
-              Ban <i class="bi bi-trash"></i>
-          </button>
-        </form>
+      @include('partials.profile.ban', ['user' => $user])
+      <button type="button" class="ban-btn btn btn-danger btn-secondary mt-3" data-bs-toggle="modal"
+        data-bs-target="#banModal" aria-label="report user">
+        Ban <i class="bi bi-trash"></i>
+      </button>
       @endif
     @endauth
 </div>

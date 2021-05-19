@@ -61,7 +61,7 @@ Route::delete('user', 'UserController@delete')->name('user');
 Route::get('user', 'UserController@showOwn');
 Route::get('user/edit', 'UserController@edit')->middleware('auth');
 Route::patch('user', 'UserController@update')->name('update_user');
-Route::post('users/{username}/ban', 'UserController@ban')->middleware('role:administrator')->name('ban_user');
+Route::post('users/ban', 'UserController@ban')->middleware('role:administrator')->name('ban_user');
 Route::post('/user/report', 'ReportController@report');
 
 
