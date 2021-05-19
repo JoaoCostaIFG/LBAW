@@ -19,34 +19,36 @@
       {{ $user->name }}'s profile
     @endif
   </h2>
-    @if (Auth::check())
-      @if (Auth::id() == request()->id)
-        <a href="/user/edit"> <button type="button" class="btn btn-secondary mt-3"> Edit <i class="bi bi-pencil-square"></i></button></a>
-      @elseif (Auth::user()->hasRole('administrator'))
-        <a href=>
-          <form method="POST" action="{{ route('ban_user', ['username' => request()->username ]) }}">
-            @csrf
-            <button type="submit" class="btn btn-danger btn-secondary mt-3"> Ban <i class="bi bi-trash"></i></i></button>
-          </form>
+    @auth
+      @if (Auth::id() == $user->id)
+        <a class="btn btn-secondary mt-3" href="/user/edit" role="button">
+          Edit <i class="bi bi-pencil-square"></i>
         </a>
+      @elseif (Auth::user()->hasRole('administrator') && !$user->isdeleted)
+        <form method="POST" action="{{ route('ban_user', ['username' => request()->username ]) }}">
+          @csrf
+          <button type="submit" class="btn btn-danger btn-secondary mt-3">
+              Ban <i class="bi bi-trash"></i>
+          </button>
+        </form>
       @endif
-    @endif
+    @endauth
 </div>
 <hr>
 <nav class="mt-2">
   <ul class="nav nav-tabs justify-content-center">
     <li class="nav-item profile-tab">
-      <a href="#profile" class="nav-link active fw-bold" data-toggle="tab">
+      <a href="#profile" class="nav-link active fw-bold" data-toggle="tab" role="button">
         About
       </a>
     </li>
     <li class="nav-item profile-tab">
-      <a href="#activity" class="nav-link fw-bold" data-toggle="tab">
+      <a href="#activity" class="nav-link fw-bold" data-toggle="tab" role="button">
         Activity
       </a>
     </li>
     <li class="nav-item profile-tab">
-      <a href="#achievements" class="nav-link fw-bold" data-toggle="tab">
+      <a href="#achievements" class="nav-link fw-bold" data-toggle="tab" role="button">
         Achievements
       </a>
     </li>
