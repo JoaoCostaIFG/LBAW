@@ -69,15 +69,14 @@ class UserController extends Controller
     }
 
     public function ban_procedure($data) {     
-        $admin = Auth::user();
-
         $validation = Validator::make($data, [
+            'admin_id' => 'required|integer|exists:administrator,id',
             'user_id' => 'required|integer|exists:user,id',
             'reason' => 'nullable|string|max:100',
         ]);
         if (!$validation->fails())
             DB::select("CALL ban_user(?, ?,  ?)",
-                [$data['user_id'], $admin->id, $data['reason']]);            
+                [$data['user_id'], $data['admin_id'], $data['reason']]);            
            
         return $validation;
     }
@@ -88,7 +87,9 @@ class UserController extends Controller
                 'user' => 'You are not logged in']);
         }
 
+        $admin = Auth::user();
         $data = $request->all();
+        $data['admin_id'] = $admin->id;
         $validation = $this->ban_procedure($data);
 
         if($validation != null){

@@ -59,38 +59,47 @@ class ReportController extends Controller
 
         $user = Auth::user();
         $data = $request->all();
+
+        // Validate
         $validation = Validator::make($data, [
             'accepted' => 'required|boolean',
             'post_id' => 'required|exists:post,id',
             'reporter' => 'required|exists:user,id'
         ]);
-
         if ($validation->fails())
             return false;
-
-        // TODO 
-        // authorize
-        // enum 
-        // ban 
 
         // Check if report exists
         $report = Report::where('reporter', '=', $data['reporter'])->where('id_post', '=', $data['post_id'])->first();
         if($report === null)
             return false;
         
-        if ($data['accepted']){
+        // Authorize
+        $user_to_report = Post::find($data['post_id'])->owner;
+        $this->authorize('ban', $user_to_report);
+
+        // Approve Ban    
+        if ($data['accepted']){ 
+            // Update report state
             DB::update('update report set state = approved,
-                reviewer = '.$user->id.'  where reporter = ? and id_post = ?' ,[$data['reporter'], $data['post_id']]);
+                reviewer = '.$user->id.'  
+                where reporter = ? and id_post = ?' ,[$data['reporter'], $data['post_id']]);
+            // Ban User
+            
             $user_controller = new UserController();
-            // $user_controller->ban($report->post->owner->username);
+            $user_controller->ban_procedure([
+                'admin_id' => $user->id,
+                'user_id' => $user_to_report->id,
+                'reason' => $data['reason']
+            ]);
         }
-        else{
+        else{ // Reject Ban
             DB::update('update report set state = rejected,
-                reviewer = '.$user->id.'  where reporter = ? and id_post = ?' ,[$data['reporter'], $data['post_id']]);
+                reviewer = '.$user->id.'  where reporter = ? and id_post = ?' 
+                ,[$data['reporter'], $data['post_id']]);
         }
 
         DB::commit();
-
         return true;
     }
 
