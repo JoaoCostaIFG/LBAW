@@ -22,6 +22,7 @@ DROP TABLE IF EXISTS report CASCADE;
 DROP TABLE IF EXISTS notification CASCADE;
 DROP TABLE IF EXISTS notification_achievement CASCADE;
 DROP TABLE IF EXISTS notification_post CASCADE;
+DROP TABLE IF EXISTS password_resets CASCADE;
 
 
 -- DOMAINS
@@ -41,7 +42,8 @@ CREATE TABLE "user"(
   about TEXT,
   picture TEXT,
   reputation INTEGER NOT NULL DEFAULT 0,
-  isdeleted boolean NOT NULL DEFAULT false
+  isdeleted boolean NOT NULL DEFAULT false,
+  remember_token TEXT
 );
 
 -- R02
@@ -328,6 +330,13 @@ CREATE TABLE notification_post(
     FOREIGN KEY(id_post)
       REFERENCES post(id)
       ON DELETE CASCADE
+);
+
+-- PASSWORD RESET TABLE REQUIRED BY LARAVEL
+CREATE TABLE password_resets(
+  email TEXT PRIMARY KEY,
+  token TEXT NOT NULL,
+  created_at TIMESTAMP
 );
 
 
@@ -1071,7 +1080,7 @@ insert into "user" (name, username, password, email, about, picture) values
   ('Glynn Baytrop', 'gbaytrops', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'gbaytropj,s@ed.gov', 'Sales Representative', 'default.jpg'),
   ('Zilvia Marvell', 'zmarvellt', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'zmarvellt@cbslocal.com', 'Senior Quality Engineer', 'default.jpg'),
   ('1', '1', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', '1', '1', 'default.jpg'),
-  ('admin', 'admin', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'admin', 'admin', 'default.jpg');
+  ('admin', 'admin', '$2y$10$VTbK/xpteDPvaoxGuuyN8ulxU26mz/xJEwlE.Wx724.xGwou4tjzO', 'up201806317@edu.fe.up.pt', 'admin', 'default.jpg');
 
 -- R02
 insert into moderator (id) values (1), (2), (3), (32);

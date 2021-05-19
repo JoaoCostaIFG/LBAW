@@ -72,6 +72,11 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
 
+Route::get('/forgot-password', 'Auth\PasswordController@show')->middleware('guest')->name('password.request');
+Route::post('/forgot-password', 'Auth\PasswordController@submitResetPasswordRequest')->middleware('guest')->name('password.email');
+Route::get('/reset-password/{token}', 'Auth\PasswordController@showResetPasswordPage')->middleware('guest')->name('password.reset');
+Route::post('/reset-password', 'Auth\PasswordController@resetPassword')->middleware('guest')->name('password.update');
+
 // TODO remove
 Route::get('/test', function() {
   $a = DB::select('select * from moderator');

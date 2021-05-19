@@ -110,7 +110,7 @@ class UserController extends Controller
         }
         
         $user->save();
-        return redirect('/profile/'.$user->id)->with('status','Profile updated successfully!');
+        return redirect('/profile/'.$user->username)->with('status','Profile updated successfully!');
     }
 
     protected function validator(Request $request, User $user){

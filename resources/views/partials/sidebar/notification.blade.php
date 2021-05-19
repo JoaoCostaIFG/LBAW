@@ -1,7 +1,7 @@
 @php
 $notification_url = '';
 if ($notification->notification_achievement) {
-    $notification_url = '/profile/' . Auth::id() . '#achievements';
+    $notification_url = '/profile/' . Auth::user()->username . '#achievements';
 } else {
     if ($notification->notification_post->question) {
         $notification_url = '/question/' . $notification->notification_post->question->id;
