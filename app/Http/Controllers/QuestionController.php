@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AnswerQuestion;
 use App\Models\Question;
 use App\Models\Topic;
+use App\Models\TopicQuestion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -72,7 +73,9 @@ class QuestionController extends Controller
             return abort(404);
 
         $question = Question::findOrFail($id);
-        return view("pages.edit_question", ['question' => $question, 'topics' => Topic::all()->pluck('name')]);
+        return view("pages.edit_question", ['question' => $question,
+            'topics' => Topic::all()->pluck('name'),
+            'selected_topics' => $question->topics->pluck('name')->toArray()]);
     }
 
     public function update(Request $request)
@@ -93,22 +96,22 @@ class QuestionController extends Controller
                         $fail('Cannot assign bounty to a question which already has a bounty');
                 }
             ],
-            // 'topics' => ['array' ,'min:1',
-            //     function($attr, $arr, $fail) {
-            //         $errs = "";
-            //         if (is_array($arr)) {
-            //             foreach ($arr as $topic) {
-            //                 if (!is_string($topic)) {
-            //                     $fail('Invalid topic type (not string)');
-            //                 }
-            //                 else if (Topic::where('name', $topic)->doesntExist()) {
-            //                     $errs .= " " . $topic;
-            //                 }
-            //             }
-            //             if ($errs != "")
-            //                 $fail("Invalid topic(s)" . $errs);
-            //         }
-            //     }
+             'topics' => ['array' ,'min:1',
+                 function($attr, $arr, $fail) {
+                     $errs = "";
+                     if (is_array($arr)) {
+                         foreach ($arr as $topic) {
+                             if (!is_string($topic)) {
+                                 $fail('Invalid topic type (not string)');
+                             }
+                             else if (Topic::where('name', $topic)->doesntExist()) {
+                                 $errs .= " " . $topic;
+                             }
+                         }
+                         if ($errs != "")
+                             $fail("Invalid topic(s)" . $errs);
+                     }
+                 }]
             ]
         );
 
@@ -121,6 +124,12 @@ class QuestionController extends Controller
             Auth::user()->save();
             $question->update($data);
             $question->post->update(["body" => $data["body"]]);
+
+            TopicQuestion::where('id_question', $question->id)->delete();
+            foreach($data["topics"] as $topic_name) {
+                $topic = Topic::where('name', $topic_name)->get()[0];
+                TopicQuestion::create(['id_question' => $question->id, 'id_topic' => $topic->id]);
+            }
         });
         return redirect()->intended('/question/' . $question->id);
     }

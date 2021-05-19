@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class TopicQuestion extends Model
 {
@@ -14,9 +15,9 @@ class TopicQuestion extends Model
     // Don't add create and update timestamps in database.
     public $timestamps = false;
 
-    public function user()
-    {
-        return $this->hasOne(User::class, 'id', 'id_user');
+    public static function create($data) {
+        DB::insert('insert into topic_question (id_question, id_topic) values (?, ?)',
+         [$data['id_question'], $data['id_topic']]);
     }
 
     public function question()

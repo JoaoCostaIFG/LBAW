@@ -31,9 +31,9 @@ Route::get('/search', 'SearchResultsController@search');
 Route::get('/search/tag/{name}', 'SearchResultsController@searchTag');
 // Questions
 Route::get('/question/{id}', 'QuestionController@showWithId');
-Route::get('/question/{id}/{title}', 'QuestionController@show')->name('question');
 Route::get('/question/{id}/edit', 'QuestionController@showedit')->name('question.edit');
 Route::patch('/question/{id}/edit', 'QuestionController@update');
+Route::get('/question/{id}/{title}', 'QuestionController@show')->name('question');
 Route::post('/question/{id}/delete', 'QuestionController@delete')->middleware('auth');
 Route::post('/ask', 'QuestionController@store')->name('ask');
 Route::get('/ask', 'QuestionController@create')->middleware('auth');
