@@ -8,7 +8,7 @@
   </div>
   <div class="col-10 col-sm-11 row justify-content-end mb-1 ms-1 pb-2 border-start border-dark">
     <!-- answer body -->
-    <p class="col-12 text-break ps-0 pe-45">{!! nl2br(e($answer->post->body)) !!} </p>
+    <p id="answer-{{$answer->post->id}}" class="col-12 text-break ps-0 pe-45">{!! nl2br(e($answer->post->body)) !!} </p>
 
     @include('partials.posts.user_card', ['post' => $answer->post])
 
@@ -33,8 +33,17 @@
                 </li>
               @endif 
               @if ($answer->post->owner->id == Auth::id() || Auth::user()->hasRole('moderator'))
-                <li>
-                  <a class="dropdown-item" href="{{ route('question.edit', ['id' => $answer->id]) }}">Edit Answer</a>
+                <li>                  
+                  <button class="dropdown-item" onclick="editAnswer({{$answer->post->id}})" aria-label="Edit answer">
+                    Edit Answer
+                  </button>
+                  <div class="dropdown-menu col-12 col-lg-9 p-2"> <!-- aria-labelledby="commentEditDropdownLink" -->
+                    <form>
+                      <textarea class="form-control" id="Textarea-edit-answer-{{$answer->post->id}}">{{ $answer->post->body }}</textarea>
+                      <label class="visually-hidden" for="Textarea-edit-answer-{{$answer->post->id}}">Edit Answer</label>
+                      <a class="btn btn-primary mt-2" onclick="editAnswer({{$answer->post->id}})">Edit Answer</a>
+                    </form>
+                  </div>
                 </li>
               @endif
             </ul>
