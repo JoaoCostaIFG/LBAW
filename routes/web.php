@@ -40,6 +40,8 @@ Route::get('/ask', 'QuestionController@create')->middleware('auth');
 Route::post('/question/{id}/close', 'QuestionController@close')->middleware('auth');
 Route::post('/question/{id}/add_bounty', 'QuestionController@addBounty')->middleware('auth');
 
+Route::post('/suggest_topic', 'TopicController@suggest')->middleware('auth')->name('suggest_topic');
+
 // API
 Route::get('/api/questions', 'SearchResultsController@searchApi'); // TODO
 Route::get('/api/user', 'UserController@showApi');

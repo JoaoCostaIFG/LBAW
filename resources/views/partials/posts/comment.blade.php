@@ -31,7 +31,7 @@
           </form>
         </div>
       </div>
-      <script src="/js/edit_comment.js"></script>
+      <script src="{{ asset('js/edit_comment.js') }}"></script>
   @endif
 @endauth
     </div>

@@ -19,7 +19,7 @@
           </div>
         </form>
       </div>
-      <script src="/js/add_comment.js"></script>
+      <script src="{{ asset('js/add_comment.js') }}"></script>
     </div>
   @endauth
 </div>

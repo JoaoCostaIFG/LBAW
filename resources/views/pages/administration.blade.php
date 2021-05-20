@@ -103,5 +103,5 @@
   </div>
 </div>
 
-<script src="js/administration.js"></script>
+<script src="{{ asset('js/administration.js') }}"></script>
 @stop

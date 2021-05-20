@@ -6,7 +6,7 @@
 @section('content')
 <h2 class="page-title">Add Question</h2>
 <hr class="mt-3">
-<form class="auth-form" method="POST" action="{{ route('ask') }}">
+<form method="POST" action="{{ route('ask') }}">
   @csrf
   <div class="input-group">
     <label for="title" class="form-label"><b>Question Title</b><span class="text-danger"> *</span></label>
@@ -78,10 +78,12 @@
           </div>
           @endif
         </div>
+        <button type="button" class="btn btn-sm btn-outline-info mt-2" data-bs-toggle="modal" data-bs-target="#suggestTopicModal">
+          Not seeing the tag you want? Suggest it.
+        </button>
       </div>
     </div>
   </div>
-
 
   <div class="text-center">
     <div class="d-inline-flex">
@@ -89,5 +91,39 @@
     </div>
   </div>
 </form>
-<script src="form-validation.js"></script>
+
+<!-- Suggest topic modal -->
+<form method="POST" action="{{ route('suggest_topic') }}">
+  @csrf
+
+<div id="suggestTopicModal" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Suggest a topic</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <label for="topic_name" class="form-label"><b>Topic Name</b><span class="text-danger"> *</span></label>
+          <div class="input-group has-validation">
+            <input id="topicNameId" type="text" name="topic_name" class="form-control"
+             placeholder="Enter the topic title... (e.g.: python)" required>
+          </div>
+
+          <label for="reason" class="form-label mt-2"><b>Topic reason</b><span class="text-danger"> *</span></label>
+          <div class="input-group has-validation">
+            <textarea class="form-control" id="topicReasonId" name="reason"
+             placeholder="Why do you think this topic should exist..." required></textarea>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <input type="submit" class="btn btn-primary" value="Submit suggestion"></input>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{{ asset('js/form-validation.js') }}"></script>
 @stop

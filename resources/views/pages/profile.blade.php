@@ -167,6 +167,6 @@
 </div>
 <!-- END TAB CONTENTS -->
 
-<script src="/js/tabs.js" defer></script>
+<script src="{{ asset('js/tabs.js') }}" defer></script>
 
 @stop
