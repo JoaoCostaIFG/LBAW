@@ -411,11 +411,13 @@ footer {
     box-sizing: border-box;
 }
 
-#question-container {
+#question-container,
+.answer-container {
     position: relative;
 }
 
-#question-options {
+#question-options,
+.answer-options {
     position: absolute;
     top: 0;
     right: 0;

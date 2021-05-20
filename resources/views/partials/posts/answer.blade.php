@@ -1,6 +1,6 @@
 <hr>
 
-<div class="row gx-0 p-2 {{ $answer->question->accepted_answer == $answer->id ? 'accepted-answer' : '' }}">
+<div class="answer-container row gx-0 p-2 {{ $answer->question->accepted_answer == $answer->id ? 'accepted-answer' : '' }}">
   <div class="col-2 col-sm-1 align-content-between mb-1">
     @include('partials.posts.qa_votes', ['post' => $answer->post,
       'accepted' => ($answer->question->accepted_answer == $answer->id),
@@ -11,8 +11,40 @@
     <p class="col-12 text-break ps-0 pe-45">{!! nl2br(e($answer->post->body)) !!} </p>
 
     @include('partials.posts.user_card', ['post' => $answer->post])
+
+    <!-- Options -->
+    @auth
+      <div class="answer-options" class="col-auto">
+        <!--Check if is moderator-->
+        <ul class="nav nav-pills">
+          <li class="nav-item dropdown ms-auto">
+            <button class="btn btn-sm btn-secondary" data-bs-toggle="dropdown">
+              <i class="bi bi-three-dots-vertical"></i>
+            </button>
+            <ul class="dropdown-menu">
+              @if (Auth::user()->hasRole('moderator'))
+                <!-- delete answer -->
+                <li>
+                  <form method="POST" action="{{ url('/question/' . $answer->id . '/delete') }}"
+                    enctype="multipart/form-data">
+                    @csrf
+                    <button class="dropdown-item" type="submit">Delete</button>
+                  </form>
+                </li>
+              @endif 
+              @if ($answer->post->owner->id == Auth::id() || Auth::user()->hasRole('moderator'))
+                <li>
+                  <a class="dropdown-item" href="{{ route('question.edit', ['id' => $answer->id]) }}">Edit Answer</a>
+                </li>
+              @endif
+            </ul>
+          </li>
+        </ul>
+      </div>
+    @endauth
     
   </div>
+
   <!-- answer comments -->
   @include('partials.posts.comment_block', ['post' => $answer, 'answer_id' => $answer->id])
 </div>

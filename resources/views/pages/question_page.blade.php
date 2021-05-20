@@ -30,6 +30,9 @@
 @each('partials.posts.answer', $question->answers, 'answer')
 
 @auth
+  <script src="{{ asset('js/edit_comment.js') }}"></script>
+  <script src="{{ asset('js/add_comment.js') }}"></script>
+
   <hr>
   <div class="container">
     <h2>Your answer</h2>
