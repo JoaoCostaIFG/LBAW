@@ -12,6 +12,7 @@ class LeaderboardController extends Controller
     {
         $users = User::orderBy('reputation', 'desc')
             ->select('id', 'username', 'reputation')
+            ->where('isdeleted', '!=', 'true')
             ->limit(50)
             ->get();
         return $users;
