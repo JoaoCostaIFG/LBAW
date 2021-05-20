@@ -75,7 +75,7 @@ class UserController extends Controller
             'reason' => 'nullable|string|max:100',
         ]);
         if (!$validation->fails())
-            DB::select("CALL ban_user(?, ?,  ?)",
+            DB::select("CALL ban_user(?, ?, ?)",
                 [$data['user_id'], $data['admin_id'], $data['reason']]);            
            
         return $validation;

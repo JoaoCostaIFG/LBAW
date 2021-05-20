@@ -31,6 +31,15 @@
     <div class="w-100 row gx-0 justify-content-between align-items-center align-self-start">
       <!-- Question Topics -->
       <div class="col-7 col-md-6 col-lg-7 col-xl-8 d-none d-sm-block d-grid gap-1 p-0">
+        <!-- Bounty -->
+        @if ($question->bounty > 0)
+          @if ($question->closed)
+            <del class="badge bg-danger">Bounty: {{ $question->bounty }}</del>
+          @else
+            <span class="badge bg-success">Bounty: {{ $question->bounty }}</span>
+          @endif
+        @endif
+        <!-- Tags -->
         @foreach ($question->topics as $topic)
           <a class="badge bg-primary text-decoration-none" href="/search/tag/{{$topic->name}}">{{ $topic->name }}</a>
         @endforeach
