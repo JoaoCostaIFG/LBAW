@@ -14,7 +14,7 @@ class TopicController extends Controller
     {
         return Validator::make($data, [
             'topic_name' => 'required|string|min:1|max:20|unique:topic_proposal,topic_name|unique:topic,name',
-            'reason' => 'required|string|max:256'
+            'reason' => 'required|string|min:7|max:256'
           ]
         );
     }
