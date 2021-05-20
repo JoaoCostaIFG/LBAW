@@ -95,3 +95,11 @@ function negativeFeedback(card) {
   // Add child
   card.appendChild(feedback_msg);
 }
+
+function processEditProposal(proposal_id, accepted){
+  processProposal(proposal_id, accepted, "edit");
+}
+
+function processTopicProposal(proposal_id, accepted){
+  processProposal(proposal_id, accepted, "topic");
+}
