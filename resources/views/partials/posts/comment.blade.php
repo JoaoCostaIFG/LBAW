@@ -23,15 +23,14 @@
         <!-- report button -->
         @include('partials.posts.report_button', ['post' => $comment->post])
 
-        <div class="dropdown-menu"> <!-- aria-labelledby="commentEditDropdownLink" -->
-          <form class="container">
+        <div class="dropdown-menu col-12 col-lg-9 p-2"> <!-- aria-labelledby="commentEditDropdownLink" -->
+          <form>
             <textarea class="form-control" id="Textarea-edit-{{$comment->post->id}}">{{ $comment->post->body }}</textarea>
             <label class="visually-hidden" for="Textarea-edit-{{$comment->post->id}}">Edit comment</label>
-            <a class="btn btn-primary" onclick="editComment({{$comment->post->id}})">Edit Comment</a>
+            <a class="btn btn-primary mt-2" onclick="editComment({{$comment->post->id}})">Edit Comment</a>
           </form>
         </div>
       </div>
-      <script src="/js/edit_comment.js"></script>
   @endif
 @endauth
     </div>

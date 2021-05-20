@@ -31,14 +31,16 @@ Route::get('/search', 'SearchResultsController@search');
 Route::get('/search/tag/{name}', 'SearchResultsController@searchTag');
 // Questions
 Route::get('/question/{id}', 'QuestionController@showWithId');
-Route::get('/question/{id}/{title}', 'QuestionController@show')->name('question');
 Route::get('/question/{id}/edit', 'QuestionController@showedit')->name('question.edit');
 Route::patch('/question/{id}/edit', 'QuestionController@update');
+Route::get('/question/{id}/{title}', 'QuestionController@show')->name('question');
 Route::post('/question/{id}/delete', 'QuestionController@delete')->middleware('auth');
 Route::post('/ask', 'QuestionController@store')->name('ask');
 Route::get('/ask', 'QuestionController@create')->middleware('auth');
 Route::post('/question/{id}/close', 'QuestionController@close')->middleware('auth');
 Route::post('/question/{id}/add_bounty', 'QuestionController@addBounty')->middleware('auth');
+
+Route::post('/suggest_topic', 'TopicController@suggest')->middleware('auth')->name('suggest_topic');
 
 // API
 Route::get('/api/questions', 'SearchResultsController@searchApi'); // TODO
@@ -61,7 +63,7 @@ Route::delete('user', 'UserController@delete')->name('user');
 Route::get('user', 'UserController@showOwn');
 Route::get('user/edit', 'UserController@edit')->middleware('auth');
 Route::patch('user', 'UserController@update')->name('update_user');
-Route::post('users/{username}/ban', 'UserController@ban')->middleware('role:administrator')->name('ban_user');
+Route::post('users/ban', 'UserController@ban')->middleware('role:administrator')->name('ban_user');
 Route::post('/user/report', 'ReportController@report');
 
 

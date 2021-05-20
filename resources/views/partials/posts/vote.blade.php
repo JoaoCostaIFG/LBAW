@@ -28,4 +28,4 @@ if ($vote)
     </button>
   </span>
 </span>
-<script src="/js/add_vote.js"></script>
+<script src="{{ asset('js/add_vote.js') }}"></script>

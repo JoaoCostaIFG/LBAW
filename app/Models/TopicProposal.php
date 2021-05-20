@@ -12,6 +12,10 @@ class TopicProposal extends Model
     protected $table = "topic_proposal";
     public $timestamps = false;
 
+    protected $fillable = [
+        "topic_name", "reason", "accepted", "id_user"
+    ];
+
     public function user()
     {
         return $this->hasOne(User::class, 'id', 'id_user');

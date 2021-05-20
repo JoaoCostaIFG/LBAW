@@ -3,7 +3,11 @@
     <h2 class="page-title">{{ $question->title }}</h2>
     <!-- Bounty -->
     @if ($question->bounty > 0)
-      <span class="badge {{ $question->closed ? 'bg-error' : 'bg-success' }}">Bounty: {{ $question->bounty }}</span>
+      @if ($question->closed)
+        <del class="badge bg-danger">Bounty: {{ $question->bounty }}</del>
+      @else
+        <span class="badge bg-success">Bounty: {{ $question->bounty }}</span>
+      @endif
     @endif
     <!-- Tags -->
     @foreach ($question->topics as $topic)
@@ -33,21 +37,19 @@
       <div id="question-options" class="col-auto">
         <!--Check if is moderator-->
         <ul class="nav nav-pills">
-          @auth
-            @if($question->bounty == 0)
-              <form method="POST" id="bountySlider" class="border border-info bg-dark p-1 rounded-3"
-                action="{{ url('/question/' . $question->id . '/add_bounty')}}" enctype="multipart/form-data">
-                @csrf
-                <input type="hidden" name="id" value="{{$question->id}}">
-                <button class="btn btn-sm btn-info" type="submit">Add Bounty</button>
-                <label for="bounty" class="form-label" id="bountyValue"><b>Bounty</b> {{old('bounty', 0)}}</label>
-                <input class="form-range" type="range" name="bounty" value="0"
-                min="{{$question->body}}" max="{{ min(500, Auth::user()->reputation) }}" step="1" id="bounty"
-                  onmousemove="document.getElementById('bountyValue').innerHTML = '<b>Bounty</b> ' + document.getElementById('bounty').value">
-                <script>document.getElementById('bountyValue').innerHTML = '<b>Bounty</b> ' + document.getElementById('bounty').value</script>
-              </form>
-            @endif
-          @endauth
+          @if($question->bounty == 0)
+            <form method="POST" id="bountySlider" class="border border-info bg-dark p-1 rounded-3"
+              action="{{ url('/question/' . $question->id . '/add_bounty')}}" enctype="multipart/form-data">
+              @csrf
+              <input type="hidden" name="id" value="{{$question->id}}">
+              <button class="btn btn-sm btn-info" type="submit">Add Bounty</button>
+              <label for="bounty" class="form-label" id="bountyValue"><b>Bounty</b> {{old('bounty', 0)}}</label>
+              <input class="form-range" type="range" name="bounty" value="0"
+              min="{{$question->body}}" max="{{ min(500, Auth::user()->reputation) }}" step="1" id="bounty"
+                onmousemove="document.getElementById('bountyValue').innerHTML = '<b>Bounty</b> ' + document.getElementById('bounty').value">
+              <script>document.getElementById('bountyValue').innerHTML = '<b>Bounty</b> ' + document.getElementById('bounty').value</script>
+            </form>
+          @endif
 
           <li class="nav-item dropdown ms-auto">
             <button class="btn btn-sm btn-secondary" data-bs-toggle="dropdown">
@@ -97,6 +99,7 @@
       </div>
     @endauth
   </div>
+
   <!-- question comments -->
   @include('partials.posts.comment_block', ['post' => $question, 'question_id' => $question->id])
   {{-- Maybe needs to receive post and not answer/question --}}

@@ -43,5 +43,5 @@
     </form>
   </div>
 </div>
-<script src="/js/form-validation.js"></script>
+<script src="{{ asset('js/form-validation.js') }}"></script>
 @stop

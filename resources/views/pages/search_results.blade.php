@@ -41,5 +41,5 @@
       @endif
     </div>
   </div>
-  <script src="/js/tabs.js" defer></script>
+  <script src="{{ asset('js/tabs.js') }}" defer></script>
 @stop

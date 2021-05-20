@@ -34,7 +34,7 @@
     </div>
   </div>
 
-    {{-- <div id="topic-input" class="col-12 col-md-8 col-lg-6 card p-1">
+    <div id="topic-input" class="col-12 col-md-8 col-lg-6 card p-1 mt-3 mb-3">
       <div class="card-body">
         <span class="card-title"><b>Topics</b></span>
         <hr class="my-1">
@@ -43,14 +43,14 @@
              name="topics[]" value="" rows=2 id="topics" placeholder="Enter topic tags" multiple required>
             @foreach ($topics as $topic)
               @php
-                $selected = is_array(old('topics')) && in_array($topic, old('topics'));
+                $selected = in_array($topic, $selected_topics);
               @endphp
-              <option id="{{ $topic }}" {{ $selected ? 'selected="selected"' : ''}} value="{{$topic}}">
+              <option id="{{ $topic }}" {!! $selected ? 'selected="selected"' : ''!!} value="{{$topic}}">
                 {{$topic}}
               </option>
             @endforeach
           </select>
-          <script>
+          <script defer>
             // Load select2 values
             $(document).ready(function() {
               $('.topic-list').select2();
@@ -64,7 +64,7 @@
           @endif
         </div>
       </div>
-    </div> --}}
+    </div>
   </div>
 
 
@@ -74,5 +74,5 @@
     </div>
   </div>
 </form>
-<script src="form-validation.js"></script>
+<script src="{{ asset('js/form-validation.js') }}"></script>
 @stop
