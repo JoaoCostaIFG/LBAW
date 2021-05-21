@@ -1907,7 +1907,7 @@ if (token) {
 
 
 
-window.Swal = __webpack_require__(/*! remarkable */ "./node_modules/remarkable/dist/esm/index.browser.js");
+window.md = __webpack_require__(/*! remarkable */ "./node_modules/remarkable/dist/esm/index.browser.js");
 
 /***/ }),
 

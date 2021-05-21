@@ -23,6 +23,9 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+    <!-- Remarkable -->
+    <script src="{{ asset('js/app.js') }}"></script> 
+
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('css/profile.css') }}" type="text/css" />
@@ -120,10 +123,8 @@
     </script>
     <script src="{{ asset('js/textarea_resize.js') }}"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/2.0.1/remarkable.min.js" integrity="sha512-skYYbQHAuOTpeJTthhUH3flZohep8blA+qjZOY0VqmfXMDiYcWxu29F5UbxU4LxaIpGkRBk+3Qf8qaXfd9jngg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="{{ asset('js/app.js') }}"></script> 
     <script>
-      var md = new Swal.Remarkable();
+      var md = new md.Remarkable();
       console.log(md.render('# Remarkable rulezz!'));
 // => <h1>Remarkable rulezz!</h1>
     </script>

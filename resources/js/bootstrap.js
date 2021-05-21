@@ -48,5 +48,5 @@ if (token) {
 //     encrypted: true
 // });
 
-import Swal from 'remarkable';
-window.Swal = require('remarkable');
+import md from 'remarkable';
+window.md = require('remarkable');
