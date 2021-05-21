@@ -119,5 +119,13 @@
       })
     </script>
     <script src="{{ asset('js/textarea_resize.js') }}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/2.0.1/remarkable.min.js" integrity="sha512-skYYbQHAuOTpeJTthhUH3flZohep8blA+qjZOY0VqmfXMDiYcWxu29F5UbxU4LxaIpGkRBk+3Qf8qaXfd9jngg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{ asset('js/app.js') }}"></script> 
+    <script>
+      var md = new Swal.Remarkable();
+      console.log(md.render('# Remarkable rulezz!'));
+// => <h1>Remarkable rulezz!</h1>
+    </script>
   </body>
 </html>
