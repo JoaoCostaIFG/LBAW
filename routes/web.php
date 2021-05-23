@@ -47,6 +47,7 @@ Route::get('/api/questions', 'SearchResultsController@searchApi'); // TODO
 Route::get('/api/user', 'UserController@showApi');
 Route::post('api/comments', 'CommentController@create');
 Route::patch('api/comments/{id}', 'CommentController@update');
+Route::patch('api/answers/{id}', 'AnswerController@update');
 Route::put('api/{id}/vote/', 'VoteController@create');
 Route::delete('api/{id}/vote/', 'VoteController@delete');
 Route::delete('/api/notifications/{id}', 'NotificationController@delete');

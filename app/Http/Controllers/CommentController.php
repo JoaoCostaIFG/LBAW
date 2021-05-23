@@ -57,7 +57,12 @@ class CommentController extends Controller
     }
 
     public function update(Request $request)
-    {
+    {        
+        $validation = Validator::make($request->all(), [
+            'id' => 'required|exists:comment,id',
+            'body' => 'required|string',
+        ]);
+
         $comment = Comment::find($request->id);
         $this->authorize('update', $comment);
 

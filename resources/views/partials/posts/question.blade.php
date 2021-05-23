@@ -3,7 +3,11 @@
     <h2 class="page-title">{{ $question->title }}</h2>
     <!-- Bounty -->
     @if ($question->bounty > 0)
-      <span class="badge {{ $question->closed ? 'bg-error' : 'bg-success' }}">Bounty: {{ $question->bounty }}</span>
+      @if ($question->closed)
+        <del class="badge bg-danger">Bounty: {{ $question->bounty }}</del>
+      @else
+        <span class="badge bg-success">Bounty: {{ $question->bounty }}</span>
+      @endif
     @endif
     <!-- Tags -->
     @foreach ($question->topics as $topic)

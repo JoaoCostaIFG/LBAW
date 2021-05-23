@@ -44,4 +44,17 @@ class AnswerController extends Controller
 
         return redirect()->back();
     }
+
+    public function update(Request $request)
+    {        
+        $validation = Validator::make($request->all(), [
+            'id' => 'required|exists:answer,id',
+            'body' => 'required|string',
+        ]);
+
+        $answer = Answer::find($request->id);
+        $this->authorize('update', $answer);
+
+        $answer->post->update(['body' => $request->body]);
+    }
 }
