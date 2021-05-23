@@ -25,6 +25,8 @@
 
     <!-- Remarkable -->
     <script src="{{ asset('js/app.js') }}"></script> 
+    <!-- StackEdit Markdown -->
+    <script src="https://unpkg.com/stackedit-js@1.0.7/docs/lib/stackedit.min.js"></script>
 
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}" type="text/css" />
@@ -122,11 +124,5 @@
       })
     </script>
     <script src="{{ asset('js/textarea_resize.js') }}"></script>
-
-    <script>
-      var md = new md.Remarkable();
-      console.log(md.render('# Remarkable rulezz!'));
-// => <h1>Remarkable rulezz!</h1>
-    </script>
   </body>
 </html>
