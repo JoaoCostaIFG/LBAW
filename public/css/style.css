@@ -378,6 +378,12 @@ footer {
     width: auto;
     margin: auto;
 }
+
+.question-body-search {
+    height: 3.4em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 /* END MISC */
 
 /* BEGIN QUESTION PAGE */

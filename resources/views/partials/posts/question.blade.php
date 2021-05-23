@@ -28,8 +28,7 @@
   </div>
   <div class="col-10 col-sm-11 row justify-content-end mb-1 ms-1 pb-2 border-start border-dark">
     <!-- question body -->
-    <p class="col-12 text-break ps-0 pe-45">{!! nl2br(e($question->post->body)) !!}</p>
-
+    <p class="col-12 text-break ps-0 pe-45" id="question-body-post">{{ $question->post->body }}</p>
     @include('partials.posts.user_card', ['post' => $question->post])
 
     <!-- Options -->

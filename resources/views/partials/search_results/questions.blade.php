@@ -1,4 +1,5 @@
 <!-- Questions Tab -->
+<script src="{{ asset('js/add_markdown.js') }}" onload="parseSearchPage()" defer></script>
 <div class="tab-pane fade show active" id="questions">
   <div class="row align-items-center justify-content-between my-2 py-1 gx-0">
     <h6 id="questions-page-subtitle" class="col-12 col-lg-3 m-0">

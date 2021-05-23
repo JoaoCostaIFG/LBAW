@@ -4,7 +4,7 @@
   </div>
 
   <div class="col-10 col-sm-11 row gx-0">
-    <p id="comment-{{$comment->post->id}}" class="col-12 mt-1 text-break">{{ $comment->post->body }}</p>
+    <p id="comment-{{$comment->post->id}}" class="col-12 mt-1 text-break comment-body">{{ $comment->post->body }}</p>
     <div class="col-12 d-flex gap-1 justify-content-end align-items-center text-break">
       <div class="text-muted">{{ (new \Carbon\Carbon($comment->post->date))->diffForHumans() }} by</div>
 @if (!is_null($comment->post->owner->username))
