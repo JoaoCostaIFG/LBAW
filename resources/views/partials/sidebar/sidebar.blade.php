@@ -38,7 +38,7 @@
         <img src="{{ asset('storage/'. Auth::user()->picture) }}" class="rounded" width="32" height="32" alt="User profile picture">
         <h4 class="d-inline-block text-truncate">{{ Auth::user()->username }}</h4>
         <button id="notifications-btn" class="btn btn-dark" type="button">
-          <i class="bi bi-bell"></i>
+          <i class="bi bi-bell"></i><span id="notification-amount">{{ count(Auth::user()->notifications) }}</span>
         </button>
     </div>
       <ul class="list-group">

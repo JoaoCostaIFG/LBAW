@@ -88,7 +88,7 @@
             </div>
             <!-- Repeated Password -->
             <div class="input-group mb-2">
-              <label for="password" class="form-label"><b>Confirm Password</b></label>
+              <label for="password_confirmation" class="form-label"><b>Confirm Password</b></label>
               <div class="input-group has-validation">
                 <input type="password" name="password_confirmation"
                   class="form-control {{ $errors->has('password_confirmation') ? 'is-invalid' : '' }}" value=""
