@@ -20,8 +20,14 @@
     @endif
   </h2>
     @auth
+    <div>
+      <button type="button" class="btn btn-secondary mt-3 me-1" title="Help: Profile" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" 
+  data-bs-content="This is a user's profile page. Here, you can take a look at a user's activity, information and achievements. 
+  In your own profile, you can change your account information.">
+    <i class="bi bi-question-circle"></i> Help
+  </button>
       @if (Auth::id() == $user->id)
-        <a class="btn btn-secondary mt-3" href="/user/edit" role="button">
+        <a class="btn btn-primary mt-3" href="/user/edit" role="button">
           Edit <i class="bi bi-pencil-square"></i>
         </a>
       @elseif (Auth::user()->hasRole('administrator') && !$user->isdeleted)
@@ -31,6 +37,7 @@
         Ban <i class="bi bi-trash"></i>
       </button>
       @endif
+    </div>
     @endauth
 </div>
 <hr>
