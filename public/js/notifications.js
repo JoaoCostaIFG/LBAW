@@ -47,6 +47,7 @@ notification_forms.forEach(notification_form => {
             xhttp.open("delete", "/api/notifications/" + notification_form.getAttribute('id').split("-")[1], true);
             xhttp.setRequestHeader("X-CSRF-TOKEN", document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
             xhttp.send();
+            document.querySelector("#notification-amount").textContent -= 1;
         }, true);
     }
 });
