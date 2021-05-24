@@ -4,6 +4,8 @@
 @section('pageType', 'website')
 
 @section('content')
+<script src="{{ asset('js/edit_markdown.js') }}" defer></script>
+
 <div class="d-flex flex-row align-items-center justify-content-between mt-2">
   <h2 class="page-title mt-0">Add Question</h2>
   <button type="button" class="btn btn-secondary" title="Help: Add Question" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" 
@@ -31,7 +33,8 @@
   <div class="input-group mt-2">
     <label for="question-body" class="form-label"><b>Question details</b><span class="text-danger"> *</span></label>
     <div class="input-group has-validation">
-      <textarea class="form-control {{ $errors->has('body') ? 'is-invalid' : ''}}" id="body" name="body" placeholder="Enter question details...">{{ old('body') }}</textarea>
+      <textarea class="form-control p-2 {{ $errors->has('body') ? 'is-invalid' : ''}}" id="body" name="body" placeholder="Enter question details...">{{ old('body') }}</textarea>
+      <a id="edit-markdown" class="position-absolute fs-4" role="button" href="javascript:void(0)" onclick="openEditor()"><i class="bi bi-markdown"></i></a>
       @if ($errors->has('body'))
       <div class="invalid-feedback">
         {{ $errors->first('body') }}
