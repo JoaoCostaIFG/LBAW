@@ -39,7 +39,8 @@
     <form method="post" action="{{ url("/question/" . $question->id . "/answer") }}">
       @csrf
       @method('PUT')
-      <textarea id="Textarea" class="form-control no-resize-ta" name="body"></textarea>
+      <label for="form-answer-body" class="form-label">Body</label>
+      <textarea id="form-answer-body" class="form-control no-resize-ta" name="body"></textarea>
       <label class="visually-hidden" for="Textarea">Answer</label>
       <div class="row justify-content-between mt-1 gx-0">
         <span class="col-auto text-danger">
