@@ -277,7 +277,7 @@ textarea {
 /* BEGIN NAVTABS */
 .nav-link.active {
     background-color: #3498db !important;
-    border-color: #3498db !important;
+    border: none;
 }
 /* END NAVTABS */
 
