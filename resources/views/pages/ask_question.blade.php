@@ -126,7 +126,7 @@
         </form>
       </div>
       <div class="modal-footer">
-        <input type="submit" class="btn btn-primary" value="Submit suggestion"></input>
+        <input type="submit" class="btn btn-primary" value="Submit suggestion">
       </div>
     </div>
   </div>
