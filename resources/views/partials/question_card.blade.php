@@ -46,7 +46,7 @@
       </div>
       <!-- Question Date -->
       <div class="question-card-date col-8 col-md-6 col-lg-5 col-xl-4 d-none d-md-flex flex-row align-items-center p-0">
-        <span class="date align-self-end" data-date={{$question->post->date}}>
+        <span class="date align-self-end" data-date=" {{$question->post->date}} ">
           Posted {{(new \Carbon\Carbon($question->post->date))->diffForHumans()}}
         </span>
         <!-- Author User Info -->
@@ -68,7 +68,7 @@
       </div>
 
       <div class="question-card-date col-5 d-md-none d-flex flex-row align-items-center p-0">
-        <span class="date align-self-end" data-date={{$question->post->date}}>
+        <span class="date align-self-end" data-date="{{ $question->post->date }}">
           Posted {{(new \Carbon\Carbon($question->post->date))->diffForHumans()}} by&nbsp;
           <a href="/profile/{{ $question->post->owner->username }}">
             {{ $question->post->owner->username }}

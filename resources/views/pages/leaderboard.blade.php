@@ -4,7 +4,14 @@
 @section('pageType', 'website')
 
 @section('content')
-<h2 class="page-title">Leaderboard</h2>
+<div class="d-flex flex-row align-items-center justify-content-between mt-2">
+  <h2 class="page-title mb-0">Leaderboard</h2>
+  <button type="button" class="btn btn-secondary" title="Help: Leaderboard" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" 
+  data-bs-content="Here are the top users and posts of our website. Posts score is determined by the number of upvotes and downvotes it has.
+  A user's score is determined by the scores of their posts.">
+    <i class="bi bi-question-circle"></i> Help
+  </button>
+</div>
 <hr />
 <div class="container row justify-content-center mt-4">
   <!-- Users Leaderboard -->
