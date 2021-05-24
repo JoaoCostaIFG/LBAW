@@ -111,13 +111,13 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-          <label for="topic_name" class="form-label"><b>Topic Name</b><span class="text-danger"> *</span></label>
+          <label for="topicNameId" class="form-label"><b>Topic Name</b><span class="text-danger"> *</span></label>
           <div class="input-group has-validation">
             <input id="topicNameId" type="text" name="topic_name" class="form-control"
              placeholder="Enter the topic title... (e.g.: python)" required>
           </div>
 
-          <label for="reason" class="form-label mt-2"><b>Topic reason</b><span class="text-danger"> *</span></label>
+          <label for="topicReasonId" class="form-label mt-2"><b>Topic reason</b><span class="text-danger"> *</span></label>
           <div class="input-group has-validation">
             <textarea class="form-control" id="topicReasonId" name="reason"
              placeholder="Why do you think this topic should exist..." required></textarea>

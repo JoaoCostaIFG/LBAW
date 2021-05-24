@@ -49,7 +49,7 @@
       <div class="input-group mb-3">
         <label for="repeated_password" class="form-label"><i class="bi bi-lock-fill"></i> <b>Repeat Password</b> <span class="text-danger">*</span></label>
         <div class="input-group has-validation">
-          <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Repeat password..." required>
+          <input id="repeated_password" type="password" class="form-control" name="password_confirmation" placeholder="Repeat password..." required>
         </div>
       </div>
       <!-- submit button -->

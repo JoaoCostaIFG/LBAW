@@ -23,7 +23,7 @@
   </div>
 
   <div class="input-group mt-2">
-    <label for="question-body" class="form-label"><b>Question details</b><span class="text-danger"> *</span></label>
+    <label for="body" class="form-label"><b>Question details</b><span class="text-danger"> *</span></label>
     <div class="input-group has-validation">
       <textarea class="form-control {{ $errors->has('body') ? 'is-invalid' : ''}}" id="body" name="body" placeholder="Enter question details...">{{ old('body') ?? $question->post->body }}</textarea>
       @if ($errors->has('body'))
