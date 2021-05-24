@@ -38,7 +38,7 @@
         <ul class="nav nav-pills">
           @if($question->bounty == 0)
             <form method="POST" id="bountySlider" class="border border-info bg-dark p-1 rounded-3"
-              action="{{ url('/question/' . $question->id . '/add_bounty')}}" enctype="multipart/form-data">
+              action="{{ route('question.add_bounty', ["id" => $question->id]) }}" enctype="multipart/form-data">
               @csrf
               <input type="hidden" name="id" value="{{$question->id}}">
               <button class="btn btn-sm btn-info" type="submit">Add Bounty</button>
@@ -59,7 +59,7 @@
                 <!-- Mark as duplicated -->
                 @if (!$question->closed)
                   <li>
-                    <form method="POST" action="{{ url('/question/' . $question->id . '/close') }}"
+                    <form method="POST" action="{{ route('question.close', ["id" => $question->id]) }}"
                       enctype="multipart/form-data">
                       {{ csrf_field() }}
                       <button class="dropdown-item" type="submit">Mark as duplicate</button>
@@ -68,13 +68,13 @@
                 @endif
                 <!-- delete question -->
                 <li>
-                  <form method="POST" action="{{ url('/question/' . $question->id . '/delete') }}"
+                  <form method="POST" action="{{ route('question.delete', ["id" => $question->id]) }}"
                     enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <button class="dropdown-item" type="submit">Delete</button>
                   </form>
                 </li>
-              @endif 
+              @endif
               @auth
                 @if ($question->post->owner->id == Auth::id() || Auth::user()->hasRole('moderator'))
                   <li>

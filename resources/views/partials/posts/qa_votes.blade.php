@@ -9,7 +9,7 @@
       <i class="col-auto bi bi-check2 text-success fs-1"></i>
     @else
       @auth @if (Auth::id() == $answer->question->post->owner->id && !$answer->question->closed)
-        <form class="col-auto" method="POST" action="{{ url('/question/' . $answer->question->id . '/close') }}">
+        <form class="col-auto" method="POST" action="{{ route('question.close', ["id" => $answer->question->id]) }}">
           {{ csrf_field() }}
           <input type="hidden" id="id_answer" name="id_answer" value="{{ $answer->id }}">
           <button class="btn accept-answer-btn bi bi-check2 fs-1" type="submit">

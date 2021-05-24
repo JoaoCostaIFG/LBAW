@@ -16,7 +16,7 @@ if ($notification->notification_achievement) {
     <i class="bi bi-exclamation-circle-fill p-1"></i>
     <strong class="me-auto">{{ $notification->title }}</strong>
     <small class="text-muted">{{ (new \Carbon\Carbon($notification->date))->diffForHumans() }}</small>
-    <form method="POST" id="notification-{{$notification->id}}" class="d-flex notification-form" action="{{url("api/notifications/" . $notification->id)}}">
+    <form method="POST" id="notification-{{$notification->id}}" class="d-flex notification-form" action="{{ route('notification.delete', ["id" => $notificaion->id]) }}">
         @csrf
         @method('DELETE')
         <button type="submit" class="btn-close p-0 me-1" data-bs-dismiss="toast" aria-label="Dismiss notication"></button>

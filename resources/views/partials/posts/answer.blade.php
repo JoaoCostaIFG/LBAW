@@ -25,15 +25,15 @@
               @if (Auth::user()->hasRole('moderator'))
                 <!-- delete answer -->
                 <li>
-                  <form method="POST" action="{{ url('/question/' . $answer->id . '/delete') }}"
+                  <form method="POST" action="{{ route('question.delete', ["id" => $answer->id]) }}"
                     enctype="multipart/form-data">
                     @csrf
                     <button class="dropdown-item" type="submit">Delete</button>
                   </form>
                 </li>
-              @endif 
+              @endif
               @if ($answer->post->owner->id == Auth::id() || Auth::user()->hasRole('moderator'))
-                <li>                  
+                <li>
                   <button class="dropdown-item" onclick="editAnswer({{$answer->post->id}})" aria-label="Edit answer">
                     Edit Answer
                   </button>
@@ -51,7 +51,7 @@
         </ul>
       </div>
     @endauth
-    
+
   </div>
 
   <!-- answer comments -->

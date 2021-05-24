@@ -5,7 +5,7 @@
         <h5 class="modal-title text-danger">Report User</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form method="POST" action="{{ url('/user/report') }}" enctype="multipart/form-data">
+      <form method="POST" action="{{ route('user.report') }}" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="modal-body">
           <div class="mb-3">

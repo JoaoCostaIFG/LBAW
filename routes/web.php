@@ -26,19 +26,19 @@ Route::get('/leaderboard', 'LeaderboardController@show');
 Route::get('administration', 'AdministrationController@show')->middleware('role:moderator');
 
 // Posts
-Route::put('/question/{id}/answer', 'AnswerController@create');
-Route::get('/search', 'SearchResultsController@search');
+Route::put('/question/{id}/answer', 'AnswerController@create')->name('answer.add');
+Route::get('/search', 'SearchResultsController@search')->name('search');
 Route::get('/search/tag/{name}', 'SearchResultsController@searchTag');
 // Questions
 Route::get('/question/{id}', 'QuestionController@showWithId');
 Route::get('/question/{id}/edit', 'QuestionController@showedit')->name('question.edit');
 Route::patch('/question/{id}/edit', 'QuestionController@update');
 Route::get('/question/{id}/{title}', 'QuestionController@show')->name('question');
-Route::post('/question/{id}/delete', 'QuestionController@delete')->middleware('auth');
+Route::post('/question/{id}/delete', 'QuestionController@delete')->middleware('auth')->name('question.delete');
 Route::post('/ask', 'QuestionController@store')->name('ask');
 Route::get('/ask', 'QuestionController@create')->middleware('auth');
-Route::post('/question/{id}/close', 'QuestionController@close')->middleware('auth');
-Route::post('/question/{id}/add_bounty', 'QuestionController@addBounty')->middleware('auth');
+Route::post('/question/{id}/close', 'QuestionController@close')->middleware('auth')->name('question.close');
+Route::post('/question/{id}/add_bounty', 'QuestionController@addBounty')->middleware('auth')->name('question.add_bounty');
 
 Route::post('/suggest_topic', 'TopicController@suggest')->middleware('auth')->name('suggest_topic');
 
@@ -50,7 +50,7 @@ Route::patch('api/comments/{id}', 'CommentController@update');
 Route::patch('api/answers/{id}', 'AnswerController@update');
 Route::put('api/{id}/vote/', 'VoteController@create');
 Route::delete('api/{id}/vote/', 'VoteController@delete');
-Route::delete('/api/notifications/{id}', 'NotificationController@delete');
+Route::delete('/api/notifications/{id}', 'NotificationController@delete')->name('notification.delete');
 
 //Ajax
 Route::post('ajax/comment', 'AjaxController@add_comment');
@@ -65,7 +65,7 @@ Route::get('user', 'UserController@showOwn');
 Route::get('user/edit', 'UserController@edit')->middleware('auth');
 Route::patch('user', 'UserController@update')->name('update_user');
 Route::post('users/ban', 'UserController@ban')->middleware('role:administrator')->name('ban_user');
-Route::post('/user/report', 'ReportController@report');
+Route::post('/user/report', 'ReportController@report')->name('user.report');
 
 
 // Authentication

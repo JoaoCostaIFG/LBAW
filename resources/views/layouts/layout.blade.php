@@ -19,12 +19,12 @@
     <!-- using themed bootstrap -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <!-- Remarkable -->
-    <script src="{{ asset('js/app.js') }}"></script> 
+    <script src="{{ asset('js/app.js') }}"></script>
     <!-- StackEdit Markdown -->
     <script src="https://unpkg.com/stackedit-js@1.0.7/docs/lib/stackedit.min.js"></script>
 
@@ -58,7 +58,7 @@
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="navbar-brand">
-              <a id="brand-logo" href="{{ url('home') }}">
+              <a id="brand-logo" href="{{ route('home') }}">
                 <span id="brand">Segmentation <b>fault</b></span>
               </a>
               <i class="bi bi-cpu"></i>
@@ -71,7 +71,7 @@
               <i class="bi-search"></i>
             </button>
           </div>
-          <form id="navbarSeachForm" class="d-flex" action="{{ url('search') }}">
+          <form id="navbarSeachForm" class="d-flex" action="{{ route('search') }}">
             <input class="form-control me-2" name="q" value="{{$q ?? ''}}" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit" aria-label="Search"><i class="bi-search"></i></button>
           </form>
@@ -85,7 +85,7 @@
         <div class="modal-content">
           <!-- bg-dark -->
           <div class="modal-body">
-            <form action="{{ url('search') }}">
+            <form action="{{ route('search') }}">
               <!-- button is not needed -->
               <!-- <button class="btn btn-outline-success" type="submit"><i class="bi-search"></i></button> -->
               <input class="form-control" type="search" name="q" value="{{$q ?? ''}}" placeholder="Search" aria-label="Search">

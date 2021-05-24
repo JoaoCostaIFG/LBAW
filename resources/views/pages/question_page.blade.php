@@ -37,7 +37,7 @@
   <hr>
   <div class="container">
     <h2>Your answer</h2>
-    <form method="post" action="{{ url("/question/" . $question->id . "/answer") }}">
+    <form method="post" action="{{ route('answer.add', ["id" => $question->id]) }}">
       @csrf
       @method('PUT')
       <label for="form-answer-body" class="form-label">Body</label>
