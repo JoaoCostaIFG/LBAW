@@ -76,10 +76,12 @@ function positiveFeedback(card, accepted) {
   card.classList.add("alert");
   if (accepted){
     card.classList.add("alert-success");
+    card.classList.add("text-center");
     feedback_msg.appendChild(document.createTextNode("Accepted!"));
   }
   else{
     card.classList.add("alert-danger");
+    card.classList.add("text-center");
     feedback_msg.appendChild(document.createTextNode("Rejected!"));
   }
   // Replace
@@ -87,13 +89,17 @@ function positiveFeedback(card, accepted) {
 }
 
 function negativeFeedback(card) {
-  // Create new element
-  let feedback_msg = document.createElement("div");
-  feedback_msg.classList.add("invalid-feedback");
-  feedback_msg.classList.add("d-block");
-  feedback_msg.appendChild(document.createTextNode("An error occurred while processing your request."));
-  // Add child
-  card.appendChild(feedback_msg);
+  if (!negativeFeedback.added) {
+    negativeFeedback.added = true;
+    // Create new element
+    let feedback_msg = document.createElement("span");
+    feedback_msg.classList.add("col-12");
+    feedback_msg.classList.add("invalid-feedback");
+    feedback_msg.classList.add("d-block");
+    feedback_msg.appendChild(document.createTextNode("An error occurred while processing your request."));
+    // Add child
+    card.appendChild(feedback_msg);
+  }
 }
 
 function processEditProposal(proposal_id, accepted){
@@ -103,3 +109,5 @@ function processEditProposal(proposal_id, accepted){
 function processTopicProposal(proposal_id, accepted){
   processProposal(proposal_id, accepted, "topic");
 }
+
+negativeFeedback.added = false;

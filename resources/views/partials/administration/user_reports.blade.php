@@ -3,7 +3,7 @@ $user = $report->post->owner;
 $question_url = 'question/' . $report->post->parentQuestion->id;
 $type = $report->post->type;
 ?>
-<div class="container-fluid border rounded m-3 m-sm-1 p-1 d-flex align-items-center justify-content-center" style="max-width: 35em;" id="user-report-p{{$report->post->id}}r{{$report->reporter}}">
+<div class="container-fluid border rounded m-3 m-sm-1 p-1 row gx-0 align-items-center justify-content-center" style="max-width: 35em;" id="user-report-p{{$report->post->id}}r{{$report->reporter}}">
     <div class="row align-items-center p-3">
         <div class="col-12 col-sm-5 align-middle text-center mb-3 mb-sm-0">
             <img src="{{ asset('storage/'.$user->picture) }}" class="rounded img-fluid align-middle" width="120" alt="User profile picture">
