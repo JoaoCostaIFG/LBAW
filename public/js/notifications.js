@@ -43,11 +43,15 @@ notification_forms.forEach(notification_form => {
         notification_form.addEventListener("submit", function (evt) {
             evt.preventDefault();
 
+
             let xhttp = new XMLHttpRequest();
             xhttp.open("delete", "/api/notifications/" + notification_form.getAttribute('id').split("-")[1], true);
             xhttp.setRequestHeader("X-CSRF-TOKEN", document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
             xhttp.send();
-            document.querySelector("#notification-amount").textContent -= 1;
+            document.querySelector("#notification-amount").textContent = Math.max(0, document.querySelector("#notification-amount").textContent - 1);
+
+            //Remove toast
+            notification_form.parentNode.parentNode.remove()
         }, true);
     }
 });
