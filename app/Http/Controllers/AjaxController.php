@@ -21,7 +21,7 @@ class AjaxController extends Controller
         $comment = $comment_controller->create($request);
 
         if(is_null($comment)){
-            return "<p id=\"comment-error\" class=\"text-danger\">An error occurred while processing your request</p>";
+            return view('errors.comment_ajax_error');
         }
         return view('partials.posts.comment', ['comment' => $comment]);
     }
@@ -29,18 +29,18 @@ class AjaxController extends Controller
     public function proccess_edit_proposal(Request $request)
     {
         $proposal_controller = new EditProposalController();
-        $proposal_controller->update($request);        
+        $proposal_controller->update($request);
     }
 
     public function proccess_topic_proposal(Request $request)
     {
         $proposal_controller = new TopicProposalController();
-        $proposal_controller->update($request);       
+        $proposal_controller->update($request);
     }
 
     public function proccess_user_report(Request $request)
     {
         $report_controller = new ReportController();
-        $report_controller->process($request); 
+        $report_controller->process($request);
     }
 }
