@@ -91,6 +91,12 @@
         <button type="button" class="btn btn-sm btn-outline-info mt-2" data-bs-toggle="modal" data-bs-target="#suggestTopicModal">
           Not seeing the tag you want? Suggest it.
         </button>
+        @if ($errors->has('reason'))
+        <div class="invalid-feedback">
+{{ $errors->first("reason") }}
+          {{ $errors->first('reason') }}
+        </div>
+        @endif
       </div>
     </div>
   </div>

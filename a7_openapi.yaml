@@ -42,6 +42,8 @@ paths:
                   type: string
                 password:
                   type: string
+                a:
+                  type: integer
               required:
                 - email
                 - password
