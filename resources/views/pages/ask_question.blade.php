@@ -33,8 +33,13 @@
   <div class="input-group mt-2">
     <label for="question-body" class="form-label"><b>Question details</b><span class="text-danger"> *</span></label>
     <div class="input-group has-validation">
-      <textarea class="form-control p-2 {{ $errors->has('body') ? 'is-invalid' : ''}}" id="body" name="body" placeholder="Enter question details...">{{ old('body') }}</textarea>
-      <a id="edit-markdown" class="position-absolute fs-4" role="button" href="javascript:void(0)" onclick="openEditor()"><i class="bi bi-markdown"></i></a>
+      <textarea id="question-body" class="form-control p-2 {{ $errors->has('body') ? 'is-invalid' : ''}}"
+       name="body" rows="10" placeholder="Enter question details...">
+        {{ old('body') }}
+      </textarea>
+      <a id="edit-markdown" class="position-absolute fs-4" role="button" href="javascript:void(0)" onclick="openEditor()">
+        <i class="bi bi-markdown"></i>
+      </a>
       @if ($errors->has('body'))
       <div class="invalid-feedback">
         {{ $errors->first('body') }}
@@ -50,7 +55,9 @@
         <hr class="my-1">
         <div class="text-center mt-1">
           <label for="bounty" class="form-labelr" id="bountyValue">{{ old('bounty', 0) }}</label>
-          <input type="range" name="bounty" class="form-range {{ $errors->has('bounty') ? 'is-invalid' : ''}}" value="{{ old('bounty', 0) }}" min="0" max="500" step="1" id="bounty" onmousemove="document.getElementById('bountyValue').innerText = document.getElementById('bounty').value">
+          <input id="bounty" type="range" name="bounty" class="form-range {{ $errors->has('bounty') ? 'is-invalid' : ''}}"
+           value="{{ old('bounty', 0) }}" min="0" max="500" step="1"
+           onmousemove="document.getElementById('bountyValue').innerText = document.getElementById('bounty').value">
           @if ($errors->has('bounty'))
           <div class="invalid-feedback">
             {{ $errors->first('bounty') }}
@@ -64,8 +71,8 @@
         <span class="card-title"><b>Topics</b></span>
         <hr class="my-1">
         <div class="mt-3 has-validation">
-          <select class="no-resize-ta topic-list form-control {{ $errors->has('topics') ? 'is-invalid' : ''}}"
-             name="topics[]" value="" rows=2 id="topics" placeholder="Enter topic tags" multiple required>
+          <select id="topics" class="no-resize-ta topic-list form-control {{ $errors->has('topics') ? 'is-invalid' : ''}}"
+             name="topics[]" multiple required>
             @foreach ($topics as $topic)
               @php
                 $selected = is_array(old('topics')) && in_array($topic, old('topics'));
@@ -88,6 +95,7 @@
           </div>
           @endif
         </div>
+
         <button type="button" class="btn btn-sm btn-outline-info mt-2" data-bs-toggle="modal" data-bs-target="#suggestTopicModal">
           Not seeing the tag you want? Suggest it.
         </button>
@@ -101,6 +109,7 @@
             {{ $errors->first('reason') }}
           </div>
         @endif
+
       </div>
     </div>
   </div>
@@ -116,14 +125,14 @@
 <form method="POST" action="{{ route('suggest_topic') }}">
   @csrf
 
-<div id="suggestTopicModal" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Suggest a topic</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
+  <div id="suggestTopicModal" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Suggest a topic</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
           <label for="topicNameId" class="form-label"><b>Topic Name</b><span class="text-danger"> *</span></label>
           <div class="input-group has-validation">
             <input id="topicNameId" type="text" name="topic_name" class="form-control"
@@ -135,15 +144,14 @@
             <textarea class="form-control" id="topicReasonId" name="reason"
              placeholder="Why do you think this topic should exist..." required></textarea>
           </div>
-
-        </form>
-      </div>
-      <div class="modal-footer">
-        <input type="submit" class="btn btn-primary" value="Submit suggestion">
+        </div>
+        <div class="modal-footer">
+          <input type="submit" class="btn btn-primary" value="Submit suggestion">
+        </div>
       </div>
     </div>
   </div>
-</div>
+</form>
 
 <script src="{{ asset('js/form-validation.js') }}"></script>
 @stop
