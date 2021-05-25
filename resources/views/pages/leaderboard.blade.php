@@ -13,7 +13,7 @@
   </button>
 </div>
 <hr />
-<div class="container row justify-content-center mt-4">
+<div class="container row justify-content-evenly mt-4">
   <!-- Users Leaderboard -->
   <div class="col-auto">
     <table class="table table-dark table-striped table-bordered align-middle">
@@ -36,7 +36,7 @@
   </div>
 
   <!-- Questions Leaderboard -->
-  <div class="col-auto align-self-center">
+  <div class="col-auto">
     <table class="table table-dark table-striped table-bordered align-middle">
       <thead>
         <tr>
