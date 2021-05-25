@@ -29,6 +29,11 @@ class User extends Authenticatable implements CanResetPassword {
         'name', 'username', 'password', 'email', 'picture'
     ];
 
+    public static function banUser($data) {
+        DB::select("CALL ban_user(?, ?, ?)",
+                [$data['user_id'], $data['admin_id'], $data['reason']]);
+    }
+
     public function getFirstNameAttribute() {
         return explode(' ', $this->name)[0];
     }

@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class Comment extends Model
 {
@@ -40,5 +43,18 @@ class Comment extends Model
             return $this->question();
         else // if ($this->answer()->exists())
             return $this->answer();
+    }
+
+    public static function createComment($request) {
+        $comment = DB::transaction(function () use ($request){
+            if($request->has('question_id')){
+                DB::select("CALL create_comment(?, ?, ?, ?, ?)", [Auth::id(), $request->body, Carbon::now(), $request->question_id, null]);
+            } else {
+                DB::select("CALL create_comment(?, ?, ?, ?, ?)", [Auth::id(), $request->body, Carbon::now(), null, $request->answer_id]);
+            }
+            return Comment::latest('id')->limit(1);
+        });
+
+        return $comment->with('post')->get()[0];
     }
 }
