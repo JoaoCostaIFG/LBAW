@@ -37,7 +37,7 @@ class UserController extends Controller
               'user' => 'You are not logged in']);
         }
 
-        return redirect()->route('profile', [Auth::id()]);
+        return redirect()->route('profile', [Auth::user()->username]);
     }
 
     // TODO pass this to policy

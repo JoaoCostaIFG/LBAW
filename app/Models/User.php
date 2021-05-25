@@ -26,7 +26,7 @@ class User extends Authenticatable implements CanResetPassword {
     ];
 
     protected $fillable = [
-        'username', 'password', 'email', 'picture'
+        'name', 'username', 'password', 'email', 'picture'
     ];
 
     public function getFirstNameAttribute() {
