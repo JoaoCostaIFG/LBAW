@@ -34,13 +34,10 @@
     @endguest
 
     @auth
-    <div class="sidebar-subheader d-flex align-items-center gap-1">
+    <div class="sidebar-subheader d-flex justify-content-start align-items-center gap-1">
       <img src="{{ asset('storage/'. Auth::user()->picture) }}" class="rounded"
         width="32" height="32" alt="User profile picture">
       <h4 class="d-inline-block text-truncate">{{ Auth::user()->username }}</h4>
-      <button id="notifications-btn" class="btn btn-dark col-3 ms-auto" type="button">
-        <i class="bi bi-bell"></i><span id="notification-amount">{{ count(Auth::user()->notifications) }}</span>
-      </button>
     </div>
     <ul class="list-group">
       @include('partials.sidebar.sidebar_link', ['href' => "/profile/" . Auth::user()->username,

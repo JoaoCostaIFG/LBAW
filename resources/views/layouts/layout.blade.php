@@ -107,7 +107,17 @@
 
     <!-- Footer -->
     <footer class="container">
-      <a class="btn btn-secondary" id="go-up-button" href="#" role="button" aria-label="Go to the top of the page"><i class="bi bi-arrow-up"></i></a>
+      @auth
+        <button id="notifications-btn" class="btn btn-secondary" type="button">
+          <i class="bi bi-bell"></i>
+          <span id="notification-amount">
+            {{ count(Auth::user()->notifications) }}
+          </span>
+        </button>
+      @endauth
+      <a id="go-up-button" class="btn btn-secondary" href="#" role="button" aria-label="Go to the top of the page">
+        <i class="bi bi-arrow-up"></i>
+      </a>
       <br>
       <hr>
       <div class="row justify-content-between">
