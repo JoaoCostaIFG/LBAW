@@ -38,15 +38,17 @@ paths:
             schema:
               type: object
               properties:
-                email:
+                title:
                   type: string
-                password:
+                body:
                   type: string
-                a:
+                bounty:
                   type: integer
+                tags:
+                  type: string
               required:
-                - email
-                - password
+                - title
+                - body
       responses:
         '302':
           description: 'Redirect after processing the login credentials.'
