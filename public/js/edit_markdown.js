@@ -1,4 +1,4 @@
-const el = document.getElementById("body");
+const el = document.getElementById("question-body");
 
 function openEditor() {
   const stackedit = new Stackedit();

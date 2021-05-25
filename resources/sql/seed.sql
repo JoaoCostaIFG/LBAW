@@ -874,7 +874,17 @@ DO INSTEAD(
     WHERE id = Old.id;
     DELETE FROM "achieved" WHERE id_user = Old.id;
     DELETE FROM "notification" WHERE id = Old.id;
+    UPDATE "report" SET "state" = 'rejected'
+    FROM post WHERE post.id = report.id_post AND post.id_owner = Old.id;
+    DELETE FROM "edit_proposal" WHERE id_user = Old.id;
+    DELETE FROM "topic_proposal" WHERE id_user = Old.id;
 );
+
+DROP TRIGGER IF EXISTS delete_notification_trigger ON notification_post CASCADE;
+CREATE TRIGGER delete_notification_trigger
+AFTER DELETE ON notification_post
+FOR EACH ROW
+EXECUTE PROCEDURE delete_notification();
 
 ---- Achievements
 
