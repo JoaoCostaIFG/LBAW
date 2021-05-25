@@ -35,16 +35,19 @@
 
     @auth
     <div class="sidebar-subheader d-flex align-items-center gap-1">
-        <img src="{{ asset('storage/'. Auth::user()->picture) }}" class="rounded" width="32" height="32" alt="User profile picture">
-        <h4 class="d-inline-block text-truncate">{{ Auth::user()->username }}</h4>
-        <button id="notifications-btn" class="btn btn-dark" type="button">
-          <i class="bi bi-bell"></i><span id="notification-amount">{{ count(Auth::user()->notifications) }}</span>
-        </button>
+      <img src="{{ asset('storage/'. Auth::user()->picture) }}" class="rounded"
+        width="32" height="32" alt="User profile picture">
+      <h4 class="d-inline-block text-truncate">{{ Auth::user()->username }}</h4>
+      <button id="notifications-btn" class="btn btn-dark col-3 ms-auto" type="button">
+        <i class="bi bi-bell"></i><span id="notification-amount">{{ count(Auth::user()->notifications) }}</span>
+      </button>
     </div>
-      <ul class="list-group">
-          @include('partials.sidebar.sidebar_link', ['href' => "/profile/" . Auth::user()->username, 'icon' => "bi-person-circle", 'text' =>  "My Profile", 'is_selected' => $title === "Profile"])
-          @include('partials.sidebar.sidebar_link', ['href' => "/ask", 'icon' => "bi-plus-circle", 'text' =>  "Ask Question", 'is_selected' => $title === "Ask Question"]) {{-- TODO --}}
-      </ul>
+    <ul class="list-group">
+      @include('partials.sidebar.sidebar_link', ['href' => "/profile/" . Auth::user()->username,
+        'icon' => "bi-person-circle", 'text' =>  "My Profile", 'is_selected' => $title === "Profile"])
+      @include('partials.sidebar.sidebar_link', ['href' => "/ask", 'icon' => "bi-plus-circle",
+        'text' =>  "Ask Question", 'is_selected' => $title === "Ask Question"]) {{-- TODO --}}
+    </ul>
 
     <div class="row justify-content-evenly sidebar-buttons">
         <a class="btn btn-danger col-4" href="/logout">Logout</a>
