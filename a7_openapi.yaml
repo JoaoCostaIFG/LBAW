@@ -35,20 +35,15 @@ paths:
         required: true
         content:
           application/x-www-form-urlenconded:
-            schema:
               type: object
               properties:
-                title:
+                email:
                   type: string
-                body:
-                  type: string
-                bounty:
-                  type: integer
-                tags:
+                password:
                   type: string
               required:
-                - title
-                - body
+                - email
+                - password
       responses:
         '302':
           description: 'Redirect after processing the login credentials.'
