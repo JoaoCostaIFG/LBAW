@@ -43,21 +43,11 @@ class CommentController extends Controller
             return null;
         }
 
-        // create_comment(OwnerUser INT, Body TEXT, DatePost DATE, IdQuestion INT, IdAnswer INT)
-        $comment = DB::transaction(function () use ($request){
-            if($request->has('question_id')){
-                DB::select("CALL create_comment(?, ?, ?, ?, ?)", [Auth::id(), $request->body, Carbon::now(), $request->question_id, null]);
-            } else {
-                DB::select("CALL create_comment(?, ?, ?, ?, ?)", [Auth::id(), $request->body, Carbon::now(), null, $request->answer_id]);
-            }
-            return Comment::latest('id')->limit(1);
-        });
-
-        return $comment->with('post')->get()[0];
+        return Comment::createComment($request);
     }
 
     public function update(Request $request)
-    {        
+    {
         $validation = Validator::make($request->all(), [
             'id' => 'required|exists:comment,id',
             'body' => 'required|string',

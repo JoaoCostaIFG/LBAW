@@ -35,18 +35,13 @@ class AnswerController extends Controller
             return back()->withErrors($validation);
         }
 
-
-        // create_answer(OwnerUser INT, Body TEXT, DatePost DATE, IdQuestion INT)
-        DB::transaction(function () use ($request) {
-            DB::select("CALL create_answer(?, ?, ?, ?)", [Auth::id(), $request->body, Carbon::now(), $request->id]);
-            return Answer::latest('id')->limit(1);
-        });
+        Answer::createAnswer($request);
 
         return redirect()->back();
     }
 
     public function update(Request $request)
-    {        
+    {
         $validation = Validator::make($request->all(), [
             'id' => 'required|exists:answer,id',
             'body' => 'required|string',

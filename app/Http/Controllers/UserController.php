@@ -68,20 +68,19 @@ class UserController extends Controller
         return redirect()->intended('register');
     }
 
-    public function ban_procedure($data) {     
+    public function ban_procedure($data) {
         $validation = Validator::make($data, [
             'admin_id' => 'required|integer|exists:administrator,id',
             'user_id' => 'required|integer|exists:user,id',
             'reason' => 'nullable|string|max:100',
         ]);
         if (!$validation->fails())
-            DB::select("CALL ban_user(?, ?, ?)",
-                [$data['user_id'], $data['admin_id'], $data['reason']]);            
-           
+            User::banUser($data);
+
         return $validation;
     }
 
-    public function ban(Request $request){  
+    public function ban(Request $request){
         if (!Auth::check()) {
             return back()->withErrors([
                 'user' => 'You are not logged in']);
@@ -105,7 +104,7 @@ class UserController extends Controller
             return back()->withErrors([
                 'user' => 'You are not logged in']);
         }
-  
+
         return view("pages.edit_account", ['user' => Auth::user()]);
     }
 
@@ -117,7 +116,7 @@ class UserController extends Controller
             return back()->withErrors($validation)->withInput($request->except('password', 'password_confirmation'));
 
         // Update
-        $data = $request->all();        
+        $data = $request->all();
         if(isset($data['email']))
             $user->email = $data['email'];
         if(isset($data['username']))
@@ -135,7 +134,7 @@ class UserController extends Controller
             $path = $request->file('avatar')->store('avatars', 'public');
             $user->picture = $path;
         }
-        
+
         $user->save();
         return redirect('/profile/'.$user->username)->with('status','Profile updated successfully!');
     }
@@ -155,7 +154,7 @@ class UserController extends Controller
 
         $validation = Validator::make($request->all(), [
             'email' => 'nullable|string|email|max:255|unique:user',
-            'username' => ['nullable', 'string', 'max:32', 'unique:user', 
+            'username' => ['nullable', 'string', 'max:32', 'unique:user',
                 function($attr, $name, $fail) {
                     if (str_starts_with($name, 'Deleted User'))
                         $fail('Name cannot start with \'Deleted User\'');
