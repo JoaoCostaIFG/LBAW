@@ -13,10 +13,10 @@
 <!-- BEGIN TABS -->
 <div class="d-flex flex-row align-items-center justify-content-between">
   <h2 class="page-title mb-0">
-    @if (Auth::id() == request()->id)
+    @if (Auth::check() && Auth::user()->username == request()->username)
       Your Profile
     @else
-      {{ $user->name }}'s profile
+      {{ $user->username }}'s profile
     @endif
   </h2>
     @auth

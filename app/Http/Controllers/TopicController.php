@@ -31,8 +31,9 @@ class TopicController extends Controller
       $data = $request->all();
 
       $validation = $this->validator($data);
-      if ($validation->fails())
+      if ($validation->fails()) {
         return back()->withErrors($validation)->withInput($data);
+      }
 
       $data['id_user'] = Auth::id();
       TopicProposal::create($data);
