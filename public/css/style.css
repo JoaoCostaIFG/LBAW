@@ -144,11 +144,11 @@ textarea {
 }
 
 #help_img {
-    background: url("/images/help_dark.svg") no-repeat;
+    background: url("../images/help_dark.svg") no-repeat;
 }
 
 #be_img {
-    background: url("/images/be_dark.svg") no-repeat;
+    background: url("../images/be_dark.svg") no-repeat;
 }
 /* END FEATURETTE */
 
