@@ -80,12 +80,6 @@ Route::post('/forgot-password', 'Auth\PasswordController@submitResetPasswordRequ
 Route::get('/reset-password/{token}', 'Auth\PasswordController@showResetPasswordPage')->middleware('guest')->name('password.reset');
 Route::post('/reset-password', 'Auth\PasswordController@resetPassword')->middleware('guest')->name('password.update');
 
-// TODO remove
-Route::get('/test', function() {
-  $a = DB::select('select * from moderator');
-  dd($a);
-});
-
 Route::fallback(function() {
   /** This will check for the 404 view page unders /resources/views/errors/404 route */
   return view('errors.404');
