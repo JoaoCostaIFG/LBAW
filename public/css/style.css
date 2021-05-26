@@ -285,7 +285,6 @@ textarea {
 #toast-container {
     z-index: 1000;
     position: fixed;
-    bottom: -999px;
     right: 0;
 }
 /* END NOTIFICATIONS */

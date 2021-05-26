@@ -31,7 +31,7 @@ if (toastBtn != null) {
             toastsInstances.forEach(function (toast) {
                 toast.show();
             });
-            toastContainer.style.bottom = "0";
+            toastContainer.style.bottom = "7em";
         }
     });
 }
