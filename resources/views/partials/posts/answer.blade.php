@@ -14,7 +14,7 @@
 
     <!-- Options -->
     @auth
-      <div class="answer-options" class="col-auto">
+      <div class="answer-options" data-bs-toggle="tooltip" data-bs-placement="right" title="Options">
         <!--Check if is moderator-->
         <ul class="nav nav-pills">
           <li class="nav-item dropdown ms-auto">

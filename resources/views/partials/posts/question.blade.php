@@ -4,19 +4,20 @@
     <!-- Bounty -->
     @if ($question->bounty > 0)
       @if ($question->closed)
-        <del class="badge bg-danger">Bounty: {{ $question->bounty }}</del>
+        <del class="badge bg-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="The bounty for this question has been taken. (worth: {{ $question->bounty }} points)">Bounty: {{ $question->bounty }}</del>
       @else
-        <span class="badge bg-success">Bounty: {{ $question->bounty }}</span>
+        <span class="badge bg-success" data-bs-toggle="tooltip" data-bs-placement="bottom" title="The bounty for this question is still available. If your answer is accepted, you will receive {{ $question->bounty }} points.">Bounty: {{ $question->bounty }}</span>
       @endif
     @endif
     <!-- Tags -->
     @foreach ($question->topics as $topic)
-      <a class="badge bg-primary text-decoration-none" href="/search/tag/{{ $topic->name }}">{{ $topic->name }}</a>
+      <a class="badge bg-primary text-decoration-none" href="/search/tag/{{ $topic->name }}" 
+        data-bs-toggle="tooltip" data-bs-placement="bottom" title="This post has been tagged under the {{ $topic->name }} tag.">{{ $topic->name }}</a>
     @endforeach
   </div>
 
   @if (is_null($question->accepted_answer) && $question->closed)
-    <h2><span class="badge bg-success mb-1 mt-3">Duplicated</span></h2>
+    <h2><span class="badge bg-success mb-1 mt-3" data-bs-toggle="tooltip" data-bs-placement="right" title="This answers has been marked as duplicated.">Duplicated</span></h2>
   @endif
 </div>
 
@@ -33,7 +34,7 @@
 
     <!-- Options -->
     @auth
-      <div id="question-options" class="col-auto">
+      <div id="question-options" class="col-auto" data-bs-toggle="tooltip" data-bs-placement="right" title="Options">
         <!--Check if is moderator-->
         <ul class="nav nav-pills">
           @if($question->bounty == 0)

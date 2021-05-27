@@ -16,7 +16,7 @@
 @auth
   @if (Auth::id() == $comment->post->owner->id || Auth::user()->hasRole('moderator'))
       <div>
-        <button class="btn btn-sm btn-secondary" data-bs-toggle="dropdown" aria-label="Edit comment" aria-expanded="false">
+        <button class="btn btn-sm btn-secondary" data-bs-toggle="dropdown" aria-label="Edit comment" aria-expanded="false" data-bs-toggle="tooltip" data-bs-placement="left" title="Edit comment">
           <i class="bi bi-pencil-square"></i>
         </button>
 
