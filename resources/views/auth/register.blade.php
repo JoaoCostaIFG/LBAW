@@ -37,7 +37,7 @@
       <div class="input-group mb-3">
         <label for="password" class="form-label"><i class="bi bi-lock-fill"></i> <b>Password</b> <span class="text-danger">*</span></label>
         <div class="input-group has-validation">
-          <input id="password" type="password" class="form-control" name="password" placeholder="Enter password..." required>
+          <input id="password" type="password" class="form-control" name="password" placeholder="Enter password..." required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" >
           @if ($errors->has('password'))
             <span class="invalid-feedback d-block">
               {{ $errors->first('password') }}
@@ -45,6 +45,12 @@
           @endif
         </div>
       </div>
+      <ul id="message" class="list-unstyled">
+        <li id="letter" class="text-danger">X Must have a <b>lowercase</b> letter</li>
+        <li id="capital" class="text-danger">X Must have a <b>capital (uppercase)</b> letter</li>
+        <li id="number" class="text-danger">X Must have a <b>number</b></li>
+        <li id="length" class="text-danger">X Minimum <b>6 characters</b></li>
+      </ul>
       <!-- Repeated Password -->
       <div class="input-group mb-3">
         <label for="repeated_password" class="form-label"><i class="bi bi-lock-fill"></i> <b>Repeat Password</b> <span class="text-danger">*</span></label>
@@ -54,8 +60,9 @@
       </div>
       <!-- submit button -->
       <button type="submit" class="btn btn-primary mt-2">Signup</button>
-    </form>
+    </form>    
   </div>
 </div>
 <script src="{{ asset('js/form-validation.js') }}"></script>
+<script src="{{ asset('js/password_verification.js') }}"></script>
 @stop
