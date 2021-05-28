@@ -16,7 +16,7 @@
     <label for="question-body" class="form-label"><b>Answer</b><span class="text-danger"> *</span></label>
     <div class="input-group has-validation">
       <textarea id="question-body" class="no-resize-ta form-control {{ $errors->has('body') ? 'is-invalid' : ''}}"
-       name="body" rows="16" placeholder="Enter your answer...">
+       name="body" rows="30" placeholder="Enter your answer...">
         {{ old('body') ?? $answer->post->body }}
       </textarea>
       <a id="edit-markdown" class="position-absolute fs-4" role="button" href="javascript:void(0)" onclick="openEditor()">
@@ -30,7 +30,7 @@
     </div>
   </div>
 
-  <div class="text-center mt-2">
+  <div class="text-end mt-2">
     <div class="d-inline-flex">
       <button type="submit" class="btn btn-success mx-2">Submit Answer</button>
     </div>
