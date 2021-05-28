@@ -42,7 +42,7 @@ class AnswerController extends Controller
 
     public function update(Request $request)
     {
-        $validation = Validator::make($request->all(), [
+        $validation = Validator::make(['body' => $request->body, 'id' => $request->id], [
             'id' => 'required|exists:answer,id',
             'body' => 'required|string',
         ]);
@@ -50,6 +50,25 @@ class AnswerController extends Controller
         $answer = Answer::find($request->id);
         $this->authorize('update', $answer);
 
+        if ($validation->fails())
+            return back()->withErrors($validation)->withInput($request->all());
+        
+        // Update
         $answer->post->update(['body' => $request->body]);
+
+        return redirect()->intended('/question/' . $answer->question->id);
+    }
+
+    public function showedit($id)
+    {
+        $validation = Validator::make(['id' => $id], [
+            'id' => 'required|integer|exists:answer,id',
+        ]);
+
+        if ($validation->fails())
+            return abort(404);
+
+        $answer = Answer::findOrFail($id);
+        return view("pages.edit_answer", ['answer' => $answer]);
     }
 }
