@@ -19,7 +19,7 @@
     <table class="table table-dark table-striped table-bordered align-middle">
       <thead>
         <tr>
-          <th scope="col" colspan="3" class="text-center fs-5"><b>Top Users</b></th>
+          <th scope="col" colspan="3" class="text-center fs-5" data-bs-toggle="tooltip" data-bs-placement="top" title="Users of the website with the highest scores."><b>Top Users</b></th>
         </tr>
         <tr class="text-center">
           <th scope="col" class="text-center fs-6">Pos</th>
@@ -40,7 +40,7 @@
     <table class="table table-dark table-striped table-bordered align-middle">
       <thead>
         <tr>
-          <th scope="col" colspan="3" class="text-center fs-5"><b>Top Questions</b></th>
+          <th scope="col" colspan="3" class="text-center fs-5" data-bs-toggle="tooltip" data-bs-placement="top" title="Questions of the website with the highest scores."><b>Top Questions</b></th>
         </tr>
         <tr class="text-center">
           <th scope="col" class="text-center fs-6">Pos</th>

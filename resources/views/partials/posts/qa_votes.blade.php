@@ -12,7 +12,7 @@
         <form class="col-auto" method="POST" action="{{ route('question.close', ["id" => $answer->question->id]) }}">
           {{ csrf_field() }}
           <input type="hidden" id="id_answer" name="id_answer" value="{{ $answer->id }}">
-          <button class="btn accept-answer-btn bi bi-check2 fs-1" type="submit" ata-bs-toggle="tooltip" data-bs-placement="left" title="Mark this answer as the accepted answer.">
+          <button class="btn accept-answer-btn bi bi-check2 fs-1" type="submit" data-bs-toggle="tooltip" data-bs-placement="left" title="Mark this answer as the accepted answer.">
           </button>
         </form>
       @endif @endauth

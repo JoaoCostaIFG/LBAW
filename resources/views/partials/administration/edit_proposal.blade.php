@@ -19,14 +19,14 @@ $question_url = "question/" . $post->parentQuestion->id;
           <p class="ms-3 fs-7">{{ $edit_proposal->body }}</p>
 
           <div class="row align-items-center">
-            <b class="col fs-5">Revoke moderator?</b>
+            <b class="col fs-5">Accept Proposal?</b>
             <span class="col-5 col-sm-4 text-end">
-                <button type="button" class="accept-edit btn btn-sm btn-success mb-1"
+                <button type="button" class="accept-edit btn btn-sm btn-success mb-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Accept proposal."
                     data-bs-toggle="button" autocomplete="off" onclick="processEditProposal({{$edit_proposal->id}}, 1)">
                     <i class="bi bi-check2"></i>
                 </button>
-                <button type="button" class="reject-edit btn btn-sm btn-danger mb-1" data-bs-toggle="button"
-                    autocomplete="off" onclick="processEditProposal({{$edit_proposal->id}}, 0)">
+                <button type="button" class="reject-edit btn btn-sm btn-danger mb-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Reject proposal."
+                data-bs-toggle="button" autocomplete="off" onclick="processEditProposal({{$edit_proposal->id}}, 0)">
                     <i class="bi bi-x"></i>
                 </button>
             </span>

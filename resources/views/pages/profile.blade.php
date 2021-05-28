@@ -27,13 +27,13 @@
     <i class="bi bi-question-circle"></i> Help
   </button>
       @if (Auth::id() == $user->id)
-        <a class="btn btn-primary mt-3" href="/user/edit" role="button">
+        <a class="btn btn-primary mt-3" href="/user/edit" role="button" data-bs-toggle="tooltip" data-bs-placement="right" title="Edit your account information.">
           Edit <i class="bi bi-pencil-square"></i>
         </a>
       @elseif (Auth::user()->hasRole('administrator') && !$user->isdeleted)
       @include('partials.profile.ban', ['user' => $user])
       <button type="button" class="ban-btn btn btn-danger btn-secondary mt-3" data-bs-toggle="modal"
-        data-bs-target="#banModal" aria-label="report user">
+        data-bs-target="#banModal" aria-label="report user" data-bs-toggle="tooltip" data-bs-placement="right" title="Ban this user.">
         Ban <i class="bi bi-trash"></i>
       </button>
       @endif
@@ -44,17 +44,20 @@
 <nav class="mt-2">
   <ul class="nav nav-tabs justify-content-center">
     <li class="nav-item profile-tab">
-      <a href="#profile" class="nav-link active fw-bold" data-toggle="tab" role="button">
+      <a href="#profile" class="nav-link active fw-bold" data-bs-toggle="tooltip" data-bs-placement="top" title="Information about the user."
+      data-toggle="tab" role="button">
         About
       </a>
     </li>
     <li class="nav-item profile-tab">
-      <a href="#activity" class="nav-link fw-bold" data-toggle="tab" role="button">
+      <a href="#activity" class="nav-link fw-bold" data-bs-toggle="tooltip" data-bs-placement="top" title="User activity."  
+      data-toggle="tab" role="button">
         Activity
       </a>
     </li>
     <li class="nav-item profile-tab">
-      <a href="#achievements" class="nav-link fw-bold" data-toggle="tab" role="button">
+      <a href="#achievements" class="nav-link fw-bold" data-bs-toggle="tooltip" data-bs-placement="top" title="User achievements."
+      data-toggle="tab" role="button">
         Achievements
       </a>
     </li>
@@ -74,15 +77,15 @@
   <p class="text-center m-0 text-wrap text-truncate">{{ $user->username }}</p>
 </div>
 <div class="row user-engagement-count mb-1">
-  <div class="col-4 themed-grid-col text-center">
+  <div class="col-4 themed-grid-col text-center" data-bs-toggle="tooltip" data-bs-placement="top" title="This user posted {{ count($user->answers) }} answer(s).">
     <h4 class="m-0 p-0">{{ count($user->answers) }}</h4>
     <p class="m-0 p-0">Answers</p>
   </div>
-  <div class="col-4 themed-grid-col text-center">
+  <div class="col-4 themed-grid-col text-center"  data-bs-toggle="tooltip" data-bs-placement="top" title="This user posted {{ count($user->questions) }} question(s).">
     <h4 class="m-0 p-0">{{ count($user->questions) }}</h4>
     <p class="m-0 p-0">Questions</p>
   </div>
-  <div class="col-4 themed-grid-col text-center">
+  <div class="col-4 themed-grid-col text-center"  data-bs-toggle="tooltip" data-bs-placement="top" title="This user has {{ $user->reputation }} reputation points.">
     <h4 class="m-0 p-0">{{ $user->reputation }}</h4>
     <p class="m-0 p-0">Reputation</p>
   </div>
@@ -98,7 +101,7 @@
       <!-- Top Topics -->
       <div class="col-lg p-1">
         <div class="container themed-container">
-          <h5 class="m-0 fw-bold">Top Topics</h5>
+          <h5 class="m-0 fw-bold"  data-bs-toggle="tooltip" data-bs-placement="top" title="Top topics the user participated in.">Top Topics</h5>
         </div>
 @if (count($user->getTopicParticipation()->get()) == 0)
         <div class="text-center mb-3">
@@ -114,7 +117,7 @@
       <!-- Top Questions -->
       <div class="col-lg p-1">
         <div class="container themed-container">
-          <h5 class="m-0 fw-bold">Top Questions</h5>
+          <h5 class="m-0 fw-bold" data-bs-toggle="tooltip" data-bs-placement="top" title="Questions with the most score points posted by this user.">Top Questions</h5>
         </div>
 @if (count($user->questions) == 0)
         <div class="text-center">

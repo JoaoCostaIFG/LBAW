@@ -4,7 +4,7 @@
   @auth
     <div id="end-comment-{{$post->id}}" class="row gx-0 justify-content-center mt-1">
       <button class="col-auto btn btn-outline-success text-center dropdown-toggle"
-       data-bs-toggle="dropdown" aria-expanded="false">
+       data-bs-toggle="dropdown" aria-expanded="false" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">
         Add comment
       </button>
       <div class="dropdown-menu w-100 p-2" >

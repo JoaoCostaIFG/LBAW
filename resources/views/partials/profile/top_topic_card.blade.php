@@ -26,7 +26,8 @@ if ($num_posts != 0) {
   <div class="row themed-grid-col text-start m-0 p-0">
     <div class="container col">
       <div class="col-1 p-0 mt-2 mb-2 text-left">
-        <a class="badge bg-primary text-decoration-none" href="/search/tag/{{ $topic->topic_name }}">{{ $topic->topic_name }}</a>
+        <a class="badge bg-primary text-decoration-none" href="/search/tag/{{ $topic->topic_name }}"
+          data-bs-toggle="tooltip" data-bs-placement="left" title="Press to search for posts tagged with {{ $topic->topic_name }} tag.">{{ $topic->topic_name }}</a>
       </div>
       <span class="p-0 progress ms-auto" data-bs-toggle="popover" data-bs-trigger="hover focus"
         data-bs-content="{{ $percentage }}% of your participations are tagged as {{ $topic->topic_name }}">
@@ -35,21 +36,23 @@ if ($num_posts != 0) {
       </span>
     </div>
     <div class="col-auto row text-center">
-      <div class="col-auto text-center m-0 p-2">
-        <h4 class="m-0 p-0">{{ $topic->score }}</h4>
+      <div class="col-auto text-center m-0 p-2"
+      data-bs-toggle="tooltip" data-bs-placement="bottom" title="This user has a total of {{ $topic->score }} points accumulated on this topic.">
+        <h4 class="m-0 p-0" >{{ $topic->score }}</h4>
         <span class="m-0 p-0 d-none d-md-block">
           Score
         </span>
         <i class="bi bi-star-fill d-block d-md-none"></i>
       </div>
-      <div class="col-auto text-center m-0 p-2">
+      <div class="col-auto text-center m-0 p-2"
+      data-bs-toggle="tooltip" data-bs-placement="bottom" title="This user has a total of {{ $num_questions }} question(s) on this topic.">
         <h4 class="m-0 p-0">{{ $num_questions }}</h4>
         <span class="m-0 p-0 d-none d-md-block">
           Questions
         </span>
         <i class="bi bi-patch-question-fill d-block d-md-none"></i>
       </div>
-      <div class="col-auto text-center m-0 p-2">
+      <div class="col-auto text-center m-0 p-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="This user has a total of {{ $num_answers }} answer(s) on this topic.">
         <h4 class="m-0 p-0">{{ $num_answers }}</h4>
         <span class="m-0 p-0 d-none d-md-block">
           Answers

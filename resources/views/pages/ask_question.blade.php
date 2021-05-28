@@ -56,8 +56,9 @@
         <div class="text-center mt-1">
           <label for="bounty" class="form-labelr" id="bountyValue">{{ old('bounty', 0) }}</label>
           <input id="bounty" type="range" name="bounty" class="form-range {{ $errors->has('bounty') ? 'is-invalid' : ''}}"
-           value="{{ old('bounty', 0) }}" min="0" max="500" step="1"
-           onmousemove="document.getElementById('bountyValue').innerText = document.getElementById('bounty').value">
+           value="{{ old('bounty', 0) }}" min="0" max="{{ min(500, Auth::user()->reputation) }}" step="1"
+           onmousemove="document.getElementById('bountyValue').innerText = document.getElementById('bounty').value"
+           data-bs-toggle="tooltip" data-bs-placement="bottom" title="Use your reputation as a reward for the best answer.">
           @if ($errors->has('bounty'))
           <div class="invalid-feedback">
             {{ $errors->first('bounty') }}
@@ -96,7 +97,8 @@
           @endif
         </div>
 
-        <button type="button" class="btn btn-sm btn-outline-info mt-2" data-bs-toggle="modal" data-bs-target="#suggestTopicModal">
+        <button type="button" class="btn btn-sm btn-outline-info mt-2" data-bs-toggle="modal" data-bs-target="#suggestTopicModal"
+        data-bs-toggle="tooltip" data-bs-placement="bottom" title="Submit a topic proposal.">
           Not seeing the tag you want? Suggest it.
         </button>
         @if ($errors->has('topic_name'))
