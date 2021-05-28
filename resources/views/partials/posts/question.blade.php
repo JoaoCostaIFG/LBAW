@@ -44,7 +44,7 @@
               <input type="hidden" name="id" value="{{$question->id}}">
               <button class="btn btn-sm btn-info" type="submit">Add Bounty</button>
               <label for="bounty" class="form-label" id="bountyValue"><b>Bounty</b> {{old('bounty', 0)}}</label>
-              <input class="form-range" type="range" name="bounty" value="0" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Use your reputation as a reward for the best answer."
+              <input class="form-range" type="range" name="bounty" value="0" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{Auth::user()->reputation>0 ? 'Use your reputation as a reward for the best answer.' : 'You need more than 0 reputation points to enter a bounty. Current: ' . Auth::user()->reputation . '.'}}"
               min="{{$question->body}}" max="{{ min(500, Auth::user()->reputation) }}" step="1" id="bounty"
                 onmousemove="document.getElementById('bountyValue').innerHTML = '<b>Bounty</b> ' + document.getElementById('bounty').value">
               <script>document.getElementById('bountyValue').innerHTML = '<b>Bounty</b> ' + document.getElementById('bounty').value</script>

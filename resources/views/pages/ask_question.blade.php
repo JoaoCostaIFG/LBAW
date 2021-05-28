@@ -51,14 +51,14 @@
   <div class="row input-group justify-content-center my-3 gx-0">
     <div id="bounty-slider" class="col-12 col-md-4 col-lg-3 card p-1">
       <div class="card-body col-auto">
-        <span class="card-title"><b>Bounty</b></span>
+        <span class="card-title"><i class="bi bi-award"></i> <b>Bounty</b></span> <i class="bi bi-question" data-bs-toggle="tooltip" data-bs-placement="right" title="Use your reputation as a reward for the best answer."></i>
         <hr class="my-1">
         <div class="text-center mt-1">
           <label for="bounty" class="form-labelr" id="bountyValue">{{ old('bounty', 0) }}</label>
           <input id="bounty" type="range" name="bounty" class="form-range {{ $errors->has('bounty') ? 'is-invalid' : ''}}"
            value="{{ old('bounty', 0) }}" min="0" max="{{ min(500, Auth::user()->reputation) }}" step="1"
            onmousemove="document.getElementById('bountyValue').innerText = document.getElementById('bounty').value"
-           data-bs-toggle="tooltip" data-bs-placement="bottom" title="Use your reputation as a reward for the best answer.">
+           data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{Auth::user()->reputation>0 ? '' : 'You need more than 0 reputation points to enter a bounty. Current: ' . Auth::user()->reputation . '.'}}">
           @if ($errors->has('bounty'))
           <div class="invalid-feedback">
             {{ $errors->first('bounty') }}
@@ -69,7 +69,7 @@
     </div>
     <div id="topic-input" class="col-12 col-md-8 col-lg-6 card p-1">
       <div class="card-body">
-        <span class="card-title"><b>Topics</b></span>
+        <span class="card-title"><i class="bi bi-tags"></i> <b>Topics</b></span> <i class="bi bi-question" data-bs-toggle="tooltip" data-bs-placement="right" title="Tag your question with topics so it is easier to find."></i>
         <hr class="my-1">
         <div class="mt-3 has-validation">
           <select id="topics" class="no-resize-ta topic-list form-control {{ $errors->has('topics') ? 'is-invalid' : ''}}"
