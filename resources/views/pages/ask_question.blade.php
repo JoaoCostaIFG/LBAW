@@ -33,8 +33,8 @@
   <div class="input-group mt-2">
     <label for="question-body" class="form-label"><b>Question details</b><span class="text-danger"> *</span></label>
     <div class="input-group has-validation">
-      <textarea id="question-body" class="form-control p-2 {{ $errors->has('body') ? 'is-invalid' : ''}}"
-       name="body" rows="10" placeholder="Enter question details...">
+      <textarea id="question-body" class="no-resize-ta form-control p-2 {{ $errors->has('body') ? 'is-invalid' : ''}}"
+       name="body" rows="19" placeholder="Enter question details...">
         {{ old('body') }}
       </textarea>
       <a id="edit-markdown" class="position-absolute fs-4" role="button" href="javascript:void(0)" onclick="openEditor()">
