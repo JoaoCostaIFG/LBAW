@@ -36,13 +36,20 @@ class Report extends Model
         return $query->where('state', 'pending');
     }
 
-    public static function create($data) {                    
+    public static function create($data) {
         return DB::table('report')->insert(
             array(
-                'id_post' => $data['post_id'], 
-                'reporter' => $data['user_id'], 
+                'id_post' => $data['post_id'],
+                'reporter' => $data['user_id'],
             )
        );
+    }
+
+    public static function updateReportState($new_state, $user, $data) {
+        DB::update('update report
+                      set state = ?, reviewer = ?
+                      where reporter = ? and id_post = ?',
+                      [$new_state, $user->id, $data['reporter'], $data['post_id']]);
     }
 }
 

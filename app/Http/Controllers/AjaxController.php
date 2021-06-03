@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Validator;
 
 class AjaxController extends Controller
 {
@@ -20,7 +17,7 @@ class AjaxController extends Controller
         $comment_controller = new CommentController();
         $comment = $comment_controller->create($request);
 
-        if(is_null($comment)){
+        if (is_null($comment)) {
             return view('errors.comment_ajax_error');
         }
         return view('partials.posts.comment', ['comment' => $comment]);

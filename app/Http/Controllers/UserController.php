@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
 use App\Models\User;
-use App\Models\Report;
-use App\Models\Post;
 use App\Models\Achievement;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -16,7 +13,8 @@ use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-    public function show($username) {
+    public function show($username)
+    {
         $validation = Validator::make(['username' => $username], [
             'username' => 'required|exists:user,username',
         ]);
@@ -27,14 +25,15 @@ class UserController extends Controller
         $user = User::where('username', $username)->get()[0];
 
         $achievements = Achievement::all();
-        return view("pages.profile", ['user' => $user, 'achievements' => $achievements ]);
+        return view("pages.profile", ['user' => $user, 'achievements' => $achievements]);
     }
 
     public function showOwn()
     {
         if (!Auth::check()) {
-          return back()->withErrors([
-              'user' => 'You are not logged in']);
+            return back()->withErrors([
+                'user' => 'You are not logged in'
+            ]);
         }
 
         return redirect()->route('profile', [Auth::user()->username]);
@@ -44,22 +43,22 @@ class UserController extends Controller
     public function showApi()
     {
         if (!Auth::check()) {
-          return response()->json([
-              'message' => 'Unauthorized (not signed-in).'
-          ], 401);
+            return response()->json([
+                'message' => 'Unauthorized (not signed-in).'
+            ], 401);
         }
 
         return response()->json([
             'post' => Auth::user()
         ], 200);
-
     }
 
     public function delete()
     {
         if (!Auth::check()) {
-          return back()->withErrors([
-              'user' => 'You are not logged in']);
+            return back()->withErrors([
+                'user' => 'You are not logged in'
+            ]);
         }
 
         DB::delete('DELETE FROM "user" where id = ?', [Auth::id()]);
@@ -68,7 +67,8 @@ class UserController extends Controller
         return redirect()->intended('register');
     }
 
-    public function ban_procedure($data) {
+    public function ban_procedure($data)
+    {
         $validation = Validator::make($data, [
             'admin_id' => 'required|integer|exists:administrator,id',
             'user_id' => 'required|integer|exists:user,id',
@@ -80,10 +80,12 @@ class UserController extends Controller
         return $validation;
     }
 
-    public function ban(Request $request){
+    public function ban(Request $request)
+    {
         if (!Auth::check()) {
             return back()->withErrors([
-                'user' => 'You are not logged in']);
+                'user' => 'You are not logged in'
+            ]);
         }
 
         $admin = Auth::user();
@@ -91,24 +93,27 @@ class UserController extends Controller
         $data['admin_id'] = $admin->id;
         $validation = $this->ban_procedure($data);
 
-        if($validation != null){
-            if($validation->fails())
+        if ($validation != null) {
+            if ($validation->fails())
                 return back()->withErrors($validation);
         }
 
         return redirect()->route('profile', ['DeletedUser' . $data['user_id']]);
     }
 
-    public function edit(){
+    public function edit()
+    {
         if (!Auth::check()) {
             return back()->withErrors([
-                'user' => 'You are not logged in']);
+                'user' => 'You are not logged in'
+            ]);
         }
 
         return view("pages.edit_account", ['user' => Auth::user()]);
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         $user = Auth::user();
 
         $validation = $this->validator($request, $user);
@@ -117,35 +122,36 @@ class UserController extends Controller
 
         // Update
         $data = $request->all();
-        if(isset($data['email']))
+        if (isset($data['email']))
             $user->email = $data['email'];
-        if(isset($data['username']))
+        if (isset($data['username']))
             $user->username = $data['username'];
-        if(isset($data['password']))
+        if (isset($data['password']))
             $user->password = bcrypt($data['password']);
-        if(isset($data['name']))
+        if (isset($data['name']))
             $user->name = $data['name'];
-        if(isset($data['about']))
+        if (isset($data['about']))
             $user->about = $data['about'];
-        if(isset($data['avatar'])){
-            if($user->picture != "default.jpg"){ // Delete old picture
-                Storage::delete('public/'.$user->picture);
+        if (isset($data['avatar'])) {
+            if ($user->picture != "default.jpg") { // Delete old picture
+                Storage::delete('public/' . $user->picture);
             }
             $path = $request->file('avatar')->store('avatars', 'public');
             $user->picture = $path;
         }
 
         $user->save();
-        return redirect('/profile/'.$user->username)->with('status','Profile updated successfully!');
+        return redirect('/profile/' . $user->username)->with('status', 'Profile updated successfully!');
     }
 
-    protected function validator(Request $request, User $user){
-        if($request->input('first-name') != null)
+    protected function validator(Request $request, User $user)
+    {
+        if ($request->input('first-name') != null)
             $fname = $request->input('first-name');
         else
             $fname = $user->firstName;
 
-        if($request->input('last-name') != null)
+        if ($request->input('last-name') != null)
             $lname = $request->input('last-name');
         else
             $lname = $user->lastName;
@@ -154,8 +160,9 @@ class UserController extends Controller
 
         $validation = Validator::make($request->all(), [
             'email' => 'nullable|string|email|max:255|unique:user',
-            'username' => ['nullable', 'string', 'max:32', 'unique:user',
-                function($attr, $name, $fail) {
+            'username' => [
+                'nullable', 'string', 'max:32', 'unique:user',
+                function ($attr, $name, $fail) {
                     if (str_starts_with($name, 'Deleted User'))
                         $fail('Name cannot start with \'Deleted User\'');
                 }
@@ -170,4 +177,3 @@ class UserController extends Controller
         return $validation;
     }
 }
-

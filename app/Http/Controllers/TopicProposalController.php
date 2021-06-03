@@ -14,7 +14,7 @@ class TopicProposalController extends Controller
         // Validate request
         $validation = $this->validator($request);
         if ($validation->fails())
-            return false; 
+            return false;
 
         // Authorize user
         $user = Auth::user();
@@ -27,15 +27,16 @@ class TopicProposalController extends Controller
         $proposal->save();
 
         // Create Topic if proposal was accepted
-        if($request->accepted){ 
+        if ($request->accepted) {
             $topic_controller = new TopicController();
-            $topic_controller->create($proposal->topic_name);        
+            $topic_controller->create($proposal->topic_name);
         }
 
         return true;
     }
 
-    protected function validator(Request $request){
+    protected function validator(Request $request)
+    {
         $validation = Validator::make($request->all(), [
             'accepted' => 'required|boolean',
             'proposal_id' => 'exists:topic_proposal,id'

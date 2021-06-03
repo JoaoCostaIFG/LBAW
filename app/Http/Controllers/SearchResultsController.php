@@ -75,7 +75,7 @@ class SearchResultsController extends Controller
 
         return view("pages.search_results", [
             'questions' => $questions->paginate(5)->withQueryString()->fragment('questions'),
-            'users' => $users->paginate(16)->withQueryString()->fragment('users'), 
+            'users' => $users->paginate(16)->withQueryString()->fragment('users'),
             'q' => $search_data
         ]);
     }
@@ -85,7 +85,7 @@ class SearchResultsController extends Controller
         if (!Topic::where('name', $tag)->exists())
             return redirect('/search')->withErrors(["tag" => "No such tag " . $tag]);
 
-        $questions = Question::whereHas('topics', function($q) use($tag) {
+        $questions = Question::whereHas('topics', function ($q) use ($tag) {
             $q->where('topic.name', '=', $tag);
         });
 

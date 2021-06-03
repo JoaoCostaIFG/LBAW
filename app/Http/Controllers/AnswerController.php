@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
 use App\Models\Answer;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class AnswerController extends Controller
@@ -52,7 +49,7 @@ class AnswerController extends Controller
 
         if ($validation->fails())
             return back()->withErrors($validation)->withInput($request->all());
-        
+
         // Update
         $answer->post->update(['body' => $request->body]);
 

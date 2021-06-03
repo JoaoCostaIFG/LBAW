@@ -12,17 +12,18 @@ use Illuminate\Support\Facades\DB;
 
 class ReportController extends Controller
 {
-    
+
     public function report(Request $request)
     {
         // Check user is authenticated
         if (!Auth::check()) {
             return back()->withErrors([
-                'user' => 'You are not logged in']);
+                'user' => 'You are not logged in'
+            ]);
         }
         $user = Auth::user();
         $data = $request->all();
-        
+
         // Validation
         $validation = Validator::make($data, [
             'post_id' => 'required|integer|exists:post,id',
@@ -33,10 +34,10 @@ class ReportController extends Controller
             return back()->withErrors($validation);
 
         // Check if report is already registered
-        if (Report::where('reporter', '=', $user->id)->where('id_post', '=', $data['post_id'])->exists()){
-            return back()->with('fail','Failed to report user: User report was already registered.');
+        if (Report::where('reporter', '=', $user->id)->where('id_post', '=', $data['post_id'])->exists()) {
+            return back()->with('fail', 'Failed to report user: User report was already registered.');
         }
-        
+
         // Authorize report creation
         $post = Post::find($data['post_id']);
         $user_to_report = User::find($post->owner->id);
@@ -48,10 +49,11 @@ class ReportController extends Controller
             'reason' => $data['reason']
         ]);
 
-        return back()->with('status','Success: User reported successfully!');
+        return back()->with('status', 'Success: User reported successfully!');
     }
 
-    public function process(Request $request) {
+    public function process(Request $request)
+    {
         if (!Auth::check()) {
             return false;
         }
@@ -72,18 +74,15 @@ class ReportController extends Controller
         $report = Report::where('reporter', '=', $data['reporter'])->where('id_post', '=', $data['post_id'])->first();
         if ($report === null)
             return false;
-        
+
         // Authorize
         $user_to_report = Post::find($data['post_id'])->owner;
         $this->authorize('ban', $user_to_report);
 
-        // Approve Ban    
-        if ($data['accepted']) { 
+        // Approve Ban
+        if ($data['accepted']) {
             // Update report state
-          DB::update('update report
-                      set state = ?, reviewer = ? 
-                      where reporter = ? and id_post = ?',
-                      ["approved", $user->id, $data['reporter'], $data['post_id']]);
+            Report::updateReportState("approved", $user, $data);
 
             // Ban User
             $user_controller = new UserController();
@@ -93,15 +92,9 @@ class ReportController extends Controller
                 'reason' => $report->reason
             ]);
         } else { // Reject Ban
-          DB::update('update report
-                      set state = ?, reviewer = ?
-                      where reporter = ? and id_post = ?',
-                      ["rejected", $user->id, $data['reporter'], $data['post_id']]);
+            Report::updateReportState("rejected", $user, $data);
         }
 
-        DB::commit();
         return true;
     }
-
 }
-

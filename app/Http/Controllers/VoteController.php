@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Vote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -17,22 +18,26 @@ class VoteController extends Controller
     public function create(Request $request)
     {
         // TODO Verify if isn't owner of own post
-        if(!Auth::check()) {
+        if (!Auth::check()) {
             return null;
         }
 
-        if (is_null($request->post_id) || is_null($request->value)
-            || Post::find($request->post_id)->owner->id == Auth::id()) {
+        if (
+            is_null($request->post_id) || is_null($request->value)
+            || Post::find($request->post_id)->owner->id == Auth::id()
+        ) {
             return null;
         }
 
         $vote = Auth::user()->getVote(Post::find($request->post_id));
         if ($vote == false) {
-            return DB::insert('INSERT INTO "vote" (id_post, id_user, value) VALUES(?, ?, ?)',
-                [$request->post_id, Auth::id(), $request->value]);
+            return Vote::create($request);
         } else {
-            return DB::update('UPDATE "vote" SET value=? WHERE id_post=? AND id_user=?',
-                [$request->value, $request->post_id, Auth::id()]);
+            $vote->update(["value" => $request->value]);
+            $vote->save();
+            return $vote;
+            // return DB::update('UPDATE "vote" SET value=? WHERE id_post=? AND id_user=?',
+            //     [$request->value, $request->post_id, Auth::id()]);
         }
     }
 
@@ -43,7 +48,7 @@ class VoteController extends Controller
      */
     public function delete(Request $request)
     {
-        if(!Auth::check()) {
+        if (!Auth::check()) {
             return null;
         }
 
@@ -51,9 +56,6 @@ class VoteController extends Controller
             return null;
         }
 
-        return DB::delete('DELETE FROM "vote" WHERE id_post = ? AND id_user = ?',
-            [$request->post_id, Auth::id()]);
+        return Vote::deleteVote($request);
     }
-
 }
-

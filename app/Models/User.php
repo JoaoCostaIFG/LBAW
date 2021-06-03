@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\CanResetPassword;
 
-class User extends Authenticatable implements CanResetPassword {
+class User extends Authenticatable implements CanResetPassword
+{
     use HasFactory, Notifiable;
 
     // Don't add create and update timestamps in database.
@@ -29,25 +30,31 @@ class User extends Authenticatable implements CanResetPassword {
         'name', 'username', 'password', 'email', 'picture'
     ];
 
-    public static function banUser($data) {
-        DB::select("CALL ban_user(?, ?, ?)",
-                [$data['user_id'], $data['admin_id'], $data['reason']]);
+    public static function banUser($data)
+    {
+        DB::select(
+            "CALL ban_user(?, ?, ?)",
+            [$data['user_id'], $data['admin_id'], $data['reason']]
+        );
     }
 
-    public function getFirstNameAttribute() {
+    public function getFirstNameAttribute()
+    {
         return explode(' ', $this->name)[0];
     }
 
-    public function getLastNameAttribute() {
+    public function getLastNameAttribute()
+    {
         $split = explode(' ', $this->name, 2);
         if (count($split) == 1)
             return "";
         return $split[1];
     }
 
-    public function getPfp() {
+    public function getPfp()
+    {
         if (is_null($this->picture))
-          return "default.jpg";
+            return "default.jpg";
         return $this->picture;
     }
 
@@ -98,12 +105,11 @@ class User extends Authenticatable implements CanResetPassword {
         }
 
         $search = "'" . $search . "'";
-        return $query->
-            selectRaw('*, ts_rank(search, plainto_tsquery(?)) as rank_user', [$search])->
-            whereRaw('search @@ plainto_tsquery(?)', [$search]);
+        return $query->selectRaw('*, ts_rank(search, plainto_tsquery(?)) as rank_user', [$search])->whereRaw('search @@ plainto_tsquery(?)', [$search]);
     }
 
-    public function hasRole($role) {
+    public function hasRole($role)
+    {
         if (DB::table('administrator')->where('id', $this->id)->exists() && ($role === 'administrator' || $role === 'moderator')) {
             return true;
         }
@@ -113,7 +119,8 @@ class User extends Authenticatable implements CanResetPassword {
         return false;
     }
 
-    public function getVote($post) {
+    public function getVote($post)
+    {
         $vote = Vote::join('user', 'user.id', '=', 'vote.id_user')
             ->join('post', 'vote.id_post', '=', 'post.id')
             ->where('user.id', '=', $this->id)
@@ -123,20 +130,22 @@ class User extends Authenticatable implements CanResetPassword {
         return false;
     }
 
-    public function getQuestionParticipation() {
+    public function getQuestionParticipation()
+    {
         $questions_topic = Topic::selectRaw('topic.name as topic_name, post.id as post_id, post.score as score')
             ->join('topic_question', 'topic.id', '=', 'topic_question.id_topic')
             ->join('question', 'question.id', '=', 'topic_question.id_question')
             ->join('post', 'post.id', '=', 'question.id')
             ->join('user', 'user.id', '=', 'post.id_owner')
             ->where('user.id', '=', $this->id);
-       return DB::table(DB::raw("({$questions_topic->toSql()}) as sub"))->mergeBindings($questions_topic->getQuery())
+        return DB::table(DB::raw("({$questions_topic->toSql()}) as sub"))->mergeBindings($questions_topic->getQuery())
             ->selectRaw('topic_name, count(post_id) as cnt, sum(score) as score')
             ->groupBy('topic_name')
             ->orderBy('cnt', 'desc');
     }
 
-    public function getAnswerParticipation() {
+    public function getAnswerParticipation()
+    {
         $answer_topic = Topic::selectRaw('topic.name as topic_name, post.id as post_id, post.score as score')
             ->join('topic_question', 'topic.id', '=', 'topic_question.id_topic')
             ->join('question', 'question.id', '=', 'topic_question.id_question')
@@ -146,7 +155,7 @@ class User extends Authenticatable implements CanResetPassword {
             ->join('user', 'user.id', '=', 'post.id_owner')
             ->where('user.id', '=', $this->id);
 
-       return DB::table(DB::raw("({$answer_topic->toSql()}) as sub"))->mergeBindings($answer_topic->getQuery())
+        return DB::table(DB::raw("({$answer_topic->toSql()}) as sub"))->mergeBindings($answer_topic->getQuery())
             ->selectRaw('topic_name, count(post_id) as cnt, sum(score) as score')
             ->groupBy('topic_name')
             ->orderBy('cnt', 'desc');
@@ -164,5 +173,15 @@ class User extends Authenticatable implements CanResetPassword {
             ->selectRaw('topic_name, sum(cnt) as cnt, sum(score) as score')
             ->groupBy('topic_name')
             ->orderBy('cnt', 'desc');
+    }
+
+    public static function getTopUsers()
+    {
+        $users = User::orderBy('reputation', 'desc')
+            ->select('id', 'username', 'reputation')
+            ->where('isdeleted', '!=', 'true')
+            ->limit(50)
+            ->get();
+        return $users;
     }
 }
