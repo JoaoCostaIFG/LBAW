@@ -21,7 +21,7 @@ class CommentController extends Controller
         return Validator::make($data, [
             'question_id' => 'required_without:answer_id',
             'answer_id' => 'required_without:question_id',
-            'body' => 'required|string',
+            'body' => 'required|string|max:2048',
         ]);
     }
 
@@ -47,8 +47,12 @@ class CommentController extends Controller
     {
         $validation = Validator::make($request->all(), [
             'id' => 'required|exists:comment,id',
-            'body' => 'required|string',
+            'body' => 'required|string|max:2048',
         ]);
+
+        if ($validation->fails()) {
+            return;
+        }
 
         $comment = Comment::find($request->id);
         $this->authorize('update', $comment);
