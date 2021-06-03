@@ -17,9 +17,16 @@ use \App\Models\Question;
 use \App\Models\Post;
 use \App\Models\Comment;
 
-Route::view('/', 'pages.index');
+
+Route::get('/', function () {
+  return redirect('/home');
+});
+
 // Pages
-Route::view('/home', 'pages.index')->name('home');
+Route::get('/home', function () {
+  $question = Question::topQuestion()[0];
+  return view("pages.index", ['question' => $question]);
+})->name('home');
 Route::view('/about', 'pages.about');
 Route::get('/news', 'NewsController@show');
 Route::get('/leaderboard', 'LeaderboardController@show');
@@ -42,6 +49,7 @@ Route::get('/ask', 'QuestionController@create')->middleware('auth');
 Route::post('/question/{id}/close', 'QuestionController@close')->middleware('auth')->name('question.close');
 Route::post('/question/{id}/add_bounty', 'QuestionController@addBounty')->middleware('auth')->name('question.add_bounty');
 
+// Topic
 Route::post('/suggest_topic', 'TopicController@suggest')->middleware('auth')->name('suggest_topic');
 
 // API

@@ -25,9 +25,9 @@
     </div>
     <div class="carousel-item text-white bg-dark text-center marketingCarousel">
       <div class="container p-4 p-md-5 mb-4">
-        <h1 class="display-4 fst-italic">The top question of the week</h1>
-        <p class="lead my-3">Why does this code run faster on a sorted array?</p>
-        <a class="btn btn-primary" href="/pages/question.php" role="button">Visit question</a>
+        <h1 class="display-4 fst-italic">Top question of the site</h1>
+        <p class="lead my-3">{{$question->title}}</p>
+        <a class="btn btn-primary" href={{"/question/".$question->id}} role="button">Visit question</a>
       </div>
     </div>
     <div class="carousel-item text-white bg-dark text-center marketingCarousel">
