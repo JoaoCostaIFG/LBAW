@@ -7,7 +7,7 @@
 @section('pageType', 'article')
 
 @section('content')
-<script src="{{ asset('js/edit_markdown.js') }}" defer></script>
+<script src="{{ asset('js/add_markdown.js') }}" onload="parseQuestionPage()" defer></script>
 
 <!-- Report Modal -->
 @include('partials.posts.report')
@@ -33,7 +33,7 @@
 @auth
   <script src="{{ asset('js/edit_comment_answer.js') }}"></script>
   <script src="{{ asset('js/add_comment.js') }}"></script>
-  <script src="{{ asset('js/add_markdown.js') }}" onload="parseQuestionPage()" defer></script>
+  <script src="{{ asset('js/edit_markdown.js') }}" defer></script>
 
   <hr>
   <div class="container">

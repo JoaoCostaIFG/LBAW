@@ -1,3 +1,4 @@
+console.log("HERE");
 var parser = new md.Remarkable();
 parser.block.ruler.disable(['heading']);
 

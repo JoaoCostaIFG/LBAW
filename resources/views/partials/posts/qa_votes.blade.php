@@ -20,9 +20,11 @@
   @endif
 
   @auth
+    @if (!$post->owner->hasRole('moderator') && $post->owner->id != Auth::id())
     <!-- report button -->
     <div class="col-auto align-self-center">
       @include('partials.posts.report_button', ['post' => $post])
     </div>
+    @endif
   @endauth
 </div>
