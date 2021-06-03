@@ -79,4 +79,13 @@ class Question extends Model
             join('user', 'user.id', '=', 'post.id_owner')->
             whereRaw('"question".search @@ plainto_tsquery(?) OR "user".search @@ plainto_tsquery(?)', [$search, $search]);
     }
+
+    public static function topQuestion(){
+        $question = DB::table('post')
+        ->join('question', 'post.id', '=', 'question.id')
+        ->orderBy('score', 'desc')
+        ->limit(1)
+        ->get();
+    return $question;
+    }
 }
