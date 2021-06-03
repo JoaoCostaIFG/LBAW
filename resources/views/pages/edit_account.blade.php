@@ -58,21 +58,6 @@
                 @endif
               </div>
             </div>
-            <!-- Username -->
-            <div class="input-group mb-2">
-              <label for="username" class="form-label"><b>Username</b></label>
-              <div class="input-group has-validation">
-                <input type="text" name="username"
-                  class="form-control {{ $errors->has('username') ? 'is-invalid' : '' }}" value="" id="username"
-                  maxlength="32" placeholder={{ $user->username }} />
-                <!-- Error -->
-                @if ($errors->has('username'))
-                  <div class="invalid-feedback d-block">{{ $errors->first('username') }}</div>
-                @endif
-              </div>
-            </div>
-          </div>
-          <div class="col-sm">
             <!-- Password -->
             <div class="input-group mb-2">
               <label for="password" class="form-label"><b>Password</b></label>
@@ -83,6 +68,27 @@
                 <!-- Error -->
                 @if ($errors->has('password'))
                   <div class="invalid-feedback d-block">{{ $errors->first('password') }}</div>
+                @endif
+              </div>
+            </div>
+            <ul id="message-password" class="list-unstyled">
+              <li id="letter" class="text-danger"><i class='bi bi-x-lg'></i> Must have a <b>lowercase</b> letter</li>
+              <li id="capital" class="text-danger"><i class='bi bi-x-lg'></i> Must have a <b>capital (uppercase)</b> letter</li>
+              <li id="number" class="text-danger"><i class='bi bi-x-lg'></i> Must have a <b>number</b></li>
+              <li id="length" class="text-danger"><i class='bi bi-x-lg'></i> Minimum <b>6 characters</b></li>
+            </ul>
+          </div>
+          <div class="col-sm">
+            <!-- Username -->
+            <div class="input-group mb-2">
+              <label for="username" class="form-label"><b>Username</b></label>
+              <div class="input-group has-validation">
+                <input type="text" name="username"
+                  class="form-control {{ $errors->has('username') ? 'is-invalid' : '' }}" value="" id="username"
+                  maxlength="32" placeholder={{ $user->username }} />
+                <!-- Error -->
+                @if ($errors->has('username'))
+                  <div class="invalid-feedback d-block">{{ $errors->first('username') }}</div>
                 @endif
               </div>
             </div>
@@ -99,6 +105,9 @@
                 @endif
               </div>
             </div>
+            <ul id="message-confirm" class="list-unstyled">
+              <li id="repeat" class="text-danger"><i class='bi bi-x-lg'></i> Password must <b>match</b></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -150,4 +159,5 @@
     </div>
     </div>
   </form>
+<script src="{{ asset('js/password_verification.js') }}" defer></script>
 @stop
