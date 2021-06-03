@@ -1,3 +1,4 @@
+<?php
 App::after(function($request, $response)
 {
     if(App::Environment() != 'local')
@@ -33,3 +34,4 @@ App::after(function($request, $response)
         }
     }
 });
+?>
