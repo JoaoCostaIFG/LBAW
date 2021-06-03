@@ -40,6 +40,16 @@
     </div>
     @endauth
 </div>
+  @if ($user->hasRole('administrator'))
+  <span class="badge bg-success text-decoration-none"
+          data-bs-toggle="tooltip" data-bs-placement="left" title="This user has administrator role."><i class="bi bi-wrench"></i> Administrator</span>    
+  @else
+  @if ($user->hasRole('moderator'))
+  <span class="badge bg-danger text-decoration-none"
+          data-bs-toggle="tooltip" data-bs-placement="left" title="This user has moderator role."><i class="bi bi-wrench"></i> Moderator</span>
+  @endif
+  @endif
+
 <hr>
 <nav class="mt-2">
   <ul class="nav nav-tabs justify-content-center">
