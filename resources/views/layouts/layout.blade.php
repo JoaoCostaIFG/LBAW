@@ -15,7 +15,7 @@
     <title>@yield('title') - SegmentationFault</title>
 @endif
     <!-- Bootstrap (must come before all other stylesheets) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <!-- using themed bootstrap -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
 
