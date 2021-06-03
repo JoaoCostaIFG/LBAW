@@ -19,7 +19,8 @@
       the community and earn perks. Other users will see your profile and
       recognize you for the worth of your achievements and community contributions.</p>
     </div>
-    <img class="col-12 col-md-6 col-lg-3" src="{{ asset('images/about.jpg') }}" alt="First wireflow mockup of the website.">
+    <img class="col-12 col-md-6 col-lg-3" src="{{ asset('images/about.jpg') }}"
+     alt="First wireflow mockup of the website.">
   </div>
 </section>
 
@@ -28,25 +29,29 @@
   <hr>
   <div class="row">
     <article class="col-12 col-sm-6 col-lg-3 text-center">
-      <img alt="Face of Ana Barros." class="bd-placeholder-img rounded-circle" width="140" height="140" src="{{ asset('images/nachus.jpg') }}" aria-label="Ana Nachus">
+      <img src="{{ asset('images/nachus.jpg') }}" class="bd-placeholder-img rounded-circle"
+        width="140" height="140" alt="Face of Ana Barros." aria-label="Ana Nachus">
       <h3>Ana Barros</h3>
       <p>Developer and designer</p>
       <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
     </article><!-- /.col -->
     <article class="col-12 col-sm-6 col-lg-3 text-center">
-      <img alt="Face of João Costa." class="bd-placeholder-img rounded-circle" width="140" height="140" src="{{ asset('images/irao.jpg') }}" aria-label="Irao Forcas">
+      <img src="{{ asset('images/irao.jpg') }}" class="bd-placeholder-img rounded-circle"
+       width="140" height="140" alt="Face of João Costa." aria-label="Irao Forcas">
       <h3>João Costa</h3>
       <p>Developer and designer</p>
       <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
     </article><!-- /.col -->
     <article class="col-12 col-sm-6 col-lg-3 text-center">
-      <img alt="Face of João Lucas." class="bd-placeholder-img rounded-circle" width="140" height="140" src="{{ asset('images/crocs.jpg') }}" aria-label="Crocs">
+      <img src="{{ asset('images/crocs.jpg') }}" class="bd-placeholder-img rounded-circle"
+       width="140" height="140" alt="Face of João Lucas." aria-label="Crocs">
       <h3>João Lucas</h3>
       <p>Developer and designer</p>
       <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
     </article><!-- /.col -->
     <article class="col-12 col-sm-6 col-lg-3 text-center">
-      <img alt="Face of Ricardo Fontão." class="bd-placeholder-img rounded-circle" width="140" height="140" src="{{ asset('images/fogao.jpg') }}" aria-label="Fogardo Jorjao">
+      <img src="{{ asset('images/fogao.jpg') }}" class="bd-placeholder-img rounded-circle"
+       width="140" height="140" alt="Face of Ricardo Fontão." aria-label="Fogardo Jorjao">
       <h3>Ricardo Fontão</h3>
       <p>Developer and designer</p>
       <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>

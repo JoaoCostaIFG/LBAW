@@ -57,8 +57,12 @@
 
     <div class="row featurette">
       <div class="col-12 col-sm-8 col-md-10">
-        <h2 class="featurette-heading">Share your questions. <span class="text-muted">There's always someone ready to answer.</span></h2>
-        <p class="lead">You'll get the help you need and leave behind content that'll help others that have the same problem as you.</p>
+        <h2 class="featurette-heading">
+          Share your questions. <span class="text-muted">There's always someone ready to answer.</span>
+        </h2>
+        <p class="lead">
+          You'll get the help you need and leave behind content that'll help others that have the same problem as you.
+        </p>
       </div>
       <div class="col-12 col-sm-4 col-md-2 text-center text-sm-end">
         <span id="share_img" class="featurette-img mx-auto"></span>
@@ -69,8 +73,12 @@
 
     <div class="row featurette">
       <div class="col-12 col-sm-8 col-md-10 order-md-2 text-md-end">
-        <h2 class="featurette-heading">Help the community. <span class="text-muted">Answer the questions you see.</span></h2>
-        <p class="lead">Every answer can make the difference.</p>
+        <h2 class="featurette-heading">
+          Help the community. <span class="text-muted">Answer the questions you see.</span>
+        </h2>
+        <p class="lead">
+          Every answer can make the difference.
+        </p>
       </div>
       <div class="col-12 col-sm-4 col-md-2 text-center text-sm-end text-md-start order-md-1">
         <span id="help_img" class="featurette-img mx-auto"></span>
@@ -81,8 +89,12 @@
 
     <div class="row featurette">
       <div class="col-12 col-sm-8 col-md-10">
-        <h2 class="featurette-heading">Be recognised by your worth. <span class="text-muted">Become a valuable member of the community.</span></h2>
-        <p class="lead">The more good answers you give, the more standing you get. People will see you as a valuable and helpful member of the community.</p>
+        <h2 class="featurette-heading">
+          Be recognised by your worth. <span class="text-muted">Become a valuable member of the community.</span>
+        </h2>
+        <p class="lead">
+          The more good answers you give, the more standing you get. People will see you as a valuable and helpful member of the community.
+        </p>
       </div>
       <div class="col-12 col-sm-4 col-md-2 text-center text-sm-end">
         <span id="be_img" class="featurette-img mx-auto"></span>

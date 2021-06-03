@@ -71,7 +71,7 @@
     src="{{ asset('storage/' . $user->getPfp()) }}"
     id="profile-picture"
     class="img-thumbnail rounded"
-    alt="User profile picture"
+    alt="{{ $user->username }} profile picture"
   />
   <p class="text-center fs-5 m-0 text-wrap text-break"><b>{{ $user->name }}</b></p>
   <p class="text-center m-0 text-wrap text-truncate">{{ $user->username }}</p>
