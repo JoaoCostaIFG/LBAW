@@ -45,11 +45,11 @@
           @endif
         </div>
       </div>
-      <ul id="message" class="list-unstyled">
-        <li id="letter" class="text-danger">X Must have a <b>lowercase</b> letter</li>
-        <li id="capital" class="text-danger">X Must have a <b>capital (uppercase)</b> letter</li>
-        <li id="number" class="text-danger">X Must have a <b>number</b></li>
-        <li id="length" class="text-danger">X Minimum <b>6 characters</b></li>
+      <ul id="message-password" class="list-unstyled">
+        <li id="letter" class="text-danger"><i class='bi bi-x-lg'></i> Must have a <b>lowercase</b> letter</li>
+        <li id="capital" class="text-danger"><i class='bi bi-x-lg'></i> Must have a <b>capital (uppercase)</b> letter</li>
+        <li id="number" class="text-danger"><i class='bi bi-x-lg'></i> Must have a <b>number</b></li>
+        <li id="length" class="text-danger"><i class='bi bi-x-lg'></i> Minimum <b>6 characters</b></li>
       </ul>
       <!-- Repeated Password -->
       <div class="input-group mb-3">
@@ -58,11 +58,14 @@
           <input id="repeated_password" type="password" class="form-control" name="password_confirmation" placeholder="Repeat password..." required>
         </div>
       </div>
+      <ul id="message-confirm" class="list-unstyled">
+        <li id="repeat" class="text-danger"><i class='bi bi-x-lg'></i> Password must <b>match</b></li>
+      </ul>
       <!-- submit button -->
       <button type="submit" class="btn btn-primary mt-2">Signup</button>
     </form>    
   </div>
 </div>
-<script src="{{ asset('js/form-validation.js') }}"></script>
-<script src="{{ asset('js/password_verification.js') }}"></script>
+<script src="{{ asset('js/form-validation.js') }}" defer></script>
+<script src="{{ asset('js/password_verification.js') }}" defer></script>
 @stop

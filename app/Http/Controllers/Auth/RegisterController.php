@@ -86,6 +86,6 @@ class RegisterController extends Controller
 
         $user = $this->create($request->all());
         Auth::login($user);
-        return redirect()->intended('/about');
+        return redirect()->intended('/user');
     }
 }
