@@ -11,22 +11,13 @@
 |
 */
 
-use App\Http\Controllers\QuestionController;
-use \App\Models\User;
-use \App\Models\Question;
-use \App\Models\Post;
-use \App\Models\Comment;
-
 
 Route::get('/', function () {
-  return redirect('/home');
+    return redirect('/home');
 });
 
 // Pages
-Route::get('/home', function () {
-  $question = Question::topQuestion()[0];
-  return view("pages.index", ['question' => $question]);
-})->name('home');
+Route::get('/home', 'HomeController@show')->name('home');
 Route::view('/about', 'pages.about');
 Route::get('/news', 'NewsController@show');
 Route::get('/leaderboard', 'LeaderboardController@show');
@@ -89,9 +80,9 @@ Route::post('/forgot-password', 'Auth\PasswordController@submitResetPasswordRequ
 Route::get('/reset-password/{token}', 'Auth\PasswordController@showResetPasswordPage')->middleware('guest')->name('password.reset');
 Route::post('/reset-password', 'Auth\PasswordController@resetPassword')->middleware('guest')->name('password.update');
 
-Route::fallback(function() {
-  /** This will check for the 404 view page unders /resources/views/errors/404 route */
-  return view('errors.404');
+Route::fallback(function () {
+    /** This will check for the 404 view page unders /resources/views/errors/404 route */
+    return view('errors.404');
 });
 
 Route::get('/linkstorage', function () {
