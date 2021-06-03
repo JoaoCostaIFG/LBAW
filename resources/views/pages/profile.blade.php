@@ -21,8 +21,8 @@
   </h2>
     @auth
     <div>
-      <button type="button" class="btn btn-secondary mt-3 me-1" title="Help: Profile" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" 
-  data-bs-content="This is a user's profile page. Here, you can take a look at a user's activity, information and achievements. 
+      <button type="button" class="btn btn-secondary mt-3 me-1" title="Help: Profile" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom"
+  data-bs-content="This is a user's profile page. Here, you can take a look at a user's activity, information and achievements.
   In your own profile, you can change your account information.">
     <i class="bi bi-question-circle"></i> Help
   </button>
@@ -44,20 +44,17 @@
 <nav class="mt-2">
   <ul class="nav nav-tabs justify-content-center">
     <li class="nav-item profile-tab">
-      <a href="#profile" class="nav-link active fw-bold" data-bs-toggle="tooltip" data-bs-placement="top" title="Information about the user."
-      data-toggle="tab" role="button">
+      <a href="#profile" class="nav-link active fw-bold" data-toggle="tab" role="button">
         About
       </a>
     </li>
     <li class="nav-item profile-tab">
-      <a href="#activity" class="nav-link fw-bold" data-bs-toggle="tooltip" data-bs-placement="top" title="User activity."  
-      data-toggle="tab" role="button">
+      <a href="#activity" class="nav-link fw-bold" data-toggle="tab" role="button">
         Activity
       </a>
     </li>
     <li class="nav-item profile-tab">
-      <a href="#achievements" class="nav-link fw-bold" data-bs-toggle="tooltip" data-bs-placement="top" title="User achievements."
-      data-toggle="tab" role="button">
+      <a href="#achievements" class="nav-link fw-bold" data-toggle="tab" role="button">
         Achievements
       </a>
     </li>
