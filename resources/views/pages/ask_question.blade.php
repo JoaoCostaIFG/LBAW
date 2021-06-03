@@ -33,19 +33,10 @@
   <div class="input-group mt-2">
     <label for="form-question-body" class="form-label"><b>Question details</b><span class="text-danger"> *</span></label>
     <div class="input-group has-validation">
-<<<<<<< HEAD
       <textarea id="form-question-body" class="no-resize-ta form-control p-2 {{ $errors->has('body') ? 'is-invalid' : ''}}"
        name="body" rows="19" placeholder="Enter question details...">{{ old('body') }}</textarea>
       <a id="edit-markdown" class="position-absolute fs-4" role="button" href="javascript:void(0)" onclick="openEditorQuestion()">
         <i class="bi bi-markdown"></i>
-=======
-      <textarea id="question-body" class="no-resize-ta form-control p-2 {{ $errors->has('body') ? 'is-invalid' : ''}}"
-       name="body" rows="19" placeholder="Enter question details...">
-        {{ old('body') }}
-      </textarea>
-      <a id="edit-markdown" class="position-absolute" role="button" href="javascript:void(0)" onclick="openEditor()">
-        <i class="bi bi-markdown fs-4"></i>
->>>>>>> d866422be890f37586a6ada01bec18537c9a7ac8
       </a>
       @if ($errors->has('body'))
       <div class="invalid-feedback">
