@@ -18,7 +18,7 @@ class AnswerController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'body' => 'required|string|min:1',
+            'body' => 'required|string|max:4095|min:1',
         ]);
     }
 
@@ -41,7 +41,7 @@ class AnswerController extends Controller
     {
         $validation = Validator::make(['body' => $request->body, 'id' => $request->id], [
             'id' => 'required|exists:answer,id',
-            'body' => 'required|string',
+            'body' => 'required|string|max:4095',
         ]);
 
         $answer = Answer::find($request->id);
