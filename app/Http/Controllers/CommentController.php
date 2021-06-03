@@ -21,7 +21,7 @@ class CommentController extends Controller
         return Validator::make($data, [
             'question_id' => 'required_without:answer_id',
             'answer_id' => 'required_without:question_id',
-            'body' => 'required|string',
+            'body' => 'required|string|max:2048',
         ]);
     }
 
