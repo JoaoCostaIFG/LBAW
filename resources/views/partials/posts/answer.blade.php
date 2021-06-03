@@ -12,11 +12,11 @@
     @include('partials.posts.user_card', ['post' => $answer->post])
 
     <!-- Options -->
+    @auth
     @php
         $is_moderator = Auth::user()->hasRole('moderator');
         $can_edit = $answer->post->owner->id == Auth::id() || Auth::user()->hasRole('moderator')
     @endphp
-    @auth
       @if ($is_moderator || $can_edit)
         <div class="answer-options col-auto" data-bs-toggle="tooltip" data-bs-placement="right" title="Options">
           <!--Check if is moderator-->
