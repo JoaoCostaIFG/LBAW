@@ -33,11 +33,17 @@
     @include('partials.posts.user_card', ['post' => $question->post])
 
     <!-- Options -->
+    @php
+      $is_moderator = Auth::user()->hasRole('moderator');
+      $can_edit = $question->post->owner->id == Auth::id() || $is_moderator;
+      $can_add_bounty = $question->bounty == 0 && !$question->closed;
+    @endphp
     @auth
       <div id="question-options" class="col-auto" data-bs-toggle="tooltip" data-bs-placement="right" title="Options">
         <!--Check if is moderator-->
         <ul class="nav nav-pills">
-          @if($question->bounty == 0)
+          @if ($is_moderator || $can_edit || $can_add_bounty)
+          @if($can_add_bounty)
             <form method="POST" id="bountySlider" class="border border-info bg-dark p-1 rounded-3"
               action="{{ route('question.add_bounty', ["id" => $question->id]) }}" enctype="multipart/form-data">
               @csrf
@@ -57,7 +63,7 @@
               <i class="bi bi-three-dots-vertical"></i>
             </button>
             <ul class="dropdown-menu">
-              @if (Auth::user()->hasRole('moderator'))
+              @if ($is_moderator)
                 <!-- Mark as duplicated -->
                 @if (!$question->closed)
                   <li>
@@ -77,25 +83,22 @@
                   </form>
                 </li>
               @endif
-              @auth
-                @if ($question->post->owner->id == Auth::id() || Auth::user()->hasRole('moderator'))
-                  <li>
-                    <a class="dropdown-item" href="{{ route('question.edit', ['id' => $question->id]) }}">Edit Question</a>
-                  </li>
-                @endif
-              @endauth
-              <li>
-                @auth
-                  @if($question->bounty == 0 && !$question->closed)
-                    <script src="{{ asset('js/add_bounty.js') }}" defer></script>
-                    <button class="dropdown-item" onClick="toggleAddBounty()">
-                      Add Bounty
-                    </button>
-                  @endif
-                @endauth
-              </li>
+              @if ($can_edit)
+                <li>
+                  <a class="dropdown-item" href="{{ route('question.edit', ['id' => $question->id]) }}">Edit Question</a>
+                </li>
+              @endif
+              @if ($can_add_bounty)
+                <li>
+                  <script src="{{ asset('js/add_bounty.js') }}" defer></script>
+                  <button class="dropdown-item" onClick="toggleAddBounty()">
+                    Add Bounty
+                  </button>
+                </li>
+              @endif
             </ul>
           </li>
+          @endif
         </ul>
       </div>
     @endauth

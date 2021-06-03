@@ -20,9 +20,6 @@
           <i class="bi bi-pencil-square"></i>
         </button>
 
-        <!-- report button -->
-        @include('partials.posts.report_button', ['post' => $comment->post])
-
         <div class="dropdown-menu col-12 col-lg-9 p-2"> <!-- aria-labelledby="commentEditDropdownLink" -->
           <form>
             <textarea class="form-control" id="Textarea-edit-comment-{{$comment->post->id}}">{{ $comment->post->body }}</textarea>
@@ -31,6 +28,11 @@
           </form>
         </div>
       </div>
+  @else
+    @if (!$comment->post->owner->hasRole('moderator'))
+    {{-- Dont add report if comment belongs to a moderator --}}
+    @include('partials.posts.report_button', ['post' => $comment->post])
+    @endif
   @endif
 @endauth
     </div>
