@@ -17,8 +17,8 @@
       <!-- User picture -->
       <h3>Profile Picture</h3>
       <div class="d-flex flex-column gap-3 align-items-center justify-content-start h-100 mt-4">
-        <img src="{{ asset('storage/'.$user->picture) }}" id="profile-picture" class="img-thumbnail rounded w-75 h-auto"
-          alt="{{ $user->username }} profile picture" />          
+        <img src="{{ asset('storage/' . $user->getPfp()) }}" id="profile-picture" class="img-thumbnail rounded"
+          alt="{{ $user->username }} profile picture" />
         <!-- Upload image input-->
         <div class="input-group w-75">
           <label for="avatarInput" class="form-lable">Avatar Upload:
