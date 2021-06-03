@@ -47,7 +47,8 @@
       </div>
       <!-- Question Date -->
       <div class="question-card-date col-auto d-none d-md-flex flex-row align-items-center p-0">
-        <span class="date align-self-end" data-date=" {{$question->post->date}} " data-bs-toggle="tooltip" data-bs-placement="bottom" title="Posted on {{(new \Carbon\Carbon($question->post->date))}}">
+        <span class="date" data-date=" {{$question->post->date}} " data-bs-toggle="tooltip"
+         data-bs-placement="bottom" title="Posted on {{(new \Carbon\Carbon($question->post->date))}}">
           Posted {{(new \Carbon\Carbon($question->post->date))->diffForHumans()}}
         </span>
         <!-- Author User Info -->
