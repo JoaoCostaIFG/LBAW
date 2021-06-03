@@ -1,12 +1,12 @@
 'use strict'
 
-function editCommentAnswer(id, type) {
+function editComment(id) {
 
-    let new_value = document.getElementById("Textarea-edit-" + type +"-"+ id).value;
+    let new_value = document.getElementById("Textarea-edit-comment-" + id).value;
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4) {
-            let post = document.getElementById(type + "-" + id);
+            let post = document.getElementById("comment-" + id);
             if (this.status == 200) {
                 post.textContent = new_value;
             } else {
@@ -16,7 +16,7 @@ function editCommentAnswer(id, type) {
         }
     };
 
-    xhttp.open("PATCH", "/api/" + type + "s/" + id, true);
+    xhttp.open("PATCH", "/api/comments/" + id, true);
     xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhttp.setRequestHeader("X-CSRF-TOKEN", document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
     xhttp.send(encodeForAjax({
@@ -32,12 +32,4 @@ function encodeForAjax(data) {
     return Object.keys(data).map(function (k) {
         return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
     }).join('&');
-}
-
-function editAnswer(id){
-    editCommentAnswer(id, 'answer');
-}
-
-function editComment(id){
-    editCommentAnswer(id, 'comment');
 }

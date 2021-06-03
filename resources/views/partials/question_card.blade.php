@@ -4,13 +4,13 @@
   <div class="d-flex flex-sm-column flex-row justify-content-start align-items-center gap-1">
     <!-- Number Votes -->
     <div class="d-flex flex-sm-column flex-row justify-content-center align-items-center gap-1">
-      <span class="fs-4">{{ $question->post->score }}</span>
+      <span class="fs-4" data-bs-toggle="tooltip" data-bs-placement="left" title="This post has a score of {{ $question->post->score }} points.">{{ $question->post->score }}</span>
       <span>Votes</span>
       <span class="d-sm-none"><i class="bi bi-arrow-down-up"></i></span>
     </div>
     <!-- Number Answers -->
     <div class="d-flex  flex-sm-column flex-row justify-content-center align-items-center gap-1">
-      <span class="fs-4"> {{ count($question->answers) }} </span>
+      <span class="fs-4" data-bs-toggle="tooltip" data-bs-placement="left" title="This post has {{ count($question->answers) }} answer(s) in total."> {{ count($question->answers) }} </span>
       <span>Answers</span>
       <span class="d-sm-none"><i class="bi bi-chat-left-text"></i></span>
     </div>
@@ -25,7 +25,7 @@
       </section>
       <!-- Mark if question is answered -->
       @if ($question->closed)
-        <i class="bi bi-check2 text-success text-end fs-1 ms-auto"></i>
+        <i class="bi bi-check2 text-success text-end fs-1 ms-auto" data-bs-toggle="tooltip" data-bs-placement="right" title="This question already has an accepted answer."></i>
       @endif
     </div>
     <div class="w-100 row gx-0 justify-content-between align-items-center align-self-start">
@@ -34,19 +34,20 @@
         <!-- Bounty -->
         @if ($question->bounty > 0)
           @if ($question->closed)
-            <del class="badge bg-danger">Bounty: {{ $question->bounty }}</del>
+            <del class="badge bg-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="The bounty for this question has been taken. (worth: {{ $question->bounty }} points)">Bounty: {{ $question->bounty }}</del>
           @else
-            <span class="badge bg-success">Bounty: {{ $question->bounty }}</span>
+            <span class="badge bg-success" data-bs-toggle="tooltip" data-bs-placement="bottom" title="The bounty for this question is still available. If your answer is accepted, you will receive {{ $question->bounty }} points.">Bounty: {{ $question->bounty }}</span>
           @endif
         @endif
         <!-- Tags -->
         @foreach ($question->topics as $topic)
-          <a class="badge bg-primary text-decoration-none" href="/search/tag/{{$topic->name}}">{{ $topic->name }}</a>
+          <a class="badge bg-primary text-decoration-none" href="/search/tag/{{$topic->name}}"
+            data-bs-toggle="tooltip" data-bs-placement="bottom" title="This post has been tagged under the {{ $topic->name }} tag.">{{ $topic->name }}</a>
         @endforeach
       </div>
       <!-- Question Date -->
       <div class="question-card-date col-8 col-md-6 col-lg-5 col-xl-4 d-none d-md-flex flex-row align-items-center p-0">
-        <span class="date align-self-end" data-date=" {{$question->post->date}} ">
+        <span class="date align-self-end" data-date=" {{$question->post->date}} " data-bs-toggle="tooltip" data-bs-placement="bottom" title="Posted on {{(new \Carbon\Carbon($question->post->date))}}">
           Posted {{(new \Carbon\Carbon($question->post->date))->diffForHumans()}}
         </span>
         <!-- Author User Info -->
@@ -60,7 +61,7 @@
             {{ $question->post->owner->username }}
           </a>
           <!-- Owner Reputation -->
-          <span>
+          <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ $question->post->owner->reputation }} reputation points.">
             {{ $question->post->owner->reputation }}
             <i class="bi bi-award"></i>
           </span>

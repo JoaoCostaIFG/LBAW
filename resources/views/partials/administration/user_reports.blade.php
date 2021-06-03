@@ -26,12 +26,12 @@ $type = $report->post->type;
             <div class="row align-items-center">
                 <b class="col fs-5">Ban User?</b>
                 <span class="col-5 col-sm-4 text-end">
-                    <button type="button" class="btn btn-sm btn-success mb-1"
+                    <button type="button" class="btn btn-sm btn-success mb-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ban user."
                         data-bs-toggle="button" autocomplete="off" onclick="processUserReport({{$report->post->id}}, {{$report->reporter}}, 1)">
                         <i class="bi bi-check2"></i>
                     </button>
-                    <button type="button" class="btn btn-sm btn-danger mb-1" data-bs-toggle="button"
-                        autocomplete="off" onclick="processUserReport({{$report->post->id}}, {{$report->reporter}}, 0)">
+                    <button type="button" class="btn btn-sm btn-danger mb-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Reject report."
+                    data-bs-toggle="button" autocomplete="off" onclick="processUserReport({{$report->post->id}}, {{$report->reporter}}, 0)">
                         <i class="bi bi-x"></i>
                     </button>
                 </span>

@@ -29,6 +29,8 @@ Route::get('administration', 'AdministrationController@show')->middleware('role:
 Route::put('/question/{id}/answer', 'AnswerController@create')->name('answer.add');
 Route::get('/search', 'SearchResultsController@search')->name('search');
 Route::get('/search/tag/{name}', 'SearchResultsController@searchTag');
+Route::patch('/answer/{id}/edit', 'AnswerController@update');
+Route::get('/answer/{id}/edit', 'AnswerController@showedit')->name('answer.edit');
 // Questions
 Route::get('/question/{id}', 'QuestionController@showWithId');
 Route::get('/question/{id}/edit', 'QuestionController@showedit')->name('question.edit');
@@ -47,7 +49,6 @@ Route::get('/api/questions', 'SearchResultsController@searchApi'); // TODO
 Route::get('/api/user', 'UserController@showApi');
 Route::post('api/comments', 'CommentController@create');
 Route::patch('api/comments/{id}', 'CommentController@update');
-Route::patch('api/answers/{id}', 'AnswerController@update');
 Route::put('api/{id}/vote/', 'VoteController@create');
 Route::delete('api/{id}/vote/', 'VoteController@delete');
 Route::delete('/api/notifications/{id}', 'NotificationController@delete')->name('notification.delete');

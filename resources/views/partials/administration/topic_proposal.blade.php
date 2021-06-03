@@ -14,12 +14,12 @@
             <div class="row align-items-center">
                 <b class="col fs-5">Accept new topic?</b>
                 <span class="col-6 col-sm-5 text-end">
-                    <button type="button" class="btn btn-sm btn-success mb-1" data-bs-toggle="button"
-                        autocomplete="off" onclick="processTopicProposal({{$topic_proposal->id}}, 1)">
+                    <button type="button" class="btn btn-sm btn-success mb-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Accept proposal."
+                    data-bs-toggle="button" autocomplete="off" onclick="processTopicProposal({{$topic_proposal->id}}, 1)">
                         <i class="bi bi-check2"></i>
                     </button>
-                    <button type="button" class="btn btn-sm btn-danger mb-1" data-bs-toggle="button" 
-                        autocomplete="off" onclick="processTopicProposal({{$topic_proposal->id}}, 0)">
+                    <button type="button" class="btn btn-sm btn-danger mb-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Reject proposal."
+                    data-bs-toggle="button" autocomplete="off" onclick="processTopicProposal({{$topic_proposal->id}}, 0)">
                         <i class="bi bi-x"></i>
                     </button>
                 </span>
