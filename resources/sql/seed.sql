@@ -665,8 +665,11 @@ LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION add_new_answer_notification() RETURNS TRIGGER
 AS $$
+  DECLARE
+    question_owner_id integer;
   BEGIN
-      INSERT INTO notification (title, body, recipient) VALUES ('New answer', 'Someone answered your question: ', NEW.id_question);
+      question_owner_id := (SELECT id_owner FROM post WHERE post.id = New.id_question);
+      INSERT INTO notification (title, body, recipient) VALUES ('New answer', 'Someone answered your question: ', question_owner_id);
       INSERT INTO notification_post (id, id_post) VALUES (currval(pg_get_serial_sequence('notification', 'id')), NEW.id_question);
       RETURN NEW;
   END
@@ -675,13 +678,17 @@ LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION add_new_comment_notification() RETURNS TRIGGER
 AS $$
+  DECLARE
+    parent_owner_id integer;
   BEGIN
       IF (NEW.id_question IS NOT NULL) THEN
-        INSERT INTO notification (title, body, recipient) VALUES ('New Comment', 'Someone commented your question: ', NEW.id_question);
+        parent_owner_id := (SELECT id_owner FROM post WHERE post.id = New.id_question);
+        INSERT INTO notification (title, body, recipient) VALUES ('New Comment', 'Someone commented your question: ', parent_owner_id);
         INSERT INTO notification_post (id, id_post) VALUES (currval(pg_get_serial_sequence('notification', 'id')), NEW.id_question);
       END IF;
       IF (NEW.id_answer IS NOT NULL) THEN
-        INSERT INTO notification (title, body, recipient) VALUES ('New Comment', 'Someone commented your answer: ', NEW.id_answer);
+        parent_owner_id := (SELECT id_owner FROM post WHERE post.id = New.id_answer);
+        INSERT INTO notification (title, body, recipient) VALUES ('New Comment', 'Someone commented your answer: ', parent_owner_id);
         INSERT INTO notification_post (id, id_post) VALUES (currval(pg_get_serial_sequence('notification', 'id')), NEW.id_answer);
       END IF;
       RETURN NEW;

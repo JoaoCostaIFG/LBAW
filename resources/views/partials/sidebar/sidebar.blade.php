@@ -35,8 +35,10 @@
 
     @auth
     <div class="sidebar-subheader d-flex justify-content-start align-items-center gap-1">
-      <img src="{{ asset('storage/'. Auth::user()->picture) }}" class="rounded"
-        width="32" height="32" alt="{{ Auth::user()->username }} profile picture">
+      <a href="{{ '/profile/' . Auth::user()->username }}">
+        <img class="rounded-2 fit-cover" src="{{ asset('storage/'. Auth::user()->picture) }}"
+         alt="{{ Auth::user()->username }} profile picture" width=32 height=32>
+      </a>
       <h4 class="d-inline-block text-truncate">{{ Auth::user()->username }}</h4>
     </div>
     <ul class="list-group">

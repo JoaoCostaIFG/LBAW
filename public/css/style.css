@@ -394,13 +394,13 @@ footer {
 }
 
 .question-body-search {
-    height: 3.0em;
+    height: 2.8em;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 #edit-markdown {
-    z-index: 1100;
+    z-index: 999;
     right: 20px;
 }
 /* END MISC */
