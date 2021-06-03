@@ -33,12 +33,12 @@
     @include('partials.posts.user_card', ['post' => $question->post])
 
     <!-- Options -->
+    @auth
     @php
       $is_moderator = Auth::user()->hasRole('moderator');
       $can_edit = $question->post->owner->id == Auth::id() || $is_moderator;
       $can_add_bounty = $question->bounty == 0 && !$question->closed;
     @endphp
-    @auth
       <div id="question-options" class="col-auto" data-bs-toggle="tooltip" data-bs-placement="right" title="Options">
         <!--Check if is moderator-->
         <ul class="nav nav-pills">
