@@ -9,7 +9,7 @@
     </a>
     <div class="row gx-0">
         <div class="col-12">
-          <a class="text-break" href="/profile/{{$post->owner->username}}">{{ $post->owner->username }}</a>
+          <a class="text-break" href="/profile/{{ $post->owner->username }}">{{ $post->owner->username }}</a>
         </div>
         <div class="col-12">
           <span class="text-break" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ $post->owner->reputation }} reputation points.">{{ $post->owner->reputation }}</span>
