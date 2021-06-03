@@ -53,7 +53,7 @@
         <!-- Author User Info -->
         <!-- User Profile Pic  -->
         <img class="rounded-2 fit-cover" src="{{ asset('storage/'.$question->post->owner->getPfp()) }}"
-         alt="User profile picture" width="40" height="40">
+         alt="{{ $question->post->owner->username }} profile picture" width="40" height="40">
         <div class="d-flex flex-row flex-md-column justify-content-center align-items-start">
           <!-- Owner Username -->
           <span class="d-md-none">by&nbsp;</span>

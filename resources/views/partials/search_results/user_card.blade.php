@@ -3,7 +3,7 @@
   <div class="p-3 d-flex flex-row gap-3">
     <!-- TODO: Add user image-->
     <img class="rounded-2 fit-cover" src="{{ asset('storage/' . $user->getPfp()) }}"
-     alt="User profile picture" width="40" height="40">
+     alt="{{ $user->username }} profile picture" width="40" height="40">
     <div class="d-flex flex-column justify-content-center align-items-start">
       <!-- Name -->
       <span class="fs-5">{{ $user->name }}</span>

@@ -5,7 +5,7 @@
   <div class="col-12 d-flex align-items-center gap-2">
     <a class="text-break" href="/profile/{{$post->owner->username}}">
       <img class="rounded-2 fit-cover" src="{{ asset('storage/' . $post->owner->getPfp()) }}"
-       alt="User profile picture" width=40 height=40>
+       alt="{{ $post->owner->username }} profile picture" width=40 height=40>
     </a>
     <div class="row gx-0">
         <div class="col-12">
