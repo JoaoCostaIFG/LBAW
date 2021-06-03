@@ -26,7 +26,7 @@
     <div class="carousel-item text-white bg-dark text-center marketingCarousel">
       <div class="container p-4 p-md-5 mb-4">
         <h1 class="display-4 fst-italic">Top question of the site</h1>
-        <p class="lead my-3">{{$question->title}}</p>
+        <p class="lead my-3">{{ $question->title }}</p>
         <a class="btn btn-primary" href={{"/question/".$question->id}} role="button">Visit question</a>
       </div>
     </div>
