@@ -26,7 +26,7 @@ function verifyPassword() {
     } else {
         letter.classList.remove("text-success");
         letter.classList.add("text-danger");
-        letter.innerHTML = "<i class='bi bi-check-lg'></i> Must have a <b>lowercase</b> letter";
+        letter.innerHTML = "<i class='bi bi-x-lg'></i> Must have a <b>lowercase</b> letter";
     }
 
     // Validate capital letters
@@ -63,11 +63,13 @@ function verifyPassword() {
         length.classList.add("text-danger");
         length.innerHTML = "<i class='bi bi-x-lg'></i> Minimum <b>6 characters</b>";
     }
+
+    verifyConfirm();
 }
 
 // Repeated
 // When the user clicks on the password field, show the message box (repeat)
-var myInputRep = document.getElementById("repeated_password");
+var myInputRep = document.getElementById("password_confirmation");
 var repeat = document.getElementById("repeat");
 myInputRep.onfocus = function () {
     document.getElementById("message-confirm").style.display = "block";
