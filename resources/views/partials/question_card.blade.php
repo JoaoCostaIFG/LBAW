@@ -30,7 +30,7 @@
     </div>
     <div class="w-100 row gx-0 justify-content-between align-items-center align-self-start">
       <!-- Question Topics -->
-      <div class="col-7 col-md-6 col-lg-7 col-xl-8 d-none d-sm-block d-grid gap-1 p-0">
+      <div class="col-auto d-none d-sm-block d-grid gap-1 p-0">
         <!-- Bounty -->
         @if ($question->bounty > 0)
           @if ($question->closed)
@@ -46,15 +46,12 @@
         @endforeach
       </div>
       <!-- Question Date -->
-      <div class="question-card-date col-8 col-md-6 col-lg-5 col-xl-4 d-none d-md-flex flex-row align-items-center p-0">
+      <div class="question-card-date col-auto d-none d-md-flex flex-row align-items-center p-0">
         <span class="date align-self-end" data-date=" {{$question->post->date}} " data-bs-toggle="tooltip" data-bs-placement="bottom" title="Posted on {{(new \Carbon\Carbon($question->post->date))}}">
           Posted {{(new \Carbon\Carbon($question->post->date))->diffForHumans()}}
         </span>
         <!-- Author User Info -->
-        <!-- User Profile Pic  -->
-        <img class="rounded-2 fit-cover" src="{{ asset('storage/'.$question->post->owner->getPfp()) }}"
-         alt="{{ $question->post->owner->username }} profile picture" width="40" height="40">
-        <div class="d-flex flex-row flex-md-column justify-content-center align-items-start">
+        <div class="d-flex flex-row flex-md-column justify-content-center align-items-end">
           <!-- Owner Username -->
           <span class="d-md-none">by&nbsp;</span>
           <a href="/profile/{{ $question->post->owner->username }}">
@@ -66,8 +63,12 @@
             <i class="bi bi-award"></i>
           </span>
         </div>
+        <!-- User Profile Pic  -->
+        <img class="rounded-2 fit-cover" src="{{ asset('storage/'.$question->post->owner->getPfp()) }}"
+         alt="{{ $question->post->owner->username }} profile picture" width="40" height="40">
       </div>
 
+      <!-- Owner pic and username -->
       <div class="question-card-date col-5 d-md-none d-flex flex-row align-items-center p-0">
         <span class="date align-self-end" data-date="{{ $question->post->date }}">
           Posted {{(new \Carbon\Carbon($question->post->date))->diffForHumans()}} by&nbsp;
