@@ -32,7 +32,7 @@
       <!-- Sort By -->
       <select class="col-auto" aria-label="Sort by" name="sortBy">
         <option value="">Sort By: ---</option>
-        <option value="most_recent">Sort By: Most Recent</option>
+        <option value="most_recent">Sort By: Latest</option>
         <option value="oldest">Sort By: Oldest</option>
         <option value="best_score">Sort By: Best Score</option>
         <option value="worst_score">Sort By: Worst Score</option>
