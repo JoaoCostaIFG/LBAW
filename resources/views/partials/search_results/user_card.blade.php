@@ -1,6 +1,6 @@
 <!-- User Card -->
 <div class="col-md d-flex flex-row justify-content-between align-items-center border rounded">
-  <div class="p-3 d-flex flex-row gap-3">
+  <div class="p-3 d-flex flex-row gap-3 align-items-center">
     <!-- TODO: Add user image-->
     <img class="rounded-2 fit-cover" src="{{ asset('storage/' . $user->getPfp()) }}"
      alt="{{ $user->username }} profile picture" width="40" height="40">
