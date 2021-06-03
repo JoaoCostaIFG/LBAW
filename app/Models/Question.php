@@ -17,13 +17,16 @@ class Question extends Model
         "title", "bounty",
     ];
 
-    public static function create($data) {
+    public static function create($data)
+    {
         // OwnerUser INT, Body TEXT, DatePost DATE, Title TEXT, Bounty INT, Closed BOOLEAN
         DB::beginTransaction();
-        DB::select("CALL create_question(?, ?, ?, ?, ?, ?)",
-            [$data['owner'], $data['body'], Carbon::now(), $data['title'], $data['bounty'], "false"]);
+        DB::select(
+            "CALL create_question(?, ?, ?, ?, ?, ?)",
+            [$data['owner'], $data['body'], Carbon::now(), $data['title'], $data['bounty'], "false"]
+        );
         $question = Question::latest('id')->limit(1)->get()[0];
-        foreach($data['topics'] as $t_name) {
+        foreach ($data['topics'] as $t_name) {
             $t = Topic::where('name', $t_name)->get()[0];
             DB::insert('INSERT INTO topic_question(id_question, id_topic) VALUES(?, ?)', [$question->id, $t->id]);
         }
@@ -73,11 +76,7 @@ class Question extends Model
         }
 
         $search = "'" . $search . "'";
-        return $query->
-            selectRaw('question.*, post.*, ts_rank("question".search, plainto_tsquery(?)) as rank_question, ts_rank("user".search, plainto_tsquery(?)) as rank_user', [$search, $search])->
-            join('post', 'post.id', '=', 'question.id')->
-            join('user', 'user.id', '=', 'post.id_owner')->
-            whereRaw('"question".search @@ plainto_tsquery(?) OR "user".search @@ plainto_tsquery(?)', [$search, $search]);
+        return $query->selectRaw('question.*, post.*, ts_rank("question".search, plainto_tsquery(?)) as rank_question, ts_rank("user".search, plainto_tsquery(?)) as rank_user', [$search, $search])->join('post', 'post.id', '=', 'question.id')->join('user', 'user.id', '=', 'post.id_owner')->whereRaw('"question".search @@ plainto_tsquery(?) OR "user".search @@ plainto_tsquery(?)', [$search, $search]);
     }
 
     public static function getTopQuestions()
@@ -88,5 +87,15 @@ class Question extends Model
             ->limit(20)
             ->get();
         return $questions;
+    }
+
+    public static function topQuestion()
+    {
+        $question = DB::table('post')
+            ->join('question', 'post.id', '=', 'question.id')
+            ->orderBy('score', 'desc')
+            ->limit(1)
+            ->get();
+        return $question;
     }
 }
