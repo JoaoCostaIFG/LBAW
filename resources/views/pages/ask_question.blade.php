@@ -7,7 +7,7 @@
 <script src="{{ asset('js/edit_markdown.js') }}" defer></script>
 
 <div class="d-flex flex-row align-items-center justify-content-between mt-2">
-  <h2 class="page-title mt-0">Add Question</h2>
+  <h2 class="page-title mt-0">Ask Question</h2>
   <button type="button" class="btn btn-secondary" title="Help: Add Question" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" 
   data-bs-content="Use this page to make a question. Remember: Questions are permanent. Be explicit.
   You can add a bounty and tag it with topics.">
@@ -33,10 +33,19 @@
   <div class="input-group mt-2">
     <label for="form-question-body" class="form-label"><b>Question details</b><span class="text-danger"> *</span></label>
     <div class="input-group has-validation">
+<<<<<<< HEAD
       <textarea id="form-question-body" class="no-resize-ta form-control p-2 {{ $errors->has('body') ? 'is-invalid' : ''}}"
        name="body" rows="19" placeholder="Enter question details...">{{ old('body') }}</textarea>
       <a id="edit-markdown" class="position-absolute fs-4" role="button" href="javascript:void(0)" onclick="openEditorQuestion()">
         <i class="bi bi-markdown"></i>
+=======
+      <textarea id="question-body" class="no-resize-ta form-control p-2 {{ $errors->has('body') ? 'is-invalid' : ''}}"
+       name="body" rows="19" placeholder="Enter question details...">
+        {{ old('body') }}
+      </textarea>
+      <a id="edit-markdown" class="position-absolute" role="button" href="javascript:void(0)" onclick="openEditor()">
+        <i class="bi bi-markdown fs-4"></i>
+>>>>>>> d866422be890f37586a6ada01bec18537c9a7ac8
       </a>
       @if ($errors->has('body'))
       <div class="invalid-feedback">
@@ -116,7 +125,7 @@
 
   <div class="text-center">
     <div class="d-inline-flex">
-      <button type="submit" class="btn btn-success mx-2">Submit Question</button>
+      <button type="submit" class="btn btn-success mx-2"><b>Submit Question</b></button>
     </div>
   </div>
 </form>

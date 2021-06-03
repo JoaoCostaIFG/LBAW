@@ -2,9 +2,9 @@
 <script src="{{ asset('js/add_markdown.js') }}" onload="parseSearchPage()" defer></script>
 <div class="tab-pane fade show active" id="questions">
   <div class="row align-items-center justify-content-between my-2 py-1 gx-0">
-    <h6 id="questions-page-subtitle" class="col-12 col-lg-3 m-0">
+    <h3 id="questions-page-subtitle" class="col-12 col-lg-3 m-0 fs-5">
       Showing {{ $questions->count() }} out of {{ $questions->total() }} result(s)
-    </h6>
+    </h3>
     <!-- Filter -->
     <form class="search-filters-form col-12 col-lg-9 row gx-0 gap-1" method="GET">
       <!-- From: -->

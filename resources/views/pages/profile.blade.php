@@ -101,7 +101,7 @@
       <!-- Top Topics -->
       <div class="col-lg p-1">
         <div class="container themed-container">
-          <h5 class="m-0 fw-bold"  data-bs-toggle="tooltip" data-bs-placement="top" title="Top topics the user participated in.">Top Topics</h5>
+          <h3 class="m-0 fw-bold"  data-bs-toggle="tooltip" data-bs-placement="top" title="Top topics the user participated in.">Top Topics</h3>
         </div>
 @if (count($user->getTopicParticipation()->get()) == 0)
         <div class="text-center mb-3">
@@ -117,7 +117,7 @@
       <!-- Top Questions -->
       <div class="col-lg p-1">
         <div class="container themed-container">
-          <h5 class="m-0 fw-bold" data-bs-toggle="tooltip" data-bs-placement="top" title="Questions with the most score points posted by this user.">Top Questions</h5>
+          <h3 class="m-0 fw-bold" data-bs-toggle="tooltip" data-bs-placement="top" title="Questions with the most score points posted by this user.">Top Questions</h3>
         </div>
 @if (count($user->questions) == 0)
         <div class="text-center">
@@ -136,7 +136,7 @@
   <!-- BEGIN ACHIEVEMENTS TAB -->
   <div id="achievements" class="tab-pane fade">
     <div class="container themed-container">
-      <h5 class="m-0 fw-bold">Achievements</h5>
+      <h3 class="m-0 fw-bold">Achievements</h3>
     </div>
     <!-- Progress bar -->
     @php $percentage = (count($user->achievements) / count($achievements)) *

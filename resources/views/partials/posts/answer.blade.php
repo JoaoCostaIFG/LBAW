@@ -17,7 +17,7 @@
         <!--Check if is moderator-->
         <ul class="nav nav-pills">
           <li class="nav-item dropdown ms-auto">
-            <button class="btn btn-sm btn-secondary" data-bs-toggle="dropdown">
+            <button class="btn btn-sm btn-secondary" data-bs-toggle="dropdown" aria-label="Answer options toggle">
               <i class="bi bi-three-dots-vertical"></i>
             </button>
             <ul class="dropdown-menu">
