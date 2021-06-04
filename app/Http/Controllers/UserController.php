@@ -167,7 +167,8 @@ class UserController extends Controller
                         $fail('Name cannot start with \'Deleted User\'');
                 }
             ],
-            'password' => 'nullable|string|min:6|confirmed|required_with:password_confirmation',
+            'password' => 'nullable|string|min:6|confirmed|required_with:password_confirmation
+            |regex:/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/',
             'password_confirmation' => 'nullable|required_with:password',
             'about' => 'nullable|string|max:256',
             'name' => 'nullable|string|max:60',

@@ -64,7 +64,7 @@
               <div class="input-group has-validation">
                 <input type="password" name="password"
                   class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" value="" id="password"
-                  placeholder="Enter new password..." />
+                  placeholder="Enter new password..." pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" />
                 <!-- Error -->
                 @if ($errors->has('password'))
                   <div class="invalid-feedback d-block">{{ $errors->first('password') }}</div>
