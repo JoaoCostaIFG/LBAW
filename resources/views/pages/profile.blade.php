@@ -10,45 +10,62 @@
   {{ session('status') }}
 </div>
 @endif
+
 <!-- BEGIN TABS -->
-<div class="d-flex flex-row align-items-center justify-content-between">
-  <h2 class="page-title mb-0">
-    @if (Auth::check() && Auth::user()->username == request()->username)
-      Your Profile
-    @else
-      {{ $user->username }}'s profile
-    @endif
-  </h2>
-    @auth
-    <div>
-      <button type="button" class="btn btn-secondary mt-3 me-1" title="Help: Profile" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom"
-  data-bs-content="This is a user's profile page. Here, you can take a look at a user's activity, information and achievements.
-  In your own profile, you can change your account information.">
-    <i class="bi bi-question-circle"></i> Help
-  </button>
-      @if (Auth::id() == $user->id)
-        <a class="btn btn-primary mt-3" href="/user/edit" role="button" data-bs-toggle="tooltip" data-bs-placement="right" title="Edit your account information.">
-          Edit <i class="bi bi-pencil-square"></i>
-        </a>
-      @elseif (Auth::user()->hasRole('administrator') && !$user->isdeleted)
-      @include('partials.profile.ban', ['user' => $user])
-      <button type="button" class="ban-btn btn btn-danger btn-secondary mt-3" data-bs-toggle="modal"
-        data-bs-target="#banModal" aria-label="report user" data-bs-toggle="tooltip" data-bs-placement="right" title="Ban this user.">
-        Ban <i class="bi bi-trash"></i>
-      </button>
+<div class="page-title d-flex flex-row align-items-center justify-content-between">
+  <div class="row">
+    <h2 class="col-12">
+      @if (Auth::check() && Auth::user()->username == request()->username)
+        Your Profile
+      @else
+        {{ $user->username }}'s profile
+      @endif
+    </h2>
+    <div class="col-12">
+      @if ($user->hasRole('administrator'))
+        <span class="badge bg-success text-decoration-none" data-bs-toggle="tooltip"
+         data-bs-placement="left" title="This user has administrator role.">
+          <i class="bi bi-wrench"></i> Administrator
+        </span>
+      @else
+        @if ($user->hasRole('moderator'))
+          <span class="badge bg-danger text-decoration-none" data-bs-toggle="tooltip"
+           data-bs-placement="left" title="This user has moderator role.">
+            <i class="bi bi-wrench"></i> Moderator
+          </span>
+        @endif
       @endif
     </div>
-    @endauth
+  </div>
+
+  @auth
+    <div class="row justify-content-end gap-1">
+      @if (Auth::id() == $user->id)
+        <div class="col-auto">
+          <a class="btn btn-primary" href="/user/edit" role="button" data-bs-toggle="tooltip" data-bs-placement="right" title="Edit your account information.">
+            Edit <i class="bi bi-pencil-square"></i>
+          </a>
+        </div>
+      @elseif (Auth::user()->hasRole('administrator') && !$user->isdeleted)
+        <div class="col-auto">
+          <button type="button" class="ban-btn btn btn-danger btn-secondary" data-bs-toggle="modal"
+           data-bs-target="#banModal" aria-label="report user" data-bs-toggle="tooltip" data-bs-placement="right" title="Ban this user.">
+            Ban <i class="bi bi-trash"></i>
+          </button>
+        </div>
+      @endif
+      <div class="col-auto">
+        <button type="button" class="btn btn-secondary" title="Help: Profile" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom"
+         data-bs-content="This is a user's profile page. Here, you can take a look at a user's activity, information and achievements. In your own profile, you can change your account information.">
+          Help <i class="bi bi-question-circle"></i>
+        </button>
+      </div>
+    </div>
+  @endauth
 </div>
-  @if ($user->hasRole('administrator'))
-  <span class="badge bg-success text-decoration-none"
-          data-bs-toggle="tooltip" data-bs-placement="left" title="This user has administrator role."><i class="bi bi-wrench"></i> Administrator</span>    
-  @else
-  @if ($user->hasRole('moderator'))
-  <span class="badge bg-danger text-decoration-none"
-          data-bs-toggle="tooltip" data-bs-placement="left" title="This user has moderator role."><i class="bi bi-wrench"></i> Moderator</span>
-  @endif
-  @endif
+
+
+@include('partials.profile.ban', ['user' => $user])
 
 <hr>
 <nav class="mt-2">

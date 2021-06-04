@@ -45,8 +45,9 @@
             data-bs-toggle="tooltip" data-bs-placement="bottom" title="This post has been tagged under the {{ $topic->name }} tag.">{{ $topic->name }}</a>
         @endforeach
       </div>
-      <!-- Question Date -->
-      <div class="question-card-date col-auto d-none d-md-flex flex-row align-items-center p-0">
+      <!-- Big question description -->
+      <div class="question-card-date col-auto d-none d-md-flex flex-row align-items-center p-0 ms-auto">
+        <!-- Question Date -->
         <span class="date" data-date=" {{$question->post->date}} " data-bs-toggle="tooltip"
          data-bs-placement="bottom" title="Posted on {{(new \Carbon\Carbon($question->post->date))}}">
           Posted {{(new \Carbon\Carbon($question->post->date))->diffForHumans()}}
