@@ -7,12 +7,20 @@
       <h4>Pages</h4>
     </div>
     <ul class="list-group">
-        @include('partials.sidebar.sidebar_link', ['href' => "/home", 'icon' => "bi-house-door", 'text' =>  "Home", 'is_selected' => $title === "Homepage"])
-        @include('partials.sidebar.sidebar_link', ['href' => "/search#questions", 'icon' => "bi-question-circle", 'text' =>  "Questions", 'is_selected' => $title === "Question"])
-        @include('partials.sidebar.sidebar_link', ['href' => "/news", 'icon' => "bi-newspaper", 'text' =>  "News", 'is_selected' => $title === "News"])
-        @include('partials.sidebar.sidebar_link', ['href' => "/search#users", 'icon' => "bi-person", 'text' =>  "Users", 'is_selected' => $title === "Profile"])
-        @include('partials.sidebar.sidebar_link', ['href' => "/leaderboard", 'icon' => "bi-trophy", 'text' =>  "Leaderboard", 'is_selected' => $title === "Leaderboard"])
-        @include('partials.sidebar.sidebar_link', ['href' => "/about", 'icon' => "bi-info-circle", 'text' =>  "About", 'is_selected' => $title === "About"])
+        @include('partials.sidebar.sidebar_link', ['href' => "/home", 'icon' => "bi-house-door",
+          'text' =>  "Home", 'is_selected' => $title === "Homepage"])
+        @include('partials.sidebar.sidebar_link', ['href' => "/search#questions", 'icon' => "bi-question-circle",
+          'text' =>  "Search", 'is_selected' => $title === "Search"])
+        @include('partials.sidebar.sidebar_link', ['href' => "/news", 'icon' => "bi-newspaper",
+          'text' =>  "News", 'is_selected' => $title === "News"])
+        {{--
+          @include('partials.sidebar.sidebar_link', ['href' => "/search#users", 'icon' => "bi-person",
+            'text' =>  "Users", 'is_selected' => $title === "Profile"])
+        --}}
+        @include('partials.sidebar.sidebar_link', ['href' => "/leaderboard", 'icon' => "bi-trophy",
+          'text' =>  "Leaderboard", 'is_selected' => $title === "Leaderboard"])
+        @include('partials.sidebar.sidebar_link', ['href' => "/about", 'icon' => "bi-info-circle",
+          'text' =>  "About", 'is_selected' => $title === "About"])
         @auth
             @if(Auth::user()->hasRole('moderator'))
                 @include('partials.sidebar.sidebar_link', ['href' => "/administration", 'icon' => "bi-clipboard-data", 'text' =>  "Administration", 'is_selected' => $title === "Admin"])
@@ -45,7 +53,7 @@
       @include('partials.sidebar.sidebar_link', ['href' => "/profile/" . Auth::user()->username,
         'icon' => "bi-person-circle", 'text' =>  "My Profile", 'is_selected' => $title === "Profile"])
       @include('partials.sidebar.sidebar_link', ['href' => "/ask", 'icon' => "bi-plus-circle",
-        'text' =>  "Ask Question", 'is_selected' => $title === "Ask Question"]) {{-- TODO --}}
+        'text' =>  "Ask Question", 'is_selected' => $title === "Ask Question"])
     </ul>
 
     <div class="row justify-content-evenly sidebar-buttons">
