@@ -46,7 +46,7 @@
             Edit <i class="bi bi-pencil-square"></i>
           </a>
         </div>
-      @elseif (Auth::user()->hasRole('administrator') && !$user->isdeleted)
+      @elseif (Auth::user()->hasRole('administrator') && !$user->isdeleted && !$user->hasRole('administrator'))
         <div class="col-auto">
           <button type="button" class="ban-btn btn btn-danger btn-secondary" data-bs-toggle="modal"
            data-bs-target="#banModal" aria-label="report user" data-bs-toggle="tooltip" data-bs-placement="right" title="Ban this user.">
