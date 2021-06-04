@@ -1,7 +1,7 @@
 <!-- User Card -->
-<div class="col-md d-flex flex-row justify-content-between align-items-center border rounded mb-2">
-  <div class="p-3 d-flex flex-row gap-3">
-    <!-- user image-->
+<div class="col-md d-flex flex-row justify-content-between align-items-center border rounded">
+  <div class="p-3 d-flex flex-row gap-3 align-items-center">
+    <!-- Add user image-->
     <img class="rounded-2 fit-cover" src="{{ asset('storage/' . $user->getPfp()) }}"
      alt="{{ $user->username }} profile picture" width="40" height="40">
     <div class="d-flex flex-column justify-content-center align-items-start">
