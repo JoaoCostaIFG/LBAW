@@ -26,7 +26,7 @@ function addVote(post_id, is_upvote) {
       }
     };
 
-    xhttp.open("put", "/api/" + post_id + "/vote", true);
+    xhttp.open("PUT", "/api/" + post_id + "/vote", true);
     xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhttp.setRequestHeader("X-CSRF-TOKEN", document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
     xhttp.send(
@@ -38,7 +38,6 @@ function addVote(post_id, is_upvote) {
               .getAttribute("content"),
         })
     );
-
 }
 
 function removeVote(post_id) {

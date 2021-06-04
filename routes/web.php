@@ -49,7 +49,7 @@ Route::get('/api/user', 'UserController@showApi');
 Route::post('api/comments', 'CommentController@create');
 Route::patch('api/comments/{id}', 'CommentController@update');
 Route::put('api/{id}/vote/', 'VoteController@create');
-Route::delete('api/{id}/vote/', 'VoteController@delete');
+Route::delete('api/{id}/vote/', 'VoteController@delete')->middleware('auth');
 Route::delete('/api/notifications/{id}', 'NotificationController@delete')->name('notification.delete');
 
 //Ajax
