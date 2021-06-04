@@ -4,8 +4,6 @@
 @section('pageType', 'website')
 
 @section('content')
-<script src="{{ asset('js/edit_markdown.js') }}" defer></script>
-
 <div class="page-title d-flex flex-row align-items-center justify-content-between">
   <h2>Ask Question</h2>
   <button type="button" class="btn btn-secondary" title="Help: Add Question" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" 
@@ -37,6 +35,7 @@
       <a id="edit-markdown" class="position-absolute fs-4" role="button" href="javascript:void(0)" onclick="openEditorQuestion()">
         <i class="bi bi-markdown"></i>
       </a>
+      <script src="{{ asset('js/edit_markdown.js') }}"></script>
       @if ($errors->has('body'))
       <div class="invalid-feedback">
         {{ $errors->first('body') }}

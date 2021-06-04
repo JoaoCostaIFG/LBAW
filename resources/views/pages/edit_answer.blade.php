@@ -4,7 +4,6 @@
 @section('pageType', 'website')
 
 @section('content')
-<script src="{{ asset('js/edit_markdown.js') }}" defer></script>
 
 <h2 class="page-title">Edit Answer</h2>
 <hr class="mt-3">
@@ -20,6 +19,7 @@
       <a id="edit-markdown" class="position-absolute fs-4" role="button" href="javascript:void(0)" onclick="openEditorAnswer()">
         <i class="bi bi-markdown"></i>
       </a>
+      <script src="{{ asset('js/edit_markdown.js') }}"></script>
       @if ($errors->has('body'))
       <div class="invalid-feedback d-inline">
         {{ $errors->first('body') }}
