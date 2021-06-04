@@ -5,7 +5,7 @@
 @section('content')
 <div class="auth-container">
     <div class="auth-form-container">
-        <span class="lead fs-3 fw-bold">Reset Password</span>
+        <h2 class="lead fs-3 fw-bold">Reset Password</h2>
         <form class="auth-form" method="post" action="{{ route('password.update') }}">
             @csrf
 
@@ -14,7 +14,7 @@
             <div class="input-group mb-3">
                 <label for="email" class="form-label"><i class="bi bi-envelope-fill"></i> <b>Email address</b> <span class="text-danger">*</span></label>
                 <div class="input-group has-validation">
-                    <input id="email" type="email" class="form-control" name="email" placeholder="Enter email... (e.g.: email@example.com)"value="{{ old('email') }}" required autofocus>
+                    <input id="email" type="email" class="form-control" name="email" placeholder="Enter email... (e.g.: email@example.com)" value="{{ old('email') }}" required autofocus>
                     @if ($errors->has('email'))
                         <span class="invalid-feedback d-block">
                             {{ $errors->first('email') }}

@@ -12,7 +12,7 @@
 <h2 class="page-title">Propose Edit Answer</h2>
 @endif
 <hr class="mt-3">
-<form method="POST" action="{{ route('propose.edit', ["id" => $post->id]) }}">
+<form method="POST" action="{{ route('propose.edit.insert', ["id" => $post->id]) }}">
   @csrf
   <input type="hidden" name="id_post" value="{{ $post->id }}">
 

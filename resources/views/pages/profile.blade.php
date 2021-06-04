@@ -53,6 +53,8 @@
             Ban <i class="bi bi-trash"></i>
           </button>
         </div>
+
+        @include('partials.profile.ban', ['user' => $user])
       @endif
       <div class="col-auto">
         <button type="button" class="btn btn-secondary" title="Help: Profile" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom"
@@ -63,9 +65,6 @@
     </div>
   @endauth
 </div>
-
-
-@include('partials.profile.ban', ['user' => $user])
 
 <hr>
 <nav class="mt-2">
