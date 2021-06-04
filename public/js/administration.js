@@ -73,6 +73,17 @@ function encodeForAjax(data) {
 function positiveFeedback(card, accepted) {
   // Create new element
   let feedback_msg = document.createElement("span");
+  // Dispose all tooltips
+  let accept_button = card.querySelector(".btn-success");
+  let accept_tooltip = bootstrap.Tooltip.getInstance(accept_button);
+  let reject_button = card.querySelector(".btn-danger");
+  let reject_tooltip = bootstrap.Tooltip.getInstance(reject_button);
+
+  if (accept_tooltip != null)
+    accept_tooltip.dispose();
+  if (reject_tooltip != null)
+    reject_tooltip.dispose();
+
   card.classList.add("alert");
   if (accepted){
     card.classList.add("alert-success");
