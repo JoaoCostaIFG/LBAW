@@ -43,7 +43,7 @@
 
     @auth
     <div class="sidebar-subheader d-flex justify-content-start align-items-center gap-1">
-      <a href="{{ '/profile/' . Auth::user()->username }}">
+      <a href="/profile/{{ Auth::user()->username }}">
         <img class="rounded-2 fit-cover" src="{{ asset('storage/'. Auth::user()->picture) }}"
          alt="{{ Auth::user()->username }} profile picture" width=32 height=32>
       </a>
