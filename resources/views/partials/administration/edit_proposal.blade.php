@@ -24,15 +24,12 @@ $question_url = "question/" . $post->parentQuestion->id;
         <span class="col-5 col-sm-4 text-end">
           <button type="button" class="accept-edit btn btn-sm btn-success mb-1"
            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Accept proposal."
-           data-bs-toggle="button" autocomplete="off" onclick="processEditProposal({{$edit_proposal->id}}, 1)"
-           aria-label="accept edit proposal">
+           onclick="processEditProposal({{$edit_proposal->id}}, 1)" aria-label="accept edit proposal">
             <i class="bi bi-check2"></i>
           </button>
           <button type="button" class="reject-edit btn btn-sm btn-danger mb-1"
            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Reject proposal."
-           data-bs-toggle="button" autocomplete="off" onclick="processEditProposal({{$edit_proposal->id}}, 0)"
-           aria-label="request edit proposal">
-            <i class="bi bi-check2"></i>
+           onclick="processEditProposal({{$edit_proposal->id}}, 0)" aria-label="request edit proposal">
             <i class="bi bi-x"></i>
           </button>
         </span>

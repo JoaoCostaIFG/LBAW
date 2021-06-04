@@ -13,31 +13,31 @@ $type = $report->post->type;
     </div>
 
     <div class="col text-start align-middle">
-      <h6 class="text-start fs-5"><i><b>Said</b></i></h6>
-      <p class="text-start ms-3 fs-7">{{ mb_strimwidth($report->post->body, 0, 128, "...") }}</p>
+      <h6 class="text-start fs-5"><i><b>Reason</b></i></h6>
+      <p class="text-start ms-3 fs-7">
+        @if (strlen($report->reason) <= 0)
+          <i>No reason given</i>
+        @else
+          {{ mb_strimwidth($report->reason, 0, 128, "...") }}
+        @endif
+      </p>
       <h6 class="text-start fs-5">
         <i><b>In this 
-          <a href="{{ $question_url }}">{{ $type }}</a>
+          <a href="{{ $question_url }}" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ mb_strimwidth($report->post->body, 0, 128, "...") }}">{{ $type }}</a>
         </b></i>
       </h6>
-      @if ($type == "question")
-      <p class="text-start ms-3 fs-7">
-        Why is processing a sorted array faster than processing an unsorted array?
-      </p>
-      @endif
+
       <div class="row align-items-center">
         <b class="col fs-5">Ban User?</b>
         <span class="col-5 col-sm-4 text-end">
           <button type="button" class="btn btn-sm btn-success mb-1"
            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ban user."
-           data-bs-toggle="button" aria-label="Ban user (accept report)"
-           autocomplete="off" onclick="processUserReport({{$report->post->id}}, {{$report->reporter}}, 1)">
+           aria-label="Ban user (accept report)" onclick="processUserReport({{$report->post->id}}, {{$report->reporter}}, 1)">
             <i class="bi bi-check2"></i>
           </button>
           <button type="button" class="btn btn-sm btn-danger mb-1"
            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Reject report."
-           data-bs-toggle="button" aria-label="Forgive user (reject report)"
-           autocomplete="off" onclick="processUserReport({{$report->post->id}}, {{$report->reporter}}, 0)">
+           aria-label="Forgive user (reject report)" onclick="processUserReport({{$report->post->id}}, {{$report->reporter}}, 0)">
             <i class="bi bi-x"></i>
           </button>
         </span>
