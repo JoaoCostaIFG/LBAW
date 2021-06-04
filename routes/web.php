@@ -40,6 +40,10 @@ Route::get('/ask', 'QuestionController@create')->middleware('auth');
 Route::post('/question/{id}/close', 'QuestionController@close')->middleware('auth')->name('question.close');
 Route::post('/question/{id}/add_bounty', 'QuestionController@addBounty')->middleware('auth')->name('question.add_bounty');
 
+// Edit proposal
+Route::get('/post/{id}/edit_proposal', 'EditProposalController@show')->middleware('auth')->name('propose.edit');
+Route::post('/post/{id}/edit_proposal', 'EditProposalController@create')->middleware('auth')->name('propose.edit');
+
 // Topic
 Route::post('/suggest_topic', 'TopicController@suggest')->middleware('auth')->name('suggest_topic');
 
