@@ -17,37 +17,41 @@
         $is_moderator = Auth::user()->hasRole('moderator');
         $can_edit = $answer->post->owner->id == Auth::id() || Auth::user()->hasRole('moderator')
     @endphp
-      @if ($is_moderator || $can_edit)
-        <div class="answer-options col-auto" data-bs-toggle="tooltip" data-bs-placement="right" title="Options">
-          <!--Check if is moderator-->
-          <ul class="nav nav-pills">
-            <li class="nav-item dropdown ms-auto">
-              <button class="btn btn-sm btn-secondary" data-bs-toggle="dropdown" aria-label="Answer options toggle">
-                <i class="bi bi-three-dots-vertical"></i>
-              </button>
-              <ul class="dropdown-menu">
-                @if ($is_moderator)
-                  <!-- delete answer -->
+      <div class="answer-options col-auto" data-bs-toggle="tooltip" data-bs-placement="right" title="Options">
+        <!--Check if is moderator-->
+        <ul class="nav nav-pills">
+          <li class="nav-item dropdown ms-auto">
+            <button class="btn btn-sm btn-secondary" data-bs-toggle="dropdown" aria-label="Answer options toggle">
+              <i class="bi bi-three-dots-vertical"></i>
+            </button>
+            <ul class="dropdown-menu">
+              @if ($is_moderator)
+                <!-- delete answer -->
+                <li>
+                  <form method="POST" action="{{ route('question.delete', ["id" => $answer->id]) }}"
+                    enctype="multipart/form-data">
+                    @csrf
+                    <button class="dropdown-item" type="submit">Delete</button>
+                  </form>
+                </li>
+              @endif
+              @if ($can_edit)
+                <li>
                   <li>
-                    <form method="POST" action="{{ route('question.delete', ["id" => $answer->id]) }}"
-                      enctype="multipart/form-data">
-                      @csrf
-                      <button class="dropdown-item" type="submit">Delete</button>
-                    </form>
+                    <a class="dropdown-item" href="{{ route('answer.edit', ['id' => $answer->id]) }}">Edit Answer</a>
                   </li>
-                @endif
-                @if ($can_edit)
+                </li>
+              @else
+                <li>
                   <li>
-                    <li>
-                      <a class="dropdown-item" href="{{ route('answer.edit', ['id' => $answer->id]) }}">Edit Answer</a>
-                    </li>
+                    <a class="dropdown-item" href="{{ route('propose.edit', ['id' => $answer->id]) }}">Propose Edit to Answer</a>
                   </li>
-                @endif
-              </ul>
-            </li>
-          </ul>
-        </div>
-      @endif
+                </li>
+              @endif
+            </ul>
+          </li>
+        </ul>
+      </div>
     @endauth
 
   </div>
