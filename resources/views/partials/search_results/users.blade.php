@@ -7,18 +7,19 @@
     <!-- Sort by-->
     <form class="search-filters-form col-12 col-lg-9 row gx-0 gap-1" method="GET">
       <!-- Sort By -->
-      <select class="col-auto" aria-label="Sort by" name="sortBy">
+      <select class="col-auto" aria-label="Sort by" name="sortByU">
         <option value="">Sort By: ---</option>
-        <option value="most_points">Sort By: Most Points</option>
-        <option value="least_points">Sort By: Least Points</option>
+        <option value="most_points" @if ($sortByU=='most_points' ) selected @endif>Sort By: Most Points</option>
+        <option value="least_points" @if ($sortByU=='least_points' ) selected @endif>Sort By: Least Points</option>
       </select>
-      @if ($errors->has('sortBy'))
+      @if ($errors->has('sortByU'))
         <div class="invalid-feedback">
           {{ $errors->first('sortBy') }}
         </div>
       @endif
       <!-- Search -->
       <input type="hidden" name="q" value="{{$q}}">
+      <input type="hidden" name="sortByQ" value="{{ $sortByQ }}">
       <!-- Filter Button -->
       <button onclick="" type="submit" class="col-auto btn btn-success">Apply</button>
     </form>

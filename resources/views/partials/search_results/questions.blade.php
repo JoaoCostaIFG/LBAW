@@ -30,20 +30,21 @@
         @endif
       </div>
       <!-- Sort By -->
-      <select class="col-auto" aria-label="Sort by" name="sortBy">
+      <select class="col-auto" aria-label="Sort by" name="sortByQ">
         <option value="">Sort By: ---</option>
-        <option value="most_recent">Sort By: Latest</option>
-        <option value="oldest">Sort By: Oldest</option>
-        <option value="best_score">Sort By: Best Score</option>
-        <option value="worst_score">Sort By: Worst Score</option>
+        <option value="most_recent" @if ($sortByQ=='most_recent' ) selected @endif >Sort By: Latest</option>
+        <option value="oldest" @if ($sortByQ=='oldest' ) selected @endif>Sort By: Oldest</option>
+        <option value="best_score" @if ($sortByQ=='best_score' ) selected @endif>Sort By: Best Score</option>
+        <option value="worst_score" @if ($sortByQ=='worst_score' ) selected @endif>Sort By: Worst Score</option>
       </select>
-      @if ($errors->has('sortBy'))
+      @if ($errors->has('sortByQ'))
         <div class="invalid-feedback">
           {{ $errors->first('sortBy') }}
         </div>
       @endif
       <!-- Search -->
       <input type="hidden" name="q" value="{{ $q }}">
+      <input type="hidden" name="sortByU" value="{{ $sortByU }}">
       <!-- Filter Button -->
       <button onclick="" type="submit" class="col-auto btn btn-success">Apply</button>
     </form>
