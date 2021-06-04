@@ -20,7 +20,7 @@
   @endif
 
   @auth
-    @if (!$post->owner->hasRole('moderator') && $post->owner->id != Auth::id())
+    @if (!$post->owner->hasRole('moderator') && $post->owner->id != Auth::id() && !Auth::user()->hasRole('moderator'))
     <!-- report button -->
     <div class="col-auto align-self-center">
       @include('partials.posts.report_button', ['post' => $post])
