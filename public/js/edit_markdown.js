@@ -22,9 +22,7 @@ else {
 }
 
 if (answer_body != undefined) {
-  console.log(answer_body);
   openEditorAnswer = openEditor.bind(null, answer_body, 'Answer Body');
-  console.log(openEditorAnswer)
 }
 else {
   openEditorAnswer = function() {};

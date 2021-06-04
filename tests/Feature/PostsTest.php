@@ -9,7 +9,8 @@ class PostsTest extends TestCase
 {
     public function testAddComment()
     {
-        $response = $this->actingAs(User::find(1))->post('/ajax/comment', ['answer_id' => 3, 'body' => 'asdasd']);
+        $response = $this->actingAs(User::find(1))->post('/ajax/comment', ['answer_id' => 10, 'body' => 'asdasd']);
+        $response->dump();
         $response->assertStatus(200);
     }
 
@@ -24,4 +25,5 @@ class PostsTest extends TestCase
         $response = $this->actingAs(User::find(9))->post('/question/18/addBounty', ['bounty' => 5]);
         $response->assertStatus(302);
     }
+
 }
