@@ -23,7 +23,7 @@ $type = $report->post->type;
       </p>
       <h6 class="text-start fs-5">
         <i><b>In this 
-          <a href="{{ $question_url }}">{{ $type }}</a>
+          <a href="{{ $question_url }}" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ mb_strimwidth($report->post->body, 0, 128, "...") }}">{{ $type }}</a>
         </b></i>
       </h6>
 
