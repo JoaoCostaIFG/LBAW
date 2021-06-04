@@ -13,22 +13,29 @@ class SearchResultsController extends Controller
 {
     public function filterUsersAndQuestions($request, $users, $questions)
     {
-        $sortBy = $request->input('sortBy');
-        if (isset($sortBy)) {
-            if ($sortBy == "most_recent")
+        $sortByQ = $request->input('sortByQ');
+        $sortByU = $request->input('sortByU');
+
+        if (isset($sortByQ)) {
+            if ($sortByQ == "most_recent")
                 $questions->orderBy('date', 'DESC');
-            else if ($sortBy == 'oldest')
+            else if ($sortByQ == 'oldest')
                 $questions->orderBy('date', 'ASC');
-            else if ($sortBy == 'best_score')
+            else if ($sortByQ == 'best_score')
                 $questions->orderBy('score', 'DESC');
-            else if ($sortBy == 'worst_score')
+            else if ($sortByQ == 'worst_score')
                 $questions->orderBy('score', 'ASC');
-            else if ($sortBy == 'most_points')
+        }         
+        else if ($request->input('q') != "") {
+            $questions->orderBy('rank_question', 'DESC');
+        }
+
+        if (isset($sortByU)){
+            if ($sortByU == 'most_points')
                 $users->orderBy('reputation', 'DESC');
-            else if ($sortBy == 'least_points')
+            else if ($sortByU == 'least_points')
                 $users->orderBy('reputation', 'ASC');
         } else if ($request->input('q') != "") {
-            $questions->orderBy('rank_question', 'DESC');
             $users->orderBy('rank_user', 'DESC');
         }
 
@@ -76,7 +83,9 @@ class SearchResultsController extends Controller
         return view("pages.search_results", [
             'questions' => $questions->paginate(5)->withQueryString()->fragment('questions'),
             'users' => $users->paginate(16)->withQueryString()->fragment('users'),
-            'q' => $search_data
+            'q' => $search_data,
+            'sortByQ' => $request->input('sortByQ'),
+            'sortByU' => $request->input('sortByU'),
         ]);
     }
 
