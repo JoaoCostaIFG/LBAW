@@ -35,6 +35,12 @@ class Vote extends Model
         return $this->value == 1;
     }
 
+    public static function updateVote($request)
+    {
+        return DB::update('UPDATE "vote" SET value=? WHERE id_post=? AND id_user=?',
+                [$request->value, $request->post_id, Auth::id()]);
+    }
+
     public static function create($request)
     {
         return DB::insert(

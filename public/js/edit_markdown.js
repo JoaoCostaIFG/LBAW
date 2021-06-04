@@ -1,5 +1,4 @@
 function openEditor(el, description) {
-console.log(el);
   const stackedit = new Stackedit();
   stackedit.on('fileChange', function onFileChange(file) {
     el.value = file.content.text;
