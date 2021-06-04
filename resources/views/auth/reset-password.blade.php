@@ -35,17 +35,28 @@
                     @endif
                 </div>
             </div>
+            <ul id="message-password" class="list-unstyled">
+                <li id="letter" class="text-danger"><i class='bi bi-x-lg'></i> Must have a <b>lowercase</b> letter</li>
+                <li id="capital" class="text-danger"><i class='bi bi-x-lg'></i> Must have a <b>capital (uppercase)</b> letter</li>
+                <li id="number" class="text-danger"><i class='bi bi-x-lg'></i> Must have a <b>number</b></li>
+                <li id="length" class="text-danger"><i class='bi bi-x-lg'></i> Minimum <b>6 characters</b></li>
+            </ul>
+
             <!-- Repeated Password -->
             <div class="input-group mb-3">
-                <label for="repeated_password" class="form-label"><i class="bi bi-lock-fill"></i> <b>Repeat New Password</b> <span class="text-danger">*</span></label>
+                <label for="password_confirmation" class="form-label"><i class="bi bi-lock-fill"></i> <b>Repeat New Password</b> <span class="text-danger">*</span></label>
                 <div class="input-group has-validation">
-                    <input id="repeated_password" type="password" class="form-control" name="password_confirmation" placeholder="Repeat new password..." required>
+                    <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" placeholder="Repeat new password..." required>
                 </div>
             </div>
+            <ul id="message-confirm" class="list-unstyled">
+                <li id="repeat" class="text-danger"><i class='bi bi-x-lg'></i> Password must <b>match</b></li>
+            </ul>
             <!-- submit button -->
             <button type="submit" class="btn btn-primary mt-2">Reset Password</button>
         </form>
     </div>
 </div>
 <script src="/js/form-validation.js"></script>
+<script src="{{ asset('js/password_verification.js') }}"></script>
 @stop
