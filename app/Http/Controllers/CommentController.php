@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -21,7 +22,7 @@ class CommentController extends Controller
         return Validator::make($data, [
             'question_id' => 'required_without:answer_id',
             'answer_id' => 'required_without:question_id',
-            'body' => 'required|string|max:2048',
+            'body' => 'required|string|min:1|max:2048',
         ]);
     }
 
@@ -40,6 +41,14 @@ class CommentController extends Controller
             return null;
         }
 
+        if ($request->has('question_id') && Post::where('id', $request['question_id'])->doesntExist()) {
+            return null;
+        }
+
+        if ($request->has('answer_id') && Post::where('id', $request['answer_id'])->doesntExist()) {
+            return null;
+        }
+
         return Comment::createComment($request);
     }
 
@@ -47,7 +56,7 @@ class CommentController extends Controller
     {
         $validation = Validator::make($request->all(), [
             'id' => 'required|exists:comment,id',
-            'body' => 'required|string|max:2048',
+            'body' => 'required|string|min:1|max:2048',
         ]);
 
         if ($validation->fails()) {
