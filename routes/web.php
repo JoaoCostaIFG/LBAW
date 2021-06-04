@@ -42,7 +42,7 @@ Route::post('/question/{id}/add_bounty', 'QuestionController@addBounty')->middle
 
 // Edit proposal
 Route::get('/post/{id}/edit_proposal', 'EditProposalController@show')->middleware('auth')->name('propose.edit');
-Route::post('/post/{id}/edit_proposal', 'EditProposalController@create')->middleware('auth')->name('propose.edit');
+Route::post('/post/{id}/edit_proposal', 'EditProposalController@create')->middleware('auth')->name('propose.edit.insert');
 
 // Topic
 Route::post('/suggest_topic', 'TopicController@suggest')->middleware('auth')->name('suggest_topic');
