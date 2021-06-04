@@ -17,13 +17,13 @@
         <span class="col-6 col-sm-5 text-end">
           <button type="button" class="btn btn-sm btn-success mb-1"
            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Accept proposal."
-           data-bs-toggle="button" autocomplete="off" onclick="processTopicProposal({{$topic_proposal->id}}, 1)"
+           onclick="processTopicProposal({{$topic_proposal->id}}, 1)"
            aria-label="Accept topic proposal">
             <i class="bi bi-check2"></i>
           </button>
           <button type="button" class="btn btn-sm btn-danger mb-1"
            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Reject proposal."
-           data-bs-toggle="button" autocomplete="off" onclick="processTopicProposal({{$topic_proposal->id}}, 0)"
+           onclick="processTopicProposal({{$topic_proposal->id}}, 0)"
            aria-label="Request topic proposal">
             <i class="bi bi-x"></i>
           </button>
