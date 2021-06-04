@@ -13,7 +13,6 @@
   </div>
   <!-- User Reputation -->
   <div class="d-flex flex-sm-column flex-row justify-content-center align-items-center p-3">
-    <span class="fs-5 text-break" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ $user->reputation }} reputation points.">{{ $user->reputation }}</span>
-    <i class="bi bi-award"></i>
+    <span class="fs-5 text-break" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ $user->reputation }} reputation points.">{{ $user->reputation }} <i class="bi bi-award"></i></span>
   </div>
 </div>
