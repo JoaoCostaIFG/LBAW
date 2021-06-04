@@ -5,7 +5,7 @@
 @section('content')
 <div class="auth-container">
   <div class="auth-form-container">
-    <span class="lead fs-3 fw-bold">Welcome back</span>
+    <h2 class="lead fs-3 fw-bold">Welcome back</h2>
     <form class="auth-form" method="POST" action="{{ route('login') }}">
       {{ csrf_field() }}
       <input type="hidden" name="previous_url" value="{{ Request::get('previous_url') ?? URL::previous() }}">
