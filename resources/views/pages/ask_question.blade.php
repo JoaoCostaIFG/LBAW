@@ -94,8 +94,7 @@
           @endif
         </div>
 
-        <button type="button" class="btn btn-sm btn-outline-info mt-2" data-bs-toggle="modal" data-bs-target="#suggestTopicModal"
-        data-bs-toggle="tooltip" data-bs-placement="bottom" title="Submit a topic proposal.">
+        <button type="button" class="btn btn-sm btn-outline-info mt-2" data-bs-toggle="modal" data-bs-target="#suggestTopicModal" data-bs-placement="bottom" title="Submit a topic proposal.">
           Not seeing the tag you want? Suggest it.
         </button>
         @if ($errors->has('topic_name'))

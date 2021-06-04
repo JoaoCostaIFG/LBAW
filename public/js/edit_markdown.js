@@ -14,12 +14,18 @@ function openEditor(el, description) {
 const question_body = document.getElementById("form-question-body");
 const answer_body = document.getElementById("form-answer-body");
 
-if (question_body != undefined)
+if (question_body != undefined) {
   openEditorQuestion = openEditor.bind(null, question_body, 'Question Body');
-else
+}
+else {
   openEditorQuestion = function() {};
+}
 
-if (answer_body != undefined)
+if (answer_body != undefined) {
+  console.log(answer_body);
   openEditorAnswer = openEditor.bind(null, answer_body, 'Answer Body');
-else
+  console.log(openEditorAnswer)
+}
+else {
   openEditorAnswer = function() {};
+}

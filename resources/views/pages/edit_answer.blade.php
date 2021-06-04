@@ -17,7 +17,7 @@
     <div class="input-group has-validation">
       <textarea id="form-answer-body" class="no-resize-ta form-control {{ $errors->has('body') ? 'is-invalid' : ''}}"
        name="body" rows="30" placeholder="Enter your answer...">{{ old('body') ?? $answer->post->body }}</textarea>
-      <a id="edit-markdown" class="position-absolute fs-4" role="button" href="javascript:void(0)" onclick="openEditor()">
+      <a id="edit-markdown" class="position-absolute fs-4" role="button" href="javascript:void(0)" onclick="openEditorAnswer()">
         <i class="bi bi-markdown"></i>
       </a>
       @if ($errors->has('body'))
