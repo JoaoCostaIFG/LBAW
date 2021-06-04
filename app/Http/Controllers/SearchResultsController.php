@@ -103,10 +103,4 @@ class SearchResultsController extends Controller
             'tag' => $tag
         ]);
     }
-
-    public function searchApi(Request $request)
-    {
-        //$validatedData = $request->validate([
-        // TODO
-    }
 }

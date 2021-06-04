@@ -55,12 +55,25 @@ class QuestionController extends Controller
             return abort(404);
 
         $question = Question::findOrFail($id);
-        $actual_title = preg_replace( "/[^A-Za-z0-9 ]/", '', $question->title);
-        $actual_title = str_replace(' ', '-', $actual_title);
+        $actual_title = preg_replace( "/ /", '-', $question->title);
+        $actual_title = preg_replace( "/[^A-Za-z0-9]/", '', $actual_title);
         if ($title != $actual_title)
             return redirect()->route('question', ['id' => $id, 'title' => $actual_title]);
 
         return view("pages.question_page", ['question' => $question]);
+    }
+
+    public function showWithId($id) {
+        $validation = Validator::make(['id' => $id], [
+            'id' => 'required|integer|exists:question,id',
+        ]);
+        if ($validation->fails())
+            return abort(404);
+
+        $question = Question::findOrFail($id);
+        $actual_title = preg_replace( "/ /", '-', $question->title);
+        $actual_title = preg_replace( "/[^A-Za-z0-9]/", '', $actual_title);
+        return redirect()->route('question', ['id' => $id, 'title' => $actual_title]);
     }
 
     public function showedit($id)
@@ -132,17 +145,6 @@ class QuestionController extends Controller
             }
         });
         return redirect()->intended('/question/' . $question->id);
-    }
-
-    public function showWithId($id) {
-        $validation = Validator::make(['id' => $id], [
-            'id' => 'required|integer|exists:question,id',
-        ]);
-        if ($validation->fails())
-            return abort(404);
-
-        $question = Question::findOrFail($id);
-        return redirect()->route('question', ['id' => $id, 'title' => $question->title]);
     }
 
     public function create()
