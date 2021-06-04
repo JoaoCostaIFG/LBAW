@@ -55,8 +55,8 @@ class QuestionController extends Controller
             return abort(404);
 
         $question = Question::findOrFail($id);
-        $actual_title = preg_replace( "/ /", '-', $question->title);
-        $actual_title = preg_replace( "/[^A-Za-z0-9]/", '', $actual_title);
+        $actual_title = str_replace(' ', '-', $question->title);
+        $actual_title = preg_replace( "/[^A-Za-z0-9\-]/", '', $actual_title);
         if ($title != $actual_title)
             return redirect()->route('question', ['id' => $id, 'title' => $actual_title]);
 
@@ -71,8 +71,8 @@ class QuestionController extends Controller
             return abort(404);
 
         $question = Question::findOrFail($id);
-        $actual_title = preg_replace( "/ /", '-', $question->title);
-        $actual_title = preg_replace( "/[^A-Za-z0-9]/", '', $actual_title);
+        $actual_title = str_replace(' ', '-', $question->title);
+        $actual_title = preg_replace( "/[^A-Za-z0-9\-]/", '', $actual_title);
         return redirect()->route('question', ['id' => $id, 'title' => $actual_title]);
     }
 
