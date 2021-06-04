@@ -33,28 +33,28 @@
         width="140" height="140" alt="Face of Ana Barros." aria-label="Ana Nachus">
       <h3>Ana Barros</h3>
       <p>Developer and designer</p>
-      <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+      <p><a class="btn btn-secondary" href="https://github.com/anaines14">Visit on <i class="bi bi-github"></i></a></p>
     </article><!-- /.col -->
     <article class="col-12 col-sm-6 col-lg-3 text-center">
       <img src="{{ asset('images/irao.jpg') }}" class="bd-placeholder-img rounded-circle"
        width="140" height="140" alt="Face of João Costa." aria-label="Irao Forcas">
       <h3>João Costa</h3>
       <p>Developer and designer</p>
-      <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+      <p><a class="btn btn-secondary" href="https://github.com/joaocostaifg">Visit on <i class="bi bi-github"></i></a></p>
     </article><!-- /.col -->
     <article class="col-12 col-sm-6 col-lg-3 text-center">
       <img src="{{ asset('images/crocs.jpg') }}" class="bd-placeholder-img rounded-circle"
        width="140" height="140" alt="Face of João Lucas." aria-label="Crocs">
       <h3>João Lucas</h3>
       <p>Developer and designer</p>
-      <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+      <p><a class="btn btn-secondary" href="https://github.com/joaolucasmartins">Visit on <i class="bi bi-github"></i></a></p>
     </article><!-- /.col -->
     <article class="col-12 col-sm-6 col-lg-3 text-center">
       <img src="{{ asset('images/fogao.jpg') }}" class="bd-placeholder-img rounded-circle"
        width="140" height="140" alt="Face of Ricardo Fontão." aria-label="Fogardo Jorjao">
       <h3>Ricardo Fontão</h3>
       <p>Developer and designer</p>
-      <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+      <p><a class="btn btn-secondary" href="https://github.com/rfontao">Visit on <i class="bi bi-github"></i></a></p>
     </article><!-- /.col -->
   </div><!-- /.row -->
 </section>
