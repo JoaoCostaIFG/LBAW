@@ -42,7 +42,6 @@
       <div id="question-options" class="col-auto" data-bs-toggle="tooltip" data-bs-placement="right" title="Options">
         <!--Check if is moderator-->
         <ul class="nav nav-pills">
-          @if ($is_moderator || $can_edit || $can_add_bounty)
           @if($can_add_bounty)
             <form method="POST" id="bountySlider" class="border border-info bg-dark p-1 rounded-3"
               action="{{ route('question.add_bounty', ["id" => $question->id]) }}" enctype="multipart/form-data">
@@ -87,6 +86,10 @@
                 <li>
                   <a class="dropdown-item" href="{{ route('question.edit', ['id' => $question->id]) }}">Edit Question</a>
                 </li>
+              @else
+                <li>
+                  <a class="dropdown-item" href="{{ route('propose.edit', ['id' => $question->id]) }}">Propose Edit to Question</a>
+                </li>
               @endif
               @if ($can_add_bounty)
                 <li>
@@ -98,7 +101,6 @@
               @endif
             </ul>
           </li>
-          @endif
         </ul>
       </div>
     @endauth

@@ -12,6 +12,10 @@ class EditProposal extends Model
     protected $table = "edit_proposal";
     public $timestamps = false;
 
+    protected $fillable = [
+        'id_post', 'id_user', 'body'
+    ];
+
     public function user()
     {
         return $this->hasOne(User::class, 'id', 'id_user');
