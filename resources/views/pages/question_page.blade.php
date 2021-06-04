@@ -33,7 +33,6 @@
 @auth
   <script src="{{ asset('js/edit_comment_answer.js') }}"></script>
   <script src="{{ asset('js/add_comment.js') }}"></script>
-  <script src="{{ asset('js/edit_markdown.js') }}" defer></script>
 
   <hr>
   <div class="container">
@@ -46,6 +45,7 @@
         <a id="edit-markdown" class="position-absolute fs-4" role="button" href="javascript:void(0)" onclick="openEditorAnswer()">
           <i class="bi bi-markdown"></i>
         </a>
+        <script src="{{ asset('js/edit_markdown.js') }}"></script>
       </div>
       <label class="visually-hidden" for="Textarea">Answer</label>
       <div class="row justify-content-between mt-1 gx-0">
