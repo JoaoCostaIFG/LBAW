@@ -180,7 +180,7 @@ class User extends Authenticatable implements CanResetPassword
         $users = User::orderBy('reputation', 'desc')
             ->select('id', 'username', 'reputation')
             ->where('isdeleted', '!=', 'true')
-            ->limit(50)
+            ->limit(9)
             ->get();
         return $users;
     }

@@ -81,11 +81,9 @@ class Question extends Model
 
     public static function getTopQuestions()
     {
-        $questions = DB::table('post')
-            ->join('question', 'post.id', '=', 'question.id')
-            ->orderBy('score', 'desc')
-            ->limit(20)
-            ->get();
+        $questions = Question::join('post', "question.id", '=', "post.id")->limit(4)
+        ->get();
+
         return $questions;
     }
 

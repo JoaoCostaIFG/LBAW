@@ -6,12 +6,11 @@
 @section('content')
 <script src="{{ asset('js/edit_markdown.js') }}" defer></script>
 
-<div class="d-flex flex-row align-items-center justify-content-between mt-2">
-  <h2 class="page-title mt-0">Ask Question</h2>
+<div class="page-title d-flex flex-row align-items-center justify-content-between">
+  <h2>Ask Question</h2>
   <button type="button" class="btn btn-secondary" title="Help: Add Question" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" 
-  data-bs-content="Use this page to make a question. Remember: Questions are permanent. Be explicit.
-  You can add a bounty and tag it with topics.">
-    <i class="bi bi-question-circle"></i> Help
+   data-bs-content="Use this page to make a question. Remember: Questions are permanent. Be explicit. You can add a bounty and tag it with topics.">
+    Help <i class="bi bi-question-circle"></i>
   </button>
 </div>
 <hr class="mt-3">
