@@ -15,7 +15,7 @@ docker run -it -p 8000:80 -e DB_DATABASE="postgres" -e DB_USERNAME="postgres" -e
 
 ### 2.1. Administration Credentials
 
-Administration URL: http://lbaw2113.lbaw-prod.fe.up.pt/administration
+Administration [URL](http://lbaw2113.lbaw-prod.fe.up.pt/administration)
 
 | Username | Password |
 | -------- | -------- |
@@ -35,3 +35,8 @@ Administration URL: http://lbaw2113.lbaw-prod.fe.up.pt/administration
 - João de Jesus Costa, up201806560@fe.up.pt
 - João Lucas Silva Martins, up201806436@fe.up.pt
 - Ricardo Jorge Cruz Fontão, up201806317@fe.up.pt
+
+## License
+
+Unless stated otherwise, the source code files in this repository are licensed
+under an MIT license.
