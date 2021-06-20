@@ -31,10 +31,10 @@ Administration [URL](http://lbaw2113.lbaw-prod.fe.up.pt/administration)
 
 ## Authors
 
-- Ana Inês Oliveira de Barros, up201806593@fe.up.pt
-- João de Jesus Costa, up201806560@fe.up.pt
-- João Lucas Silva Martins, up201806436@fe.up.pt
-- Ricardo Jorge Cruz Fontão, up201806317@fe.up.pt
+- Ana Inês Oliveira de Barros, up201806593@edu.fe.up.pt
+- João de Jesus Costa, up201806560@edu.fe.up.pt
+- João Lucas Silva Martins, up201806436@edu.fe.up.pt
+- Ricardo Jorge Cruz Fontão, up201806317@edu.fe.up.pt
 
 ## License
 
