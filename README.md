@@ -8,7 +8,7 @@ theoretical classes' slides, and some questions from the previous years' exams.
 The project is a webpage themed around "Collaborative Q&A". We borrowed many
 ideas from [Stack Overflow](https://stackoverflow.com/).
 
-**Grade:** don't know yet
+**Grade:** 18.2
 
 ## Collaboration
 
